@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Enigma.D3.Collections;
 
 namespace Enigma.D3
 {
@@ -15,17 +16,17 @@ namespace Enigma.D3
 
 		public int x000_Id { get { return Field<int>(0x000); } }
 		public string x004_Name { get { return Field(0x004, 128); } }
-		public int _x084 { get { return Field<int>(0x084); } }
+		public int x084_SceneId { get { return Field<int>(0x084); } }
 		public int x088_AcdId { get { return Field<int>(0x088); } }
-		public int x08C_SnoId { get { return Field<int>(0x08C); } }
-		public int _x090 { get { return Field<int>(0x090); } }
-		public int _x094 { get { return Field<int>(0x094); } }
-		public int _x098 { get { return Field<int>(0x098); } }
+		public int x08C_ActorSnoId { get { return Field<int>(0x08C); } }
+		public int x090_StructStart_Min80Bytes_ActorLocation { get { return Field<int>(0x090); } }
+		public float x094_StructStart_Min28Bytes { get { return Field<float>(0x094); } }
+		public float x098 { get { return Field<float>(0x098); } }
 		public float x09C_Direction_Abs0to1 { get { return Field<float>(0x09C); } }
 		public float x0A0_Direction_1toNeg1 { get { return Field<float>(0x0A0); } }
-		public float x0A4_X { get { return Field<float>(0x0A4); } }
-		public float x0A8_Y { get { return Field<float>(0x0A8); } }
-		public float x0AC_Z { get { return Field<float>(0x0AC); } }
+		public float x0A4_WorldPosX { get { return Field<float>(0x0A4); } }
+		public float x0A8_WorldPosY { get { return Field<float>(0x0A8); } }
+		public float x0AC_WorldPosZ { get { return Field<float>(0x0AC); } }
 		public float x0B0_Radius { get { return Field<float>(0x0B0); } }
 		public float x0B4_CollisionX { get { return Field<float>(0x0B4); } }
 		public float x0B8_CollisionY { get { return Field<float>(0x0B8); } }
@@ -206,56 +207,50 @@ namespace Enigma.D3
 		public int _x374 { get { return Field<int>(0x374); } }
 		public int _x378 { get { return Field<int>(0x378); } }
 		public int _x37C { get { return Field<int>(0x37C); } }
-		public int _x380 { get { return Field<int>(0x380); } }
+		public int x380 { get { return Field<int>(0x380); } }
 		public int _x384 { get { return Field<int>(0x384); } }
-		public int _x388 { get { return Field<int>(0x388); } }
+		public int x388 { get { return Field<int>(0x388); } }
 		public int _x38C { get { return Field<int>(0x38C); } }
-		public int _x390 { get { return Field<int>(0x390); } }
-		public int _x394 { get { return Field<int>(0x394); } }
-		public int _x398 { get { return Field<int>(0x398); } }
-		public int _x39C { get { return Field<int>(0x39C); } }
-		public int _x3A0 { get { return Field<int>(0x3A0); } }
-		public int _x3A4 { get { return Field<int>(0x3A4); } }
-		public int _x3A8 { get { return Field<int>(0x3A8); } }
-		public int _x3AC { get { return Field<int>(0x3AC); } }
-		public int _x3B0 { get { return Field<int>(0x3B0); } }
-		public int _x3B4 { get { return Field<int>(0x3B4); } }
+		public float x390 { get { return Field<float>(0x390); } }
+		public float x394 { get { return Field<float>(0x394); } }
+		public float x398 { get { return Field<float>(0x398); } }
+		public float x39C { get { return Field<float>(0x39C); } }
+		public float x3A0_StructStart_4xFloats { get { return Field<float>(0x3A0); } }
+		public float x3A4 { get { return Field<float>(0x3A4); } }
+		public float x3A8 { get { return Field<float>(0x3A8); } }
+		public float x3AC { get { return Field<float>(0x3AC); } }
+		public int x3B0 { get { return Field<int>(0x3B0); } }
+		public Map x3B4_Ptr112Bytes_Map { get { return Dereference<Map>(0x3B4); } }
 		public int _x3B8 { get { return Field<int>(0x3B8); } }
-		public int _x3BC { get { return Field<int>(0x3BC); } }
-		public int _x3C0 { get { return Field<int>(0x3C0); } }
-		public int _x3C4 { get { return Field<int>(0x3C4); } }
-		public int _x3C8 { get { return Field<int>(0x3C8); } }
-		public int _x3CC { get { return Field<int>(0x3CC); } }
-		public int _x3D0 { get { return Field<int>(0x3D0); } }
-		public int _x3D4 { get { return Field<int>(0x3D4); } }
-		public int _x3D8 { get { return Field<int>(0x3D8); } }
-		public int _x3DC { get { return Field<int>(0x3DC); } }
-		public int _x3E0 { get { return Field<int>(0x3E0); } }
-		public int _x3E4 { get { return Field<int>(0x3E4); } }
-		public int _x3E8 { get { return Field<int>(0x3E8); } }
-		public int _x3EC { get { return Field<int>(0x3EC); } }
-		public int _x3F0 { get { return Field<int>(0x3F0); } }
-		public int _x3F4 { get { return Field<int>(0x3F4); } }
-		public int _x3F8 { get { return Field<int>(0x3F8); } }
-		public int _x3FC { get { return Field<int>(0x3FC); } }
-		public int _x400 { get { return Field<int>(0x400); } }
-		public int _x404 { get { return Field<int>(0x404); } }
-		public int _x408 { get { return Field<int>(0x408); } }
+		public int x3BC_Ptr_24Bytes { get { return Dereference<int>(0x3BC); } }
+		public int x3C0_StructStart_28Bytes { get { return Field<int>(0x3C0); } }
+		public int x3DC { get { return Field<int>(0x3DC); } }
+		public int x3E0 { get { return Field<int>(0x3E0); } }
+		public int x3E4 { get { return Field<int>(0x3E4); } }
+		public float x3E8 { get { return Field<float>(0x3E8); } }
+		public float x3EC { get { return Field<float>(0x3EC); } }
+		public float x3F0 { get { return Field<float>(0x3F0); } }
+		public int x3F4_CreationTick { get { return Field<int>(0x3F4); } }
+		public int x3F8_Neg1_Id_ { get { return Field<int>(0x3F8); } }
+		public int x3FC_2xShort_Neg1_Neg1 { get { return Field<int>(0x3FC); } }
+		public int x400 { get { return Field<int>(0x400); } }
+		public int x404_Neg1 { get { return Field<int>(0x404); } }
+		public int x408_Neg1 { get { return Field<int>(0x408); } }
 		public int _x40C { get { return Field<int>(0x40C); } }
-		public int _x410 { get { return Field<int>(0x410); } }
-		public int _x414 { get { return Field<int>(0x414); } }
-		public int _x418 { get { return Field<int>(0x418); } }
-		public int _x41C { get { return Field<int>(0x41C); } }
+		public int x410 { get { return Field<int>(0x410); } }
+		public float x414 { get { return Field<float>(0x414); } }
+		public int x418_ActorScalePinned { get { return Field<int>(0x418); } }
+		public int x41C { get { return Field<int>(0x41C); } }
 		public int _x420 { get { return Field<int>(0x420); } }
 		public int _x424 { get { return Field<int>(0x424); } }
 		public int _x428 { get { return Field<int>(0x428); } }
 		public int _x42C { get { return Field<int>(0x42C); } }
 		public int _x430 { get { return Field<int>(0x430); } }
 		public int _x434 { get { return Field<int>(0x434); } }
-		public int _x438 { get { return Field<int>(0x438); } }
+		public int x438 { get { return Field<int>(0x438); } }
 		public int x43C_Frame { get { return Field<int>(0x43C); } }
 		public int _x440 { get { return Field<int>(0x440); } }
 		public int _x444 { get { return Field<int>(0x444); } }
-		public int _x448 { get { return Field<int>(0x448); } }
+		public int x448_Ptr_48Bytes_BannerAttachments { get { return Field<int>(0x448); } }
 	}
 }

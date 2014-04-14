@@ -14,8 +14,8 @@ namespace Enigma.D3.Collections
 
 	public class Map<TKey, TValue> : MemoryObject
 	{
-		// 2.0.0.21806
-		public const int SizeOf = 0x64; // Unsure, might be 0x70
+		// 2.0.4.23119
+		public const int SizeOf = 0x70;
 
 		public Map(ProcessMemory memory, int address)
 			: base(memory, address) { }
@@ -29,9 +29,9 @@ namespace Enigma.D3.Collections
 		public int _x40 { get { return Field<int>(0x40); } }
 		public int _x44 { get { return Field<int>(0x44); } }
 		public Allocator x48_Allocator { get { return Field<Allocator>(0x48); } }
-		public int _x64 { get { return Field<int>(0x00); } } // <-- Might be specific to UIElementMap
-		public int _x68 { get { return Field<int>(0x00); } } // <-- Might be specific to UIElementMap
-		public int _x6C { get { return Field<int>(0x00); } } // <-- Might be specific to UIElementMap
+		public int _x64 { get { return Field<int>(0x00); } }
+		public int _x68 { get { return Field<int>(0x00); } }
+		public int _x6C { get { return Field<int>(0x00); } }
 
 
 

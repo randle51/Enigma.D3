@@ -22,8 +22,12 @@ namespace Enigma.D3.Enums
 		PlayerRightFinger = 12,
 		PlayerNeck = 13,
 		// Empty
+		Stash = 15,
+		Gold = 16,
+		// Empty
 		Merchant = 18,
 		// Empty
+		Socket = 20,
 		PetRightHand = 21,
 		PetLeftHand = 22,
 		PetSpecial = 23,

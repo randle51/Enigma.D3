@@ -37,7 +37,7 @@ namespace Enigma.D3.Collections
 
 		public IEnumerator<T> GetEnumerator()
 		{
-			int maxIndex = x108_MaxIndex;
+			short maxIndex = (short)x108_MaxIndex;
 			if (maxIndex < 0)
 				yield break;
 
