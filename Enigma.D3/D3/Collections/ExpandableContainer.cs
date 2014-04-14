@@ -49,7 +49,7 @@ namespace Enigma.D3.Collections
 
 		public new IEnumerator<T> GetEnumerator()
 		{
-			int maxIndex = base.x108_MaxIndex;
+			short maxIndex = (short)base.x108_MaxIndex;
 			if (maxIndex < 0)
 				yield break;
 

@@ -24,8 +24,8 @@ namespace Enigma.D3
 		public int x20 { get { return Field<int>(0x20); } }
 		public int x24_ArrayLength { get { return Field<int>(0x24); } } // -1 if not an array
 		public int x28 { get { return Field<int>(0x28); } }
-		public int x2C { get { return Field<int>(0x2C); } }
-		public SnoGroupId x30_SnoType { get { return (SnoGroupId)Field<int>(0x30); } } // -1 if no SNO type
+		public int x2C_UsedBits { get { return Field<int>(0x2C); } } // Most likely used for transmission.
+		public int x30_GroupId { get { return Field<int>(0x30); } } // -1 if none, used for DT_SNO and DT_GBID.
 		public int x34 { get { return Field<int>(0x34); } }
 		public int x38_SymbolTable { get { return Field<int>(0x38); } } // Used for DT_ENUM
 		public int x3C { get { return Field<int>(0x3C); } }

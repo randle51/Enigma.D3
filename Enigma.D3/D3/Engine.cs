@@ -22,6 +22,18 @@ namespace Enigma.D3
 
 		public static Engine Current { get; private set; }
 
+		public static T TryGet<T>(Func<Engine, T> getter)
+		{
+			try
+			{
+				return getter.Invoke(Engine.Current);
+			}
+			catch
+			{
+				return default(T);
+			}
+		}
+
 		public Engine(Process process)
 			: base(new ProcessMemory(process), 0)
 		{
@@ -54,10 +66,10 @@ namespace Enigma.D3
 		public SnoGroup[] SnoGroupsByCode { get { return Field<Pointer<SnoGroup>>(0x01CEF708, 70).Select(a => a.Value).ToArray(); } }
 
 		public SnoGroup[] SnoGroups { get { return Dereference<Pointer<SnoGroup>>(0x01CEF824, 61).Select(a => a.Value).ToArray(); } }
-		
+
 		public ObjectManager ObjectManager { get { return Dereference<ObjectManager>(0x01CEF854); } }
 		public ObjectManager ObjectManagerPristine { get { return Dereference<ObjectManager>(0x01CEF858); } } // This address is used in initialization and finalization methods.
-		
+
 		public LocalData LocalData { get { return Field<LocalData>(0x01CF0AE8); } }
 
 		public SnoGroupSearch SnoGroupSearch { get { return Dereference<SnoGroupSearch>(0x01D43B50); } }
@@ -70,7 +82,7 @@ namespace Enigma.D3
 
 		// ↑ 2.0.4.23119 ↑
 		// ↓ 2.0.3.22427 ↓
-		
+
 		// ↑ 2.0.3.22427 ↑
 		// ↓ 2.0.2.22274 ↓
 
