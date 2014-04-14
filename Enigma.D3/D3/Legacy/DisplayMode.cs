@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Enigma.D3.Legacy
+{
+	public class DisplayMode : MemoryObject
+	{
+		public const int SizeOf = 0x30; // 1.0.8.16603
+
+		public DisplayMode(ProcessMemory memory, int address)
+			: base(memory, address) { }
+
+		public DisplayModeOptions x00_Options { get { return (DisplayModeOptions)Field<int>(0x00); } }
+		public WindowMode x04_WindowMode { get { return (WindowMode)Field<int>(0x04); } }
+		public int x08_WinLeft { get { return Field<int>(0x08); } }
+		public int x0C_WinTop { get { return Field<int>(0x0C); } }
+		public int x10_WinWidth { get { return Field<int>(0x10); } }
+		public int x14_WinHeight { get { return Field<int>(0x14); } }
+		public int x18_UIOptWidth { get { return Field<int>(0x18); } }
+		public int x1C_UIOptHeight { get { return Field<int>(0x1C); } }
+		public int x20_Width { get { return Field<int>(0x20); } }
+		public int x24_Height { get { return Field<int>(0x24); } }
+		public int x28_RefreshRate { get { return Field<int>(0x28); } }
+		public int x2C_ColorDepth { get { return Field<int>(0x2C); } }
+	}
+}
