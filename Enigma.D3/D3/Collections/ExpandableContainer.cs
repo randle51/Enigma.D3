@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using Enigma.D3.Memory;
 
@@ -12,10 +13,10 @@ namespace Enigma.D3.Collections
 			: base(memory, address) { }
 	}
 
-	public class ExpandableContainer<T> : Container<T>
+	public class ExpandableContainer<T> : Container<T>, IEnumerable<T>
 	{
 		// 2.0.0.20874
-		public const int SizeOf = 0x168; // = 360
+		public new const int SizeOf = 0x168; // = 360
 
 		public ExpandableContainer(ProcessMemory memory, int address)
 			: base(memory, address) { }
@@ -41,9 +42,38 @@ namespace Enigma.D3.Collections
 				var blockOffset = index % blockSize;
 				var blockBase = base.Memory.Read<int>(base.x120_Allocation + 4 * blockNumber);
 				var itemPtr = blockBase + blockOffset * x104_ItemSize;
-				var item =  base.Memory.Read<T>(itemPtr);
+				var item = base.Memory.Read<T>(itemPtr);
 				return item;
 			}
+		}
+
+		public new IEnumerator<T> GetEnumerator()
+		{
+			int maxIndex = base.x108_MaxIndex;
+			if (maxIndex < 0)
+				yield break;
+
+			int itemSize = x104_ItemSize;
+			int blockSize = 1 << x164_Bits;
+			int blockCount = (maxIndex / blockSize) + 1;
+
+			int[] blockPointers = base.Memory.Read<int>(x120_Allocation, blockCount);
+
+			for (int i = 0; i <= maxIndex; i++)
+			{
+				int blockIndex = i / blockSize;
+				int blockPointer = blockPointers[blockIndex];
+				int blockOffset = itemSize * (i % blockSize);
+
+				int itemAddress = blockPointer + blockOffset;
+
+				yield return Memory.Read<T>(itemAddress);
+			}
+		}
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
 		}
 	}
 }

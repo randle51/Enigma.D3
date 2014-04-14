@@ -11,6 +11,11 @@ namespace Enigma
 	{
 		private static Dictionary<Type, int> _cachedSizes = new Dictionary<Type, int>();
 
+		public static bool IsMemoryObjectType(this Type type)
+		{
+			return type.IsSubclassOf(typeof(MemoryObject)) || type.Equals(typeof(MemoryObject));
+		}
+
 		public static int SizeOf(this Type type)
 		{
 			int sizeOf;
