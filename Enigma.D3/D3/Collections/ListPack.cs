@@ -12,8 +12,7 @@ namespace Enigma.D3.Collections
 			: base(memory, address) { }
 	}
 
-
-	public class ListPack<T> : MemoryObject
+	public class ListPack<T> : MemoryObject, IEnumerable<T>
 	{
 		// 2.0.1.22044
 		public const int SizeOf = 0x14; // 20
@@ -38,6 +37,16 @@ namespace Enigma.D3.Collections
 					"ItemSize: " + (x10_ListNodeAllocator.x00_ElementSize - 8),
 					"Count: " + x00_List.x08_Count) + "}";
 			}
+		}
+
+		public IEnumerator<T> GetEnumerator()
+		{
+			return x00_List.GetEnumerator();
+		}
+
+		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+		{
+			return GetEnumerator();
 		}
 	}
 }

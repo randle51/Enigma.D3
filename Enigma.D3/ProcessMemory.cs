@@ -27,42 +27,41 @@ namespace Enigma
 		public T Read<T>(int address)
 		{
 			var type = typeof(T).IsEnum ? typeof(T).GetEnumUnderlyingType() : typeof(T);
-			var size = type.SizeOf();
-			var bufferPtr = Marshal.AllocHGlobal(size);
-			var numberOfBytesRead = 0;
-			try
+			if (type.IsMemoryObjectType())
 			{
-				if (Win32.ReadProcessMemory(
-					_process.Handle,
-					address,
-					bufferPtr,
-					size,
-					out numberOfBytesRead))
+				return (T)Activator.CreateInstance(type, this, address);
+			}
+			else
+			{
+				var size = type.SizeOf();
+				var bufferPtr = Marshal.AllocHGlobal(size);
+				var numberOfBytesRead = 0;
+				try
 				{
-					ValidateNumberOfBytesRead(address, numberOfBytesRead, size);
-					if (type.IsSubclassOf(typeof(MemoryObject)) ||
-						type.Equals(typeof(MemoryObject)))
+					if (Win32.ReadProcessMemory(
+						_process.Handle,
+						address,
+						bufferPtr,
+						size,
+						out numberOfBytesRead))
 					{
-						return (T)Activator.CreateInstance(type, this, address);
+						ValidateNumberOfBytesRead(address, numberOfBytesRead, size);
+						return (T)Marshal.PtrToStructure(bufferPtr, typeof(T));
 					}
 					else
 					{
-						return (T)Marshal.PtrToStructure(bufferPtr, typeof(T));
+						throw new Win32Exception();
 					}
 				}
-				else
+				catch (Exception exception)
 				{
-					throw new Win32Exception();
+					OnReadException(address, exception);
+					return default(T);
 				}
-			}
-			catch (Exception exception)
-			{
-				OnReadException(address, exception);
-				return default(T);
-			}
-			finally
-			{
-				Marshal.FreeHGlobal(bufferPtr);
+				finally
+				{
+					Marshal.FreeHGlobal(bufferPtr);
+				}
 			}
 		}
 
@@ -72,8 +71,7 @@ namespace Enigma
 			int sizeOf = type.SizeOf();
 
 			T[] array = new T[count];
-			if (type.IsSubclassOf(typeof(MemoryObject)) ||
-				type.Equals(typeof(MemoryObject)))
+			if (type.IsMemoryObjectType())
 			{
 				for (int i = 0; i < count; i++)
 				{
@@ -221,6 +219,7 @@ namespace Enigma
 			Debug.WriteLine("{0}({1:X8}): {2}", "ProcessMemory.Read", address, exception.Message);
 		}
 
+		#region Win32
 		private static class Win32
 		{
 			private const string Kernel32 = "kernel32.dll";
@@ -314,5 +313,6 @@ namespace Enigma
 				MemImage = 0x01000000,
 			}
 		}
+		#endregion
 	}
 }
