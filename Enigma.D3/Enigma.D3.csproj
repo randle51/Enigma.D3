@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{23848103-7DC0-4AB0-958F-B8793FFD1F2D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Enigma</RootNamespace>
+    <AssemblyName>Enigma.D3</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="D3\ActManager.cs" />
+    <Compile Include="D3\Actor.cs" />
+    <Compile Include="D3\ActorCommonData.cs" />
+    <Compile Include="D3\ActorCommonDataManager.cs" />
+    <Compile Include="D3\ActorManager.cs" />
+    <Compile Include="D3\ActorMovement.cs" />
+    <Compile Include="D3\AttributeDescriptor.cs" />
+    <Compile Include="D3\Enums\AttributeId.cs" />
+    <Compile Include="D3\Collections\Container.cs" />
+    <Compile Include="D3\Collections\ExpandableContainer.cs" />
+    <Compile Include="D3\Collections\LinkedList.cs" />
+    <Compile Include="D3\Collections\ListB.cs" />
+    <Compile Include="D3\Collections\ListPack.cs" />
+    <Compile Include="D3\Collections\Map.cs" />
+    <Compile Include="D3\Collections\SinglyLinkedList.cs" />
+    <Compile Include="D3\ContainerManager.cs" />
+    <Compile Include="D3\Enums\DamageType.cs" />
+    <Compile Include="D3\Enums\GemType.cs" />
+    <Compile Include="D3\Enums\GizmoType.cs" />
+    <Compile Include="D3\Enums\ItemLocation.cs" />
+    <Compile Include="D3\Enums\ItemQuality.cs" />
+    <Compile Include="D3\Enums\MonsterQuality.cs" />
+    <Compile Include="D3\Enums\MonsterState.cs" />
+    <Compile Include="D3\Enums\ActorType.cs" />
+    <Compile Include="D3\Enums\FollowerType.cs" />
+    <Compile Include="D3\Enums\NpcType.cs" />
+    <Compile Include="D3\Enums\ResourceType.cs" />
+    <Compile Include="D3\Enums\WorldType.cs" />
+    <Compile Include="D3\FastAttrib.cs" />
+    <Compile Include="D3\FastAttribGroup.cs" />
+    <Compile Include="D3\FieldDescriptor.cs" />
+    <Compile Include="D3\GlobalStruct001.cs" />
+    <Compile Include="D3\Helpers\ActorCommonDataHelper.cs" />
+    <Compile Include="D3\Helpers\ActorHelper.cs" />
+    <Compile Include="D3\Helpers\AttributeHelper.cs" />
+    <Compile Include="D3\Helpers\SymbolHelper.cs" />
+    <Compile Include="D3\Helpers\WorldHelper.cs" />
+    <Compile Include="D3\LevelArea.cs" />
+    <Compile Include="D3\LocalData.cs" />
+    <Compile Include="D3\Enums\PlayerClass.cs" />
+    <Compile Include="D3\Quest.cs" />
+    <Compile Include="D3\QuestManager.cs" />
+    <Compile Include="D3\RefString.cs" />
+    <Compile Include="D3\RefStringData.cs" />
+    <Compile Include="D3\SceneAllocators.cs" />
+    <Compile Include="D3\SceneRevealInfo.cs" />
+    <Compile Include="D3\ScreenManager.cs" />
+    <Compile Include="D3\SnoGroup.cs" />
+    <Compile Include="D3\Enums\SnoGroupId.cs" />
+    <Compile Include="D3\SnoGroupInitializer.cs" />
+    <Compile Include="D3\SnoGroupSearch.cs" />
+    <Compile Include="D3\Storage.cs" />
+    <Compile Include="D3\Symbol.cs" />
+    <Compile Include="D3\UI\Buff.cs" />
+    <Compile Include="D3\UI\BuffManager.cs" />
+    <Compile Include="D3\ValueTypeDescriptor.cs" />
+    <Compile Include="D3\GameGlobals.cs" />
+    <Compile Include="D3\Graphics\DisplayMode.cs" />
+    <Compile Include="D3\Graphics\DisplayModeFlags.cs" />
+    <Compile Include="D3\Engine.cs" />
+    <Compile Include="D3\GameBalanceGroup.cs" />
+    <Compile Include="D3\GameBalanceManager.cs" />
+    <Compile Include="D3\Enums\GameBalanceType.cs" />
+    <Compile Include="D3\Graphics\GraphicsSubsystem.cs" />
+    <Compile Include="D3\Helpers\CodeGeneratorHelper.cs" />
+    <Compile Include="D3\Helpers\HashUtils.cs" />
+    <Compile Include="D3\Legacy\Acd.cs" />
+    <Compile Include="D3\Legacy\AcdContainerWrapper.cs" />
+    <Compile Include="D3\Legacy\Actor.cs" />
+    <Compile Include="D3\Legacy\ActorHelper.cs" />
+    <Compile Include="D3\Legacy\Allocator.cs" />
+    <Compile Include="D3\Legacy\AllocatorData.cs" />
+    <Compile Include="D3\Legacy\AllocatorV2.cs" />
+    <Compile Include="D3\Legacy\Attachment.cs" />
+    <Compile Include="D3\Legacy\AttributeDescription.cs" />
+    <Compile Include="D3\Legacy\AttributesContainer.cs" />
+    <Compile Include="D3\Legacy\AxisAlignedBoundingBox.cs" />
+    <Compile Include="D3\Legacy\BattleNetInterface.cs" />
+    <Compile Include="D3\Legacy\BattleNetPlatform.cs" />
+    <Compile Include="D3\Legacy\Buff.cs" />
+    <Compile Include="D3\Legacy\BuffManager.cs" />
+    <Compile Include="D3\Legacy\ChatPreferences.cs" />
+    <Compile Include="D3\Legacy\ClientSocket.cs" />
+    <Compile Include="D3\Legacy\Collections\Container`1.cs" />
+    <Compile Include="D3\Legacy\Collections\ExpandableContainer`1.cs" />
+    <Compile Include="D3\Legacy\Collections\LinkedListNode`1.cs" />
+    <Compile Include="D3\Legacy\Collections\LinkedList`1.cs" />
+    <Compile Include="D3\Legacy\Allocator`1.cs" />
+    <Compile Include="D3\Legacy\AllocatorData`1.cs" />
+    <Compile Include="D3\Legacy\GameGlobals.cs" />
+    <Compile Include="D3\Legacy\WorldRect.cs" />
+    <Compile Include="D3\Legacy\Point2D.cs" />
+    <Compile Include="D3\Legacy\CriticalSection.cs" />
+    <Compile Include="D3\Legacy\DisplayMode.cs" />
+    <Compile Include="D3\Legacy\DisplayModeOptions.cs" />
+    <Compile Include="D3\Legacy\DisplayMonitor.cs" />
+    <Compile Include="D3\Legacy\Engine.cs" />
+    <Compile Include="D3\Legacy\Environment.cs" />
+    <Compile Include="D3\Legacy\ErrorManager.cs" />
+    <Compile Include="D3\Legacy\GameAccount.cs" />
+    <Compile Include="D3\Legacy\GameplayPreferences.cs" />
+    <Compile Include="D3\Legacy\GraphicsPreferences.cs" />
+    <Compile Include="D3\Legacy\GraphicsSubsystem.cs" />
+    <Compile Include="D3\Legacy\HeroSelect.cs" />
+    <Compile Include="D3\Legacy\HeroState.cs" />
+    <Compile Include="D3\Legacy\LevelArea.cs" />
+    <Compile Include="D3\Legacy\LocaleId.cs" />
+    <Compile Include="D3\Legacy\LogFile.cs" />
+    <Compile Include="D3\Legacy\MemoryManager.cs" />
+    <Compile Include="D3\Legacy\NetStat.cs" />
+    <Compile Include="D3\Legacy\ObjectManager.cs" />
+    <Compile Include="D3\Legacy\OSInfo.cs" />
+    <Compile Include="D3\Legacy\OSType.cs" />
+    <Compile Include="D3\Legacy\Player.cs" />
+    <Compile Include="D3\Legacy\PlayerClass.cs" />
+    <Compile Include="D3\Legacy\PlayerContainer.cs" />
+    <Compile Include="D3\Legacy\PlayerSavedData.cs" />
+    <Compile Include="D3\Legacy\Point3D.cs" />
+    <Compile Include="D3\Legacy\Pointer`1.cs" />
+    <Compile Include="D3\Legacy\Portal.cs" />
+    <Compile Include="D3\Legacy\RefString.cs" />
+    <Compile Include="D3\Legacy\SavePoint.cs" />
+    <Compile Include="D3\Legacy\Scene.cs" />
+    <Compile Include="D3\Legacy\SceneHelper.cs" />
+    <Compile Include="D3\Legacy\ScreenManager.cs" />
+    <Compile Include="D3\Legacy\SnoActor.cs" />
+    <Compile Include="D3\Legacy\SnoActorType.cs" />
+    <Compile Include="D3\Legacy\SnoDefinition.cs" />
+    <Compile Include="D3\Legacy\SnoFile.cs" />
+    <Compile Include="D3\Legacy\SnoFileManager.cs" />
+    <Compile Include="D3\Legacy\SnoGroupType.cs" />
+    <Compile Include="D3\Legacy\SnoGroup`1.cs" />
+    <Compile Include="D3\Legacy\SnoHelper.cs" />
+    <Compile Include="D3\Legacy\SnoScene.cs" />
+    <Compile Include="D3\Legacy\SocialPreferences.cs" />
+    <Compile Include="D3\Legacy\SoundPreferences.cs" />
+    <Compile Include="D3\Legacy\SoundSubsystem.cs" />
+    <Compile Include="D3\Legacy\SpeakerMode.cs" />
+    <Compile Include="D3\Legacy\Storage.cs" />
+    <Compile Include="D3\Legacy\SystemInfo.cs" />
+    <Compile Include="D3\Legacy\UIManager.cs" />
+    <Compile Include="D3\Legacy\UIRect.cs" />
+    <Compile Include="D3\Legacy\UIReference.cs" />
+    <Compile Include="D3\Legacy\WindowMode.cs" />
+    <Compile Include="D3\Legacy\World.cs" />
+    <Compile Include="D3\Legacy\WorldHelper.cs" />
+    <Compile Include="D3\Memory\Allocator.cs" />
+    <Compile Include="D3\Memory\AllocatorBlock.cs" />
+    <Compile Include="D3\Memory\BasicAllocator.cs" />
+    <Compile Include="D3\Memory\MemoryManager.cs" />
+    <Compile Include="D3\Memory\Pointer.cs" />
+    <Compile Include="D3\MessageDescriptor.cs" />
+    <Compile Include="D3\NamedCriticalSection.cs" />
+    <Compile Include="D3\NetworkManager.cs" />
+    <Compile Include="D3\NetworkMessage.cs" />
+    <Compile Include="D3\ObjectManager.cs" />
+    <Compile Include="D3\PlayerDataManager.cs" />
+    <Compile Include="D3\Preferences\ChatPreferences.cs" />
+    <Compile Include="D3\Preferences\GameplayPreferences.cs" />
+    <Compile Include="D3\Preferences\SocialPreferences.cs" />
+    <Compile Include="D3\Preferences\SoundPreferences.cs" />
+    <Compile Include="D3\Preferences\VideoPreferences.cs" />
+    <Compile Include="D3\Time.cs" />
+    <Compile Include="D3\UI\UIManager.cs" />
+    <Compile Include="D3\UI\UIHandler.cs" />
+    <Compile Include="D3\UI\UIMap.cs" />
+    <Compile Include="D3\UI\UIReference.cs" />
+    <Compile Include="D3\Graphics\WindowMode.cs" />
+    <Compile Include="D3\World.cs" />
+    <Compile Include="D3\WorldPosition.cs" />
+    <Compile Include="MemoryObject.cs" />
+    <Compile Include="ProcessExtensions.cs" />
+    <Compile Include="ProcessMemory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypeExtensions.cs" />
+    <Compile Include="D3\Win32\CriticalSection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="D3\PlayerData.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
