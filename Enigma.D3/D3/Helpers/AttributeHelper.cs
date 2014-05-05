@@ -20,6 +20,43 @@ namespace Enigma.D3.Helpers
 			return attribDef.x10_DataType == 1 ? valuePtr.Memory.Read<int>(valuePtr.Address) : valuePtr.Memory.Read<float>(valuePtr.Address);
 		}
 
+		public static System.Collections.Generic.IEnumerable<Map<int, Pointer>.Entry> EnumerateAttributes(this ActorCommonData acd)
+		{
+			var groupId = acd.x120_FastAttribGroupId;
+			var group = Engine.Current.ObjectManager.x798_Storage.x104_FastAttrib.x54_Groups[(short)groupId];
+			if (group != null)
+			{
+				var smallMap = group.x00C_PtrMap;
+				if ((group.x004_Flags & 4) != 0 && smallMap != null)
+				{
+					foreach (var bucket in smallMap.x10_Data.x00_Buckets)
+					{
+						var immutableBucket = bucket;
+						while (immutableBucket != null)
+						{
+							immutableBucket.TakeSnapshot();
+							yield return immutableBucket;
+							immutableBucket = immutableBucket.x00_Next;
+						}
+					}
+				}
+				var map = group.x010_Map;
+				if (map != null)
+				{
+					foreach (var bucket in map.x10_Data.x00_Buckets)
+					{
+						var immutableBucket = bucket;
+						while (immutableBucket != null)
+						{
+							immutableBucket.TakeSnapshot();
+							yield return immutableBucket;
+							immutableBucket = immutableBucket.x00_Next;
+						}
+					}
+				}
+			}
+		}
+
 		internal static Pointer GetAttributeValuePtr(this ActorCommonData acd, AttributeId attribId, int modifier = -1)
 		{
 			int key = (modifier << 12) + ((int)attribId & 0xFFF);
@@ -63,7 +100,12 @@ namespace Enigma.D3.Helpers
 
 	public abstract class Attribute<T> where T : struct
 	{
-		public abstract T GetValue(ActorCommonData acd);
+		public T GetValue(ActorCommonData acd)
+		{
+			return GetValue(acd, -1);
+		}
+
+		public abstract T GetValue(ActorCommonData acd, int modifier);
 	}
 
 	public static partial class Attributes
@@ -83,10 +125,10 @@ namespace Enigma.D3.Helpers
 				_lowDefaultValue = lowDefaultValue;
 			}
 
-			public override ulong GetValue(ActorCommonData acd)
+			public override ulong GetValue(ActorCommonData acd, int modifier)
 			{
-				var highPtr = acd.GetAttributeValuePtr(_highAttributeId, -1);
-				var lowPtr = acd.GetAttributeValuePtr(_lowAttributeId, -1);
+				var highPtr = acd.GetAttributeValuePtr(_highAttributeId, modifier);
+				var lowPtr = acd.GetAttributeValuePtr(_lowAttributeId, modifier);
 				var high = highPtr == null ? _highDefaultValue : highPtr.Read<uint>();
 				var low = lowPtr == null ? _lowDefaultValue : lowPtr.Read<uint>();
 				return ((ulong)high << 32) | low;
@@ -107,9 +149,9 @@ namespace Enigma.D3.Helpers
 				_defaultValue = defaultValue;
 			}
 
-			public override T GetValue(ActorCommonData acd)
+			public override T GetValue(ActorCommonData acd, int modifier = -1)
 			{
-				var valuePtr = acd.GetAttributeValuePtr(_attributeId);
+				var valuePtr = acd.GetAttributeValuePtr(_attributeId, modifier);
 				if (valuePtr == null)
 				{
 					return _defaultValue;
@@ -119,6 +161,7 @@ namespace Enigma.D3.Helpers
 		}
 	}
 
+	#region Attributes (getters)
 	public static partial class Attributes
 	{
 		public static Attribute<float> AxeBadData = new SimpleAttribute<float>(AttributeId.AxeBadData, 0);
@@ -1467,4 +1510,5 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> ThornsAOERadiusNextTime = new SimpleAttribute<int>(AttributeId.ThornsAOERadiusNextTime, 0);
 		public static Attribute<int> MovementDestroysWallerWalls = new SimpleAttribute<int>(AttributeId.MovementDestroysWallerWalls, 0);
 	}
+	#endregion
 }
