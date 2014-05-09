@@ -68,6 +68,14 @@ namespace Enigma.D3.Helpers
 			return Enumerate(a => a.x098_MonsterSnoId != -1);
 		}
 
+		public static IEnumerable<ActorCommonData> Enumerate()
+		{
+			var acds = GetContainer();
+			if (acds == null)
+				return Enumerable.Empty<ActorCommonData>();
+			return acds.Where(a => a.x000_Id != -1).AsEnumerable();
+		}
+
 		public static IEnumerable<ActorCommonData> Enumerate(Predicate<ActorCommonData> filter)
 		{
 			var acds = GetContainer();

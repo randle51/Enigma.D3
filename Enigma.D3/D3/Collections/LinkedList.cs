@@ -48,7 +48,7 @@ namespace Enigma.D3.Collections
 
 		public class Node : MemoryObject
 		{
-			private static int _sizeOfValue = typeof(T).SizeOf();
+			private static int _sizeOfValue = TypeHelper<T>.SizeOf;
 			public static int SizeOf = _sizeOfValue + 8;
 
 			public Node(ProcessMemory memory, int address)

@@ -11,9 +11,26 @@ namespace Enigma
 	{
 		private static Dictionary<Type, int> _cachedSizes = new Dictionary<Type, int>();
 
+		private static HashSet<Type> _cachedMemoryObjectTypes = new HashSet<Type>();
+		private static HashSet<Type> _cachedNonMemoryObjectTypes = new HashSet<Type>();
+
 		public static bool IsMemoryObjectType(this Type type)
 		{
-			return type.IsSubclassOf(typeof(MemoryObject)) || type.Equals(typeof(MemoryObject));
+			if (_cachedMemoryObjectTypes.Contains(type))
+				return true;
+			if (_cachedNonMemoryObjectTypes.Contains(type))
+				return false;
+
+			if (type.IsSubclassOf(typeof(MemoryObject)) || type.Equals(typeof(MemoryObject)))
+			{
+				_cachedMemoryObjectTypes.Add(type);
+				return true;
+			}
+			else
+			{
+				_cachedNonMemoryObjectTypes.Add(type);
+				return false;
+			}
 		}
 
 		public static int SizeOf(this Type type)

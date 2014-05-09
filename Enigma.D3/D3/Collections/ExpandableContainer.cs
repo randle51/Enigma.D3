@@ -24,7 +24,7 @@ namespace Enigma.D3.Collections
 		public int x124 { get { return Field<int>(0x124); } }
 		public int x128 { get { return Field<int>(0x128); } }
 		public int _x12C { get { return Field<int>(0x12C); } }
-		public BasicAllocator x130_Allocator { get { return Field<BasicAllocator>(0x130); } }
+		public BasicAllocator<T> x130_Allocator { get { return Field<BasicAllocator<T>>(0x130); } }
 		public int _x14C { get { return Field<int>(0x14C); } }
 		public int _x150 { get { return Field<int>(0x150); } }
 		public int _x154 { get { return Field<int>(0x154); } }
@@ -74,6 +74,120 @@ namespace Enigma.D3.Collections
 		System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
 		{
 			return GetEnumerator();
+		}
+
+		public DumpInfo GetBufferDump(ref byte[] buffer)
+		{
+			var count = (short)x108_MaxIndex + 1;
+			var blockCapacity = 1 << x164_Bits;
+			var blockCount = x15C_Limit / blockCapacity;
+			var itemSize = x104_ItemSize;
+			var blockSize = blockCapacity * itemSize;
+
+			Array.Resize(ref buffer, blockCount * blockSize);
+
+			var dumpInfo = new DumpInfo(Memory, buffer, blockCount, itemSize, count);
+			var blockPtrs = Memory.Read<int>(x120_Allocation, blockCount);
+			for (int blockIndex = 0; blockIndex < blockCount; blockIndex++)
+			{
+				var blockAddress = blockPtrs[blockIndex];
+				Memory.ReadBytes(blockAddress, buffer, blockIndex * blockSize, blockSize);
+				dumpInfo.Blocks[blockIndex] = new DumpInfo.BlockInfo
+				{
+					BufferOffset = blockIndex * blockSize,
+					Length = blockSize,
+					Address = blockAddress
+				};
+			}
+			return dumpInfo;
+		}
+
+		public class DumpInfo : IEnumerable<DumpInfo.Item>
+		{
+			public readonly BlockInfo[] Blocks;
+			private readonly ProcessMemory _memory;
+			private readonly byte[] _buffer;
+			public readonly int ItemSize;
+			public readonly int ItemCount;
+
+			public struct BlockInfo
+			{
+				public int Address;
+				public int Length;
+				public int BufferOffset;
+			}
+
+			public struct Item
+			{
+				public int Address;
+				public int BufferOffset;
+				public DumpInfo Dump;
+
+				public T Create()
+				{
+					return (T)MemoryObject.UnsafeCreate(typeof(T), Dump._memory, Address, Dump._buffer, BufferOffset);
+				}
+			}
+
+			public DumpInfo(ProcessMemory memory, byte[] buffer, int blockCount, int itemSize, int itemCount)
+			{
+				Blocks = new BlockInfo[blockCount];
+				_memory = memory;
+				_buffer = buffer;
+				ItemSize = itemSize;
+				ItemCount = itemCount;
+			}
+
+			public IEnumerator<Item> GetEnumerator()
+			{
+				int index = 0;
+				foreach (var block in Blocks)
+				{
+					int stop = Math.Min(ItemCount - index, block.Length / ItemSize);
+					for (int i = 0; i < stop; i++)
+					{
+						yield return new Item { Dump = this, Address = block.Address + i * ItemSize, BufferOffset = i * ItemSize };
+						index++;
+					}
+				}
+			}
+
+			System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+			{
+				return GetEnumerator();
+			}
+		}
+
+		public T[] GetFastDump<T>(ref byte[] buffer) where T : MemoryObject
+		{
+			var count = (short)x108_MaxIndex + 1;
+			var array = new T[count];
+			var blockCapacity = 1 << x164_Bits;
+			var blockCount = x15C_Limit / blockCapacity;
+			var itemSize = x104_ItemSize;
+			var blockSize = blockCapacity * itemSize;
+
+			// Resizes if required.
+			if (buffer.Length != blockCount * blockSize)
+			{
+				Array.Resize(ref buffer, blockCount * blockSize);
+			}
+
+			var blockPtrs = Memory.Read<int>(x120_Allocation, blockCount);
+			for (int blockIndex = 0; blockIndex < blockCount; blockIndex++)
+			{
+				var blockAddress = blockPtrs[blockIndex];
+				Memory.ReadBytes(blockAddress, buffer, blockIndex * blockSize, blockSize);
+				var iMax = count - blockIndex * blockCapacity;
+				for (int i = 0; i < iMax; i++)
+				{
+					var obj = MemoryObject.Create<T>(Memory, blockAddress + itemSize * i);
+					var memObj = obj as MemoryObject;
+					memObj.SetSnapshot(buffer, blockIndex * blockSize + itemSize * i);
+					array[blockIndex * blockCapacity + i] = obj;
+				}
+			}
+			return array;
 		}
 	}
 }

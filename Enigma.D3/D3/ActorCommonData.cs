@@ -31,7 +31,7 @@ namespace Enigma.D3
 		public int x0AC_GameTick { get { return Field<int>(0x0AC); } }
 		public GameBalanceType x0B0_GameBalanceType { get { return (GameBalanceType)Field<int>(0x0B0); } }
 		public int x0B4_GameBalanceId { get { return Field<int>(0x0B4); } }
-		public int x0B8_MonsterQualityLevel { get { return Field<int>(0x0B8); } }
+		public MonsterQuality x0B8_MonsterQuality { get { return (MonsterQuality)Field<int>(0x0B8); } }
 		public int x0BC_IsItem_StructStart_Min100Bytes { get { return Field<int>(0x0BC); } }
 		public int x0C0_StructStart_Min80bytes { get { return Field<int>(0x0C0); } }
 		public int _x0C4 { get { return Field<int>(0x0C4); } }

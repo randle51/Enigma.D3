@@ -35,7 +35,7 @@ namespace Enigma.D3
 		public int x5C { get { return Field<int>(0x5C); } }
 		public int x60 { get { return Field<int>(0x60); } }
 		public int x64_Limit { get { return Field<int>(0x64); } }
-		public int x68 { get { return Field<int>(0x68); } }
+		public int x68_ItemSize { get { return Field<int>(0x68); } }
 		public int x6C { get { return Field<int>(0x6C); } }
 		public int x70 { get { return Field<int>(0x70); } }
 		public ValueTypeDescriptor x74_Ptr_DataType { get { return Dereference<ValueTypeDescriptor>(0x74); } }
