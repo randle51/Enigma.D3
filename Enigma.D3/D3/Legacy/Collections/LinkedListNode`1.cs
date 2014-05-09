@@ -7,7 +7,8 @@ namespace Enigma.D3.Legacy
 {
 	public class LinkedListNode<T> : MemoryObject
 	{
-		private static Lazy<int> _sizeOf = new Lazy<int>(() => typeof(T).SizeOf()); // 1.0.8.16603
+		// 1.0.8.16603
+		private static Lazy<int> _sizeOf = new Lazy<int>(() => TypeHelper<T>.SizeOf);
 
 		public LinkedListNode(ProcessMemory memory, int address)
 			: base(memory, address) { }

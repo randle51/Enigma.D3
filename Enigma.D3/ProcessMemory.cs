@@ -24,69 +24,40 @@ namespace Enigma
 
 		public bool IsValid { get { return !_process.HasExited; } }
 
+		public int NativeCalls { get; private set; }
+
 		public T Read<T>(int address)
 		{
-			var type = typeof(T).IsEnum ? typeof(T).GetEnumUnderlyingType() : typeof(T);
-			if (type.IsMemoryObjectType())
+			if (TypeHelper<T>.IsMemoryObject)
 			{
-				return (T)Activator.CreateInstance(type, this, address);
+				return (T)MemoryObject.UnsafeCreate(typeof(T), this, address);
 			}
 			else
 			{
-				var size = type.SizeOf();
-				var bufferPtr = Marshal.AllocHGlobal(size);
-				var numberOfBytesRead = 0;
-				try
-				{
-					if (Win32.ReadProcessMemory(
-						_process.Handle,
-						address,
-						bufferPtr,
-						size,
-						out numberOfBytesRead))
-					{
-						ValidateNumberOfBytesRead(address, numberOfBytesRead, size);
-						return (T)Marshal.PtrToStructure(bufferPtr, typeof(T));
-					}
-					else
-					{
-						throw new Win32Exception();
-					}
-				}
-				catch (Exception exception)
-				{
-					OnReadException(address, exception);
-					return default(T);
-				}
-				finally
-				{
-					Marshal.FreeHGlobal(bufferPtr);
-				}
+				byte[] buffer = ReadBytes(address, StructHelper<T>.SizeOf);
+				return StructHelper<T>.Read(buffer, 0);
 			}
 		}
 
 		public T[] Read<T>(int address, int count)
 		{
 			var type = typeof(T);
-			int sizeOf = type.SizeOf();
+			int sizeOf = TypeHelper<T>.SizeOf;
 
 			T[] array = new T[count];
-			if (type.IsMemoryObjectType())
+			if (TypeHelper<T>.IsMemoryObject)
 			{
 				for (int i = 0; i < count; i++)
 				{
-					array[i] = (T)Activator.CreateInstance(type, this, address + i * sizeOf);
+					array[i] = (T)MemoryObject.UnsafeCreate(type, this, address + i * sizeOf);
 				}
 			}
 			else
 			{
 				byte[] buffer = ReadBytes(address, sizeOf * count);
-				var handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
 				for (int i = 0; i < count; i++)
 				{
-					array[i] = (T)Marshal.PtrToStructure(
-						handle.AddrOfPinnedObject() + i * sizeOf,
-						type);
+					array[i] = StructHelper<T>.Read(buffer, i * sizeOf);
 				}
 			}
 			return array;
@@ -115,6 +86,7 @@ namespace Enigma
 			int numberOfBytesRead;
 			try
 			{
+				NativeCalls++;
 				if (Win32.ReadProcessMemory(
 					_process.Handle,
 					address,
@@ -134,6 +106,54 @@ namespace Enigma
 			{
 				OnReadException(address, exception);
 				return buffer;
+			}
+		}
+
+		public byte[] ReadBytes(int address, byte[] buffer, int offset, int count)
+		{
+			if (address < 0)
+				throw new ArgumentOutOfRangeException("address");
+			if (buffer == null)
+				throw new ArgumentNullException("buffer");
+			if (offset < 0)
+				throw new ArgumentOutOfRangeException("offset");
+			if (count < 0)
+				throw new ArgumentOutOfRangeException("count");
+			if (offset + count > buffer.Length)
+				throw new ArgumentOutOfRangeException();
+
+			var handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+			try
+			{
+				int numberOfBytesRead;
+				try
+				{
+					NativeCalls++;
+					int bytesToRead = count != 0 ? count : (buffer.Length - offset);
+					if (Win32.ReadProcessMemory(
+						_process.Handle,
+						address,
+						handle.AddrOfPinnedObject() + offset,
+						bytesToRead,
+						out numberOfBytesRead))
+					{
+						ValidateNumberOfBytesRead(address, numberOfBytesRead, bytesToRead);
+						return buffer;
+					}
+					else
+					{
+						throw new Win32Exception();
+					}
+				}
+				catch (Exception exception)
+				{
+					OnReadException(address, exception);
+					return buffer;
+				}
+			}
+			finally
+			{
+				handle.Free();
 			}
 		}
 

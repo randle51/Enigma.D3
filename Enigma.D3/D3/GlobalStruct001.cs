@@ -27,7 +27,7 @@ namespace Enigma.D3
 		public Item[] DumpAllItems()
 		{
 			var allocation = x10_DynAllocator.x00_Allocation.Value.Address;
-			return Enumerable.Range(0, x08_Limit).Select(a => Memory.Read<Item>(allocation + typeof(Item).SizeOf() * a)).ToArray();
+			return Enumerable.Range(0, x08_Limit).Select(a => Memory.Read<Item>(allocation + Item.SizeOf * a)).ToArray();
 		}
 
 		public class Item : MemoryObject

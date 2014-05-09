@@ -10,6 +10,16 @@ namespace Enigma
 {
 	public static class ProcessExtensions
 	{
+		public static Version GetFileVersion(this Process process)
+		{
+			var fileVersionInfo = FileVersionInfo.GetVersionInfo(process.MainModule.FileName);
+			return new Version(
+				fileVersionInfo.FileMajorPart,
+				fileVersionInfo.FileMinorPart,
+				fileVersionInfo.FileBuildPart,
+				fileVersionInfo.FilePrivatePart);
+		}
+
 		public static void Suspend(this Process process)
 		{
 			foreach (ProcessThread thread in process.Threads)

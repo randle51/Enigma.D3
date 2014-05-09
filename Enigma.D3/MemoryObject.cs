@@ -3,29 +3,95 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Reflection;
+using System.Linq.Expressions;
 
 namespace Enigma
 {
 	public class MemoryObject
 	{
-		private ProcessMemory _memory;
-		private int _address;
-		private int _snapshotOffset;
+		private static readonly Dictionary<Type, Activator> _activators = new Dictionary<Type, Activator>();
 
-		public MemoryObject(ProcessMemory memory, int address)
+		private delegate object Activator(ProcessMemory memory, int address);
+
+		/// <remark>
+		/// Assumes that type is of MemoryObject and that all other arguments are valid.
+		/// </remark>
+		internal static object UnsafeCreate(Type type, ProcessMemory memory, int address)
+		{
+			Activator activator;
+			if (!_activators.TryGetValue(type, out activator))
+			{
+				var ctor = type.GetConstructor(new Type[] { typeof(ProcessMemory), typeof(int) });
+
+				var memoryParam = Expression.Parameter(typeof(ProcessMemory), "memory");
+				var addressParam = Expression.Parameter(typeof(int), "address");
+				var newExpression = Expression.New(ctor, memoryParam, addressParam);
+
+				activator = (Activator)Expression.Lambda(typeof(Activator), newExpression,
+					memoryParam,
+					addressParam
+				).Compile();
+
+				_activators.Add(type, activator);
+			}
+			return activator.Invoke(memory, address);
+		}
+
+		/// <remark>
+		/// Assumes that type is of MemoryObject and that all other arguments are valid.
+		/// </remark>
+		internal static object UnsafeCreate(Type type, ProcessMemory memory, int address, byte[] buffer, int offset)
+		{
+			var obj = UnsafeCreate(type, memory, address);
+			var memObj = obj as MemoryObject;
+			memObj.SetSnapshot(buffer, offset);
+			return memObj;
+		}
+
+		public static T Create<T>(ProcessMemory memory, int address) where T : MemoryObject
+		{
+			ValidateArguments(memory, address);
+			return (T)UnsafeCreate(typeof(T), memory, address);
+		}
+
+		public static T Create<T>(ProcessMemory memory, int address, byte[] buffer, int offset) where T : MemoryObject
+		{
+			ValidateArguments(memory, address);
+			if (buffer == null)
+				throw new ArgumentNullException("buffer");
+			if (offset < 0)
+				throw new ArgumentOutOfRangeException("offset");
+			if (buffer.Length - offset < TypeHelper<T>.SizeOf)
+				throw new ArgumentOutOfRangeException();
+			return (T)UnsafeCreate(typeof(T), memory, address, buffer, offset);
+		}
+
+		private static void ValidateArguments(ProcessMemory memory, int address)
 		{
 			if (memory == null)
 				throw new ArgumentNullException("memory");
 			if ((uint)address > 0xCFFFFFFF) // 3GB
 				throw new ArgumentOutOfRangeException("address");
+		}
+
+		private ProcessMemory _memory;
+		private int _address;
+		private int _snapshotOffset;
+
+		protected MemoryObject() { }
+
+		public MemoryObject(ProcessMemory memory, int address)
+		{
+			ValidateArguments(memory, address);
 
 			_memory = memory;
 			_address = address;
 		}
 
-		public ProcessMemory Memory { get { return _memory; } }
+		public ProcessMemory Memory { get { return _memory; } set { _memory = value; } }
 
-		public int Address { get { return _address; } }
+		public int Address { get { return _address; } set { _address = value; } }
 
 		protected byte[] Snapshot { get; private set; }
 
@@ -33,48 +99,33 @@ namespace Enigma
 		{
 			if (Snapshot != null)
 			{
-				int size = typeof(T).SizeOf();
-				if (typeof(T).IsSubclassOf(typeof(MemoryObject)) ||
-					typeof(T).Equals(typeof(MemoryObject)))
+				if (TypeHelper<T>.IsMemoryObject)
 				{
-					var value = (T)Activator.CreateInstance(
-						typeof(T),
-						_memory, _address + offset);
-					var memoryObject = value as MemoryObject;
-					//var nestedSnapshot = new byte[size];
-					//Buffer.BlockCopy(Snapshot, offset, nestedSnapshot, 0, size);
-					//memoryObject.Snapshot = nestedSnapshot;
-					memoryObject.Snapshot = this.Snapshot;
-					memoryObject._snapshotOffset = offset;
-					return value;
+					return (T)MemoryObject.UnsafeCreate(typeof(T), _memory, _address + offset, this.Snapshot, offset);
 				}
 				else
 				{
-					var handle = GCHandle.Alloc(Snapshot, GCHandleType.Pinned);
-					return (T)Marshal.PtrToStructure(
-						handle.AddrOfPinnedObject() + _snapshotOffset + offset,
-						typeof(T));
+					return StructHelper<T>.Read(Snapshot, _snapshotOffset + offset);
 				}
 			}
-			return ReadAbsoluteAddress<T>(_address + offset);
+			return _memory.Read<T>(_address + offset);
 		}
 
 		protected T[] Field<T>(int offset, int count)
 		{
-			if (typeof(T).IsSubclassOf(typeof(MemoryObject)) ||
-				typeof(T).Equals(typeof(MemoryObject)))
+			T[] array = new T[count];
+			var size = TypeHelper<T>.SizeOf;
+			if (TypeHelper<T>.IsMemoryObject)
 			{
-				int sizeOf = (int)typeof(T).GetField("SizeOf").GetRawConstantValue();
-				return Enumerable.Range(0, count).Select(a => (T)Activator.CreateInstance(
-					typeof(T),
-					_memory, _address + offset + a * sizeOf)).ToArray();
+				for (int i = 0; i < count; i++)
+					array[i] = (T)MemoryObject.UnsafeCreate(typeof(T), _memory, _address + offset + i * size);
 			}
 			else
 			{
-				int sizeOf = Marshal.SizeOf(typeof(T));
-				return Enumerable.Range(0, count).Select(a => _memory.Read<T>(
-					_address + offset + a * sizeOf)).ToArray();
+				for (int i = 0; i < count; i++)
+					array[i] = _memory.Read<T>(_address + offset + i * size);
 			}
+			return array;
 		}
 
 		protected string Field(int offset, int length)
@@ -92,7 +143,10 @@ namespace Enigma
 
 		protected string[] Field(int offset, int length, int count)
 		{
-			return Enumerable.Range(0, count).Select(a => Field(offset + a * length, length)).ToArray();
+			string[] array = new string[count];
+			for (int i = 0; i < count; i++)
+				array[i] = Field(offset + i * length, length);
+			return array;
 		}
 
 		private string ReadString(byte[] buffer, int offset, int length)
@@ -105,33 +159,33 @@ namespace Enigma
 
 		protected T Dereference<T>(int offset)
 		{
-			int reference;
+			int pointer;
 			if (Snapshot != null)
 			{
-				reference = BitConverter.ToInt32(Snapshot, _snapshotOffset + offset);
+				pointer = BitConverter.ToInt32(Snapshot, _snapshotOffset + offset);
 			}
 			else
 			{
-				reference = _memory.Read<int>(_address + offset);
+				pointer = _memory.Read<int>(_address + offset);
 			}
 
-			if (reference == 0)
+			if (pointer == 0)
 			{
 				return default(T);
 			}
-			return ReadAbsoluteAddress<T>(reference);
+			return _memory.Read<T>(pointer);
 		}
 
 		protected T[] Dereference<T>(int offset, int count)
 		{
 			int pointer = Field<int>(offset);
-			if (typeof(T).IsSubclassOf(typeof(MemoryObject)) ||
-				typeof(T).Equals(typeof(MemoryObject)))
+			if (TypeHelper<T>.IsMemoryObject)
 			{
-				int sizeOf = typeof(T).SizeOf();
-				return Enumerable.Range(0, count).Select(a => (T)Activator.CreateInstance(
-					typeof(T),
-					_memory, pointer + a * sizeOf)).ToArray();
+				int size = TypeHelper<T>.SizeOf;
+				var array = new T[count];
+				for (int i = 0; i < count; i++)
+					array[i] = (T)MemoryObject.UnsafeCreate(typeof(T), _memory, pointer + i * size);
+				return array;
 			}
 			else
 			{
@@ -146,32 +200,28 @@ namespace Enigma
 			return ReadString(bytes, 0, count);
 		}
 
-		private T ReadAbsoluteAddress<T>(int absoluteAddress)
+		protected internal void SetSnapshot(byte[] buffer, int offset = 0)
 		{
-			if (typeof(T).IsSubclassOf(typeof(MemoryObject)) ||
-				typeof(T).Equals(typeof(MemoryObject)))
-			{
-				return (T)Activator.CreateInstance(
-					typeof(T),
-					_memory, absoluteAddress);
-			}
-			else
-			{
-				return _memory.Read<T>(absoluteAddress);
-			}
+			Snapshot = buffer;
+			_snapshotOffset = offset;
 		}
 
 		public void TakeSnapshot()
 		{
-			Snapshot = Snapshot ?? new byte[GetType().SizeOf()];
-			Snapshot = Memory.ReadBytes(_address, Snapshot);
+			if (Snapshot != null)
+			{
+				// Assume that we just need to update the current snapshot buffer.
+				Memory.ReadBytes(_address, Snapshot, _snapshotOffset, GetType().SizeOf());
+			}
+			else
+			{
+				SetSnapshot(Memory.ReadBytes(_address, new byte[GetType().SizeOf()]), 0);
+			}
 		}
 
 		public void FreeSnapshot()
 		{
-			Snapshot = null;
-			_snapshotOffset = 0;
-			GC.Collect();
+			SetSnapshot(null, 0);
 		}
 
 		public override string ToString()

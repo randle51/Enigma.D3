@@ -83,5 +83,26 @@ namespace Enigma.D3
 		public int _xD0C4 { get { return Field<int>(0xD0C4); } }
 		public int _xD0C8 { get { return Field<int>(0xD0C8); } }
 		public int _xD0CC { get { return Field<int>(0xD0CC); } }
+
+
+
+		public VendorToken[] xB5E4_VendorTokens { get { return Field<VendorToken>(0xB5E4, 256); } }
+		public int xBDE4_VendorTokenCount { get { return Field<int>(0xBDE4); } }
+
+		public IEnumerable<VendorToken> EnumerateVendorTokens()
+		{
+			return xB5E4_VendorTokens.Take(xBDE4_VendorTokenCount);
+		}
+
+		public class VendorToken : MemoryObject
+		{
+			public const int SizeOf = 8;
+
+			public VendorToken(ProcessMemory memory, int address)
+				: base(memory, address) { }
+
+			public int x00_GameBalanceId { get { return Field<int>(0x00); } }
+			public int x04_Value { get { return Field<int>(0x04); } }
+		}
 	}
 }

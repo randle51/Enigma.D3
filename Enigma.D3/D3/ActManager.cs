@@ -33,14 +33,14 @@ namespace Enigma.D3
 			public int x00_ActId { get { return Field<int>(0x00); } }
 			public int _x04 { get { return Field<int>(0x04); } }
 			public int _x08 { get { return Field<int>(0x08); } }
-			public int x0C_Id_ { get { return Field<int>(0x0C); } } // Connects to a quest/bounty (matches against QuestSNO.xC8)
+			public int x0C_LevelAreaSnoId { get { return Field<int>(0x0C); } } // Connects to a quest/bounty (matches against QuestSNO.xC8)
 			public int _x10 { get { return Field<int>(0x10); } }
 			public int _x14 { get { return Field<int>(0x14); } }
 			public int _x18 { get { return Field<int>(0x18); } }
 			public int _x1C { get { return Field<int>(0x1C); } }
 			public int _x20 { get { return Field<int>(0x20); } }
-			public int _x24 { get { return Field<int>(0x24); } }
-			public int _x28 { get { return Field<int>(0x28); } }
+			public int x24_UILeft { get { return Field<int>(0x24); } } // Relative to map frame
+			public int x28_UITop { get { return Field<int>(0x28); } } // Relative to map frame
 		}
 	}
 }
