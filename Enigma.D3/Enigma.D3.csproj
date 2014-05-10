@@ -95,6 +95,8 @@
     <Compile Include="D3\Symbol.cs" />
     <Compile Include="D3\UI\Buff.cs" />
     <Compile Include="D3\UI\BuffManager.cs" />
+    <Compile Include="D3\UI\UIControl.cs" />
+    <Compile Include="D3\UI\UIRect.cs" />
     <Compile Include="D3\ValueTypeDescriptor.cs" />
     <Compile Include="D3\GameGlobals.cs" />
     <Compile Include="D3\Graphics\DisplayMode.cs" />

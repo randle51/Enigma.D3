@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -15,7 +16,15 @@ namespace Enigma
 		{
 			var type = typeof(T);
 
-			SizeOf = type.SizeOf();
+			try
+			{
+				SizeOf = type.SizeOf();
+			}
+			catch (Exception exception)
+			{
+				Trace.TraceError("TypeHelper<" + typeof(T).Name + ">: " + exception.Message);
+				SizeOf = 0;
+			}
 			IsMemoryObject = type.IsMemoryObjectType();
 			IsStruct = type.IsValueType;
 		}

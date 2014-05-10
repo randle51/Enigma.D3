@@ -43,7 +43,7 @@ namespace Enigma.D3.UI
 		{
 			get
 			{
-				int index = (int)HashUtils.Fnv32((int)hash) % x08_Limit;
+				uint index = HashUtils.Fnv32((int)hash) % (uint)x08_Limit;
 				var pair = x00_Buckets[index].Value;
 				while (pair != null)
 				{

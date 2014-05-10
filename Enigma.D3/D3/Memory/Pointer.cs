@@ -14,6 +14,11 @@ namespace Enigma.D3.Memory
 		{
 			return Field<T>(0);
 		}
+
+		public T Dereference<T>()
+		{
+			return Dereference<T>(0);
+		}
 	}
 
 	public class Pointer<T> : MemoryObject

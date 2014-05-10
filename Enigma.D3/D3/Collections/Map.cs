@@ -54,7 +54,7 @@ namespace Enigma.D3.Collections
 				get
 				{
 					if (bucket < 0 || bucket > x08_Limit)
-						throw new IndexOutOfRangeException();
+						throw new ArgumentOutOfRangeException();
 
 					return Memory.Read<Entry>(Field<int>(0x00) + Pointer.SizeOf * bucket);
 				}
