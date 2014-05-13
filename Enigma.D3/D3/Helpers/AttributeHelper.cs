@@ -20,7 +20,7 @@ namespace Enigma.D3.Helpers
 			return attribDef.x10_DataType == 1 ? valuePtr.Memory.Read<int>(valuePtr.Address) : valuePtr.Memory.Read<float>(valuePtr.Address);
 		}
 
-		public static System.Collections.Generic.IEnumerable<Map<int, Pointer>.Entry> EnumerateAttributes(this ActorCommonData acd)
+		public static System.Collections.Generic.IEnumerable<Map<int, int>.Entry> EnumerateAttributes(this ActorCommonData acd)
 		{
 			var groupId = acd.x120_FastAttribGroupId;
 			var group = Engine.Current.ObjectManager.x798_Storage.x104_FastAttrib.x54_Groups[(short)groupId];
@@ -29,9 +29,9 @@ namespace Enigma.D3.Helpers
 				var smallMap = group.x00C_PtrMap;
 				if ((group.x004_Flags & 4) != 0 && smallMap != null)
 				{
-					foreach (var bucket in smallMap.x10_Data.x00_Buckets)
+					foreach (var bucket in smallMap.x10_Data)
 					{
-						var immutableBucket = bucket;
+						var immutableBucket = bucket.Value;
 						while (immutableBucket != null)
 						{
 							immutableBucket.TakeSnapshot();
@@ -43,9 +43,9 @@ namespace Enigma.D3.Helpers
 				var map = group.x010_Map;
 				if (map != null)
 				{
-					foreach (var bucket in map.x10_Data.x00_Buckets)
+					foreach (var bucket in map.x10_Data)
 					{
-						var immutableBucket = bucket;
+						var immutableBucket = bucket.Value;
 						while (immutableBucket != null)
 						{
 							immutableBucket.TakeSnapshot();
@@ -72,7 +72,7 @@ namespace Enigma.D3.Helpers
 			return null;
 		}
 
-		private static bool TryGetValue(Map<int, Pointer> map, int key, out Pointer ptrValue)
+		private static bool TryGetValue(Map<int, int> map, int key, out Pointer ptrValue)
 		{
 			if (map != null)
 			{
@@ -82,7 +82,7 @@ namespace Enigma.D3.Helpers
 				{
 					if (entry.x04_Key == key)
 					{
-						ptrValue = entry.x08_Value;
+						ptrValue = new Pointer(entry.Memory, entry.Address + 0x08);
 						return true;
 					}
 					entry = entry.x00_Next;
@@ -220,7 +220,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<float> GoldFindUncapped = new SimpleAttribute<float>(AttributeId.GoldFindUncapped, 0);
 		public static Attribute<float> GoldFindHandicap = new SimpleAttribute<float>(AttributeId.GoldFindHandicap, 0);
 		public static Attribute<float> GoldFindAltLevelsTotal = new SimpleAttribute<float>(AttributeId.GoldFindAltLevelsTotal, 0);
-		public static Attribute<float> GoldFindCappedSubtotal = new SimpleAttribute<float>(AttributeId.GoldFindCappedSubtotal, 0);
+		public static Attribute<float> GoldFindCommunityBuff = new SimpleAttribute<float>(AttributeId.GoldFindCommunityBuff, 0);
 		public static Attribute<float> GoldFindTotal = new SimpleAttribute<float>(AttributeId.GoldFindTotal, 0);
 		public static Attribute<int> Level = new SimpleAttribute<int>(AttributeId.Level, 0);
 		public static Attribute<int> LevelCap = new SimpleAttribute<int>(AttributeId.LevelCap, 0);
@@ -233,6 +233,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<float> MagicFindTotal = new SimpleAttribute<float>(AttributeId.MagicFindTotal, 0);
 		public static Attribute<int> MagicAndGoldFindSuppressed = new SimpleAttribute<int>(AttributeId.MagicAndGoldFindSuppressed, 0);
 		public static Attribute<float> TreasureFind = new SimpleAttribute<float>(AttributeId.TreasureFind, 0);
+		public static Attribute<float> LegendaryFindCommunityBuff = new SimpleAttribute<float>(AttributeId.LegendaryFindCommunityBuff, 0);
 		public static Attribute<int> ResourceCostReductionAmount = new SimpleAttribute<int>(AttributeId.ResourceCostReductionAmount, 0);
 		public static Attribute<float> ResourceCostReductionTotal = new SimpleAttribute<float>(AttributeId.ResourceCostReductionTotal, 0);
 		public static Attribute<float> ResourceSetPointBonus = new SimpleAttribute<float>(AttributeId.ResourceSetPointBonus, 0);
@@ -1509,6 +1510,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> Resurrected = new SimpleAttribute<int>(AttributeId.Resurrected, 0);
 		public static Attribute<int> ThornsAOERadiusNextTime = new SimpleAttribute<int>(AttributeId.ThornsAOERadiusNextTime, 0);
 		public static Attribute<int> MovementDestroysWallerWalls = new SimpleAttribute<int>(AttributeId.MovementDestroysWallerWalls, 0);
+		public static Attribute<int> DoubleBloodShards = new SimpleAttribute<int>(AttributeId.DoubleBloodShards, 0);
 	}
 	#endregion
 }

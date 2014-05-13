@@ -35,12 +35,12 @@ namespace Enigma.D3.UI
 				: base(memory, address) { }
 
 			public int x00_Mask { get { return Field<int>(0x00); } }
-			public int x04 { get { return Field<int>(0x04); } }
-			public Allocator x08_PtrAllocator_FieldX48 { get { return Dereference<Allocator>(0x08); } }
+			public int x04_Count { get { return Field<int>(0x04); } }
+			public Allocator<UIMap.Pair> x08_PtrAllocator_FieldX48 { get { return Dereference<Allocator<UIMap.Pair>>(0x08); } }
 			public int _x0C { get { return Field<int>(0x0C); } }
 			public UIMap x10_Map { get { return Field<UIMap>(0x10); } }
 			public int _x44 { get { return Field<int>(0x44); } }
-			public Allocator x48_Allocator_10x24Bytes { get { return Field<Allocator>(0x48); } }
+			public Allocator<UIMap.Pair> x48_Allocator_10x24Bytes { get { return Field<Allocator<UIMap.Pair>>(0x48); } }
 			public int _x64 { get { return Field<int>(0x64); } }
 			public int x68 { get { return Field<int>(0x68); } }
 			public int _x6C { get { return Field<int>(0x6C); } }

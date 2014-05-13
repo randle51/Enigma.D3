@@ -34,6 +34,8 @@ namespace Enigma.D3.Collections
 
 		public class Node : MemoryObject
 		{
+			public static readonly int SizeOf = 4 + TypeHelper<T>.SizeOf;
+
 			public Node(ProcessMemory memory, int address)
 				: base(memory, address) { }
 

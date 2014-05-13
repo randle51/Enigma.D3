@@ -47,6 +47,7 @@
     <Compile Include="D3\ActorManager.cs" />
     <Compile Include="D3\ActorMovement.cs" />
     <Compile Include="D3\AttributeDescriptor.cs" />
+    <Compile Include="D3\Collections\Array.cs" />
     <Compile Include="D3\Enums\AttributeId.cs" />
     <Compile Include="D3\Collections\Container.cs" />
     <Compile Include="D3\Collections\ExpandableContainer.cs" />

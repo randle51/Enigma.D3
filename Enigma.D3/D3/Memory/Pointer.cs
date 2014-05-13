@@ -30,6 +30,16 @@ namespace Enigma.D3.Memory
 
 		public T Value { get { return Dereference<T>(0x00); } }
 
+		public T this[int index]
+		{
+			get
+			{
+				var address = Field<int>(0x00);
+				address += TypeHelper<T>.SizeOf * index;
+				return Memory.Read<T>(address);
+			}
+		}
+
 		public override string ToString()
 		{
 			return "0x" + Field<int>(0x00).ToString("X8");

@@ -1,14 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Enigma.D3.Collections;
+using Enigma.D3.Memory;
 
 namespace Enigma.D3.UI
 {
+	public class UIControlReference : MemoryObject
+	{
+		// 2.0.4.23119
+		public const int SizeOf = 0x210; // 528
+
+		public UIControlReference(ProcessMemory memory, int address)
+			: base(memory, address) { }
+
+		public UIReference x000_UIReference { get { return Field<UIReference>(0x000); } }
+		public UIControl x208_UIControl { get { return Dereference<UIControl>(0x208); } }
+		public UIControl x20C_UIControl { get { return Dereference<UIControl>(0x20C); } }
+	}
+
 	public class UIControl : MemoryObject
 	{
 		// 2.0.4.23119
-		
+
 		// SizeOf = ???
 		// I have no idea about typical size. I think size varies with control type.
 
@@ -25,74 +39,10 @@ namespace Enigma.D3.UI
 		public int _x01C { get { return Field<int>(0x01C); } }
 		public int _x020 { get { return Field<int>(0x020); } }
 		public int x024_Visibility { get { return Field<int>(0x024); } }
-		public int _x028 { get { return Field<int>(0x028); } }
-		public int _x02C { get { return Field<int>(0x02C); } }
+		public UIControl x028_UIControl { get { return Dereference<UIControl>(0x028); } }
+		public UIControl x02C_UIControl { get { return Dereference<UIControl>(0x02C); } }
 		public UIReference x030_Self { get { return Field<UIReference>(0x030); } }
 		public UIReference x238_Parent { get { return Field<UIReference>(0x238); } }
-		public int _x340 { get { return Field<int>(0x340); } }
-		public int _x344 { get { return Field<int>(0x344); } }
-		public int _x348 { get { return Field<int>(0x348); } }
-		public int _x34C { get { return Field<int>(0x34C); } }
-		public int _x350 { get { return Field<int>(0x350); } }
-		public int _x354 { get { return Field<int>(0x354); } }
-		public int _x358 { get { return Field<int>(0x358); } }
-		public int _x35C { get { return Field<int>(0x35C); } }
-		public int _x360 { get { return Field<int>(0x360); } }
-		public int _x364 { get { return Field<int>(0x364); } }
-		public int _x368 { get { return Field<int>(0x368); } }
-		public int _x36C { get { return Field<int>(0x36C); } }
-		public int _x370 { get { return Field<int>(0x370); } }
-		public int _x374 { get { return Field<int>(0x374); } }
-		public int _x378 { get { return Field<int>(0x378); } }
-		public int _x37C { get { return Field<int>(0x37C); } }
-		public int _x380 { get { return Field<int>(0x380); } }
-		public int _x384 { get { return Field<int>(0x384); } }
-		public int _x388 { get { return Field<int>(0x388); } }
-		public int _x38C { get { return Field<int>(0x38C); } }
-		public int _x390 { get { return Field<int>(0x390); } }
-		public int _x394 { get { return Field<int>(0x394); } }
-		public int _x398 { get { return Field<int>(0x398); } }
-		public int _x39C { get { return Field<int>(0x39C); } }
-		public int _x3A0 { get { return Field<int>(0x3A0); } }
-		public int _x3A4 { get { return Field<int>(0x3A4); } }
-		public int _x3A8 { get { return Field<int>(0x3A8); } }
-		public int _x3AC { get { return Field<int>(0x3AC); } }
-		public int _x3B0 { get { return Field<int>(0x3B0); } }
-		public int _x3B4 { get { return Field<int>(0x3B4); } }
-		public int _x3B8 { get { return Field<int>(0x3B8); } }
-		public int _x3BC { get { return Field<int>(0x3BC); } }
-		public int _x3C0 { get { return Field<int>(0x3C0); } }
-		public int _x3C4 { get { return Field<int>(0x3C4); } }
-		public int _x3C8 { get { return Field<int>(0x3C8); } }
-		public int _x3CC { get { return Field<int>(0x3CC); } }
-		public int _x3D0 { get { return Field<int>(0x3D0); } }
-		public int _x3D4 { get { return Field<int>(0x3D4); } }
-		public int _x3D8 { get { return Field<int>(0x3D8); } }
-		public int _x3DC { get { return Field<int>(0x3DC); } }
-		public int _x3E0 { get { return Field<int>(0x3E0); } }
-		public int _x3E4 { get { return Field<int>(0x3E4); } }
-		public int _x3E8 { get { return Field<int>(0x3E8); } }
-		public int _x3EC { get { return Field<int>(0x3EC); } }
-		public int _x3F0 { get { return Field<int>(0x3F0); } }
-		public int _x3F4 { get { return Field<int>(0x3F4); } }
-		public int _x3F8 { get { return Field<int>(0x3F8); } }
-		public int _x3FC { get { return Field<int>(0x3FC); } }
-		public int _x400 { get { return Field<int>(0x400); } }
-		public int _x404 { get { return Field<int>(0x404); } }
-		public int _x408 { get { return Field<int>(0x408); } }
-		public int _x40C { get { return Field<int>(0x40C); } }
-		public int _x410 { get { return Field<int>(0x410); } }
-		public int _x414 { get { return Field<int>(0x414); } }
-		public int _x418 { get { return Field<int>(0x418); } }
-		public int _x41C { get { return Field<int>(0x41C); } }
-		public int _x420 { get { return Field<int>(0x420); } }
-		public int _x424 { get { return Field<int>(0x424); } }
-		public int _x428 { get { return Field<int>(0x428); } }
-		public int _x42C { get { return Field<int>(0x42C); } }
-		public int _x430 { get { return Field<int>(0x430); } }
-		public int _x434 { get { return Field<int>(0x434); } }
-		public int _x438 { get { return Field<int>(0x438); } }
-		public int _x43C { get { return Field<int>(0x43C); } }
 		public int _x440 { get { return Field<int>(0x440); } }
 		public int _x444 { get { return Field<int>(0x444); } }
 		public int _x448 { get { return Field<int>(0x448); } }
@@ -101,22 +51,25 @@ namespace Enigma.D3.UI
 		public int _x454 { get { return Field<int>(0x454); } }
 		public int _x458 { get { return Field<int>(0x458); } }
 		public int _x45C { get { return Field<int>(0x45C); } }
-		public int _x460 { get { return Field<int>(0x460); } }
-		public int _x464 { get { return Field<int>(0x464); } }
-		public int _x468 { get { return Field<int>(0x468); } }
-		public int _x46C { get { return Field<int>(0x46C); } }
-		public int _x470 { get { return Field<int>(0x470); } }
-		public int _x474 { get { return Field<int>(0x474); } }
-		public int _x478 { get { return Field<int>(0x478); } }
-		public int _x47C { get { return Field<int>(0x47C); } }
-		public int _x480 { get { return Field<int>(0x480); } }
-		public int _x484 { get { return Field<int>(0x484); } }
-		public int _x488 { get { return Field<int>(0x488); } }
+		public Array<UIControlReference> x460_Children { get { return Field<Array<UIControlReference>>(0x460); } }
+		public string x460_0 { get { return x460_Children[1].x000_UIReference.x008_Name; } }
+		//	public UIControlReference[] x460_Children { get { return Dereference<UIControlReference>(0x460, x468_ChildrenCount); } }
+		//	public int _x464 { get { return Field<int>(0x464); } }
+		//	public int x468_ChildrenCount { get { return Field<int>(0x468); } }
+		//	public int _x46C { get { return Field<int>(0x46C); } }
+		//	public BasicAllocator x470_DynAllocator { get { return Field<BasicAllocator>(0x470); } }
+		//	public int _x470 { get { return Field<int>(0x470); } }
+		//	public int _x474 { get { return Field<int>(0x474); } }
+		//	public int _x478 { get { return Field<int>(0x478); } }
+		//	public int _x47C { get { return Field<int>(0x47C); } }
+		//	public int _x480 { get { return Field<int>(0x480); } }
+		//	public int _x484 { get { return Field<int>(0x484); } }
+		//	public int _x488 { get { return Field<int>(0x488); } }
 		public int _x48C { get { return Field<int>(0x48C); } }
 		public int _x490 { get { return Field<int>(0x490); } }
 		public int _x494 { get { return Field<int>(0x494); } }
-		public int _x498 { get { return Field<int>(0x498); } }
-		public int _x49C { get { return Field<int>(0x49C); } }
+		public UIControl x498_UIControl { get { return Dereference<UIControl>(0x498); } }
+		public UIControl x49C_UIControl { get { return Dereference<UIControl>(0x49C); } }
 		public int _x4A0 { get { return Field<int>(0x4A0); } }
 		public int _x4A4 { get { return Field<int>(0x4A4); } }
 		public int _x4A8 { get { return Field<int>(0x4A8); } }
@@ -131,10 +84,7 @@ namespace Enigma.D3.UI
 		public int _x4CC { get { return Field<int>(0x4CC); } }
 		public int _x4D0 { get { return Field<int>(0x4D0); } }
 		public int _x4D4 { get { return Field<int>(0x4D4); } }
-		public int _x4D8 { get { return Field<int>(0x4D8); } }
-		public int _x4DC { get { return Field<int>(0x4DC); } }
-		public int _x4E0 { get { return Field<int>(0x4E0); } }
-		public int _x4E4 { get { return Field<int>(0x4E4); } }
+		public UIRect x4D8_UIRect { get { return Field<UIRect>(0x4D8); } }
 		public UIRect x4E8_UIRect { get { return Field<UIRect>(0x4E8); } }
 		public int _x4EC { get { return Field<int>(0x4EC); } }
 		public int _x4F0 { get { return Field<int>(0x4F0); } }
@@ -194,7 +144,7 @@ namespace Enigma.D3.UI
 		public int _x5C8 { get { return Field<int>(0x5C8); } }
 		public int _x5CC { get { return Field<int>(0x5CC); } }
 		public int _x5D0 { get { return Field<int>(0x5D0); } }
-		public int _x5D4 { get { return Field<int>(0x5D4); } }
+		public int x5D4_String512 { get { return Field<int>(0x5D4); } }
 		public int _x5D8 { get { return Field<int>(0x5D8); } }
 		public int _x5DC { get { return Field<int>(0x5DC); } }
 		public int _x5E0 { get { return Field<int>(0x5E0); } }
@@ -276,5 +226,45 @@ namespace Enigma.D3.UI
 		public int _x710 { get { return Field<int>(0x710); } }
 		public int _x714 { get { return Field<int>(0x714); } }
 		public int _x718 { get { return Field<int>(0x718); } }
+
+		public string x7D4_String512 { get { return Field(0x7D4, 512); } }
+		public int x9D4_Neg1 { get { return Field<int>(0x9D4); } }
+		public int x9D8_Neg1 { get { return Field<int>(0x9D8); } }
+		public int _x9DC { get { return Field<int>(0x9DC); } }
+		public int _x9E0 { get { return Field<int>(0x9E0); } }
+		public int _x9E4 { get { return Field<int>(0x9E4); } }
+		public int _x9E8 { get { return Field<int>(0x9E8); } }
+		public int _x9EC { get { return Field<int>(0x9EC); } }
+		public int _x9F0 { get { return Field<int>(0x9F0); } }
+		public int _x9F4 { get { return Field<int>(0x9F4); } }
+		public int _x9F8 { get { return Field<int>(0x9F8); } }
+		public int _x9FC { get { return Field<int>(0x9FC); } }
+		public int _xA00 { get { return Field<int>(0xA00); } }
+		public int _xA04 { get { return Field<int>(0xA04); } }
+		public int _xA08 { get { return Field<int>(0xA08); } }
+		public int _xA0C { get { return Field<int>(0xA0C); } }
+		public int _xA10 { get { return Field<int>(0xA10); } }
+		public int _xA14 { get { return Field<int>(0xA14); } }
+		public int _xA18 { get { return Field<int>(0xA18); } }
+		public int _xA1C { get { return Field<int>(0xA1C); } }
+		public int _xA20 { get { return Field<int>(0xA20); } }
+		public int _xA24 { get { return Field<int>(0xA24); } }
+		public int _xA28 { get { return Field<int>(0xA28); } }
+		public int _xA2C { get { return Field<int>(0xA2C); } }
+		public int _xA30 { get { return Field<int>(0xA30); } }
+		public int _xA34 { get { return Field<int>(0xA34); } }
+		public int _xA38 { get { return Field<int>(0xA38); } }
+		public int _xA3C { get { return Field<int>(0xA3C); } }
+		public int _xA40 { get { return Field<int>(0xA40); } }
+		public int _xA44 { get { return Field<int>(0xA44); } }
+		public int _xA48 { get { return Field<int>(0xA48); } }
+		public int _xA4C { get { return Field<int>(0xA4C); } }
+		public int _xA50 { get { return Field<int>(0xA50); } }
+		public int _xA54 { get { return Field<int>(0xA54); } }
+
+		public override string ToString()
+		{
+			return base.ToString() + " " + x030_Self.x008_Name;
+		}
 	}
 }

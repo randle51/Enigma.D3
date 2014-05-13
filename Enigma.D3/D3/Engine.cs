@@ -42,43 +42,46 @@ namespace Enigma.D3
 
 		public Process Process { get { return base.Memory.Process; } }
 
-		public AttributeDescriptor[] AttributeDescriptors { get { return Field<AttributeDescriptor>(0x01A97600, 1336); } }
+		public AttributeDescriptor[] AttributeDescriptors { get { return Field<AttributeDescriptor>(0x01A85620, 1338); } }
 
-		public VideoPreferences VideoPreferences { get { return Field<VideoPreferences>(0x01AC0440); } }
-		public SoundPreferences SoundPreferences { get { return Field<SoundPreferences>(0x01AC04CC); } }
+		public VideoPreferences VideoPreferences { get { return Field<VideoPreferences>(0x01AAE3A0); } }
+		public SoundPreferences SoundPreferences { get { return Field<SoundPreferences>(0x01AAE42C); } }
 
-		public GameplayPreferences GameplayPreferences { get { return Field<GameplayPreferences>(0x01AC093C); } }
+		public GameplayPreferences GameplayPreferences { get { return Field<GameplayPreferences>(0x01AAE89C); } }
 
-		public SocialPreferences SocialPreferences { get { return Field<SocialPreferences>(0x01AC0998); } }
+		public SocialPreferences SocialPreferences { get { return Field<SocialPreferences>(0x01AAE8F8); } }
 
-		public ChatPreferences ChatPreferences { get { return Field<ChatPreferences>(0x01AC09C4); } }
+		public ChatPreferences ChatPreferences { get { return Field<ChatPreferences>(0x01AAE924); } }
 
-		public ScreenManager ScreenManager { get { return Dereference<ScreenManager>(0x01B0B8D0); } }
+		public ScreenManager ScreenManager { get { return Dereference<ScreenManager>(0x01AF9838); } }
 
-		public UIReference[] UIReferences { get { return Field<UIReference>(0x01B0BC88, 2465); } }
+		public UIReference[] UIReferences { get { return Field<UIReference>(0x01AF99E8, 2466); } } // 1 + 1000 + 1000 + 324 + 141 = 2466
 
-		public LevelArea LevelArea { get { return Dereference<LevelArea>(0x01C4D498); } }
+		public LevelArea LevelArea { get { return Dereference<LevelArea>(0x01C3B400); } }
 
-		public string LevelAreaName { get { return Field(0x01C4D4C0, 128); } }
+		public string LevelAreaName { get { return Field(0x01C3B428, 128); } }
 
-		public BuffManager BuffManager { get { return Dereference<BuffManager>(0x01CD79B8); } }
+		public BuffManager BuffManager { get { return Dereference<BuffManager>(0x01CC5950); } }
 
-		public SnoGroup[] SnoGroupsByCode { get { return Field<Pointer<SnoGroup>>(0x01CEF708, 70).Select(a => a.Value).ToArray(); } }
+		public SnoGroup[] SnoGroupsByCode { get { return Field<Pointer<SnoGroup>>(0x01CDD6A0, 70).Select(a => a.Value).ToArray(); } }
 
-		public SnoGroup[] SnoGroups { get { return Dereference<Pointer<SnoGroup>>(0x01CEF824, 61).Select(a => a.Value).ToArray(); } }
+		public SnoGroup[] SnoGroups { get { return Dereference<Pointer<SnoGroup>>(0x01CDD7BC, 61).Select(a => a.Value).ToArray(); } }
 
-		public ObjectManager ObjectManager { get { return Dereference<ObjectManager>(0x01CEF854); } }
-		public ObjectManager ObjectManagerPristine { get { return Dereference<ObjectManager>(0x01CEF858); } } // This address is used in initialization and finalization methods.
+		public ObjectManager ObjectManager { get { return Dereference<ObjectManager>(0x01CDD7EC); } }
+		public ObjectManager ObjectManagerPristine { get { return Dereference<ObjectManager>(0x01CDD7F0); } } // This address is used in initialization and finalization methods.
 
-		public LocalData LocalData { get { return Field<LocalData>(0x01CF0AE8); } }
+		public LocalData LocalData { get { return Field<LocalData>(0x01CDEA80); } }
 
-		public SnoGroupSearch SnoGroupSearch { get { return Dereference<SnoGroupSearch>(0x01D43B50); } }
+		public SnoGroupSearch SnoGroupSearch { get { return Dereference<SnoGroupSearch>(0x01D31AE8); } }
 
-		public ContainerManager ContainerManager { get { return Dereference<ContainerManager>(0x01DA2BB4); } }
+		public ContainerManager ContainerManager { get { return Dereference<ContainerManager>(0x01D90BC4); } }
 
-		public UIHandler[] UIHandlers { get { return Field<UIHandler>(0x01A8A038, 1181); } }
+		public UIHandler[] UIHandlers { get { return Field<UIHandler>(0x01A78038, 1181); } }
 
-		public SnoGroupInitializer[] SnoGroupInitializers { get { return Field<SnoGroupInitializer>(0x01A93158, 60); } }
+		public SnoGroupInitializer[] SnoGroupInitializers { get { return Field<SnoGroupInitializer>(0x01A81160, 60); } }
+
+		// ↑ 2.0.5.23920 ↑
+		// ↓ 2.0.4.23119 ↓
 
 		// ↑ 2.0.4.23119 ↑
 		// ↓ 2.0.3.22427 ↓
