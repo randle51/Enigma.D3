@@ -11,6 +11,10 @@ namespace Enigma
 {
 	public class ProcessMemory : IDisposable
 	{
+		private const int _smallBufferSize = 8;
+		[ThreadStatic]
+		private static byte[] _smallBuffer;
+
 		private readonly Process _process;
 
 		public ProcessMemory(Process process)
@@ -70,8 +74,8 @@ namespace Enigma
 			if (count < 0)
 				throw new ArgumentOutOfRangeException("count");
 
-			byte[] buffer = new byte[count];
-			return ReadBytes(address, buffer);
+			byte[] buffer = GetBuffer(count);
+			return ReadBytes(address, buffer, 0, count);
 		}
 
 		public byte[] ReadBytes(int address, byte[] buffer)
@@ -221,6 +225,13 @@ namespace Enigma
 		public void Dispose()
 		{
 			_process.Dispose();
+		}
+
+		private byte[] GetBuffer(int size)
+		{
+			if (size <= _smallBufferSize)
+				return _smallBuffer = _smallBuffer != null ? _smallBuffer : new byte[_smallBufferSize];
+			return new byte[size];
 		}
 
 		[Conditional("DEBUG")]

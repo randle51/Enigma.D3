@@ -18,8 +18,8 @@ namespace Enigma.D3
 		public int x000_Id { get { return Field<int>(0x000); } }
 		public int x004_Flags { get { return Field<int>(0x004); } }
 		public int _x008 { get { return Field<int>(0x008); } }
-		public Map<int, Pointer> x00C_PtrMap { get { return Dereference<Map<int, Pointer>>(0x00C); } }
-		public Map<int, Pointer> x010_Map { get { return Field<Map<int, Pointer>>(0x010); } }
+		public Map<int, int> x00C_PtrMap { get { return Dereference<Map<int, int>>(0x00C); } }
+		public Map<int, int> x010_Map { get { return Field<Map<int, int>>(0x010); } }
 		public int _x074 { get { return Field<int>(0x074); } }
 		public int _x078 { get { return Field<int>(0x078); } }
 		public int _x07C { get { return Field<int>(0x07C); } }

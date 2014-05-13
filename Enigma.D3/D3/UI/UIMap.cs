@@ -85,7 +85,7 @@ namespace Enigma.D3.UI
 
 		public class Pair : MemoryObject
 		{
-			public const int SizeOf = 0x14; // = 20
+			public const int SizeOf = 0x18; // = 20
 
 			public Pair(ProcessMemory memory, int address)
 				: base(memory, address) { }
@@ -94,6 +94,7 @@ namespace Enigma.D3.UI
 			public int _x04 { get { return Field<int>(0x04); } } // Alignment?
 			public ulong x08_Hash { get { return Field<ulong>(0x08); } }
 			public Pointer x10_PtrComponent { get { return Field<Pointer>(0x10); } }
+			public int x14 { get { return Field<int>(0x14); } }
 		}
 	}
 }
