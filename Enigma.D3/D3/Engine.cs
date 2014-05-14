@@ -53,6 +53,8 @@ namespace Enigma.D3
 
 		public ChatPreferences ChatPreferences { get { return Field<ChatPreferences>(0x01AAE924); } }
 
+		public int MapActId { get { return Field<int>(0x01AF9628); } }
+
 		public ScreenManager ScreenManager { get { return Dereference<ScreenManager>(0x01AF9838); } }
 
 		public UIReference[] UIReferences { get { return Field<UIReference>(0x01AF99E8, 2466); } } // 1 + 1000 + 1000 + 324 + 141 = 2466
@@ -63,22 +65,25 @@ namespace Enigma.D3
 
 		public BuffManager BuffManager { get { return Dereference<BuffManager>(0x01CC5950); } }
 
-		public SnoGroup[] SnoGroupsByCode { get { return Field<Pointer<SnoGroup>>(0x01CDD6A0, 70).Select(a => a.Value).ToArray(); } }
+		public SnoGroup[] SnoGroupsByCode { get { return Field<Pointer<SnoGroup>>(0x01CDD6A8, 70).Select(a => a.Value).ToArray(); } }
 
-		public SnoGroup[] SnoGroups { get { return Dereference<Pointer<SnoGroup>>(0x01CDD7BC, 61).Select(a => a.Value).ToArray(); } }
+		public SnoGroup[] SnoGroups { get { return Dereference<Pointer<SnoGroup>>(0x01CDD7C4, 61).Select(a => a.Value).ToArray(); } }
 
-		public ObjectManager ObjectManager { get { return Dereference<ObjectManager>(0x01CDD7EC); } }
-		public ObjectManager ObjectManagerPristine { get { return Dereference<ObjectManager>(0x01CDD7F0); } } // This address is used in initialization and finalization methods.
+		public ObjectManager ObjectManager { get { return Dereference<ObjectManager>(0x01CDD7F4); } }
+		public ObjectManager ObjectManagerPristine { get { return Dereference<ObjectManager>(0x01CDD7F8); } } // This address is used in initialization and finalization methods.
 
-		public LocalData LocalData { get { return Field<LocalData>(0x01CDEA80); } }
+		public LocalData LocalData { get { return Field<LocalData>(0x01CDEA88); } }
 
-		public SnoGroupSearch SnoGroupSearch { get { return Dereference<SnoGroupSearch>(0x01D31AE8); } }
+		public SnoGroupSearch SnoGroupSearch { get { return Dereference<SnoGroupSearch>(0x01D31AF0); } }
 
-		public ContainerManager ContainerManager { get { return Dereference<ContainerManager>(0x01D90BC4); } }
+		public ContainerManager ContainerManager { get { return Dereference<ContainerManager>(0x01D90BD4); } }
 
 		public UIHandler[] UIHandlers { get { return Field<UIHandler>(0x01A78038, 1181); } }
 
 		public SnoGroupInitializer[] SnoGroupInitializers { get { return Field<SnoGroupInitializer>(0x01A81160, 60); } }
+
+		// ↑ 2.0.5.24017 ↑
+		// ↓ 2.0.5.23920 ↓
 
 		// ↑ 2.0.5.23920 ↑
 		// ↓ 2.0.4.23119 ↓
