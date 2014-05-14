@@ -13,12 +13,12 @@ namespace Enigma.D3
 		public LocalData(ProcessMemory memory, int address)
 			: base(memory, address) { }
 
-		public int x00_IsLocalActorCreated { get { return Field<int>(0x00); } }
-		public int x04_GameGlobals_x1C_IsZero { get { return Field<int>(0x04); } }
-		public int x08 { get { return Field<int>(0x08); } }
+		public int x00_IsActorCreated { get { return Field<int>(0x00); } }
+		public int x04_IsNotInGame { get { return Field<int>(0x04); } }
+		public int x08_SceneSnoId { get { return Field<int>(0x08); } }
 		public int x0C_WorldSnoId { get { return Field<int>(0x0C); } }
-		public int x10_LocalActorSnoId { get { return Field<int>(0x10); } }
-		public int x14_Storage_x2C { get { return Field<int>(0x14); } }
+		public int x10_ActorSnoId { get { return Field<int>(0x10); } }
+		public int x14_ActId { get { return Field<int>(0x14); } }
 		public int x18_WorldSeed { get { return Field<int>(0x18); } }
 		public int x1C_QuestId { get { return Field<int>(0x1C); } }
 		public int x20_QuestStep { get { return Field<int>(0x20); } }
@@ -26,6 +26,6 @@ namespace Enigma.D3
 		public float x28_WorldPosY { get { return Field<float>(0x28); } }
 		public float x2C_WorldPosZ { get { return Field<float>(0x2C); } }
 		public int x30_PlayerDataSlotsInUse { get { return Field<int>(0x30); } }
-		public int x34_LocalPlayerDataIndex { get { return Field<int>(0x34); } }
+		public int x34_IsPlayerDataCreated { get { return Field<int>(0x34); } }
 	}
 }
