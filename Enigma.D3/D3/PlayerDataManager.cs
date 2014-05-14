@@ -8,8 +8,8 @@ namespace Enigma.D3
 {
 	public class PlayerDataManager : MemoryObject
 	{
-		// 2.0.0.20874
-		public const int SizeOf = 0x686D8; // = 427736
+		// 2.0.5.24017
+		public const int SizeOf = 0x68A98; // 428696
 
 		public PlayerDataManager(ProcessMemory memory, int address)
 			: base(memory, address) { }
