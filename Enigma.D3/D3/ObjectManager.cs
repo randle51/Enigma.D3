@@ -42,6 +42,8 @@ namespace Enigma.D3
 
 		public Container<World> x98C_CWorlds { get { return Dereference<Container<World>>(0x98C); } }
 
+		public Player x994_Player { get { return Dereference<Player>(0x994); } }
+
 		public class Struct790 : MemoryObject
 		{
 			// 2.0.0.21962

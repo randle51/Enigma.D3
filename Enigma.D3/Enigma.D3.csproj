@@ -81,6 +81,7 @@
     <Compile Include="D3\LevelArea.cs" />
     <Compile Include="D3\LocalData.cs" />
     <Compile Include="D3\Enums\PlayerClass.cs" />
+    <Compile Include="D3\Player.cs" />
     <Compile Include="D3\Quest.cs" />
     <Compile Include="D3\QuestManager.cs" />
     <Compile Include="D3\RefString.cs" />

@@ -15,7 +15,8 @@ namespace Enigma.D3.Helpers
 			if (localData.x00_IsActorCreated != 0)
 			{
 				var objMgr = Engine.Current.ObjectManager;
-				var localPlayerData = objMgr.x798_Storage.x0E4_PlayerDataCollection.x0058_Items[localData.x34_IsPlayerDataCreated - 1];
+				var localPlayerDataIndex = objMgr.x994_Player.x00000_LocalDataIndex;
+				var localPlayerData = objMgr.x798_Storage.x0E4_PlayerDataCollection.x0058_Items[localPlayerDataIndex];
 				var localAcd = objMgr.x798_Storage.x110_ActorCommonDataManager.x00_ActorCommonData[(short)localPlayerData.x0004_AcdId];
 				return localAcd;
 			}
