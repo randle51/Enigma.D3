@@ -28,7 +28,7 @@ namespace Enigma.D3
 		public int x30_GroupId { get { return Field<int>(0x30); } } // -1 if none, used for DT_SNO and DT_GBID.
 		public int x34 { get { return Field<int>(0x34); } }
 		public int x38_SymbolTable { get { return Field<int>(0x38); } } // Used for DT_ENUM
-		public int x3C { get { return Field<int>(0x3C); } }
+		public int x3C_BitOffset { get { return Field<int>(0x3C); } }
 		public int x40 { get { return Field<int>(0x40); } }
 		public int x44 { get { return Field<int>(0x44); } }
 		public int x48 { get { return Field<int>(0x48); } }

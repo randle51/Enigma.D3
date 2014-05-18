@@ -179,6 +179,9 @@ namespace Enigma
 		protected T[] Dereference<T>(int offset, int count)
 		{
 			int pointer = Field<int>(offset);
+			if (pointer == 0)
+				return default(T[]);
+
 			if (TypeHelper<T>.IsMemoryObject)
 			{
 				int size = TypeHelper<T>.SizeOf;
@@ -196,6 +199,9 @@ namespace Enigma
 		protected string Dereference(int offset, int count)
 		{
 			int address = Field<int>(offset);
+			if (address == 0)
+				return default(string);
+
 			var bytes = _memory.ReadBytes(address, count);
 			return ReadString(bytes, 0, count);
 		}

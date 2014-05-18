@@ -18,6 +18,9 @@ namespace Enigma.D3
 		public int x0004_AcdId { get { return Field<int>(0x0004); } }
 		public int x0008_ActorId { get { return Field<int>(0x0008); } }
 
+		public int xCE98 { get { return Field<int>(0xCE98); } } // 0 = No Interaction, 1 = Interact with ACD, 2 = Interact with NoTarget
+		public int xCE9C { get { return Field<int>(0xCE9C); } } // 
+
 		public byte[] _x0000 { get { return Field<byte>(0x0000, 4096); } }
 		public byte[] _x1000 { get { return Field<byte>(0x1000, 4096); } }
 		public byte[] _x2000 { get { return Field<byte>(0x2000, 4096); } }

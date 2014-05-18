@@ -47,6 +47,7 @@
     <Compile Include="D3\ActorManager.cs" />
     <Compile Include="D3\ActorMovement.cs" />
     <Compile Include="D3\AttributeDescriptor.cs" />
+    <Compile Include="D3\CameraManager.cs" />
     <Compile Include="D3\Collections\Array.cs" />
     <Compile Include="D3\Enums\AttributeId.cs" />
     <Compile Include="D3\Collections\Container.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="D3\FastAttribGroup.cs" />
     <Compile Include="D3\FieldDescriptor.cs" />
     <Compile Include="D3\GlobalStruct001.cs" />
+    <Compile Include="D3\GlobalStruct010.cs" />
     <Compile Include="D3\Helpers\ActorCommonDataHelper.cs" />
     <Compile Include="D3\Helpers\ActorHelper.cs" />
     <Compile Include="D3\Helpers\AttributeHelper.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="D3\LocalData.cs" />
     <Compile Include="D3\Enums\PlayerClass.cs" />
     <Compile Include="D3\Player.cs" />
+    <Compile Include="D3\PlayerInput.cs" />
     <Compile Include="D3\Quest.cs" />
     <Compile Include="D3\QuestManager.cs" />
     <Compile Include="D3\RefString.cs" />

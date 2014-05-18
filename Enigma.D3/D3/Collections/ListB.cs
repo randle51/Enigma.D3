@@ -31,5 +31,10 @@ namespace Enigma.D3.Collections
 		{
 			return GetEnumerator();
 		}
+
+		public override string ToString()
+		{
+			return base.ToString() + " Count = " + x00_List.x08_Count;
+		}
 	}
 }
