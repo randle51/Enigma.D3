@@ -44,5 +44,10 @@ namespace Enigma.D3.Collections
 		{
 			return GetEnumerator();
 		}
+
+		public override string ToString()
+		{
+			return base.ToString() + " Size = " + x08_Size + ", Allocator = " + x10_Allocator.ToString();
+		}
 	}
 }

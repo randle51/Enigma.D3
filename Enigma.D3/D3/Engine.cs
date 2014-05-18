@@ -82,6 +82,8 @@ namespace Enigma.D3
 
 		public SnoGroupInitializer[] SnoGroupInitializers { get { return Field<SnoGroupInitializer>(0x01A81160, 60); } }
 
+		public GlobalStruct010 GlobalStruct010 { get { return Dereference<GlobalStruct010>(0x01C32C3C); } }
+
 		// ↑ 2.0.5.24017 ↑
 		// ↓ 2.0.5.23920 ↓
 

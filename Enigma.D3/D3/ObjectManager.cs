@@ -39,10 +39,11 @@ namespace Enigma.D3
 		public ActorManager x914_ActorManager { get { return Dereference<ActorManager>(0x914); } }
 
 		public UIManager x984_UI { get { return Dereference<UIManager>(0x984); } }
-
+		public CameraManager x988_CameraManager { get { return Dereference<CameraManager>(0x988); } }
 		public Container<World> x98C_CWorlds { get { return Dereference<Container<World>>(0x98C); } }
 
 		public Player x994_Player { get { return Dereference<Player>(0x994); } }
+		public PlayerInput x998_PlayerInput { get { return Dereference<PlayerInput>(0x998); } }
 
 		public class Struct790 : MemoryObject
 		{

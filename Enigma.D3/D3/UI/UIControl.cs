@@ -19,6 +19,25 @@ namespace Enigma.D3.UI
 		public UIControl x20C_UIControl { get { return Dereference<UIControl>(0x20C); } }
 	}
 
+	// not confirmed/tested
+	public class TextUIControl : UIControl
+	{
+		public TextUIControl(ProcessMemory memory, int address)
+			: base(memory, address) { }
+
+		public string xA58_Text { get { return Dereference(0xA58, xA68_TextLength); } }
+		public int _xA5C { get { return Field<int>(0xA5C); } }
+		public int _xA60 { get { return Field<int>(0xA60); } }
+		public int _xA64 { get { return Field<int>(0xA64); } }
+		public int xA68_TextLength { get { return Field<int>(0xA68); } }
+		// ...
+
+		public override string ToString()
+		{
+			return base.ToString() + ", Text = " + xA58_Text;
+		}
+	}
+
 	public class UIControl : MemoryObject
 	{
 		// 2.0.4.23119
@@ -52,19 +71,6 @@ namespace Enigma.D3.UI
 		public int _x458 { get { return Field<int>(0x458); } }
 		public int _x45C { get { return Field<int>(0x45C); } }
 		public Array<UIControlReference> x460_Children { get { return Field<Array<UIControlReference>>(0x460); } }
-		public string x460_0 { get { return x460_Children[1].x000_UIReference.x008_Name; } }
-		//	public UIControlReference[] x460_Children { get { return Dereference<UIControlReference>(0x460, x468_ChildrenCount); } }
-		//	public int _x464 { get { return Field<int>(0x464); } }
-		//	public int x468_ChildrenCount { get { return Field<int>(0x468); } }
-		//	public int _x46C { get { return Field<int>(0x46C); } }
-		//	public BasicAllocator x470_DynAllocator { get { return Field<BasicAllocator>(0x470); } }
-		//	public int _x470 { get { return Field<int>(0x470); } }
-		//	public int _x474 { get { return Field<int>(0x474); } }
-		//	public int _x478 { get { return Field<int>(0x478); } }
-		//	public int _x47C { get { return Field<int>(0x47C); } }
-		//	public int _x480 { get { return Field<int>(0x480); } }
-		//	public int _x484 { get { return Field<int>(0x484); } }
-		//	public int _x488 { get { return Field<int>(0x488); } }
 		public int _x48C { get { return Field<int>(0x48C); } }
 		public int _x490 { get { return Field<int>(0x490); } }
 		public int _x494 { get { return Field<int>(0x494); } }
