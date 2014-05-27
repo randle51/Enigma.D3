@@ -8,7 +8,13 @@ using Enigma.D3.Win32;
 
 namespace Enigma.D3
 {
-	public class SnoGroup : MemoryObject
+	public class SnoGroup : SnoGroup<MemoryObject>
+	{
+		public SnoGroup(ProcessMemory memory, int address)
+			: base(memory, address) { }
+	}
+
+	public class SnoGroup<T> : MemoryObject
 	{
 		// 2.0.3.22427
 		public const int SizeOf = 0x84;
@@ -20,7 +26,7 @@ namespace Enigma.D3
 		public int x04 { get { return Field<int>(0x04); } }
 		public int x08 { get { return Field<int>(0x08); } }
 		public int x0C { get { return Field<int>(0x0C); } }
-		public Container x10_Container { get { return Dereference<Container>(0x10); } }
+		public Container<SnoDefinition<T>> x10_Container { get { return Dereference<Container<SnoDefinition<T>>>(0x10); } }
 		public Container x14_Container { get { return Dereference<Container>(0x14); } }
 		public int x18_Flags { get { return Field<int>(0x18); } }
 		public string x1C_Name { get { return Field(0x1C, 32); } }

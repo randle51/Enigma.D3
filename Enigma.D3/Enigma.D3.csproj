@@ -49,6 +49,7 @@
     <Compile Include="D3\AttributeDescriptor.cs" />
     <Compile Include="D3\CameraManager.cs" />
     <Compile Include="D3\Collections\Array.cs" />
+    <Compile Include="D3\Collections\ArrayB.cs" />
     <Compile Include="D3\Enums\AttributeId.cs" />
     <Compile Include="D3\Collections\Container.cs" />
     <Compile Include="D3\Collections\ExpandableContainer.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="D3\Enums\PlayerClass.cs" />
     <Compile Include="D3\Player.cs" />
     <Compile Include="D3\PlayerInput.cs" />
+    <Compile Include="D3\PetPortraitInfo.cs" />
     <Compile Include="D3\Quest.cs" />
     <Compile Include="D3\QuestManager.cs" />
     <Compile Include="D3\RefString.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="D3\SceneAllocators.cs" />
     <Compile Include="D3\SceneRevealInfo.cs" />
     <Compile Include="D3\ScreenManager.cs" />
+    <Compile Include="D3\SnoDefinition.cs" />
     <Compile Include="D3\SnoGroup.cs" />
     <Compile Include="D3\Enums\SnoGroupId.cs" />
     <Compile Include="D3\SnoGroupInitializer.cs" />

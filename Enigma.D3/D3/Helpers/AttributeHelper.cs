@@ -29,7 +29,7 @@ namespace Enigma.D3.Helpers
 				var smallMap = group.x00C_PtrMap;
 				if ((group.x004_Flags & 4) != 0 && smallMap != null)
 				{
-					foreach (var bucket in smallMap.x10_Data)
+					foreach (var bucket in smallMap.x10_Buckets)
 					{
 						var immutableBucket = bucket.Value;
 						while (immutableBucket != null)
@@ -43,7 +43,7 @@ namespace Enigma.D3.Helpers
 				var map = group.x010_Map;
 				if (map != null)
 				{
-					foreach (var bucket in map.x10_Data)
+					foreach (var bucket in map.x10_Buckets)
 					{
 						var immutableBucket = bucket.Value;
 						while (immutableBucket != null)
@@ -77,7 +77,7 @@ namespace Enigma.D3.Helpers
 			if (map != null)
 			{
 				var hash = key ^ (key >> 12);
-				var entry = map.x10_Data[map.x00_Mask & hash];
+				var entry = map.x10_Buckets[map.x00_Mask & hash];
 				while (entry != null)
 				{
 					if (entry.x04_Key == key)

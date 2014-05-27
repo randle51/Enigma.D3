@@ -22,9 +22,9 @@ namespace Enigma.D3.Collections
 
 		public int x00_Mask { get { return Field<int>(0x00); } }
 		public int x04_Count { get { return Field<int>(0x04); } }
-		public Allocator<Entry> x08_PtrAllocator_10x12Bytes { get { return Dereference<Allocator<Entry>>(0x08); } }
+		public Allocator<Entry> x08_PtrEntryAllocator { get { return Dereference<Allocator<Entry>>(0x08); } }
 		public int _x0C { get { return Field<int>(0x0C); } }
-		public Data x10_Data { get { return Field<Data>(0x10); } }
+		public Data x10_Buckets { get { return Field<Data>(0x10); } }
 		public int _x3C { get { return Field<int>(0x3C); } }
 		public int _x40 { get { return Field<int>(0x40); } }
 		public int _x44 { get { return Field<int>(0x44); } }
@@ -32,6 +32,29 @@ namespace Enigma.D3.Collections
 		public int _x64 { get { return Field<int>(0x00); } }
 		public int _x68 { get { return Field<int>(0x00); } }
 		public int _x6C { get { return Field<int>(0x00); } }
+
+		public Dictionary<TKey, TValue> ToDictionary()
+		{
+			var count = (short)x04_Count;
+			var dic = new Dictionary<TKey, TValue>(count);
+
+			foreach (var block in x08_PtrEntryAllocator.x08_Blocks)
+			{
+				block.TakeSnapshot();
+				var elements = block.x00_Elements;
+				var isSlotFree = block.x24_FreeSpaceBitmap;
+				for (int i = 0; i < elements.Length; i++)
+				{
+					if (isSlotFree[i])
+						continue;
+					var element = elements[i];
+					dic.Add(element.x04_Key, element.x08_Value);
+				}
+				block.FreeSnapshot();
+			}
+
+			return dic;
+		}
 
 
 
@@ -56,7 +79,8 @@ namespace Enigma.D3.Collections
 
 		public class Entry : MemoryObject
 		{
-			public const int SizeOf = 0x0C; // = 12 (minimum)
+			public static int SizeOf = 4 + TypeHelper<TKey>.SizeOf + TypeHelper<TValue>.SizeOf;
+			//public const int SizeOf = 0x0C; // = 12 (minimum)
 
 			public Entry(ProcessMemory memory, int address)
 				: base(memory, address) { }

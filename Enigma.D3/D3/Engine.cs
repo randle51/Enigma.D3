@@ -63,6 +63,8 @@ namespace Enigma.D3
 
 		public string LevelAreaName { get { return Field(0x01C3B428, 128); } }
 
+		public PetPortraitInfo PetPortraitInfo { get { return Dereference<PetPortraitInfo>(0x01C3B4C4); } }
+
 		public BuffManager BuffManager { get { return Dereference<BuffManager>(0x01CC5950); } }
 
 		public SnoGroup[] SnoGroupsByCode { get { return Field<Pointer<SnoGroup>>(0x01CDD6A8, 70).Select(a => a.Value).ToArray(); } }
