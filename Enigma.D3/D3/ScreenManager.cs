@@ -20,18 +20,18 @@ namespace Enigma.D3
 		public int x08_Ptr_64Bytes { get { return Field<int>(0x08); } }
 		public int x0C_Ptr_400Bytes { get { return Field<int>(0x0C); } }
 		public int x10_Ptr_2320Bytes_HeroSelect { get { return Field<int>(0x10); } }
-		public ScreenManager_X14 x14_Ptr_576Bytes { get { return Dereference<ScreenManager_X14>(0x14); } }
+		public ModalNotificationManager x14_Ptr_576Bytes_ModalNotificationManager { get { return Dereference<ModalNotificationManager>(0x14); } }
 		public int x18_Ptr_2064Bytes { get { return Field<int>(0x18); } }
 		public int x1C_Ptr_4Bytes { get { return Field<int>(0x1C); } }
 
 
 
-		public class ScreenManager_X14 : MemoryObject
+		public class ModalNotificationManager : MemoryObject
 		{
 			// 2.0.3.22427
 			public const int SizeOf = 0x280;
 
-			public ScreenManager_X14(ProcessMemory memory, int address)
+			public ModalNotificationManager(ProcessMemory memory, int address)
 				: base(memory, address) { }
 
 			public int x000_VTable { get { return Field<int>(0x000); } }

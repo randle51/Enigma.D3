@@ -45,6 +45,11 @@ namespace Enigma.D3.Helpers
 			return Enumerate(a => a.x0B0_GameBalanceType == Enums.GameBalanceType.Items);
 		}
 
+		public static IEnumerable<ActorCommonData> EnumerateGroundItems()
+		{
+			return EnumerateItems().Where(a => (int)a.x114_ItemLocation == -1);
+		}
+
 		public static IEnumerable<ActorCommonData> EnumerateInventoryItems()
 		{
 			return Enumerate(a => a.x114_ItemLocation == Enums.ItemLocation.PlayerBackpack);

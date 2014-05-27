@@ -13,10 +13,10 @@ namespace Enigma.D3
 		public SceneRevealInfo(ProcessMemory memory, int address)
 			: base(memory, address) { }
 
-		public int _x00 { get { return Field<int>(0x00); } }
+		public int x00_SceneSnoId { get { return Field<int>(0x00); } }
 		public int x04_SceneId_ { get { return Field<int>(0x04); } }
 		public int x08_WorldId_ { get { return Field<int>(0x08); } }
-		public int _x0C { get { return Field<int>(0x0C); } }
+		public int x0C_TextureSnoId { get { return Field<int>(0x0C); } }
 		public float x10_MinX { get { return Field<float>(0x10); } }
 		public float x14_MinY { get { return Field<float>(0x14); } }
 		public float x18_MaxX { get { return Field<float>(0x18); } }
