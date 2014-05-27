@@ -47,7 +47,7 @@ namespace Enigma.D3
 		public ValueTypeDescriptor x74_Ptr_DataType { get { return Dereference<ValueTypeDescriptor>(0x74); } }
 		public int x78_Counter { get { return Field<int>(0x78); } }
 		public Struct_X7C x7C { get { return Dereference<Struct_X7C>(0x7C); } }
-		public int x80_Neg1 { get { return Field<int>(0x80); } }
+		public int x80_Neg1_InvalidSnoId { get { return Field<int>(0x80); } } // -1 or a group specific Axe_Bad_Data ID
 
 
 		public class Struct_X7C : MemoryObject
