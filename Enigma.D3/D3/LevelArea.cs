@@ -25,9 +25,9 @@ namespace Enigma.D3
 		public int x04C_LabelState { get { return Field<int>(0x04C); } } // 0 = Not visible, 1 = Partially visible, 2 = Fully visible
 		public int x050 { get { return Field<int>(0x050); } }
 		public int x054_Neg1 { get { return Field<int>(0x054); } }
-		public int x058_One { get { return Field<int>(0x058); } }
+		public int x058_IsMinimapVisible { get { return Field<int>(0x058); } }
 		public int x05C { get { return Field<int>(0x05C); } }
-		public int x060 { get { return Field<int>(0x060); } }
+		public int x060_Flags { get { return Field<int>(0x060); } }
 		public int _x064 { get { return Field<int>(0x064); } }
 		public UIReference x068_UIReference_MinimapDialog { get { return Field<UIReference>(0x068); } }
 		public UIReference x270_UIReference_MinimapMain { get { return Field<UIReference>(0x270); } }

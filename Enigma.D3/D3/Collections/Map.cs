@@ -56,6 +56,11 @@ namespace Enigma.D3.Collections
 			return dic;
 		}
 
+		public override string ToString()
+		{
+			return base.ToString() + ", Count: " + x04_Count;
+		}
+
 
 
 		public class Data : Array<Pointer<Entry>>

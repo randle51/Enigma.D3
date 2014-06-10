@@ -23,6 +23,6 @@ namespace Enigma.D3
 		public int _x04 { get { return Field<int>(0x04); } }
 		public SnoGroupId x08_SnoGroupId { get { return (SnoGroupId)Field<int>(0x08); } }
 		public int x0C_Size { get { return Field<int>(0x0C); } }
-		public T x10_SnoItem { get { return Dereference<T>(0x0C); } }
+		public T x10_SnoItem { get { return Dereference<T>(0x10); } }
 	}
 }

@@ -28,7 +28,9 @@ namespace Enigma.D3.Memory
 
 		public override string ToString()
 		{
-			return x04_Limit + "x" + x00_ElementSize + " bytes, Blocks: " + x08_Blocks.x00_Count;
+			string state = x18_GoodFood == 0x600DF00D ? "Valid" :
+				(uint)x18_GoodFood == 0xFEEDFACE ? "Disposed" : "Corrupt";
+			return x04_Limit + "x" + x00_ElementSize + " bytes, Blocks: " + x08_Blocks.x00_Count + ", State: " + state;
 		}
 	}
 }

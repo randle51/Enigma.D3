@@ -64,7 +64,7 @@ namespace Enigma.D3.UI
 		public UIReference x238_Parent { get { return Field<UIReference>(0x238); } }
 		public int _x440 { get { return Field<int>(0x440); } }
 		public int _x444 { get { return Field<int>(0x444); } }
-		public int _x448 { get { return Field<int>(0x448); } }
+		public int x448_UISnoId { get { return Field<int>(0x448); } }
 		public int _x44C { get { return Field<int>(0x44C); } }
 		public int _x450 { get { return Field<int>(0x450); } }
 		public int _x454 { get { return Field<int>(0x454); } }
@@ -80,7 +80,7 @@ namespace Enigma.D3.UI
 		public int _x4A4 { get { return Field<int>(0x4A4); } }
 		public int _x4A8 { get { return Field<int>(0x4A8); } }
 		public int _x4AC { get { return Field<int>(0x4AC); } }
-		public int _x4B0 { get { return Field<int>(0x4B0); } }
+		public int x4B0_TextureSnoId { get { return Field<int>(0x4B0); } }
 		public int _x4B4 { get { return Field<int>(0x4B4); } }
 		public int _x4B8 { get { return Field<int>(0x4B8); } }
 		public int _x4BC { get { return Field<int>(0x4BC); } }
@@ -150,7 +150,8 @@ namespace Enigma.D3.UI
 		public int _x5C8 { get { return Field<int>(0x5C8); } }
 		public int _x5CC { get { return Field<int>(0x5CC); } }
 		public int _x5D0 { get { return Field<int>(0x5D0); } }
-		public int x5D4_String512 { get { return Field<int>(0x5D4); } }
+		public string x5D4_String512 { get { return Field(0x5D4, 512); } }
+		public int _x5D4 { get { return Field<int>(0x5D4); } }
 		public int _x5D8 { get { return Field<int>(0x5D8); } }
 		public int _x5DC { get { return Field<int>(0x5DC); } }
 		public int _x5E0 { get { return Field<int>(0x5E0); } }
