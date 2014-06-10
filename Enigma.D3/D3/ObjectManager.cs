@@ -38,6 +38,8 @@ namespace Enigma.D3
 		public ExpandableContainer<Actor> x910_RActors { get { return Dereference<ExpandableContainer<Actor>>(0x910); } }
 		public ActorManager x914_ActorManager { get { return Dereference<ActorManager>(0x914); } }
 
+		public Cinematography x934_Cinematography { get { return Dereference<Cinematography>(0x934); } }
+
 		public UIManager x984_UI { get { return Dereference<UIManager>(0x984); } }
 		public CameraManager x988_CameraManager { get { return Dereference<CameraManager>(0x988); } }
 		public Container<World> x98C_CWorlds { get { return Dereference<Container<World>>(0x98C); } }

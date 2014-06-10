@@ -42,49 +42,52 @@ namespace Enigma.D3
 
 		public Process Process { get { return base.Memory.Process; } }
 
-		public AttributeDescriptor[] AttributeDescriptors { get { return Field<AttributeDescriptor>(0x01A85620, 1338); } }
+		public AttributeDescriptor[] AttributeDescriptors { get { return Field<AttributeDescriptor>(0x01A8B638, 1338); } }
 
-		public VideoPreferences VideoPreferences { get { return Field<VideoPreferences>(0x01AAE3A0); } }
-		public SoundPreferences SoundPreferences { get { return Field<SoundPreferences>(0x01AAE42C); } }
+		public VideoPreferences VideoPreferences { get { return Field<VideoPreferences>(0x01AB43C0); } }
+		public SoundPreferences SoundPreferences { get { return Field<SoundPreferences>(0x01AB444C); } }
 
-		public GameplayPreferences GameplayPreferences { get { return Field<GameplayPreferences>(0x01AAE89C); } }
+		public GameplayPreferences GameplayPreferences { get { return Field<GameplayPreferences>(0x01AB48BC); } }
 
-		public SocialPreferences SocialPreferences { get { return Field<SocialPreferences>(0x01AAE8F8); } }
+		public SocialPreferences SocialPreferences { get { return Field<SocialPreferences>(0x01AB4918); } }
 
-		public ChatPreferences ChatPreferences { get { return Field<ChatPreferences>(0x01AAE924); } }
+		public ChatPreferences ChatPreferences { get { return Field<ChatPreferences>(0x01AB4944); } }
 
-		public int MapActId { get { return Field<int>(0x01AF9628); } }
+		public int MapActId { get { return Field<int>(0x01AFF648); } }
 
-		public ScreenManager ScreenManager { get { return Dereference<ScreenManager>(0x01AF9838); } }
+		public ScreenManager ScreenManager { get { return Dereference<ScreenManager>(0x01AFF858); } }
 
-		public UIReference[] UIReferences { get { return Field<UIReference>(0x01AF99E8, 2466); } } // 1 + 1000 + 1000 + 324 + 141 = 2466
+		public UIReference[] UIReferences { get { return Field<UIReference>(0x01AFFA08, 2466); } } // 1 + 1000 + 1000 + 324 + 141 = 2466
 
-		public LevelArea LevelArea { get { return Dereference<LevelArea>(0x01C3B400); } }
+		public LevelArea LevelArea { get { return Dereference<LevelArea>(0x01C41420); } }
 
-		public string LevelAreaName { get { return Field(0x01C3B428, 128); } }
+		public string LevelAreaName { get { return Field(0x01C41448, 128); } }
 
-		public PetPortraitInfo PetPortraitInfo { get { return Dereference<PetPortraitInfo>(0x01C3B4C4); } }
+		public PetPortraitInfo PetPortraitInfo { get { return Dereference<PetPortraitInfo>(0x01C414E4); } }
 
-		public BuffManager BuffManager { get { return Dereference<BuffManager>(0x01CC5950); } }
+		public BuffManager BuffManager { get { return Dereference<BuffManager>(0x01CCB970); } }
 
-		public SnoGroup[] SnoGroupsByCode { get { return Field<Pointer<SnoGroup>>(0x01CDD6A8, 70).Select(a => a.Value).ToArray(); } }
+		public SnoGroup[] SnoGroupsByCode { get { return Field<Pointer<SnoGroup>>(0x01CE36C8, 70).Select(a => a.Value).ToArray(); } }
 
-		public SnoGroup[] SnoGroups { get { return Dereference<Pointer<SnoGroup>>(0x01CDD7C4, 61).Select(a => a.Value).ToArray(); } }
+		public SnoGroup[] SnoGroups { get { return Dereference<Pointer<SnoGroup>>(0x01CE37E4, 61).Select(a => a.Value).ToArray(); } }
 
-		public ObjectManager ObjectManager { get { return Dereference<ObjectManager>(0x01CDD7F4); } }
-		public ObjectManager ObjectManagerPristine { get { return Dereference<ObjectManager>(0x01CDD7F8); } } // This address is used in initialization and finalization methods.
+		public ObjectManager ObjectManager { get { return Dereference<ObjectManager>(0x01CE3814); } }
+		public ObjectManager ObjectManagerPristine { get { return Dereference<ObjectManager>(0x01CE3818); } } // This address is used in initialization and finalization methods.
 
-		public LocalData LocalData { get { return Field<LocalData>(0x01CDEA88); } }
+		public LocalData LocalData { get { return Field<LocalData>(0x01CE4AA8); } }
 
-		public SnoGroupSearch SnoGroupSearch { get { return Dereference<SnoGroupSearch>(0x01D31AF0); } }
+		public SnoGroupSearch SnoGroupSearch { get { return Dereference<SnoGroupSearch>(0x01D37B10); } }
 
-		public ContainerManager ContainerManager { get { return Dereference<ContainerManager>(0x01D90BD4); } }
+		public ContainerManager ContainerManager { get { return Dereference<ContainerManager>(0x01D96BE4); } }
 
-		public UIHandler[] UIHandlers { get { return Field<UIHandler>(0x01A78038, 1181); } }
+		public UIHandler[] UIHandlers { get { return Field<UIHandler>(0x01A7E038, 1181); } }
 
-		public SnoGroupInitializer[] SnoGroupInitializers { get { return Field<SnoGroupInitializer>(0x01A81160, 60); } }
+		public SnoGroupInitializer[] SnoGroupInitializers { get { return Field<SnoGroupInitializer>(0x01A87178, 60); } }
 
-		public GlobalStruct010 GlobalStruct010 { get { return Dereference<GlobalStruct010>(0x01C32C3C); } }
+		public GlobalStruct010 GlobalStruct010 { get { return Dereference<GlobalStruct010>(0x01C38C5C); } }
+
+		// ↑ 2.0.6.24641 ↑
+		// ↓ 2.0.5.24017 ↓
 
 		// ↑ 2.0.5.24017 ↑
 		// ↓ 2.0.5.23920 ↓

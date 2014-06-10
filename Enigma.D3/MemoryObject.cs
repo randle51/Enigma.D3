@@ -151,7 +151,7 @@ namespace Enigma
 
 		private string ReadString(byte[] buffer, int offset, int length)
 		{
-			return Encoding.ASCII.GetString(
+			return Encoding.UTF8.GetString(
 				buffer,
 				offset,
 				length).Split('\0')[0];

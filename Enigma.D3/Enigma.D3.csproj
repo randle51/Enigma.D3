@@ -48,6 +48,7 @@
     <Compile Include="D3\ActorMovement.cs" />
     <Compile Include="D3\AttributeDescriptor.cs" />
     <Compile Include="D3\CameraManager.cs" />
+    <Compile Include="D3\Cinematography.cs" />
     <Compile Include="D3\Collections\Array.cs" />
     <Compile Include="D3\Collections\ArrayB.cs" />
     <Compile Include="D3\Enums\AttributeId.cs" />

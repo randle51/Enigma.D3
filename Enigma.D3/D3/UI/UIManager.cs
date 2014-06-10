@@ -22,12 +22,19 @@ namespace Enigma.D3.UI
 		public UIReference x0620_ContextMenu { get { return Field<UIReference>(0x0620); } }
 		public UIReference x0828_LastClicked { get { return Field<UIReference>(0x0828); } }
 		public UIReference x0A30_MouseOver { get { return Field<UIReference>(0x0A30); } }
+		public UIReference x0C38_UIReference { get { return Field<UIReference>(0x0C38); } }
 		// ...
 		public int x1E60_MouseX { get { return Field<int>(0x1E60); } }
 		public int x1E64_MouseY { get { return Field<int>(0x1E64); } }
-		public int x1E68_LogoutTime { get { return Field<int>(0x1E68); } } // not working as expected...
+		public int x1E68_LogoutTime { get { return Field<int>(0x1E68); } }
 		public int x1E6C { get { return Field<int>(0x1E6C); } }
+		public int x1E70 { get { return Field<int>(0x1E70); } }
+		public int _x1E74 { get { return Field<int>(0x1E74); } }
+		public string x1E78_String1024 { get { return Field(0x1E78, 1024); } }
+		public string x2278_String1024 { get { return Field(0x2278, 1024); } }
 		// ...
+		public int x2698_AcdId { get { return Field<int>(0x2698); } }
+		public int _x269C { get { return Field<int>(0x269C); } }
 		public int x26A0_Handlers { get { return Field<int>(0x26A0); } }
 		// ...
 
