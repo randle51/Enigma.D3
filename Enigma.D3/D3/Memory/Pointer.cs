@@ -40,6 +40,11 @@ namespace Enigma.D3.Memory
 			}
 		}
 
+		public Pointer<TResult> Cast<TResult>()
+		{
+			return new Pointer<TResult>(Memory, Address);
+		}
+
 		public override string ToString()
 		{
 			return "0x" + Field<int>(0x00).ToString("X8");

@@ -13,6 +13,8 @@ namespace Enigma.D3
 {
 	public class Engine : MemoryObject, IDisposable
 	{
+		public static readonly Version SupportedVersion = new Version(2, 0, 6, 24641);
+
 		public static Engine Create()
 		{
 			var process = Process.GetProcessesByName("Diablo III")
@@ -37,7 +39,20 @@ namespace Enigma.D3
 		public Engine(Process process)
 			: base(new ProcessMemory(process), 0)
 		{
+			EnsureSupportedProcessVersion();
 			Engine.Current = this;
+		}
+
+		private void EnsureSupportedProcessVersion()
+		{
+			if (Process.GetFileVersion() != SupportedVersion)
+			{
+				throw new NotSupportedException(string.Format(
+					"The process ({0}) is running a different version ({1}) that what is supported ({2}).",
+					Process.ProcessName,
+					Process.GetFileVersion(),
+					SupportedVersion));
+			}
 		}
 
 		public Process Process { get { return base.Memory.Process; } }
@@ -73,6 +88,8 @@ namespace Enigma.D3
 
 		public ObjectManager ObjectManager { get { return Dereference<ObjectManager>(0x01CE3814); } }
 		public ObjectManager ObjectManagerPristine { get { return Dereference<ObjectManager>(0x01CE3818); } } // This address is used in initialization and finalization methods.
+
+		public int ApplicationLoopCount { get { return Field<int>(0x01CE3884); } }
 
 		public LocalData LocalData { get { return Field<LocalData>(0x01CE4AA8); } }
 

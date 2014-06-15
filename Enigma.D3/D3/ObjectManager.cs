@@ -128,7 +128,7 @@ namespace Enigma.D3
 			public int _x104 { get { return Field<int>(0x104); } }
 			public int _x108 { get { return Field<int>(0x108); } }
 			public int _x10C { get { return Field<int>(0x10C); } }
-			public int _x110 { get { return Field<int>(0x110); } }
+			public int _x110_HasWindowOpen { get { return Field<int>(0x110); } } // 1 for Achievements, Dialogs etc ?
 			public int _x114 { get { return Field<int>(0x114); } }
 			public int _x118 { get { return Field<int>(0x118); } }
 		}
