@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Enigma.D3.MapHack.MinimapControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300" Width="350" Height="350" Canvas.Right="27.5" Canvas.Top="55"
+             ClipToBounds="False">
+    <Grid>
+        <ItemsControl ItemsSource="{Binding MinimapMarkers}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas HorizontalAlignment="Center" VerticalAlignment="Center" Background="Green">
+                        <Canvas.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-1" />
+                                <RotateTransform Angle="-45" />
+                            </TransformGroup>
+                        </Canvas.RenderTransform>
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="{x:Type ContentPresenter}">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Canvas.Left" Value="{Binding X}" />
+                    <Setter Property="Canvas.Top" Value="{Binding Y}" />
+                    <Setter Property="Canvas.ZIndex" Value="{Binding ZIndex, Mode=OneTime}" />
+                    <!--<Setter Property="CacheMode">
+                        <Setter.Value>
+                            <BitmapCache RenderOptions.BitmapScalingMode="HighQuality" />
+                        </Setter.Value>
+                    </Setter>-->
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <ContentPresenter Content="{Binding Control}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</UserControl>

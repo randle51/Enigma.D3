@@ -1,0 +1,34 @@
+﻿<Window x:Class="Enigma.D3.MapHack.Shell"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Enigma.D3.MapHack" Width="300" SizeToContent="Height" SnapsToDevicePixels="True" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" Icon="/Enigma.D3.MapHack;component/enigma_icon.ico">
+    <StackPanel Background="WhiteSmoke">
+        <Border BorderThickness="0,0,0,1" BorderBrush="DarkGray">
+            <Border.Style>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="Background" Value="Tomato" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsAttached}" Value="True">
+                            <Setter Property="Background" Value="LawnGreen" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+            <TextBlock Margin="10" FontSize="16">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Text" Value="Waiting for a D3 process..." />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsAttached}" Value="True">
+                                <Setter Property="Text" Value="Attached to D3!" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Border>
+        <CheckBox Content="Show Monsters" IsChecked="{Binding Options.ShowMonsters}" Margin="10,5" />
+        <CheckBox Content="Show Chests" IsChecked="{Binding Options.ShowChests}" Margin="10,5" />
+        <CheckBox Content="Show Wreckables" IsChecked="{Binding Options.ShowWreckables}" Margin="10,5" />
+    </StackPanel>
+</Window>
