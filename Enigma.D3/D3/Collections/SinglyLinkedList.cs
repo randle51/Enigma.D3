@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace Enigma.D3.Collections
 	{
 		public const int SizeOf = 8;
 
-		public SinglyLinkedList(ProcessMemory memory, int address)
+		public SinglyLinkedList(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x00_Count { get { return Field<int>(0x00); } }
@@ -36,7 +36,7 @@ namespace Enigma.D3.Collections
 		{
 			public static readonly int SizeOf = 4 + TypeHelper<T>.SizeOf;
 
-			public Node(ProcessMemory memory, int address)
+			public Node(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public Node x00_Next { get { return Dereference<Node>(0x00); } }

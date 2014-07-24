@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace Enigma.D3.Collections
 {
 	public class Map : Map<MemoryObject, MemoryObject>
 	{
-		public Map(ProcessMemory memory, int address)
+		public Map(MemoryBase memory, int address)
 			: base(memory, address) { }
 	}
 
@@ -17,7 +17,7 @@ namespace Enigma.D3.Collections
 		// 2.0.4.23119
 		public const int SizeOf = 0x70;
 
-		public Map(ProcessMemory memory, int address)
+		public Map(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x00_Mask { get { return Field<int>(0x00); } }
@@ -65,7 +65,7 @@ namespace Enigma.D3.Collections
 
 		public class Data : Array<Pointer<Entry>>
 		{
-			public Data(ProcessMemory memory, int address)
+			public Data(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public Entry this[int bucket]
@@ -87,7 +87,7 @@ namespace Enigma.D3.Collections
 			public static int SizeOf = 4 + TypeHelper<TKey>.SizeOf + TypeHelper<TValue>.SizeOf;
 			//public const int SizeOf = 0x0C; // = 12 (minimum)
 
-			public Entry(ProcessMemory memory, int address)
+			public Entry(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public Entry x00_Next { get { return Dereference<Entry>(0x00); } }

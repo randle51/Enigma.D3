@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace Enigma.D3
 	{
 		public const int SizeOf = 0x70; // 2.0.0.20874
 
-		public GameBalanceGroup(ProcessMemory memory, int address)
+		public GameBalanceGroup(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x00 { get { return Field<int>(0x00); } }

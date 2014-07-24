@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace Enigma.D3
 	{
 		public const int SizeOf = 0;
 
-		public PetPortraitInfo(ProcessMemory memory, int address)
+		public PetPortraitInfo(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public ArrayB x000_Array { get { return Field<ArrayB>(0x000); } }
@@ -31,7 +31,7 @@ namespace Enigma.D3
 		{
 			public const int SizeOf = 0x14;
 
-			public Item(ProcessMemory memory, int address)
+			public Item(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public int x00_Neg1 { get { return Field<int>(0x00); } }

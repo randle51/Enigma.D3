@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace Enigma.D3
 		// 2.0.0.20874
 		public const int SizeOf = 8 + 32;
 
-		public NetworkMessage(ProcessMemory memory, int address)
+		public NetworkMessage(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x00_DataLength { get { return Field<int>(0x00); } }

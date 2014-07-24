@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace Enigma.D3
 		// 2.0.3.22427
 		public const int SizeOf = 0x290;
 
-		public ActorMovement(ProcessMemory memory, int address)
+		public ActorMovement(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x000_VTable { get { return Dereference<int>(0x000); } }

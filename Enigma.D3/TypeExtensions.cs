@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using Enigma.D3.UI.Controls;
 
 namespace Enigma
 {
@@ -31,6 +32,11 @@ namespace Enigma
 				_cachedNonMemoryObjectTypes.Add(type);
 				return false;
 			}
+		}
+
+		public static bool IsUXControlType(this Type type)
+		{
+			return type.IsSubclassOf(typeof(UXControl)) || type.Equals(typeof(UXControl));
 		}
 
 		public static int SizeOf(this Type type)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace Enigma.D3.Preferences
 		// 2.0.0.20874
 		public const int SizeOf = 0x2C; // = 44
 
-		public SocialPreferences(ProcessMemory memory, int address)
+		public SocialPreferences(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x00_NotifyFriendOnline { get { return Field<int>(0x00); } }  // default = 1, min = 0, max = 1

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,7 @@ namespace Enigma.D3.Memory
 {
 	public class BasicAllocator : BasicAllocator<MemoryObject>
 	{
-		public BasicAllocator(ProcessMemory memory, int address)
+		public BasicAllocator(MemoryBase memory, int address)
 			: base(memory, address) { }
 	}
 
@@ -16,7 +16,7 @@ namespace Enigma.D3.Memory
 		// 2.0.0.20874
 		public const int SizeOf = 0x1C;
 
-		public BasicAllocator(ProcessMemory memory, int address)
+		public BasicAllocator(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public Pointer<T> x00_Allocation { get { return Field<Pointer<T>>(0x00); } }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace Enigma.D3
 	{
 		public const int SizeOf = 0x8C; // = 140
 
-		public FieldDescriptor(ProcessMemory memory, int address)
+		public FieldDescriptor(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public string x00_Name { get { return Dereference(0x00, 256); } } // Max length unknown

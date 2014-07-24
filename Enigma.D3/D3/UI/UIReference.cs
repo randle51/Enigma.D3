@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace Enigma.D3.UI
 	{
 		public const int SizeOf = 0x208; // 2.0.0.20874
 
-		public UIReference(ProcessMemory memory, int address)
+		public UIReference(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public ulong x000_Hash { get { return Field<ulong>(0x000); } }

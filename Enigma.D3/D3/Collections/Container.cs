@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace Enigma.D3.Collections
 {
 	public class Container : Container<MemoryObject>
 	{
-		public Container(ProcessMemory memory, int address)
+		public Container(MemoryBase memory, int address)
 			: base(memory, address) { }
 	}
 
@@ -17,7 +17,7 @@ namespace Enigma.D3.Collections
 		// 2.0.0.20874
 		public const int SizeOf = 0x124;
 
-		public Container(ProcessMemory memory, int address)
+		public Container(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public string x000_Name { get { return Field(0x000, 256); } }

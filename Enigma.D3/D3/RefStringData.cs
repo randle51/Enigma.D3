@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,9 +7,9 @@ namespace Enigma.D3
 {
 	public class RefStringData : MemoryObject
 	{
-		public const int SizeOf = 0x18;
+		public const int SizeOf = 0; // Size is dynamic! Depends on MaxLength.
 
-		public RefStringData(ProcessMemory memory, int address)
+		public RefStringData(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public short x00_ReferenceCount { get { return Field<short>(0x00); } }

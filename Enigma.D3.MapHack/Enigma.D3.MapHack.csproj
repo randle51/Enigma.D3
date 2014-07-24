@@ -61,7 +61,7 @@
     <Compile Include="D3\MapHack\Markers\MapMarkerAcdCursedChest.cs" />
     <Compile Include="D3\MapHack\Markers\MapMarkerAcdWreckable.cs" />
     <Compile Include="D3\MapHack\Markers\IMapMarker.cs" />
-    <Compile Include="D3\MapHack\ControlFactory.cs" />
+    <Compile Include="D3\MapHack\ControlHelper.cs" />
     <Compile Include="D3\MapHack\HalfConverter.cs" />
     <Compile Include="D3\MapHack\Markers\MapMarkerAcdChest.cs" />
     <Compile Include="D3\MapHack\Markers\MapMarkerOptions.cs" />

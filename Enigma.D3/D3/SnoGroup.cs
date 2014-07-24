@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace Enigma.D3
 {
 	public class SnoGroup : SnoGroup<MemoryObject>
 	{
-		public SnoGroup(ProcessMemory memory, int address)
+		public SnoGroup(MemoryBase memory, int address)
 			: base(memory, address) { }
 	}
 
@@ -19,7 +19,7 @@ namespace Enigma.D3
 		// 2.0.3.22427
 		public const int SizeOf = 0x84;
 
-		public SnoGroup(ProcessMemory memory, int address)
+		public SnoGroup(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x00_VTable { get { return Field<int>(0x00); } }
@@ -54,7 +54,7 @@ namespace Enigma.D3
 		{
 			public const int SizeOf = 0;
 
-			public Struct_X7C(ProcessMemory memory, int address)
+			public Struct_X7C(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public CriticalSection x00_CriticalSection { get { return Field<CriticalSection>(0x00); } }

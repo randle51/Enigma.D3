@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -18,6 +19,31 @@ namespace Enigma
 				fileVersionInfo.FileMinorPart,
 				fileVersionInfo.FileBuildPart,
 				fileVersionInfo.FilePrivatePart);
+		}
+
+		public static bool IsLargeAddressAware(this Process process)
+		{
+			// Source:
+			// http://stackoverflow.com/questions/9054469/how-to-check-if-exe-is-set-as-largeaddressaware
+
+			const int IMAGE_FILE_LARGE_ADDRESS_AWARE = 0x20;
+
+			using (var file = File.Open(process.MainModule.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+			using (var reader = new BinaryReader(file))
+			{
+				if (reader.ReadInt16() != 0x5A4D)
+					return false; // No MZ header.
+
+				file.Position = 0x3C;
+				var peHeaderLocation = reader.ReadInt32();
+
+				file.Position = peHeaderLocation;
+				if (reader.ReadInt32() != 0x4550)
+					return false; // No PE header.
+
+				file.Position += 0x12;
+				return (reader.ReadInt16() & IMAGE_FILE_LARGE_ADDRESS_AWARE) != 0;
+			}
 		}
 
 		public static void Suspend(this Process process)

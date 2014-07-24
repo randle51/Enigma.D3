@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -11,7 +11,7 @@ namespace Enigma.D3
 		// 2.0.0.21962
 		public const int SizeOf = 0x3A8; // 936
 
-		public GameGlobals(ProcessMemory memory, int address)
+		public GameGlobals(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x000 { get { return Field<int>(0x000); } }

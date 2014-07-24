@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,7 @@ namespace Enigma.D3.Memory
 {
 	public class Pointer : Pointer<MemoryObject>
 	{
-		public Pointer(ProcessMemory memory, int address)
+		public Pointer(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public T Read<T>()
@@ -25,7 +25,7 @@ namespace Enigma.D3.Memory
 	{
 		public const int SizeOf = 4;
 
-		public Pointer(ProcessMemory memory, int address)
+		public Pointer(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public T Value { get { return Dereference<T>(0x00); } }

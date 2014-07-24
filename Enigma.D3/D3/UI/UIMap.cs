@@ -1,18 +1,38 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Enigma.D3.Helpers;
 using Enigma.D3.Memory;
+using Enigma.D3.UI.Controls;
 
 namespace Enigma.D3.UI
 {
+	public static class UIMapExtensions
+	{
+		public static bool TryGet<T>(this UIMap map, string name, out T value) where T : UXControl
+		{
+			Pointer ptr = null;
+			try
+			{
+				ptr = map[name];
+				value = ptr.Dereference<T>();
+				return true;
+			}
+			catch (KeyNotFoundException)
+			{
+				value = null;
+				return false;
+			}
+		}
+	}
+
 	public class UIMap : MemoryObject, IEnumerable<UIMap.Pair>
 	{
 		// 2.0.0.20874
 		public const int SizeOf = 0x34; // = 52
 
-		public UIMap(ProcessMemory memory, int address)
+		public UIMap(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public Pointer<Pair>[] x00_Buckets { get { return Dereference<Pointer<Pair>>(0x00, x08_Limit); } }
@@ -87,7 +107,7 @@ namespace Enigma.D3.UI
 		{
 			public const int SizeOf = 0x18; // = 20
 
-			public Pair(ProcessMemory memory, int address)
+			public Pair(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public Pair x00_Next { get { return Dereference<Pair>(0x00); } }

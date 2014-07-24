@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace Enigma.D3
 	{
 		public const int SizeOf = 8;
 
-		public Symbol(ProcessMemory memory, int address)
+		public Symbol(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x00_Id { get { return Field<int>(0x00); } }

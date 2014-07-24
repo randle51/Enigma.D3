@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace Enigma.D3.Collections
 {
 	public class LinkedList : LinkedList<MemoryObject>
 	{
-		public LinkedList(ProcessMemory memory, int address)
+		public LinkedList(MemoryBase memory, int address)
 			: base(memory, address) { }
 	}
 
@@ -17,7 +17,7 @@ namespace Enigma.D3.Collections
 		// 2.0.0.20874
 		public const int SizeOf = 0x10; // = 16
 
-		public LinkedList(ProcessMemory memory, int address)
+		public LinkedList(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public Node x00_First { get { return Dereference<Node>(0x00); } }
@@ -51,7 +51,7 @@ namespace Enigma.D3.Collections
 			private static int _sizeOfValue = TypeHelper<T>.SizeOf;
 			public static int SizeOf = _sizeOfValue + 8;
 
-			public Node(ProcessMemory memory, int address)
+			public Node(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public T x00_Value { get { return Field<T>(0x00); } }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Enigma.D3
 		// 2.0.0.21962
 		public const int SizeOf = 0xE8;
 
-		public ActorCommonDataManager(ProcessMemory memory, int address)
+		public ActorCommonDataManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 		
 		public ExpandableContainer<ActorCommonData> x00_ActorCommonData { get { return Dereference<ExpandableContainer<ActorCommonData>>(0x00); } }

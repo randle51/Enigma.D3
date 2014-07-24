@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace Enigma.D3
 		// 2.0.5.24017
 		public const int SizeOf = 0xFC; // 252
 
-		public Cinematography(ProcessMemory memory, int address)
+		public Cinematography(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x00_Neg1 { get { return Field<int>(0x00); } }
@@ -84,7 +84,7 @@ namespace Enigma.D3
 		{
 			public const int SizeOf = 0xAC;
 
-			public Struct_X48(ProcessMemory memory, int address)
+			public Struct_X48(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public int x00_VTable { get { return Field<int>(0x00); } }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace Enigma.D3.UI
 	{
 		public const int SizeOf = 12; // 2.0.0.21806
 
-		public UIHandler(ProcessMemory memory, int address)
+		public UIHandler(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public string x00_Name { get { return Dereference(0x00, 512); } } // Max length is unknown.

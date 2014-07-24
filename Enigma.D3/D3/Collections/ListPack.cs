@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,7 @@ namespace Enigma.D3.Collections
 {
 	public class ListPack : ListPack<MemoryObject>
 	{
-		public ListPack(ProcessMemory memory, int address)
+		public ListPack(MemoryBase memory, int address)
 			: base(memory, address) { }
 	}
 
@@ -17,7 +17,7 @@ namespace Enigma.D3.Collections
 		// 2.0.1.22044
 		public const int SizeOf = 0x14; // 20
 
-		public ListPack(ProcessMemory memory, int address)
+		public ListPack(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public LinkedList<T> x00_List { get { return Field<LinkedList<T>>(0x00); } }

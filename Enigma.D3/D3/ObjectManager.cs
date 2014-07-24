@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Enigma.D3
 		// 2.0.4.23119
 		public const int SizeOf = 0x9C8;
 
-		public ObjectManager(ProcessMemory memory, int address)
+		public ObjectManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public Time x000_Time { get { return Field<Time>(0x000); } }
@@ -40,6 +40,8 @@ namespace Enigma.D3
 
 		public Cinematography x934_Cinematography { get { return Dereference<Cinematography>(0x934); } }
 
+		public Container<Scene> x954_Scenes { get { return Dereference<Container<Scene>>(0x954); } }
+
 		public UIManager x984_UI { get { return Dereference<UIManager>(0x984); } }
 		public CameraManager x988_CameraManager { get { return Dereference<CameraManager>(0x988); } }
 		public Container<World> x98C_CWorlds { get { return Dereference<Container<World>>(0x98C); } }
@@ -52,7 +54,7 @@ namespace Enigma.D3
 			// 2.0.0.21962
 			public const int SizeOf = 0x11C; // 284
 
-			public Struct790(ProcessMemory memory, int address)
+			public Struct790(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			// 0x1000: Rendering?
@@ -128,7 +130,7 @@ namespace Enigma.D3
 			public int _x104 { get { return Field<int>(0x104); } }
 			public int _x108 { get { return Field<int>(0x108); } }
 			public int _x10C { get { return Field<int>(0x10C); } }
-			public int _x110_HasWindowOpen { get { return Field<int>(0x110); } } // 1 for Achievements, Dialogs etc ?
+			public int _x110_IsGamePaused { get { return Field<int>(0x110); } } // 1 for Achievements, Dialogs etc ?
 			public int _x114 { get { return Field<int>(0x114); } }
 			public int _x118 { get { return Field<int>(0x118); } }
 		}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace Enigma.D3.Memory
 		// 2.0.0.20874
 		public const int SizeOf = 0x38;
 
-		public MemoryManager(ProcessMemory memory, int address)
+		public MemoryManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int _x00 { get { return Field<int>(0x00); } }
@@ -34,7 +34,7 @@ namespace Enigma.D3.Memory
 		{
 			public const int SizeOf = 0x18;
 
-			public VTable(ProcessMemory memory, int address)
+			public VTable(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public int _x00 { get { return Field<int>(0x00); } }

@@ -41,12 +41,12 @@ namespace Enigma.D3.Helpers
 			return GetCascadingDump(Engine.Current.SnoGroups);
 		}
 
-		public static string GetDump<T>(T[] array)
+		public static string GetDump<T>(IEnumerable<T> values)
 		{
 			var sb = new StringBuilder();
 			var properties = typeof(T).GetProperties();
 			sb.AppendLine(string.Join("\t", properties.Select(a => a.Name)));
-			foreach (var item in array.Where(a => a != null))
+			foreach (var item in values.Where(a => a != null))
 			{
 				sb.AppendLine(string.Join("\t", properties.Select(a => a.GetValue(item, null))));
 			}
@@ -137,6 +137,20 @@ namespace Enigma.D3.Helpers
 					list.Add(property.GetValue(instance, null));
 				}
 			}
+		}
+
+		public static string GetDump(System.Collections.IEnumerable enumerable, Type type)
+		{
+			var sb = new StringBuilder();
+			var properties = type.GetProperties();
+			sb.AppendLine(string.Join("\t", properties.Select(a => a.Name)));
+			foreach (var item in enumerable)
+			{
+				if (item == null)
+					continue;
+				sb.AppendLine(string.Join("\t", properties.Select(a => a.GetValue(item, null))));
+			}
+			return sb.ToString();
 		}
 	}
 }

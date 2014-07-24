@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,7 @@ namespace Enigma.D3.Collections
 {
 	public class ListB : ListB<MemoryObject>
 	{
-		public ListB(ProcessMemory memory, int address)
+		public ListB(MemoryBase memory, int address)
 			: base(memory, address) { }
 	}
 
@@ -16,7 +16,7 @@ namespace Enigma.D3.Collections
 		// 2.0.1.22044
 		public const int SizeOf = 0x14; // 20
 
-		public ListB(ProcessMemory memory, int address)
+		public ListB(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public LinkedList<T> x00_List { get { return Field<LinkedList<T>>(0x00); } }

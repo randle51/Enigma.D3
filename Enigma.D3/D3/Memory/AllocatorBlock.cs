@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +10,11 @@ namespace Enigma.D3.Memory
 	{
 		public const int SizeOf = 0x30;
 
-		public AllocatorBlock(ProcessMemory memory, int address)
+		public AllocatorBlock(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public T[] x00_Elements { get { return Dereference<T>(0x00, x08_Limit); } }
+		public Pointer<T> x00_PtrElements { get { return Field<Pointer<T>>(0x00); } }
 		public T x04_NextFreeElement { get { return Dereference<T>(0x04); } }
 		public int x08_Limit { get { return Field<int>(0x08); } }
 		public int x0C_ElementSize { get { return Field<int>(0x0C); } }

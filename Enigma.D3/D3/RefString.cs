@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace Enigma.D3
 	{
 		public const int SizeOf = 0x0C;
 
-		public RefString(ProcessMemory memory, int address)
+		public RefString(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public RefStringData x00_Data { get { return Dereference<RefStringData>(0x00); } }

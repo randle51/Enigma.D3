@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +13,7 @@ namespace Enigma.D3
 		// 2.0.0.20874
 		public const int SizeOf = 0x2F8; // = 760
 
-		public ActorCommonData(ProcessMemory memory, int address)
+		public ActorCommonData(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x000_Id { get { return Field<int>(0x000); } }
@@ -110,7 +110,7 @@ namespace Enigma.D3
 		public int x240_StructStart_Min16Bytes { get { return Field<int>(0x240); } }
 		public int x244_EffectiveTeamId { get { return Field<int>(0x244); } }
 		public int _x248 { get { return Field<int>(0x248); } }
-		public int x24C_Flags { get { return Field<int>(0x24C); } }
+		public int x24C_CollisionFlags { get { return Field<int>(0x24C); } }
 		public float x250 { get { return Field<float>(0x250); } }
 		public float x254 { get { return Field<float>(0x254); } }
 		public float x258 { get { return Field<float>(0x258); } }

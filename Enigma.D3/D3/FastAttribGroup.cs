@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Enigma.D3
 		// 2.0.1.22044
 		public const int SizeOf = 0x9C8;
 
-		public FastAttribGroup(ProcessMemory memory, int address)
+		public FastAttribGroup(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x000_Id { get { return Field<int>(0x000); } }

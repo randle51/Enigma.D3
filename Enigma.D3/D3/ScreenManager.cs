@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Enigma.D3
 		// 2.0.4.23119
 		public const int SizeOf = 0x24; // 2.0.0.21962, fields not updated
 
-		public ScreenManager(ProcessMemory memory, int address)
+		public ScreenManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x00_Ptr_1896Bytes { get { return Field<int>(0x00); } }
@@ -20,7 +20,7 @@ namespace Enigma.D3
 		public int x08_Ptr_64Bytes { get { return Field<int>(0x08); } }
 		public int x0C_Ptr_400Bytes { get { return Field<int>(0x0C); } }
 		public int x10_Ptr_2320Bytes_HeroSelect { get { return Field<int>(0x10); } }
-		public ModalNotificationManager x14_Ptr_576Bytes_ModalNotificationManager { get { return Dereference<ModalNotificationManager>(0x14); } }
+		public ModalNotificationManager x14_ModalNotificationManager { get { return Dereference<ModalNotificationManager>(0x14); } }
 		public int x18_Ptr_2064Bytes { get { return Field<int>(0x18); } }
 		public int x1C_Ptr_4Bytes { get { return Field<int>(0x1C); } }
 
@@ -31,7 +31,7 @@ namespace Enigma.D3
 			// 2.0.3.22427
 			public const int SizeOf = 0x280;
 
-			public ModalNotificationManager(ProcessMemory memory, int address)
+			public ModalNotificationManager(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public int x000_VTable { get { return Field<int>(0x000); } }
@@ -59,7 +59,7 @@ namespace Enigma.D3
 			{
 				public const int SizeOf = 8;
 
-				public ListItem(ProcessMemory memory, int address)
+				public ListItem(MemoryBase memory, int address)
 					: base(memory, address) { }
 
 				public int x00 { get { return Field<int>(0x00); } }
@@ -71,7 +71,7 @@ namespace Enigma.D3
 				{
 					public const int SizeOf = 0x54;
 
-					public Struct_x04(ProcessMemory memory, int address)
+					public Struct_x04(MemoryBase memory, int address)
 						: base(memory, address) { }
 
 					public int _x00 { get { return Field<int>(0x00); } }
