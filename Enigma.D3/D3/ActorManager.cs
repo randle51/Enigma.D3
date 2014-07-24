@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace Enigma.D3
 	{
 		public const int SizeOf = 0x358;
 
-		public ActorManager(ProcessMemory memory, int address)
+		public ActorManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x000_NextSerialNumber { get { return Field<int>(0x000); } }

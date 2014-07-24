@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Text;
 using Enigma.D3.Collections;
@@ -11,7 +11,7 @@ namespace Enigma.D3
 		// 2.0.4.23119
 		public const int SizeOf = 0x16E8;
 
-		public QuestManager(ProcessMemory memory, int address)
+		public QuestManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public Allocator x0000_Allocator_ListNode_Quest { get { return Field<Allocator>(0x0000); } }

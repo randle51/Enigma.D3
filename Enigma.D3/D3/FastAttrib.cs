@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Enigma.D3
 		// 2.0.1.22044
 		public const int SizeOf = 0x5C;
 
-		public FastAttrib(ProcessMemory memory, int address)
+		public FastAttrib(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public Allocator<Map<int, Pointer>.Entry> x00_Allocator_10x12Bytes { get { return Field<Allocator<Map<int, Pointer>.Entry>>(0x00); } }

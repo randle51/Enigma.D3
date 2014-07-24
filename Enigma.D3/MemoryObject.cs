@@ -10,28 +10,58 @@ namespace Enigma
 {
 	public class MemoryObject
 	{
+		// TODO: Make thread-safe!
 		private static readonly Dictionary<Type, Activator> _activators = new Dictionary<Type, Activator>();
 
-		private delegate object Activator(ProcessMemory memory, int address);
+		private delegate object Activator(MemoryBase memory, int address);
 
 		/// <remark>
 		/// Assumes that type is of MemoryObject and that all other arguments are valid.
 		/// </remark>
-		internal static object UnsafeCreate(Type type, ProcessMemory memory, int address)
+		internal static object UnsafeCreate(Type type, MemoryBase memory, int address)
 		{
 			Activator activator;
 			if (!_activators.TryGetValue(type, out activator))
 			{
-				var ctor = type.GetConstructor(new Type[] { typeof(ProcessMemory), typeof(int) });
+				if (type.GetConstructor(Type.EmptyTypes) != null)
+				{
+					// return new T().Initialize(memory, address);
 
-				var memoryParam = Expression.Parameter(typeof(ProcessMemory), "memory");
-				var addressParam = Expression.Parameter(typeof(int), "address");
-				var newExpression = Expression.New(ctor, memoryParam, addressParam);
+					var memoryParam = Expression.Parameter(typeof(MemoryBase), "memory");
+					var addressParam = Expression.Parameter(typeof(int), "address");
+					var callExpression = Expression.Call(
+						Expression.New(type),
+						type.GetMethod(
+							"Initialize",
+							BindingFlags.Instance | BindingFlags.InvokeMethod | BindingFlags.NonPublic,
+							null,
+							new Type[] { typeof(MemoryBase), typeof(int) },
+							null),
+						memoryParam,
+						addressParam);
 
-				activator = (Activator)Expression.Lambda(typeof(Activator), newExpression,
-					memoryParam,
-					addressParam
-				).Compile();
+					activator = (Activator)Expression.Lambda(typeof(Activator),
+						callExpression,
+						memoryParam,
+						addressParam).Compile();
+				}
+				else
+				{
+					// return new T(memory, address);
+
+					var ctor = type.GetConstructor(new Type[] { typeof(MemoryBase), typeof(int) });
+					if (ctor == null)
+						throw new InvalidOperationException();
+
+					var memoryParam = Expression.Parameter(typeof(MemoryBase), "memory");
+					var addressParam = Expression.Parameter(typeof(int), "address");
+					var newExpression = Expression.New(ctor, memoryParam, addressParam);
+
+					activator = (Activator)Expression.Lambda(typeof(Activator), newExpression,
+						memoryParam,
+						addressParam
+					).Compile();
+				}
 
 				_activators.Add(type, activator);
 			}
@@ -41,7 +71,7 @@ namespace Enigma
 		/// <remark>
 		/// Assumes that type is of MemoryObject and that all other arguments are valid.
 		/// </remark>
-		internal static object UnsafeCreate(Type type, ProcessMemory memory, int address, byte[] buffer, int offset)
+		internal static object UnsafeCreate(Type type, MemoryBase memory, int address, byte[] buffer, int offset)
 		{
 			var obj = UnsafeCreate(type, memory, address);
 			var memObj = obj as MemoryObject;
@@ -49,13 +79,13 @@ namespace Enigma
 			return memObj;
 		}
 
-		public static T Create<T>(ProcessMemory memory, int address) where T : MemoryObject
+		public static T Create<T>(MemoryBase memory, int address) where T : MemoryObject
 		{
 			ValidateArguments(memory, address);
 			return (T)UnsafeCreate(typeof(T), memory, address);
 		}
 
-		public static T Create<T>(ProcessMemory memory, int address, byte[] buffer, int offset) where T : MemoryObject
+		public static T Create<T>(MemoryBase memory, int address, byte[] buffer, int offset) where T : MemoryObject
 		{
 			ValidateArguments(memory, address);
 			if (buffer == null)
@@ -67,29 +97,35 @@ namespace Enigma
 			return (T)UnsafeCreate(typeof(T), memory, address, buffer, offset);
 		}
 
-		private static void ValidateArguments(ProcessMemory memory, int address)
+		private static void ValidateArguments(MemoryBase memory, int address)
 		{
 			if (memory == null)
 				throw new ArgumentNullException("memory");
-			if ((uint)address > 0xCFFFFFFF) // 3GB
-				throw new ArgumentOutOfRangeException("address");
+#warning address range check disabled.
+			//if ((uint)address > 0xCFFFFFFF) // 3GB
+			//	throw new ArgumentOutOfRangeException("address");
 		}
 
-		private ProcessMemory _memory;
+		private MemoryBase _memory;
 		private int _address;
 		private int _snapshotOffset;
 
-		protected MemoryObject() { }
+		protected internal MemoryObject() { }
 
-		public MemoryObject(ProcessMemory memory, int address)
+		protected MemoryObject Initialize(MemoryBase memory, int address)
 		{
-			ValidateArguments(memory, address);
-
 			_memory = memory;
 			_address = address;
+			return this;
 		}
 
-		public ProcessMemory Memory { get { return _memory; } set { _memory = value; } }
+		protected MemoryObject(MemoryBase memory, int address)
+		{
+			ValidateArguments(memory, address);
+			Initialize(memory, address);
+		}
+
+		public MemoryBase Memory { get { return _memory; } private set { _memory = value; } }
 
 		public int Address { get { return _address; } set { _address = value; } }
 

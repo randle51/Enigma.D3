@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Enigma.D3
 		public const int SizeOf = 32; // 2.0.0.20874
 		public const int NumberOfGroups = 47;
 
-		public GameBalanceManager(ProcessMemory memory, int address)
+		public GameBalanceManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public GameBalanceGroup this[GameBalanceType type]

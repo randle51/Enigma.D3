@@ -103,7 +103,7 @@ namespace Enigma.D3.MapHack.Markers
 
 		private static bool IsValidGizmoChest(ActorCommonData acd)
 		{
-			return (acd.x24C_Flags & 0x400) == 0 &&
+			return (acd.x24C_CollisionFlags & 0x400) == 0 &&
 				Attributes.ChestOpen.GetValue(acd) != 1;
 		}
 

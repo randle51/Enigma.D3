@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace Enigma.D3
 		// 2.0.3.22472
 		public const int SizeOf = 0x14D0; // 5328
 
-		public SnoGroupSearch(ProcessMemory memory, int address)
+		public SnoGroupSearch(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x0000_Count { get { return Field<int>(0x0000); } }
@@ -25,7 +25,7 @@ namespace Enigma.D3
 			// 2.0.3.22427
 			public const int SizeOf = 0x48; // 72
 
-			public Item(ProcessMemory memory, int address)
+			public Item(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public string x00_SnoGroupName { get { return Field(0x00, 32); } }

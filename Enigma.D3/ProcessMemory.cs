@@ -6,79 +6,42 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.IO;
+using Microsoft.Win32.SafeHandles;
 
 namespace Enigma
 {
-	public class ProcessMemory : IDisposable
+	public class ProcessMemory : MemoryBase, IDisposable
 	{
-		private const int _smallBufferSize = 8;
-		[ThreadStatic]
-		private static byte[] _smallBuffer;
-
 		private readonly Process _process;
+		private readonly uint _minValidAddress;
+		private readonly uint _maxValidAddress;
+
+		// Assume this is the same for all applications.
+		internal const uint MinApplicationAddress = 0x00010000;
+		internal const uint MaxApplicationAddress = 0x7FFEFFFF;
+		internal const uint MaxApplicationAddressLargeAddressAware = 0xBFFF0000;
 
 		public ProcessMemory(Process process)
 		{
 			if (process == null)
 				throw new ArgumentNullException("process");
 			_process = process;
+
+			_minValidAddress = MinApplicationAddress;
+			_maxValidAddress = _process.IsLargeAddressAware() ? MaxApplicationAddressLargeAddressAware : MaxApplicationAddress;
 		}
 
 		public Process Process { get { return _process; } }
 
-		public bool IsValid { get { return !_process.HasExited; } }
+		public override bool IsValid { get { return !_process.HasExited; } }
+
+		protected override uint MinValidAddress { get { return _minValidAddress; } }
+
+		protected override uint MaxValidAddress { get { return _maxValidAddress; } }
 
 		public int NativeCalls { get; private set; }
 
-		public T Read<T>(int address)
-		{
-			if (TypeHelper<T>.IsMemoryObject)
-			{
-				return (T)MemoryObject.UnsafeCreate(typeof(T), this, address);
-			}
-			else
-			{
-				byte[] buffer = ReadBytes(address, StructHelper<T>.SizeOf);
-				return StructHelper<T>.Read(buffer, 0);
-			}
-		}
-
-		public T[] Read<T>(int address, int count)
-		{
-			var type = typeof(T);
-			int sizeOf = TypeHelper<T>.SizeOf;
-
-			T[] array = new T[count];
-			if (TypeHelper<T>.IsMemoryObject)
-			{
-				for (int i = 0; i < count; i++)
-				{
-					array[i] = (T)MemoryObject.UnsafeCreate(type, this, address + i * sizeOf);
-				}
-			}
-			else
-			{
-				byte[] buffer = ReadBytes(address, sizeOf * count);
-				for (int i = 0; i < count; i++)
-				{
-					array[i] = StructHelper<T>.Read(buffer, i * sizeOf);
-				}
-			}
-			return array;
-		}
-
-		public byte[] ReadBytes(int address, int count)
-		{
-			if (address < 0)
-				throw new ArgumentOutOfRangeException("address");
-			if (count < 0)
-				throw new ArgumentOutOfRangeException("count");
-
-			byte[] buffer = GetBuffer(count);
-			return ReadBytes(address, buffer, 0, count);
-		}
-
-		public byte[] ReadBytes(int address, byte[] buffer)
+		public override byte[] ReadBytes(int address, byte[] buffer)
 		{
 			if (address < 0)
 				throw new ArgumentOutOfRangeException("address");
@@ -113,7 +76,7 @@ namespace Enigma
 			}
 		}
 
-		public byte[] ReadBytes(int address, byte[] buffer, int offset, int count)
+		public override byte[] ReadBytes(int address, byte[] buffer, int offset, int count)
 		{
 			if (address < 0)
 				throw new ArgumentOutOfRangeException("address");
@@ -129,31 +92,28 @@ namespace Enigma
 			var handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
 			try
 			{
+				NativeCalls++;
 				int numberOfBytesRead;
-				try
+				int bytesToRead = count != 0 ? count : (buffer.Length - offset);
+				if (Win32.ReadProcessMemory(
+					_process.Handle,
+					address,
+					handle.AddrOfPinnedObject() + offset,
+					bytesToRead,
+					out numberOfBytesRead))
 				{
-					NativeCalls++;
-					int bytesToRead = count != 0 ? count : (buffer.Length - offset);
-					if (Win32.ReadProcessMemory(
-						_process.Handle,
-						address,
-						handle.AddrOfPinnedObject() + offset,
-						bytesToRead,
-						out numberOfBytesRead))
-					{
-						ValidateNumberOfBytesRead(address, numberOfBytesRead, bytesToRead);
-						return buffer;
-					}
-					else
-					{
-						throw new Win32Exception();
-					}
-				}
-				catch (Exception exception)
-				{
-					OnReadException(address, exception);
+					ValidateNumberOfBytesRead(address, numberOfBytesRead, bytesToRead);
 					return buffer;
 				}
+				else
+				{
+					throw new Win32Exception();
+				}
+			}
+			catch (Exception exception)
+			{
+				OnReadException(address, exception);
+				return buffer;
 			}
 			finally
 			{
@@ -161,77 +121,32 @@ namespace Enigma
 			}
 		}
 
-		public void CreateDump(string filePath, bool overwrite = false)
+		public void CreateMiniDump(string filePath, bool overwrite = false)
 		{
 			if (string.IsNullOrEmpty(filePath))
 				throw new ArgumentNullException("filePath");
 			if (_process.HasExited)
 				throw new InvalidOperationException("Process has exited.");
 
-			Debug.WriteLine("Dumping process memory.");
+			Debug.WriteLine("Creating minidump...");
 			var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-
-			Win32.MemoryBasicInfo info;
-			int infoSize = Marshal.SizeOf(typeof(Win32.MemoryBasicInfo));
-			List<Win32.MemoryBasicInfo> infoList = new List<Win32.MemoryBasicInfo>();
 
 			var fileMode = overwrite ? FileMode.Create : FileMode.CreateNew;
 			using (var file = new FileStream(filePath, fileMode, FileAccess.Write, FileShare.None, 64 * 1024, FileOptions.SequentialScan))
-			using (var writer = new StreamWriter(file))
 			{
-				_process.Suspend();
-				try
-				{
-					int address = 0;
-					while (address >= 0 && Win32.VirtualQueryEx(_process.Handle, address, out info, infoSize) == infoSize)
-					{
-						infoList.Add(info);
-						address += info.RegionSize;
-					}
-
-					writer.WriteLine("Stored,BaseAddress,AllocationBase,AllocationProtect,RegionSize,State,Protect,Type");
-					foreach (var item in infoList)
-					{
-						const string hex = "X8";
-						writer.WriteLine(string.Join(",",
-							item.ShouldStore,
-							"0x" + item.BaseAddress.ToString(hex),
-							"0x" + item.AllocationBase.ToString(hex),
-							"0x" + ((int)item.AllocationProtect).ToString(hex),
-							"0x" + item.RegionSize.ToString(hex),
-							"0x" + ((int)item.State).ToString(hex),
-							"0x" + ((int)item.Protect).ToString(hex),
-							"0x" + ((int)item.Type).ToString(hex)));
-					}
-					writer.Flush();
-					file.WriteByte(0);
-
-					foreach (var item in infoList.Where(a => a.ShouldStore))
-					{
-						byte[] buffer = ReadBytes(item.BaseAddress, item.RegionSize);
-						file.Write(buffer, 0, buffer.Length);
-					}
-				}
-				finally
-				{
-					_process.Resume();
-				}
+				const int MiniDumpWithFullMemory = 0x00000002;
+				if (!Win32.MiniDumpWriteDump(_process.Handle, _process.Id, file.SafeFileHandle, MiniDumpWithFullMemory,
+					IntPtr.Zero, IntPtr.Zero, IntPtr.Zero))
+					throw new Win32Exception();
 			}
 
 			stopwatch.Stop();
-			Debug.WriteLine("Dumping process memory took " + stopwatch.ElapsedMilliseconds + "ms.");
+			Debug.WriteLine("Creating minidump took " + stopwatch.Elapsed.TotalMilliseconds.ToString("0.00") + "ms.");
 		}
 
-		public void Dispose()
+		public override void Dispose()
 		{
 			_process.Dispose();
-		}
-
-		private byte[] GetBuffer(int size)
-		{
-			if (size <= _smallBufferSize)
-				return _smallBuffer = _smallBuffer != null ? _smallBuffer : new byte[_smallBufferSize];
-			return new byte[size];
 		}
 
 		[Conditional("DEBUG")]
@@ -254,6 +169,7 @@ namespace Enigma
 		private static class Win32
 		{
 			private const string Kernel32 = "kernel32.dll";
+			private const string DbgHelp = "DbgHelp.dll";
 
 			[DllImport(Kernel32, SetLastError = true)]
 			public static extern bool ReadProcessMemory(
@@ -270,16 +186,19 @@ namespace Enigma
 				byte[] buffer,
 				int size,
 				out int numberOfBytesRead);
-
-			[DllImport(Kernel32, SetLastError = true)]
-			public static extern int VirtualQueryEx(
-				IntPtr processHandle,
-				int address,
-				out MemoryBasicInfo memoryBasicInfo,
-				int size);
-
+			
 			[DllImport(Kernel32)]
 			public static extern void GetSystemInfo(ref SystemInfo systemInfo);
+
+			[DllImport(DbgHelp, SetLastError = true)]
+			public static extern bool MiniDumpWriteDump(
+				IntPtr processHandle,
+				int processId,
+				SafeFileHandle fileHandle,
+				int dumpType,
+				IntPtr exceptionParam,
+				IntPtr userStreamParam,
+				IntPtr callbackParam);
 
 			public struct SystemInfo
 			{
@@ -293,55 +212,6 @@ namespace Enigma
 				public int AllocationGranularity;
 				public short ProcessorLevel;
 				public short ProcessorRevision;
-			}
-
-			public struct MemoryBasicInfo
-			{
-				public int BaseAddress;
-				public int AllocationBase;
-				public AllocationProtect AllocationProtect;
-				public int RegionSize;
-				public AllocationType State;
-				public AllocationProtect Protect;
-				public AllocationType Type;
-
-				public bool ShouldStore
-				{
-					get
-					{
-						return !Protect.HasFlag(Win32.AllocationProtect.PageGuard) &&
-							State == Win32.AllocationType.MemCommit &&
-							Type == Win32.AllocationType.MemPrivate;
-					}
-				}
-			}
-
-			[Flags]
-			public enum AllocationProtect : uint
-			{
-				PageNoAccess = 0x00000001,
-				PageReadOnly = 0x00000002,
-				PageReadWrite = 0x00000004,
-				PageWriteCopy = 0x00000008,
-				PageExecute = 0x00000010,
-				PageExecuteRead = 0x00000020,
-				PageExecuteReadWrite = 0x00000040,
-				PageExecuteReadCopy = 0x00000080,
-				PageGuard = 0x00000100,
-				PageNoCache = 0x00000200,
-				PageWriteCombine = 0x00000400
-			}
-
-			[Flags]
-			public enum AllocationType : uint
-			{
-				MemCommit = 0x00001000,
-				MemReserve = 0x00002000,
-				MemFree = 0x00010000,
-				MemPrivate = 0x00020000,
-				MemMapped = 0x00040000,
-				MemReset = 0x00080000,
-				MemImage = 0x01000000,
 			}
 		}
 		#endregion

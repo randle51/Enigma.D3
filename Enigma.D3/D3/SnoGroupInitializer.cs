@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace Enigma.D3
 	{
 		public const int SizeOf = 8;
 
-		public SnoGroupInitializer(ProcessMemory memory, int address)
+		public SnoGroupInitializer(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x00_Initializer { get { return Field<int>(0x00); } }

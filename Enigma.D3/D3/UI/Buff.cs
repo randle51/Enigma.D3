@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace Enigma.D3.UI
 	{
 		public const int SizeOf = 0xA48;
 
-		public Buff(ProcessMemory memory, int address)
+		public Buff(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x000_PowerSnoId { get { return Field<int>(0x000); } }

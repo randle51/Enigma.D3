@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Text;
 using Enigma.D3.Collections;
@@ -11,7 +11,7 @@ namespace Enigma.D3
 		// 2.0.0.20874
 		public const int SizeOf = 0x134; // = 308
 
-		public NetworkManager(ProcessMemory memory, int address)
+		public NetworkManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int _x000 { get { return Field<int>(0x000); } }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace Enigma.D3.UI
 		// 2.0.0.21806
 		public const int SizeOf = 0x2710; // = 10000
 
-		public UIManager(ProcessMemory memory, int address)
+		public UIManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public X0000 x0000_Controls { get { return Dereference<X0000>(0x0000); } }
@@ -43,7 +43,7 @@ namespace Enigma.D3.UI
 		{
 			public const int SizeOf = 0;
 
-			public X0000(ProcessMemory memory, int address)
+			public X0000(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public int x00_Mask { get { return Field<int>(0x00); } }

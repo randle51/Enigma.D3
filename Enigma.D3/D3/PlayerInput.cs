@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace Enigma.D3
 		// 2.0.5.24017
 		public const int SizeOf = 0x5C;
 
-		public PlayerInput(ProcessMemory memory, int address)
+		public PlayerInput(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public ListB<int> x00_ListB_Of_ActorId { get { return Field<ListB<int>>(0x00); } }

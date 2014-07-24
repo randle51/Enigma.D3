@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -8,11 +8,14 @@ using Enigma.D3.Graphics;
 using Enigma.D3.Memory;
 using Enigma.D3.Preferences;
 using Enigma.D3.UI;
+using Enigma.D3.Win32;
 
 namespace Enigma.D3
 {
 	public class Engine : MemoryObject, IDisposable
 	{
+		private static Engine _current;
+
 		public static readonly Version SupportedVersion = new Version(2, 0, 6, 24641);
 
 		public static Engine Create()
@@ -22,7 +25,28 @@ namespace Enigma.D3
 			return process == null ? null : new Engine(process);
 		}
 
-		public static Engine Current { get; private set; }
+		public static Engine Current {
+			get
+			{
+				return _current;
+			}
+			set
+			{
+				if (_current != value)
+				{
+					_current = value;
+					CurrentEngineChanged(value);
+				}
+			}
+		}
+
+		public static void Unload()
+		{
+			var current = Current;
+			Current = null;
+			if (current != null)
+				current.Dispose();
+		}
 
 		public static T TryGet<T>(Func<Engine, T> getter)
 		{
@@ -36,6 +60,8 @@ namespace Enigma.D3
 			}
 		}
 
+		public static event Action<Engine> CurrentEngineChanged = delegate { };
+
 		public Engine(Process process)
 			: base(new ProcessMemory(process), 0)
 		{
@@ -43,9 +69,15 @@ namespace Enigma.D3
 			Engine.Current = this;
 		}
 
+		public Engine(MemoryBase memory)
+			: base(memory, 0)
+		{
+			Engine.Current = this;
+		}
+
 		private void EnsureSupportedProcessVersion()
 		{
-			if (Process.GetFileVersion() != SupportedVersion)
+			if (ProcessVersion != SupportedVersion)
 			{
 				throw new NotSupportedException(string.Format(
 					"The process ({0}) is running a different version ({1}) that what is supported ({2}).",
@@ -55,7 +87,30 @@ namespace Enigma.D3
 			}
 		}
 
-		public Process Process { get { return base.Memory.Process; } }
+		public Version ProcessVersion
+		{
+			get
+			{
+				var processMemory = Memory as ProcessMemory;
+				if (processMemory != null)
+					return processMemory.Process.GetFileVersion();
+
+				var minidumpMemory = Memory as MiniDumpMemory;
+				if (minidumpMemory != null)
+					return minidumpMemory.MainModuleVersion;
+
+				throw new NotSupportedException("The current memory source does not contain any process version info.");
+			}
+		}
+
+		public Process Process
+		{
+			get
+			{
+				var processMemory = base.Memory as ProcessMemory;
+				return processMemory == null ? null : processMemory.Process;
+			}
+		}
 
 		public AttributeDescriptor[] AttributeDescriptors { get { return Field<AttributeDescriptor>(0x01A8B638, 1338); } }
 
@@ -73,6 +128,8 @@ namespace Enigma.D3
 		public ScreenManager ScreenManager { get { return Dereference<ScreenManager>(0x01AFF858); } }
 
 		public UIReference[] UIReferences { get { return Field<UIReference>(0x01AFFA08, 2466); } } // 1 + 1000 + 1000 + 324 + 141 = 2466
+
+		public UISystems UISystems { get { return Dereference<UISystems>(0x01C3ACBC); } }
 
 		public LevelArea LevelArea { get { return Dereference<LevelArea>(0x01C41420); } }
 
@@ -94,6 +151,14 @@ namespace Enigma.D3
 		public LocalData LocalData { get { return Field<LocalData>(0x01CE4AA8); } }
 
 		public SnoGroupSearch SnoGroupSearch { get { return Dereference<SnoGroupSearch>(0x01D37B10); } }
+
+		public RefStringDataAllocators RefStringDataAllocators { get { return Dereference<RefStringDataAllocators>(0x01D94150); } }
+
+		public int NumberOfRefStringDataInstances { get { return Field<int>(0x01D94C88); } }
+		public int IsRefStringSystemInitialized { get { return Field<int>(0x01D94C8C); } }
+		public CriticalSection RefStringDataLock { get { return Dereference<CriticalSection>(0x01D94C90); } }
+
+		public MessageDescriptor MessagDescriptor { get { return Dereference<MessageDescriptor>(0x01D96A38); } }
 
 		public ContainerManager ContainerManager { get { return Dereference<ContainerManager>(0x01D96BE4); } }
 
@@ -134,8 +199,6 @@ namespace Enigma.D3
 		// ADDRESSES UNDER THIS LINE IS NOT UPDATED FOR 2.0.0.21390
 
 		public DisplayMode DefaultDisplayMode { get { return Field<DisplayMode>(0x0174A800); } }
-
-		public MessageDescriptor[] MessageHandlers { get { return Field<Pointer<MessageDescriptor>>(0x01A6E860, 137).Select(a => a.Value).ToArray(); } }
 
 		public ValueTypeDescriptor[] DataTypes { get { return Field<Pointer<ValueTypeDescriptor>>(0x01A74090, 21).Select(a => a.Value).ToArray(); } }
 

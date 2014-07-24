@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Enigma.D3
 		// NOTE: Fields might not be fully accurate since struct was taken from last version.
 		public const int SizeOf = 0; // Unsure about full size
 
-		public Storage(ProcessMemory memory, int address)
+		public Storage(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x000 { get { return Field<int>(0x000); } }
@@ -73,7 +73,7 @@ namespace Enigma.D3
 		public int x0DC_Ptr_12Bytes_Markers { get { return Field<int>(0x0DC); } }
 		public int x0E0_Ptr_368Bytes_InactiveMarkers { get { return Field<int>(0x0E0); } }
 		public PlayerDataManager x0E4_PlayerDataCollection { get { return Dereference<PlayerDataManager>(0x0E4); } }
-		public SceneAllocators x0E8_Ptr_116Bytes_Scenes { get { return Dereference<SceneAllocators>(0x0E8); } }
+		public SceneAllocators x0E8_Ptr_116Bytes_SceneAllocators { get { return Dereference<SceneAllocators>(0x0E8); } }
 		public int x0EC_Ptr_112Bytes_Items { get { return Field<int>(0x0EC); } }
 		public int x0F0_Ptr_88Bytes { get { return Field<int>(0x0F0); } }
 		public Allocator x0F4_PtrAllocator_20x28Bytes { get { return Dereference<Allocator>(0x0F4); } }

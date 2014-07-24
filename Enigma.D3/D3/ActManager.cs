@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace Enigma.D3
 		// 2.0.4.23119
 		public const int SizeOf = 0x38; // 56
 
-		public ActManager(ProcessMemory memory, int address)
+		public ActManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public Waypoint[] x00_Array { get { return Dereference<Waypoint>(0x00, x08_Count); } }
@@ -27,7 +27,7 @@ namespace Enigma.D3
 		{
 			public const int SizeOf = 0x2C; // 44
 
-			public Waypoint(ProcessMemory memory, int address)
+			public Waypoint(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public int x00_ActId { get { return Field<int>(0x00); } }

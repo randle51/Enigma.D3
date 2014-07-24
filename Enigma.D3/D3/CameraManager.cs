@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +9,7 @@ namespace Enigma.D3
 	{
 		public const int SizeOf = 0x230; // 560
 
-		public CameraData(ProcessMemory memory, int address)
+		public CameraData(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x000_Neg1_ObserverSnoId { get { return Field<int>(0x000); } }
@@ -157,7 +157,7 @@ namespace Enigma.D3
 		{
 			public const int SizeOf = 0x40;
 
-			public Struct(ProcessMemory memory, int address)
+			public Struct(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public float x00 { get { return Field<float>(0x00); } }
@@ -184,7 +184,7 @@ namespace Enigma.D3
 		// 2.0.5.24017
 		public const int SizeOf = 0x13BC; // 5052
 
-		public CameraManager(ProcessMemory memory, int address)
+		public CameraManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public CameraData[] x0000_CameraData { get { return Field<CameraData>(0x0000, 9); } }

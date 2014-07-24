@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +13,7 @@ namespace Enigma.D3.Graphics
 		// 2.0.0.20874
 		public const int SizeOf = 0x4488;
 
-		public GraphicsSubsystem(ProcessMemory memory, int address)
+		public GraphicsSubsystem(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		// 0x100 = ???
@@ -2293,7 +2293,7 @@ namespace Enigma.D3.Graphics
 		{
 			public const int SizeOf = 0x140;
 
-			public Struct0(ProcessMemory memory, int address)
+			public Struct0(MemoryBase memory, int address)
 				: base(memory, address) { }
 
 			public int x000 { get { return Field<int>(0x000); } }

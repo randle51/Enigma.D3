@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Text;
 using Enigma.D3.Collections;
@@ -11,7 +11,7 @@ namespace Enigma.D3.UI
 		// 2.0.4.23119
 		public const int SizeOf = 0x6C; // 108
 
-		public BuffManager(ProcessMemory memory, int address)
+		public BuffManager(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public Allocator x00_Allocator_10x2640Bytes_Buff { get { return Field<Allocator>(0x00); } }

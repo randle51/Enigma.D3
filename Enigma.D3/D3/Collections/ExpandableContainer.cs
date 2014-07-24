@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -9,7 +9,7 @@ namespace Enigma.D3.Collections
 {
 	public class ExpandableContainer : ExpandableContainer<MemoryObject>
 	{
-		public ExpandableContainer(ProcessMemory memory, int address)
+		public ExpandableContainer(MemoryBase memory, int address)
 			: base(memory, address) { }
 	}
 
@@ -18,7 +18,7 @@ namespace Enigma.D3.Collections
 		// 2.0.0.20874
 		public new const int SizeOf = 0x168; // = 360
 
-		public ExpandableContainer(ProcessMemory memory, int address)
+		public ExpandableContainer(MemoryBase memory, int address)
 			: base(memory, address) { }
 
 		public int x124 { get { return Field<int>(0x124); } }
@@ -84,7 +84,7 @@ namespace Enigma.D3.Collections
 			var itemSize = x104_ItemSize;
 			var blockSize = blockCapacity * itemSize;
 
-			Array.Resize(ref buffer, blockCount * blockSize);
+			System.Array.Resize(ref buffer, blockCount * blockSize);
 
 			var dumpInfo = new DumpInfo(Memory, buffer, blockCount, itemSize, count);
 			var blockPtrs = Memory.Read<int>(x120_Allocation, blockCount);
@@ -105,7 +105,7 @@ namespace Enigma.D3.Collections
 		public class DumpInfo : IEnumerable<DumpInfo.Item>
 		{
 			public readonly BlockInfo[] Blocks;
-			private readonly ProcessMemory _memory;
+			private readonly MemoryBase _memory;
 			private readonly byte[] _buffer;
 			public readonly int ItemSize;
 			public readonly int ItemCount;
@@ -129,7 +129,7 @@ namespace Enigma.D3.Collections
 				}
 			}
 
-			public DumpInfo(ProcessMemory memory, byte[] buffer, int blockCount, int itemSize, int itemCount)
+			public DumpInfo(MemoryBase memory, byte[] buffer, int blockCount, int itemSize, int itemCount)
 			{
 				Blocks = new BlockInfo[blockCount];
 				_memory = memory;
@@ -170,7 +170,7 @@ namespace Enigma.D3.Collections
 			// Resizes if required.
 			if (buffer.Length != blockCount * blockSize)
 			{
-				Array.Resize(ref buffer, blockCount * blockSize);
+				System.Array.Resize(ref buffer, blockCount * blockSize);
 			}
 
 			var blockPtrs = Memory.Read<int>(x120_Allocation, blockCount);
