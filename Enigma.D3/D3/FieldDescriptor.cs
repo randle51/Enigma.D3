@@ -19,18 +19,18 @@ namespace Enigma.D3
 		public int x0C_DefaultValuePtr { get { return Field<int>(0x0C); } }
 		public int x10_Min { get { return Field<int>(0x10); } }
 		public int x14_Max { get { return Field<int>(0x14); } }
-		public int x18 { get { return Field<int>(0x18); } }
+		public int x18_Flags { get { return Field<int>(0x18); } } // 0x02 = (address + 8 = PtrToSerializedData), 0x10 = HasMinMaxBounds, 0x80000 = Bin2Text
 		public ValueTypeDescriptor x1C_BaseType { get { return Dereference<ValueTypeDescriptor>(0x1C); } }
-		public int x20 { get { return Field<int>(0x20); } }
-		public int x24_ArrayLength { get { return Field<int>(0x24); } } // -1 if not an array
-		public int x28 { get { return Field<int>(0x28); } }
+		public int x20_VariableArraySerializeOffsetDiff { get { return Field<int>(0x20); } }
+		public int x24_FixedArrayLength { get { return Field<int>(0x24); } } // -1 if not an array
+		public int x28_FixedArraySerializeOffsetDiff { get { return Field<int>(0x28); } }
 		public int x2C_UsedBits { get { return Field<int>(0x2C); } } // Most likely used for transmission.
 		public int x30_GroupId { get { return Field<int>(0x30); } } // -1 if none, used for DT_SNO and DT_GBID.
 		public int x34 { get { return Field<int>(0x34); } }
 		public int x38_SymbolTable { get { return Field<int>(0x38); } } // Used for DT_ENUM
 		public int x3C_BitOffset { get { return Field<int>(0x3C); } }
-		public int x40 { get { return Field<int>(0x40); } }
-		public int x44 { get { return Field<int>(0x44); } }
+		public int x40_TranslateFromString { get { return Field<int>(0x40); } }
+		public int x44_TranslateFromValue { get { return Field<int>(0x44); } }
 		public int x48 { get { return Field<int>(0x48); } }
 		public string x4C_Text { get { return Field(0x4C, 64); } } // Always empty
 	}

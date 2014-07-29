@@ -95,13 +95,13 @@ namespace Enigma
 			return Encoding.Unicode.GetString(buffer);
 		}
 
-		protected override uint MinValidAddress { get { return _minValidAddress; } }
+		public override uint MinValidAddress { get { return _minValidAddress; } }
 
-		protected override uint MaxValidAddress { get { return _maxValidAddress; } }
+		public override uint MaxValidAddress { get { return _maxValidAddress; } }
 
 		public override bool IsValid { get { return _file.CanRead; } }
 
-		public override byte[] ReadBytes(int address, byte[] buffer, int offset, int count)
+		public override void ReadBytes(int address, byte[] buffer, int offset, int count)
 		{
 			var pageFrom = GetPageIndex(address);
 			var pageTo = GetPageIndex(address + count);
@@ -110,7 +110,6 @@ namespace Enigma
 			{
 				_file.Position = _pages[pageFrom].TranslateToRva(address);
 				_file.Read(buffer, offset, count);
-				return buffer;
 			}
 			else
 			{

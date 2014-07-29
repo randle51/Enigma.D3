@@ -39,5 +39,15 @@ namespace Enigma.D3.Helpers
 			}
 			return hash;
 		}
+
+		public static uint Lcg(string data)
+		{
+			uint hash = 0;
+			foreach (var c in Encoding.ASCII.GetBytes(data.ToLower()))
+			{
+				hash = hash * 33 + c;
+			}
+			return hash;
+		}
 	}
 }

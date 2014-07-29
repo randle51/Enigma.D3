@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BufferMemory.cs" />
     <Compile Include="D3\ActManager.cs" />
     <Compile Include="D3\Actor.cs" />
     <Compile Include="D3\ActorCommonData.cs" />

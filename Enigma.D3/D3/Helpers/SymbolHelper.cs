@@ -13,7 +13,7 @@ namespace Enigma.D3.Helpers
 			var symbol = Engine.Current.Memory.Read<Symbol>(address);
 			while (symbol != null)
 			{
-				if (symbol.x00_Id == 0 && Engine.Current.Memory.Read<int>(symbol.Address + 4) == 0)
+				if (symbol.x04_Name == null)
 					break;
 
 				symbols.Add(symbol);

@@ -1,0 +1,323 @@
+using System.Runtime.CompilerServices;
+using Enigma.D3.Collections;
+using Enigma.D3.Memory;
+
+namespace Enigma.D3.Sno
+{
+	[CompilerGenerated]
+	public partial class Globals : SerializeMemoryObject
+	{
+		// 2.0.6.24641
+		public const int SizeOf = 0x280; // 640
+		
+		public GlobalServerData[] x010_GlobalServerDatas { get { return Deserialize<GlobalServerData>(x018_SerializeData); } }
+		public SerializeData x018_SerializeData { get { return Field<SerializeData>(0x018); } }
+		public int x020 { get { return Field<int>(0x020); } }
+		public StartLocationName[] x028_StartLocationNames { get { return Deserialize<StartLocationName>(x030_SerializeData); } }
+		public SerializeData x030_SerializeData { get { return Field<SerializeData>(0x030); } }
+		public float x038 { get { return Field<float>(0x038); } }
+		public float x03C { get { return Field<float>(0x03C); } }
+		public float x040 { get { return Field<float>(0x040); } }
+		public float x044 { get { return Field<float>(0x044); } }
+		public int x048 { get { return Field<int>(0x048); } }
+		public int x04C { get { return Field<int>(0x04C); } }
+		public float x050 { get { return Field<float>(0x050); } }
+		public float x054 { get { return Field<float>(0x054); } }
+		public int x058 { get { return Field<int>(0x058); } }
+		public float x05C { get { return Field<float>(0x05C); } }
+		public float x060 { get { return Field<float>(0x060); } }
+		public float x064 { get { return Field<float>(0x064); } }
+		public float x068 { get { return Field<float>(0x068); } }
+		public float x06C { get { return Field<float>(0x06C); } }
+		public float x070 { get { return Field<float>(0x070); } }
+		public float x074 { get { return Field<float>(0x074); } }
+		public float x078 { get { return Field<float>(0x078); } }
+		public float x07C { get { return Field<float>(0x07C); } }
+		public int x080 { get { return Field<int>(0x080); } }
+		public int[] x084_int { get { return Field<int>(0x084, 4); } }
+		public BannerParams x098_BannerParams { get { return Field<BannerParams>(0x098); } }
+		public int x180 { get { return Field<int>(0x180); } }
+		public int x184 { get { return Field<int>(0x184); } }
+		public int x188 { get { return Field<int>(0x188); } }
+		public int x18C { get { return Field<int>(0x18C); } }
+		public float x190 { get { return Field<float>(0x190); } }
+		public int x194 { get { return Field<int>(0x194); } }
+		public float x198 { get { return Field<float>(0x198); } }
+		public float x19C { get { return Field<float>(0x19C); } }
+		public float x1A0 { get { return Field<float>(0x1A0); } }
+		public float x1A4 { get { return Field<float>(0x1A4); } }
+		public float x1A8 { get { return Field<float>(0x1A8); } }
+		public float x1AC { get { return Field<float>(0x1AC); } }
+		public float x1B0 { get { return Field<float>(0x1B0); } }
+		public float x1B4 { get { return Field<float>(0x1B4); } }
+		public float x1B8 { get { return Field<float>(0x1B8); } }
+		public float x1BC { get { return Field<float>(0x1BC); } }
+		public float x1C0 { get { return Field<float>(0x1C0); } }
+		public float x1C4 { get { return Field<float>(0x1C4); } }
+		public float x1C8 { get { return Field<float>(0x1C8); } }
+		public float x1CC { get { return Field<float>(0x1CC); } }
+		public float x1D0 { get { return Field<float>(0x1D0); } }
+		public float x1D4 { get { return Field<float>(0x1D4); } }
+		public float x1D8 { get { return Field<float>(0x1D8); } }
+		public float x1DC { get { return Field<float>(0x1DC); } }
+		public float x1E0 { get { return Field<float>(0x1E0); } }
+		public float x1E4 { get { return Field<float>(0x1E4); } }
+		public float x1E8 { get { return Field<float>(0x1E8); } }
+		public int x1EC { get { return Field<int>(0x1EC); } }
+		public float x1F0 { get { return Field<float>(0x1F0); } }
+		public int x1F4 { get { return Field<int>(0x1F4); } }
+		public int x1F8 { get { return Field<int>(0x1F8); } }
+		public float x1FC { get { return Field<float>(0x1FC); } }
+		public float x200 { get { return Field<float>(0x200); } }
+		public float x204 { get { return Field<float>(0x204); } }
+		public AssetList[] x208_AssetLists { get { return Field<AssetList>(0x208, 7); } }
+		public float x278 { get { return Field<float>(0x278); } }
+		public float x27C { get { return Field<float>(0x27C); } }
+		
+		[CompilerGenerated]
+		public partial class GlobalServerData : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x290; // 656
+			
+			public ActorGroup[] x000_ActorGroups { get { return Deserialize<ActorGroup>(x008_SerializeData); } }
+			public SerializeData x008_SerializeData { get { return Field<SerializeData>(0x008); } }
+			public GlobalScriptVariable[] x010_GlobalScriptVariables { get { return Deserialize<GlobalScriptVariable>(x018_SerializeData); } }
+			public SerializeData x018_SerializeData { get { return Field<SerializeData>(0x018); } }
+			public DifficultyTuningParams[] x020_DifficultyTuningParams { get { return Field<DifficultyTuningParams>(0x020, 6); } }
+			public float x158 { get { return Field<float>(0x158); } }
+			public float x15C { get { return Field<float>(0x15C); } }
+			public float x160 { get { return Field<float>(0x160); } }
+			public float x164 { get { return Field<float>(0x164); } }
+			public float x168 { get { return Field<float>(0x168); } }
+			public float x16C { get { return Field<float>(0x16C); } }
+			public float x170 { get { return Field<float>(0x170); } }
+			public float x174 { get { return Field<float>(0x174); } }
+			public int x178 { get { return Field<int>(0x178); } }
+			public float x17C { get { return Field<float>(0x17C); } }
+			public float x180 { get { return Field<float>(0x180); } }
+			public float x184 { get { return Field<float>(0x184); } }
+			public float x188 { get { return Field<float>(0x188); } }
+			public float x18C { get { return Field<float>(0x18C); } }
+			public float x190 { get { return Field<float>(0x190); } }
+			public float x194 { get { return Field<float>(0x194); } }
+			public float x198 { get { return Field<float>(0x198); } }
+			public float x19C { get { return Field<float>(0x19C); } }
+			public float x1A0 { get { return Field<float>(0x1A0); } }
+			public int x1A4 { get { return Field<int>(0x1A4); } }
+			public int x1A8 { get { return Field<int>(0x1A8); } }
+			public int x1AC { get { return Field<int>(0x1AC); } }
+			public float x1B0 { get { return Field<float>(0x1B0); } }
+			public float x1B4 { get { return Field<float>(0x1B4); } }
+			public float x1B8 { get { return Field<float>(0x1B8); } }
+			public float x1BC { get { return Field<float>(0x1BC); } }
+			public float x1C0 { get { return Field<float>(0x1C0); } }
+			public float x1C4 { get { return Field<float>(0x1C4); } }
+			public float x1C8 { get { return Field<float>(0x1C8); } }
+			public int x1CC { get { return Field<int>(0x1CC); } }
+			public float x1D0 { get { return Field<float>(0x1D0); } }
+			public int x1D4 { get { return Field<int>(0x1D4); } }
+			public int x1D8 { get { return Field<int>(0x1D8); } }
+			public int x1DC { get { return Field<int>(0x1DC); } }
+			public int x1E0 { get { return Field<int>(0x1E0); } }
+			public int x1E4 { get { return Field<int>(0x1E4); } }
+			public int x1E8 { get { return Field<int>(0x1E8); } }
+			public int x1EC { get { return Field<int>(0x1EC); } }
+			public int x1F0 { get { return Field<int>(0x1F0); } }
+			public int x1F4 { get { return Field<int>(0x1F4); } }
+			public float x1F8 { get { return Field<float>(0x1F8); } }
+			public float x1FC { get { return Field<float>(0x1FC); } }
+			public float[] x200_float { get { return Field<float>(0x200, 10); } }
+			public float x228 { get { return Field<float>(0x228); } }
+			public float x22C { get { return Field<float>(0x22C); } }
+			public int x230 { get { return Field<int>(0x230); } }
+			public int x234 { get { return Field<int>(0x234); } }
+			public int x238 { get { return Field<int>(0x238); } }
+			public float x23C { get { return Field<float>(0x23C); } }
+			public int x240 { get { return Field<int>(0x240); } }
+			public float x244 { get { return Field<float>(0x244); } }
+			public float x248 { get { return Field<float>(0x248); } }
+			public float x24C { get { return Field<float>(0x24C); } }
+			public float x250 { get { return Field<float>(0x250); } }
+			public float x254 { get { return Field<float>(0x254); } }
+			public float x258 { get { return Field<float>(0x258); } }
+			public float x25C { get { return Field<float>(0x25C); } }
+			public float x260 { get { return Field<float>(0x260); } }
+			public float x264 { get { return Field<float>(0x264); } }
+			public float[] x268_float { get { return Field<float>(0x268, 2); } }
+			public float x270 { get { return Field<float>(0x270); } }
+			public float x274 { get { return Field<float>(0x274); } }
+			public float x278 { get { return Field<float>(0x278); } }
+			public float x27C { get { return Field<float>(0x27C); } }
+			public float x280 { get { return Field<float>(0x280); } }
+			public float x284 { get { return Field<float>(0x284); } }
+			public float x288 { get { return Field<float>(0x288); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class StartLocationName : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x44; // 68
+			
+			public int x00 { get { return Field<int>(0x00); } }
+			public string x04_Text { get { return Field(0x04, 64); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class BannerParams : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0xE8; // 232
+			
+			public BannerTexturePair[] x00_BannerTexturePairs { get { return Deserialize<BannerTexturePair>(x08_SerializeData); } }
+			public SerializeData x08_SerializeData { get { return Field<SerializeData>(0x08); } }
+			public int x10 { get { return Field<int>(0x10); } }
+			public BannerTexturePair[] x18_BannerTexturePairs { get { return Deserialize<BannerTexturePair>(x20_SerializeData); } }
+			public SerializeData x20_SerializeData { get { return Field<SerializeData>(0x20); } }
+			public int x28 { get { return Field<int>(0x28); } }
+			public BannerTexturePair[] x30_BannerTexturePairs { get { return Deserialize<BannerTexturePair>(x38_SerializeData); } }
+			public SerializeData x38_SerializeData { get { return Field<SerializeData>(0x38); } }
+			public BannerTexturePair[] x40_BannerTexturePairs { get { return Deserialize<BannerTexturePair>(x48_SerializeData); } }
+			public SerializeData x48_SerializeData { get { return Field<SerializeData>(0x48); } }
+			public int x50 { get { return Field<int>(0x50); } }
+			public BannerTexturePair[] x58_BannerTexturePairs { get { return Deserialize<BannerTexturePair>(x60_SerializeData); } }
+			public SerializeData x60_SerializeData { get { return Field<SerializeData>(0x60); } }
+			public int x68 { get { return Field<int>(0x68); } }
+			public BannerColorSet[] x70_BannerColorSets { get { return Deserialize<BannerColorSet>(x78_SerializeData); } }
+			public SerializeData x78_SerializeData { get { return Field<SerializeData>(0x78); } }
+			public BannerSigilPlacement[] x80_BannerSigilPlacements { get { return Deserialize<BannerSigilPlacement>(x88_SerializeData); } }
+			public SerializeData x88_SerializeData { get { return Field<SerializeData>(0x88); } }
+			public Sno[] x90_Snos { get { return Deserialize<Sno>(x98_SerializeData); } }
+			public SerializeData x98_SerializeData { get { return Field<SerializeData>(0x98); } }
+			public Sno[] xA0_Snos { get { return Deserialize<Sno>(xA8_SerializeData); } }
+			public SerializeData xA8_SerializeData { get { return Field<SerializeData>(0xA8); } }
+			public Sno[] xB0_Snos { get { return Deserialize<Sno>(xB8_SerializeData); } }
+			public SerializeData xB8_SerializeData { get { return Field<SerializeData>(0xB8); } }
+			public Sno[] xC0_Snos { get { return Deserialize<Sno>(xC8_SerializeData); } }
+			public SerializeData xC8_SerializeData { get { return Field<SerializeData>(0xC8); } }
+			public EpicBannerDescription[] xD0_EpicBannerDescriptions { get { return Deserialize<EpicBannerDescription>(xD8_SerializeData); } }
+			public SerializeData xD8_SerializeData { get { return Field<SerializeData>(0xD8); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class AssetList : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x10; // 16
+			
+			public AssetListEntry[] x00_AssetListEntries { get { return Deserialize<AssetListEntry>(x08_SerializeData); } }
+			public SerializeData x08_SerializeData { get { return Field<SerializeData>(0x08); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class ActorGroup : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x44; // 68
+			
+			public int x00 { get { return Field<int>(0x00); } }
+			public string x04_Text { get { return Field(0x04, 64); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class GlobalScriptVariable : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x28; // 40
+			
+			public int x00 { get { return Field<int>(0x00); } }
+			public string x04_Text { get { return Field(0x04, 32); } }
+			public float x24 { get { return Field<float>(0x24); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class DifficultyTuningParams : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x34; // 52
+			
+			public float x00 { get { return Field<float>(0x00); } }
+			public float x04 { get { return Field<float>(0x04); } }
+			public float x08 { get { return Field<float>(0x08); } }
+			public float x0C { get { return Field<float>(0x0C); } }
+			public float x10 { get { return Field<float>(0x10); } }
+			public float x14 { get { return Field<float>(0x14); } }
+			public float x18 { get { return Field<float>(0x18); } }
+			public float x1C { get { return Field<float>(0x1C); } }
+			public float x20 { get { return Field<float>(0x20); } }
+			public float x24 { get { return Field<float>(0x24); } }
+			public float x28 { get { return Field<float>(0x28); } }
+			public float x2C { get { return Field<float>(0x2C); } }
+			public float x30 { get { return Field<float>(0x30); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class BannerTexturePair : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x10; // 16
+			
+			public Sno x00_TexturesSno { get { return Field<Sno>(0x00); } }
+			public int x04 { get { return Field<int>(0x04); } }
+			public int x08 { get { return Field<int>(0x08); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class BannerColorSet : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x54; // 84
+			
+			public RGBAColor[] x00_RGBAColors { get { return Field<RGBAColor>(0x00, 2); } }
+			public string x08_Text { get { return Field(0x08, 64); } }
+			public int x48 { get { return Field<int>(0x48); } }
+			public int x4C { get { return Field<int>(0x4C); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class BannerSigilPlacement : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x44; // 68
+			
+			public string x00_Text { get { return Field(0x00, 64); } }
+			public int x40 { get { return Field<int>(0x40); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class EpicBannerDescription : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x94; // 148
+			
+			public Sno x00_TexturesSno { get { return Field<Sno>(0x00); } }
+			public Sno x04_ActorSno { get { return Field<Sno>(0x04); } }
+			public Sno x08_ActorSno { get { return Field<Sno>(0x08); } }
+			public int x0C { get { return Field<int>(0x0C); } }
+			public string x10_Text { get { return Field(0x10, 128); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class AssetListEntry : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x8; // 8
+			
+			public int x00 { get { return Field<int>(0x00); } }
+			public int x04 { get { return Field<int>(0x04); } }
+		}
+		
+		[CompilerGenerated]
+		public partial class RGBAColor : SerializeMemoryObject
+		{
+			// 2.0.6.24641
+			public const int SizeOf = 0x4; // 4
+			
+			public byte x00 { get { return Field<byte>(0x00); } }
+			public byte x01 { get { return Field<byte>(0x01); } }
+			public byte x02 { get { return Field<byte>(0x02); } }
+			public byte x03 { get { return Field<byte>(0x03); } }
+		}
+	}
+}

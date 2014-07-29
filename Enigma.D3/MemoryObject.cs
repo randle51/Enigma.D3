@@ -5,13 +5,13 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Linq.Expressions;
+using System.Collections.Concurrent;
 
 namespace Enigma
 {
 	public class MemoryObject
 	{
-		// TODO: Make thread-safe!
-		private static readonly Dictionary<Type, Activator> _activators = new Dictionary<Type, Activator>();
+		private static readonly ConcurrentDictionary<Type, Activator> _activators = new ConcurrentDictionary<Type, Activator>();
 
 		private delegate object Activator(MemoryBase memory, int address);
 
@@ -63,7 +63,7 @@ namespace Enigma
 					).Compile();
 				}
 
-				_activators.Add(type, activator);
+				_activators.TryAdd(type, activator);
 			}
 			return activator.Invoke(memory, address);
 		}
@@ -110,19 +110,19 @@ namespace Enigma
 		private int _address;
 		private int _snapshotOffset;
 
-		protected internal MemoryObject() { }
+		public MemoryObject() { }
+
+		public MemoryObject(MemoryBase memory, int address)
+		{
+			ValidateArguments(memory, address);
+			Initialize(memory, address);
+		}
 
 		protected MemoryObject Initialize(MemoryBase memory, int address)
 		{
 			_memory = memory;
 			_address = address;
 			return this;
-		}
-
-		protected MemoryObject(MemoryBase memory, int address)
-		{
-			ValidateArguments(memory, address);
-			Initialize(memory, address);
 		}
 
 		public MemoryBase Memory { get { return _memory; } private set { _memory = value; } }
@@ -257,7 +257,7 @@ namespace Enigma
 			}
 			else
 			{
-				SetSnapshot(Memory.ReadBytes(_address, new byte[GetType().SizeOf()]), 0);
+				SetSnapshot(Memory.ReadBytes(_address, GetType().SizeOf()), 0);
 			}
 		}
 

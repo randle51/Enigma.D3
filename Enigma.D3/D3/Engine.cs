@@ -14,6 +14,9 @@ namespace Enigma.D3
 {
 	public class Engine : MemoryObject, IDisposable
 	{
+		private static Engine _lastCreated;
+
+		[ThreadStatic]
 		private static Engine _current;
 
 		public static readonly Version SupportedVersion = new Version(2, 0, 6, 24641);
@@ -25,18 +28,22 @@ namespace Enigma.D3
 			return process == null ? null : new Engine(process);
 		}
 
-		public static Engine Current {
+		public static Engine Create(MiniDumpMemory miniDumpMemory)
+		{
+			if (miniDumpMemory == null)
+				throw new ArgumentNullException("miniDumpMemory");
+			return new Engine(miniDumpMemory);
+		}
+
+		public static Engine Current
+		{
 			get
 			{
-				return _current;
+				return _current ?? _lastCreated;
 			}
 			set
 			{
-				if (_current != value)
-				{
-					_current = value;
-					CurrentEngineChanged(value);
-				}
+				_current = value;
 			}
 		}
 
@@ -60,19 +67,17 @@ namespace Enigma.D3
 			}
 		}
 
-		public static event Action<Engine> CurrentEngineChanged = delegate { };
-
 		public Engine(Process process)
 			: base(new ProcessMemory(process), 0)
 		{
 			EnsureSupportedProcessVersion();
-			Engine.Current = this;
+			_lastCreated = this;
 		}
 
 		public Engine(MemoryBase memory)
 			: base(memory, 0)
 		{
-			Engine.Current = this;
+			_lastCreated = this;
 		}
 
 		private void EnsureSupportedProcessVersion()
@@ -158,7 +163,7 @@ namespace Enigma.D3
 		public int IsRefStringSystemInitialized { get { return Field<int>(0x01D94C8C); } }
 		public CriticalSection RefStringDataLock { get { return Dereference<CriticalSection>(0x01D94C90); } }
 
-		public MessageDescriptor MessagDescriptor { get { return Dereference<MessageDescriptor>(0x01D96A38); } }
+		public MessageDescriptor MessageDescriptor { get { return Dereference<MessageDescriptor>(0x01D96A38); } }
 
 		public ContainerManager ContainerManager { get { return Dereference<ContainerManager>(0x01D96BE4); } }
 
