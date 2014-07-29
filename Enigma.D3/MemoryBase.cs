@@ -11,9 +11,9 @@ namespace Enigma
 		[ThreadStatic]
 		private static byte[] _smallBuffer;
 
-		protected abstract uint MinValidAddress { get; }
+		public abstract uint MinValidAddress { get; }
 
-		protected abstract uint MaxValidAddress { get; }
+		public abstract uint MaxValidAddress { get; }
 
 		public abstract bool IsValid { get; }
 
@@ -44,7 +44,6 @@ namespace Enigma
 
 		public T[] Read<T>(int address, int count)
 		{
-			var type = typeof(T);
 			int sizeOf = TypeHelper<T>.SizeOf;
 
 			T[] array = new T[count];
@@ -52,7 +51,7 @@ namespace Enigma
 			{
 				for (int i = 0; i < count; i++)
 				{
-					array[i] = (T)(object)MemoryObject.UnsafeCreate(type, this, address + i * sizeOf);
+					array[i] = (T)(object)MemoryObject.UnsafeCreate(typeof(T), this, address + i * sizeOf);
 				}
 			}
 			else
@@ -60,7 +59,7 @@ namespace Enigma
 				byte[] buffer = ReadBytes(address, sizeOf * count);
 				for (int i = 0; i < count; i++)
 				{
-					array[i] = StructHelper<T>.Read(buffer, i * sizeOf);
+					array[i] = StructHelper<T>.UnsafeRead(buffer, i * sizeOf);
 				}
 			}
 			return array;
@@ -74,10 +73,11 @@ namespace Enigma
 				throw new ArgumentOutOfRangeException("count");
 
 			byte[] buffer = GetBuffer(count);
-			return ReadBytes(address, buffer, 0, count);
+			ReadBytes(address, buffer, 0, count);
+			return buffer;
 		}
 
-		public virtual byte[] ReadBytes(int address, byte[] buffer)
+		public virtual void ReadBytes(int address, byte[] buffer)
 		{
 			if (!IsValidAddress(address))
 				throw new ArgumentOutOfRangeException("address");
@@ -86,12 +86,12 @@ namespace Enigma
 			if (!IsValidAddress(address + buffer.Length))
 				throw new ArgumentOutOfRangeException();
 			if (buffer.Length == 0)
-				return buffer;
+				return;
 
-			return ReadBytes(address, buffer, 0, buffer.Length);
+			ReadBytes(address, buffer, 0, buffer.Length);
 		}
 
-		public abstract byte[] ReadBytes(int address, byte[] buffer, int offset, int count);
+		public abstract void ReadBytes(int address, byte[] buffer, int offset, int count);
 
 		public abstract void Dispose();
 	}

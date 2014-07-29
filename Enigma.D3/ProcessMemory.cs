@@ -35,20 +35,20 @@ namespace Enigma
 
 		public override bool IsValid { get { return !_process.HasExited; } }
 
-		protected override uint MinValidAddress { get { return _minValidAddress; } }
+		public override uint MinValidAddress { get { return _minValidAddress; } }
 
-		protected override uint MaxValidAddress { get { return _maxValidAddress; } }
+		public override uint MaxValidAddress { get { return _maxValidAddress; } }
 
 		public int NativeCalls { get; private set; }
 
-		public override byte[] ReadBytes(int address, byte[] buffer)
+		public override void ReadBytes(int address, byte[] buffer)
 		{
 			if (address < 0)
 				throw new ArgumentOutOfRangeException("address");
 			if (buffer == null)
 				throw new ArgumentNullException("buffer");
 			if (buffer.Length == 0)
-				return buffer;
+				return;
 
 			int numberOfBytesRead;
 			try
@@ -62,7 +62,6 @@ namespace Enigma
 					out numberOfBytesRead))
 				{
 					ValidateNumberOfBytesRead(address, numberOfBytesRead, buffer.Length);
-					return buffer;
 				}
 				else
 				{
@@ -72,11 +71,10 @@ namespace Enigma
 			catch (Exception exception)
 			{
 				OnReadException(address, exception);
-				return buffer;
 			}
 		}
 
-		public override byte[] ReadBytes(int address, byte[] buffer, int offset, int count)
+		public override void ReadBytes(int address, byte[] buffer, int offset, int count)
 		{
 			if (address < 0)
 				throw new ArgumentOutOfRangeException("address");
@@ -103,7 +101,6 @@ namespace Enigma
 					out numberOfBytesRead))
 				{
 					ValidateNumberOfBytesRead(address, numberOfBytesRead, bytesToRead);
-					return buffer;
 				}
 				else
 				{
@@ -113,7 +110,6 @@ namespace Enigma
 			catch (Exception exception)
 			{
 				OnReadException(address, exception);
-				return buffer;
 			}
 			finally
 			{

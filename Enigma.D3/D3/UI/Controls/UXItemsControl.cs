@@ -23,19 +23,13 @@ namespace Enigma.D3.UI.Controls
 		public int x4B8 { get { return Field<int>(0x4B8); } }
 		public int x4BC_Flags_MouseState_ { get { return Field<int>(0x4BC); } } // 4 = IsMouseOver? 5 = IsMouseDown?
 		public int x4C0 { get { return Field<int>(0x4C0); } }
-		public int x4C4_Neg1 { get { return Field<int>(0x4C4); } }
-		public int _x4C8 { get { return Field<int>(0x4C8); } }
-		public int _x4CC { get { return Field<int>(0x4CC); } }
-		public int _x4D0 { get { return Field<int>(0x4D0); } }
-		public int _x4D4 { get { return Field<int>(0x4D4); } }
-		public int x4D8 { get { return Field<int>(0x4D8); } }
-		public int _x4DC { get { return Field<int>(0x4DC); } }
-		public int x4E0 { get { return Field<int>(0x4E0); } }
-		public int _x4E4 { get { return Field<int>(0x4E4); } }
-		public int x4E8 { get { return Field<int>(0x4E8); } }
-		public int x4EC { get { return Field<int>(0x4EC); } }
-		public int x4F0 { get { return Field<int>(0x4F0); } }
-		public int x4F4 { get { return Field<int>(0x4F4); } }
+		public int x4C4_Neg1_Anim2DSnoId { get { return Field<int>(0x4C4); } }
+		public float x4C8_StructStart_Min16Bytes { get { return Field<int>(0x4C8); } } // Related to the x4C4 Anim2D SNO
+		public float x4CC { get { return Field<int>(0x4CC); } }
+		public float x4D0 { get { return Field<int>(0x4D0); } }
+		public float x4D4 { get { return Field<int>(0x4D4); } }
+		public UIRect x4D8_UIRect { get { return Field<UIRect>(0x4D8); } }
+		public UIRect x4E8_UIRect { get { return Field<UIRect>(0x4E8); } }
 		public float x4F8 { get { return Field<float>(0x4F8); } }
 		public float x4FC { get { return Field<float>(0x4FC); } }
 		public float x500 { get { return Field<float>(0x500); } }
