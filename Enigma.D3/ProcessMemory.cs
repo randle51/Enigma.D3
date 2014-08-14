@@ -43,7 +43,7 @@ namespace Enigma
 
 		public override void ReadBytes(int address, byte[] buffer)
 		{
-			if (address < 0)
+			if (!IsValidAddress(address))
 				throw new ArgumentOutOfRangeException("address");
 			if (buffer == null)
 				throw new ArgumentNullException("buffer");
@@ -76,7 +76,7 @@ namespace Enigma
 
 		public override void ReadBytes(int address, byte[] buffer, int offset, int count)
 		{
-			if (address < 0)
+			if (!IsValidAddress(address))
 				throw new ArgumentOutOfRangeException("address");
 			if (buffer == null)
 				throw new ArgumentNullException("buffer");
