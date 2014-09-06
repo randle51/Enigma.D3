@@ -97,13 +97,13 @@ namespace Enigma.D3.MapHack.Markers
 		private static bool IsValidMonster(ActorCommonData acd)
 		{
 			return acd.x188_Hitpoints > 0.00001 &&
-				(acd.x194_Flags_Is_Trail_Proxy_Etc & 1) == 0 &&
+				(acd.x198_Flags_Is_Trail_Proxy_Etc & 1) == 0 &&
 				acd.x190_TeamId == 10;
 		}
 
 		private static bool IsValidGizmoChest(ActorCommonData acd)
 		{
-			return (acd.x24C_CollisionFlags & 0x400) == 0 &&
+			return (acd.x248_CollisionFlags & 0x400) == 0 &&
 				Attributes.ChestOpen.GetValue(acd) != 1;
 		}
 
