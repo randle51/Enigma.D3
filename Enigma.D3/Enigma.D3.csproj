@@ -9,9 +9,32 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Enigma</RootNamespace>
     <AssemblyName>Enigma.D3</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -21,13 +44,36 @@
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -41,19 +87,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BufferMemory.cs" />
     <Compile Include="D3\ActManager.cs" />
     <Compile Include="D3\Actor.cs" />
     <Compile Include="D3\ActorCommonData.cs" />
     <Compile Include="D3\ActorCommonDataManager.cs" />
     <Compile Include="D3\ActorManager.cs" />
     <Compile Include="D3\ActorMovement.cs" />
-    <Compile Include="ArraySize.cs" />
+    <Compile Include="ArraySizeAttribute.cs" />
     <Compile Include="D3\AttributeDescriptor.cs" />
+    <Compile Include="D3\AttributeValue.cs" />
     <Compile Include="D3\CameraManager.cs" />
     <Compile Include="D3\Cinematography.cs" />
-    <Compile Include="D3\Collections\Array.cs" />
-    <Compile Include="D3\Collections\ArrayB.cs" />
+    <Compile Include="D3\Collections\Vector.cs" />
     <Compile Include="D3\Enums\AttributeId.cs" />
     <Compile Include="D3\Collections\Container.cs" />
     <Compile Include="D3\Collections\ExpandableContainer.cs" />
@@ -80,19 +125,27 @@
     <Compile Include="D3\FieldDescriptor.cs" />
     <Compile Include="D3\FloatingNumber.cs" />
     <Compile Include="D3\GlobalStruct001.cs" />
+    <Compile Include="D3\GlobalStruct012.cs" />
+    <Compile Include="D3\GlobalStruct013.cs" />
+    <Compile Include="D3\Marker.cs" />
+    <Compile Include="D3\Sno\SnoFiles.cs" />
     <Compile Include="D3\GlobalStruct010.cs" />
     <Compile Include="D3\Helpers\ActorCommonDataHelper.cs" />
     <Compile Include="D3\Helpers\ActorHelper.cs" />
     <Compile Include="D3\Helpers\AttributeHelper.cs" />
     <Compile Include="D3\Helpers\SymbolHelper.cs" />
+    <Compile Include="D3\Helpers\UIRectHelper.cs" />
     <Compile Include="D3\Helpers\UXHelper.cs" />
     <Compile Include="D3\Helpers\WorldHelper.cs" />
     <Compile Include="D3\LevelArea.cs" />
     <Compile Include="D3\LocalData.cs" />
-    <Compile Include="D3\Enums\PlayerClass.cs" />
+    <Compile Include="D3\Enums\HeroClass.cs" />
+    <Compile Include="D3\Messages\FloatingNumberMessage.cs" />
+    <Compile Include="D3\Messages\RequiredMessageHeader.cs" />
     <Compile Include="D3\Player.cs" />
     <Compile Include="D3\PlayerInput.cs" />
     <Compile Include="D3\PetPortraitInfo.cs" />
+    <Compile Include="D3\PortraitData.cs" />
     <Compile Include="D3\Quest.cs" />
     <Compile Include="D3\QuestManager.cs" />
     <Compile Include="D3\RefString.cs" />
@@ -101,12 +154,12 @@
     <Compile Include="D3\Scene.cs" />
     <Compile Include="D3\SceneAllocators.cs" />
     <Compile Include="D3\SceneRevealInfo.cs" />
-    <Compile Include="D3\ScreenManager.cs" />
-    <Compile Include="D3\SnoDefinition.cs" />
-    <Compile Include="D3\SnoGroup.cs" />
+    <Compile Include="D3\Sno\SnoDefinition.cs" />
+    <Compile Include="D3\Sno\SnoFilesAsync.cs" />
+    <Compile Include="D3\Sno\SnoGroupManager.cs" />
     <Compile Include="D3\Enums\SnoGroupId.cs" />
-    <Compile Include="D3\SnoGroupInitializer.cs" />
-    <Compile Include="D3\SnoGroupSearch.cs" />
+    <Compile Include="D3\Sno\SnoGroupInitializer.cs" />
+    <Compile Include="D3\Sno\SnoGroupSearch.cs" />
     <Compile Include="D3\Storage.cs" />
     <Compile Include="D3\Symbol.cs" />
     <Compile Include="D3\UI\Buff.cs" />
@@ -170,8 +223,8 @@
     <Compile Include="D3\Graphics\DisplayMode.cs" />
     <Compile Include="D3\Graphics\DisplayModeFlags.cs" />
     <Compile Include="D3\Engine.cs" />
-    <Compile Include="D3\GameBalanceGroup.cs" />
-    <Compile Include="D3\GameBalanceManager.cs" />
+    <Compile Include="D3\Sno\GameBalanceGroup.cs" />
+    <Compile Include="D3\Sno\GameBalanceManager.cs" />
     <Compile Include="D3\Enums\GameBalanceType.cs" />
     <Compile Include="D3\Graphics\GraphicsSubsystem.cs" />
     <Compile Include="D3\Helpers\CodeGeneratorHelper.cs" />
@@ -180,7 +233,6 @@
     <Compile Include="D3\Memory\AllocatorBlock.cs" />
     <Compile Include="D3\Memory\BasicAllocator.cs" />
     <Compile Include="D3\Memory\MemoryManager.cs" />
-    <Compile Include="D3\Memory\Pointer.cs" />
     <Compile Include="D3\MessageDescriptor.cs" />
     <Compile Include="D3\NamedCriticalSection.cs" />
     <Compile Include="D3\NetworkManager.cs" />
@@ -198,22 +250,23 @@
     <Compile Include="D3\UI\UIMap.cs" />
     <Compile Include="D3\UI\UIReference.cs" />
     <Compile Include="D3\Graphics\WindowMode.cs" />
+    <Compile Include="D3\Win32\Handle.cs" />
     <Compile Include="D3\World.cs" />
     <Compile Include="D3\WorldPosition.cs" />
-    <Compile Include="FileMemory.cs" />
-    <Compile Include="MemoryBase.cs" />
-    <Compile Include="MemoryObject.cs" />
-    <Compile Include="MiniDumpMemory.cs" />
-    <Compile Include="ProcessExtensions.cs" />
-    <Compile Include="ProcessMemory.cs" />
+    <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StructHelper.cs" />
-    <Compile Include="TypeExtensions.cs" />
     <Compile Include="D3\Win32\CriticalSection.cs" />
-    <Compile Include="TypeHelper.cs" />
+    <Compile Include="ObjectCache.cs" />
+    <Compile Include="VersionAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="D3\PlayerData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Enigma.Memory\Enigma.Memory.csproj">
+      <Project>{3a385f29-42e2-4caf-b1f2-2a1a7b90a971}</Project>
+      <Name>Enigma.Memory</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,10 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXControl34 : UXRadioButton
 	{
-		// 2.0.6.24641
-		public const int SizeOf = 0x1190;
-		public const int VTable = 0x017C5E28;
+		public new const int SizeOf = 0x11A0;
+		public new const int VTable = 0x01753FD8;
 
-		public UXControl34(MemoryBase memory, int address)
-			: base(memory, address) { }
-
-		public UXLabel x1188_Label { get { return Dereference<UXLabel>(0x1188); } }
-		public int x118C_ProgressBar { get { return Field<int>(0x118C); } }
+		public Ptr<UXLabel> x1198_Ptr_Label { get { return ReadPointer<UXLabel>(0x1198); } }
+		public int x119C_ProgressBar { get { return Read<int>(0x119C); } }
 	}
 }

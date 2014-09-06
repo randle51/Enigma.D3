@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,40 +8,36 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXComboBox : UXItemsControl
 	{
-		// 2.0.6.24641
-		public const int SizeOf = 0xED8;
-		public const int VTable = 0x017AC8C8;
+		public new const int SizeOf = 0xEC8;
+		public new const int VTable = 0x0173A830;
 
-		public UXComboBox(MemoryBase memory, int address)
-			: base(memory, address) { }
-
-		public int xA58 { get { return Field<int>(0xA58); } }
-		public int xA5C { get { return Field<int>(0xA5C); } }
-		public int xA60 { get { return Field<int>(0xA60); } }
-		public int xA64 { get { return Field<int>(0xA64); } }
-		public UXLabel xA68_Label { get { return Dereference<UXLabel>(0xA68); } }
-		public int _xA6C { get { return Field<int>(0xA6C); } }
-		public UIReference xA70_UIRef_ItemsControl_Background { get { return Field<UIReference>(0xA70); } }
-		public UIReference xC78_UIRef_Button_Arrow { get { return Field<UIReference>(0xC78); } }
-		public int xE80 { get { return Field<int>(0xE80); } }
-		public int xE84_Neg1 { get { return Field<int>(0xE84); } }
-		public int xE88_StructStart_Min52Bytes_ArrayEx_ { get { return Field<int>(0xE88); } }
-		public int _xE8C { get { return Field<int>(0xE8C); } }
-		public int _xE90 { get { return Field<int>(0xE90); } }
-		public int _xE94 { get { return Field<int>(0xE94); } }
-		public int _xE98 { get { return Field<int>(0xE98); } }
-		public int _xE9C { get { return Field<int>(0xE9C); } }
-		public int _xEA0 { get { return Field<int>(0xEA0); } }
-		public int _xEA4 { get { return Field<int>(0xEA4); } }
-		public int _xEA8 { get { return Field<int>(0xEA8); } }
-		public int _xEAC { get { return Field<int>(0xEAC); } }
-		public int _xEB0 { get { return Field<int>(0xEB0); } }
-		public int _xEB4 { get { return Field<int>(0xEB4); } }
-		public int _xEB8 { get { return Field<int>(0xEB8); } }
-		public int _xEBC { get { return Field<int>(0xEBC); } }
-		public RefString xEC0_RefString { get { return Field<RefString>(0xEC0); } }
-		public int xECC { get { return Field<int>(0xECC); } }
-		public int xED0 { get { return Field<int>(0xED0); } }
-		public int _xED4 { get { return Field<int>(0xED4); } }
+		public int xA48 { get { return Read<int>(0xA48); } }
+		public int xA4C { get { return Read<int>(0xA4C); } }
+		public int xA50 { get { return Read<int>(0xA50); } }
+		public int xA54 { get { return Read<int>(0xA54); } }
+		public Ptr<UXLabel> xA58_Ptr_Label { get { return ReadPointer<UXLabel>(0xA58); } }
+		public int _xA5C { get { return Read<int>(0xA5C); } }
+		public UIReference xA60_UIRef_ItemsControl_Background { get { return Read<UIReference>(0xA60); } }
+		public UIReference xC68_UIRef_Button_Arrow { get { return Read<UIReference>(0xC68); } }
+		public int xE70 { get { return Read<int>(0xE70); } }
+		public int xE74_Neg1 { get { return Read<int>(0xE74); } }
+		public int xE78_StructStart_Min52Bytes_Array_ { get { return Read<int>(0xE78); } }
+		public int _xE7C { get { return Read<int>(0xE7C); } }
+		public int _xE80 { get { return Read<int>(0xE80); } }
+		public int _xE84 { get { return Read<int>(0xE84); } }
+		public int _xE88 { get { return Read<int>(0xE88); } }
+		public int _xE8C { get { return Read<int>(0xE8C); } }
+		public int _xE90 { get { return Read<int>(0xE90); } }
+		public int _xE94 { get { return Read<int>(0xE94); } }
+		public int _xE98 { get { return Read<int>(0xE98); } }
+		public int _xE9C { get { return Read<int>(0xE9C); } }
+		public int _xEA0 { get { return Read<int>(0xEA0); } }
+		public int _xEA4 { get { return Read<int>(0xEA4); } }
+		public int _xEA8 { get { return Read<int>(0xEA8); } }
+		public int _xEAC { get { return Read<int>(0xEAC); } }
+		public RefString xEB0_RefString { get { return Read<RefString>(0xEB0); } }
+		public int xEBC { get { return Read<int>(0xEBC); } }
+		public int xEC0 { get { return Read<int>(0xEC0); } }
+		public int _xEC4 { get { return Read<int>(0xEC4); } }
 	}
 }

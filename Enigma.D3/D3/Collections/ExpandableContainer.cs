@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,31 +8,24 @@ using Enigma.D3.Memory;
 
 namespace Enigma.D3.Collections
 {
-	public class ExpandableContainer : ExpandableContainer<MemoryObject>
-	{
-		public ExpandableContainer(MemoryBase memory, int address)
-			: base(memory, address) { }
-	}
+	public class ExpandableContainer : ExpandableContainer<MemoryObject> { }
 
 	public class ExpandableContainer<T> : Container<T>, IEnumerable<T>
 	{
 		// 2.0.0.20874
 		public new const int SizeOf = 0x168; // = 360
 
-		public ExpandableContainer(MemoryBase memory, int address)
-			: base(memory, address) { }
-
-		public int x124 { get { return Field<int>(0x124); } }
-		public int x128 { get { return Field<int>(0x128); } }
-		public int _x12C { get { return Field<int>(0x12C); } }
-		public BasicAllocator<T> x130_Allocator { get { return Field<BasicAllocator<T>>(0x130); } }
-		public int _x14C { get { return Field<int>(0x14C); } }
-		public int _x150 { get { return Field<int>(0x150); } }
-		public int _x154 { get { return Field<int>(0x154); } }
+		public int x124 { get { return Read<int>(0x124); } }
+		public int x128 { get { return Read<int>(0x128); } }
+		public int _x12C { get { return Read<int>(0x12C); } }
+		public BasicAllocator<T> x130_Allocator { get { return Read<BasicAllocator<T>>(0x130); } }
+		public int _x14C { get { return Read<int>(0x14C); } }
+		public int _x150 { get { return Read<int>(0x150); } }
+		public int _x154 { get { return Read<int>(0x154); } }
 		public MemoryManager.VTable x158_MemoryVTable { get { return Dereference<MemoryManager.VTable>(0x158); } }
-		public int x15C_Limit { get { return Field<int>(0x15C); } }
-		public int x160_MaxLimit_ { get { return Field<int>(0x160); } }
-		public int x164_Bits { get { return Field<int>(0x164); } }
+		public int x15C_Limit { get { return Read<int>(0x15C); } }
+		public int x160_MaxLimit_ { get { return Read<int>(0x160); } }
+		public int x164_Bits { get { return Read<int>(0x164); } }
 
 		public T this[short index]
 		{
@@ -40,9 +34,9 @@ namespace Enigma.D3.Collections
 				var blockSize = 1 << x164_Bits;
 				var blockNumber = index / blockSize;
 				var blockOffset = index % blockSize;
-				var blockBase = base.Memory.Read<int>(base.x120_Allocation + 4 * blockNumber);
+				var blockBase = base.Memory.Reader.Read<int>(base.x120_Allocation + 4 * blockNumber);
 				var itemPtr = blockBase + blockOffset * x104_ItemSize;
-				var item = base.Memory.Read<T>(itemPtr);
+				var item = base.Memory.Reader.Read<T>(itemPtr);
 				return item;
 			}
 		}
@@ -57,7 +51,7 @@ namespace Enigma.D3.Collections
 			int blockSize = 1 << x164_Bits;
 			int blockCount = (maxIndex / blockSize) + 1;
 
-			int[] blockPointers = base.Memory.Read<int>(x120_Allocation, blockCount);
+			int[] blockPointers = base.Memory.Reader.Read<int>(x120_Allocation, blockCount);
 
 			for (int i = 0; i <= maxIndex; i++)
 			{
@@ -67,7 +61,7 @@ namespace Enigma.D3.Collections
 
 				int itemAddress = blockPointer + blockOffset;
 
-				yield return Memory.Read<T>(itemAddress);
+				yield return Memory.Reader.Read<T>(itemAddress);
 			}
 		}
 
@@ -87,11 +81,11 @@ namespace Enigma.D3.Collections
 			System.Array.Resize(ref buffer, blockCount * blockSize);
 
 			var dumpInfo = new DumpInfo(Memory, buffer, blockCount, itemSize, count);
-			var blockPtrs = Memory.Read<int>(x120_Allocation, blockCount);
+			var blockPtrs = Memory.Reader.Read<int>(x120_Allocation, blockCount);
 			for (int blockIndex = 0; blockIndex < blockCount; blockIndex++)
 			{
 				var blockAddress = blockPtrs[blockIndex];
-				Memory.ReadBytes(blockAddress, buffer, blockIndex * blockSize, blockSize);
+				Memory.Reader.ReadBytes(blockAddress, buffer, blockIndex * blockSize, blockSize);
 				dumpInfo.Blocks[blockIndex] = new DumpInfo.BlockInfo
 				{
 					BufferOffset = blockIndex * blockSize,
@@ -105,7 +99,7 @@ namespace Enigma.D3.Collections
 		public class DumpInfo : IEnumerable<DumpInfo.Item>
 		{
 			public readonly BlockInfo[] Blocks;
-			private readonly MemoryBase _memory;
+			private readonly IMemory _memory;
 			private readonly byte[] _buffer;
 			public readonly int ItemSize;
 			public readonly int ItemCount;
@@ -125,11 +119,13 @@ namespace Enigma.D3.Collections
 
 				public T Create()
 				{
-					return (T)MemoryObject.UnsafeCreate(typeof(T), Dump._memory, Address, Dump._buffer, BufferOffset);
+					var obj = MemoryObjectFactory.UnsafeCreate(typeof(T), Dump._memory, Address);
+					obj.SetSnapshot(Dump._buffer, BufferOffset, TypeHelper<T>.SizeOf);
+					return (T)(object)obj;
 				}
 			}
 
-			public DumpInfo(MemoryBase memory, byte[] buffer, int blockCount, int itemSize, int itemCount)
+			public DumpInfo(IMemory memory, byte[] buffer, int blockCount, int itemSize, int itemCount)
 			{
 				Blocks = new BlockInfo[blockCount];
 				_memory = memory;
@@ -156,38 +152,6 @@ namespace Enigma.D3.Collections
 			{
 				return GetEnumerator();
 			}
-		}
-
-		public T[] GetFastDump<T>(ref byte[] buffer) where T : MemoryObject
-		{
-			var count = (short)x108_MaxIndex + 1;
-			var array = new T[count];
-			var blockCapacity = 1 << x164_Bits;
-			var blockCount = x15C_Limit / blockCapacity;
-			var itemSize = x104_ItemSize;
-			var blockSize = blockCapacity * itemSize;
-
-			// Resizes if required.
-			if (buffer.Length != blockCount * blockSize)
-			{
-				System.Array.Resize(ref buffer, blockCount * blockSize);
-			}
-
-			var blockPtrs = Memory.Read<int>(x120_Allocation, blockCount);
-			for (int blockIndex = 0; blockIndex < blockCount; blockIndex++)
-			{
-				var blockAddress = blockPtrs[blockIndex];
-				Memory.ReadBytes(blockAddress, buffer, blockIndex * blockSize, blockSize);
-				var iMax = count - blockIndex * blockCapacity;
-				for (int i = 0; i < iMax; i++)
-				{
-					var obj = MemoryObject.Create<T>(Memory, blockAddress + itemSize * i);
-					var memObj = obj as MemoryObject;
-					memObj.SetSnapshot(buffer, blockIndex * blockSize + itemSize * i);
-					array[blockIndex * blockCapacity + i] = obj;
-				}
-			}
-			return array;
 		}
 	}
 }

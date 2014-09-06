@@ -1,4 +1,5 @@
-﻿using System;
+using Enigma.Memory;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,16 @@ namespace Enigma.D3.Helpers
 {
 	public static class UXHelper
 	{
+		private static class UXTypeCache<T> where T : UXControl
+		{
+			static UXTypeCache()
+			{
+				VTableAddress = typeof(T).GetUXVTableAddress();
+			}
+
+			public static readonly int VTableAddress;
+		}
+
 		private static readonly Type[] _controlTypes;
 		private static readonly Dictionary<Type, HashSet<int>> _vtablesCache;
 
@@ -18,6 +29,26 @@ namespace Enigma.D3.Helpers
 		{
 			_controlTypes = typeof(UXControl).Assembly.GetTypes().Where(a => a.IsUXControlType()).ToArray();
 			_vtablesCache = new Dictionary<Type, HashSet<int>>();
+		}
+
+		public static bool IsUXControlType(this Type type)
+		{
+			return type.IsSubclassOf(typeof(UXControl)) || type.Equals(typeof(UXControl));
+		}
+
+		public static int GetUXVTableAddress(this Type type)
+		{
+			if (type.IsUXControlType())
+			{
+				var field = type.GetField("VTable",
+					System.Reflection.BindingFlags.FlattenHierarchy |
+					System.Reflection.BindingFlags.Static |
+					System.Reflection.BindingFlags.Public);
+				if (field == null)
+					throw new InvalidOperationException("Could not find static 'VTable' on type '" + type.FullName + "'");
+				return field.IsLiteral ? (int)field.GetRawConstantValue() : (int)field.GetValue(null);
+			}
+			return 0;
 		}
 
 		public static UXControl GetControl(string name)
@@ -35,34 +66,35 @@ namespace Enigma.D3.Helpers
 			return GetControlFromPointer(GetControlPointer(hash));
 		}
 
-		private static UXControl GetControlFromPointer(Pointer ptr)
+		private static UXControl GetControlFromPointer(Ptr ptr)
 		{
 			if (ptr == null)
 				return null;
-			var vtable = ptr.Dereference<int>();
+
+			var vtable = ptr.Cast<int>().Dereference();
 			var type = GetControlTypeFromVTable(vtable);
-			return (UXControl)MemoryObject.UnsafeCreate(type, ptr.Memory, ptr.Read<int>());
+			return (UXControl)MemoryObjectFactory.UnsafeCreate(type, ptr.Memory.Reader, ptr.ValueAddress);
 		}
 
 		public static T GetControl<T>(string name) where T : UXControl
 		{
 			return GetIfNotNull(
 				GetControlPointer(name),
-				ptr => ptr.Dereference<T>());
+				ptr => ptr.Cast<T>().Dereference());
 		}
 
 		public static T GetControl<T>(UIReference handle) where T : UXControl
 		{
 			return GetIfNotNull(
 				GetControlPointer(handle),
-				ptr => ptr.Dereference<T>().EnsureValidType());
+				ptr => ptr.Cast<T>().Dereference().EnsureValidType());
 		}
 
 		public static T GetControl<T>(ulong hash) where T : UXControl
 		{
 			return GetIfNotNull(
 				GetControlPointer(hash),
-				ptr => ptr.Dereference<T>().EnsureValidType());
+				ptr => ptr.Cast<T>().Dereference().EnsureValidType());
 		}
 
 		public static T EnsureValidType<T>(this T control) where T : UXControl
@@ -72,26 +104,26 @@ namespace Enigma.D3.Helpers
 			return control;
 		}
 
-		public static Pointer GetControlPointer(string name)
+		public static Ptr GetControlPointer(string name)
 		{
 			return GetIfNotNull(GetUIMap(), map => map[name]);
 		}
 
-		public static Pointer GetControlPointer(ulong hash)
+		public static Ptr GetControlPointer(ulong hash)
 		{
 			return GetIfNotNull(GetUIMap(), map => map[hash]);
 		}
 
-		public static Pointer GetControlPointer(UIReference handle)
+		public static Ptr GetControlPointer(UIReference handle)
 		{
 			return GetIfNotNull(GetUIMap(), map => map[handle]);
 		}
 
-		public static IEnumerable<Pointer> EnumerateControlPointers()
+		public static IEnumerable<Ptr> EnumerateControlPointers()
 		{
 			var map = GetUIMap();
 			if (map == null)
-				return Enumerable.Empty<Pointer>();
+				return Enumerable.Empty<Ptr>();
 			return map.Select(a => a.x10_PtrComponent).Where(a => a != null);
 		}
 
@@ -102,10 +134,10 @@ namespace Enigma.D3.Helpers
 				yield break;// Enumerable.Empty<UIControl>();
 			foreach (var entry in map)
 			{
-				if (entry.x10_PtrComponent.Address != 0)
+				if (entry.x10_PtrComponent.ValueAddress != 0)
 				{
-					var control = entry.x10_PtrComponent.Dereference<UXControl>();
-					if (control.x030_Self.x000_Hash == entry.x08_Hash)
+					var control = entry.x10_PtrComponent.Cast<UXControl>().Dereference();
+					if (control.x020_Self.x000_Hash == entry.x08_Hash)
 						yield return control;
 					else
 					{
@@ -117,7 +149,7 @@ namespace Enigma.D3.Helpers
 
 		public static IEnumerable<T> Enumerate<T>(bool checkBaseTypes = false) where T : UXControl
 		{
-			return EnumerateByVTable<T>(TypeHelper<T>.UXVTableAddress, checkBaseTypes);
+			return EnumerateByVTable<T>(UXTypeCache<T>.VTableAddress, checkBaseTypes);
 		}
 
 		private static IEnumerable<T> EnumerateByVTable<T>(int vtable, bool checkBaseTypes = false) where T : UXControl
@@ -128,14 +160,14 @@ namespace Enigma.D3.Helpers
 
 			foreach (var entry in map)
 			{
-				if (entry.x10_PtrComponent.Address != 0)
+				if (entry.x10_PtrComponent.ValueAddress != 0)
 				{
-					var uxVTable = entry.x10_PtrComponent.Dereference<UXControl>().x000_VTable;
+					var uxVTable = entry.x10_PtrComponent.Cast<UXControl>().Dereference().x000_VTable;
 					var uxType = GetControlTypeFromVTable(uxVTable);
 					if (uxType == typeof(T) || (checkBaseTypes && typeof(T).IsSubclassOf(uxType)))
 					{
-						var control = entry.x10_PtrComponent.Dereference<T>();
-						if (control.x030_Self.x000_Hash == entry.x08_Hash)
+						var control = entry.x10_PtrComponent.Cast<T>().Dereference();
+						if (control.x020_Self.x000_Hash == entry.x08_Hash)
 						{
 							yield return control;
 						}
@@ -182,24 +214,22 @@ namespace Enigma.D3.Helpers
 
 		public static bool IsVisible(this UXControl control)
 		{
-			return control != null && (control.x024_Flags & 4) != 0;
+			return control != null && (control.x014_Flags & 4) != 0;
 		}
 
 		public static T Cast<T>(this UXControl control) where T : UXControl
 		{
 			if (!GetVTables(typeof(T)).Contains(control.x000_VTable))
 				throw new InvalidCastException();
-			return MemoryObject.Create<T>(control.Memory, control.Address);
+			return MemoryObjectFactory.Create<T>(control.Memory.Reader, control.Address);
 		}
 
 		public static UIMap GetUIMap()
 		{
-			return Engine.TryGet(engine => engine.ObjectManager.x984_UI.x0000_Controls.x10_Map);
+			return Engine.TryGet(engine => engine.ObjectManager.x99C_UI.x0000_Controls.x10_Map);
 		}
 
 		private static TResult GetIfNotNull<T, TResult>(T input, Func<T, TResult> getter)
-			where T : MemoryObject
-			where TResult : MemoryObject
 		{
 			if (input == null)
 				return default(TResult);
@@ -218,9 +248,9 @@ namespace Enigma.D3.Helpers
 
 			foreach (var entry in map)
 			{
-				if (entry.x10_PtrComponent.Address != 0)
+				if (entry.x10_PtrComponent.ValueAddress != 0)
 				{
-					var ctrl_vtable = entry.x10_PtrComponent.Dereference<UXControl>().x000_VTable;
+					var ctrl_vtable = entry.x10_PtrComponent.Cast<UXControl>().Dereference().x000_VTable;
 					var ctrl_type = GetControlTypeFromVTable(ctrl_vtable);
 					if (ctrl_type == null)
 					{
@@ -228,10 +258,10 @@ namespace Enigma.D3.Helpers
 					}
 					if (ctrl_type == type || (allowSubClasses && ctrl_type.IsSubclassOf(type)))
 					{
-						var control = entry.x10_PtrComponent.Dereference<UXControl>();
-						if (control.x030_Self.x000_Hash == entry.x08_Hash)
+						var control = entry.x10_PtrComponent.Cast<UXControl>().Dereference();
+						if (control.x020_Self.x000_Hash == entry.x08_Hash)
 						{
-							yield return MemoryObject.UnsafeCreate(type, Engine.Current.Memory, entry.x10_PtrComponent.Read<int>());
+							yield return entry.x10_PtrComponent.Cast<int>().Dereference();
 						}
 						else
 						{

@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,11 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXItemsControlBase : UXControl
 	{
-		// 2.0.6.24641
-		public const int SizeOf = 0x4A0;
-		public const int VTable = 0x01770D28;
+		public new const int SizeOf = 0x490;
+		public new const int VTable = 0x01705B00;
 
-		public UXItemsControlBase(MemoryBase memory, int address)
-			: base(memory, address) { }
-
-		public Array<UIControlReference> x460_Children { get { return Field<Array<UIControlReference>>(0x460); } }
-		public int _x494 { get { return Field<int>(0x494); } }
-		public UXControl x498_UIControl { get { return Dereference<UXControl>(0x498); } }
-		public UXControl x49C_UIControl { get { return Dereference<UXControl>(0x49C); } }
+		public Vector<UIControlReference> x450_Children { get { return Read<Vector<UIControlReference>>(0x450); } }
+		public Ptr<UXControl> x488_Ptr_UIControl { get { return ReadPointer<UXControl>(0x488); } }
+		public Ptr<UXControl> x48C_Ptr_UIControl { get { return ReadPointer<UXControl>(0x48C); } }
 	}
 }

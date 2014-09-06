@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,10 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXGrid : UXList
 	{
-		// 2.0.6.24641
-		public const int SizeOf = 0x11A8;
-		public const int VTable = 0x017C5F00;
+		public new const int SizeOf = 0x1198;
+		public new const int VTable = 0x017540B0;
 
-		public UXGrid(MemoryBase memory, int address)
-			: base(memory, address) { }
-
-		public float x11A0 { get { return Field<float>(0x11A0); } }
-		public int _x11A4 { get { return Field<int>(0x11A4); } }
+		public float x1190 { get { return Read<float>(0x1190); } }
+		public int _x1194 { get { return Read<int>(0x1194); } }
 	}
 }

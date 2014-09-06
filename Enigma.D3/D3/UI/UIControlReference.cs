@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,7 @@ namespace Enigma.D3.UI
 		// 2.0.4.23119
 		public const int SizeOf = 0x210; // 528
 
-		public UIControlReference(MemoryBase memory, int address)
-			: base(memory, address) { }
-
-		public UIReference x000_UIReference { get { return Field<UIReference>(0x000); } }
+		public UIReference x000_UIReference { get { return Read<UIReference>(0x000); } }
 		public UXControl x208_UIControl { get { return Dereference<UXControl>(0x208); } }
 		public UXControl x20C_UIControl { get { return Dereference<UXControl>(0x20C); } }
 	}

@@ -1,7 +1,9 @@
-﻿using System;
+using Enigma.Memory;
+using System;
 using Enigma.D3.Collections;
 using Enigma.D3.Enums;
 using Enigma.D3.Memory;
+using System.Collections.Generic;
 
 namespace Enigma.D3.Helpers
 {
@@ -13,17 +15,17 @@ namespace Enigma.D3.Helpers
 			if (attribDef == null)
 				throw new ArgumentOutOfRangeException("attribId");
 
-			var valuePtr = GetAttributeValuePtr(acd, attribId, modifier);
-			if (valuePtr == null)
+			AttributeValue value;
+			if (!TryGetAttributeValue(acd, attribId, modifier, out value))
 				return Int32OrSingleToDouble(attribDef.x04_DefaultValue, attribDef.x10_DataType == 1);
 
-			return attribDef.x10_DataType == 1 ? valuePtr.Memory.Read<int>(valuePtr.Address) : valuePtr.Memory.Read<float>(valuePtr.Address);
+			return attribDef.x10_DataType == 1 ? value.Int32 : value.Single;
 		}
 
-		public static System.Collections.Generic.IEnumerable<Map<int, int>.Entry> EnumerateAttributes(this ActorCommonData acd)
+		public static IEnumerable<Map<int, AttributeValue>.Entry> EnumerateAttributes(this ActorCommonData acd)
 		{
 			var groupId = acd.x120_FastAttribGroupId;
-			var group = Engine.Current.ObjectManager.x798_Storage.x104_FastAttrib.x54_Groups[(short)groupId];
+			var group = Engine.Current.ObjectManager.x798_Storage.x11C_FastAttrib.x54_Groups[(short)groupId];
 			if (group != null)
 			{
 				var smallMap = group.x00C_PtrMap;
@@ -31,7 +33,7 @@ namespace Enigma.D3.Helpers
 				{
 					foreach (var bucket in smallMap.x10_Buckets)
 					{
-						var immutableBucket = bucket.Value;
+						var immutableBucket = bucket.Dereference();
 						while (immutableBucket != null)
 						{
 							immutableBucket.TakeSnapshot();
@@ -45,7 +47,7 @@ namespace Enigma.D3.Helpers
 				{
 					foreach (var bucket in map.x10_Buckets)
 					{
-						var immutableBucket = bucket.Value;
+						var immutableBucket = bucket.Dereference();
 						while (immutableBucket != null)
 						{
 							immutableBucket.TakeSnapshot();
@@ -57,39 +59,26 @@ namespace Enigma.D3.Helpers
 			}
 		}
 
-		internal static Pointer GetAttributeValuePtr(this ActorCommonData acd, AttributeId attribId, int modifier = -1)
+		internal static bool TryGetAttributeValue(this ActorCommonData acd, AttributeId attribId, int modifier, out AttributeValue value)
 		{
 			int key = (modifier << 12) + ((int)attribId & 0xFFF);
 			var groupId = acd.x120_FastAttribGroupId;
-			var group = Engine.Current.ObjectManager.x798_Storage.x104_FastAttrib.x54_Groups[(short)groupId];
+			var group = Engine.Current.ObjectManager.x798_Storage.x11C_FastAttrib.x54_Groups[(short)groupId];
 			if (group != null)
 			{
-				Pointer ptrValue;
-				if (((group.x004_Flags & 4) != 0 && TryGetValue(group.x00C_PtrMap, key, out ptrValue)) ||
-					TryGetValue(group.x010_Map, key, out ptrValue))
-					return ptrValue;
-			}
-			return null;
-		}
-
-		private static bool TryGetValue(Map<int, int> map, int key, out Pointer ptrValue)
-		{
-			if (map != null)
-			{
-				var hash = key ^ (key >> 12);
-				var entry = map.x10_Buckets[map.x00_Mask & hash];
-				while (entry != null)
+				if (((group.x004_Flags & 4) != 0 && group.x00C_PtrMap.TryGetValue(key, out value, GetHashOfKey)) ||
+					group.x010_Map.TryGetValue(key, out value, GetHashOfKey))
 				{
-					if (entry.x04_Key == key)
-					{
-						ptrValue = new Pointer(entry.Memory, entry.Address + 0x08);
-						return true;
-					}
-					entry = entry.x00_Next;
+					return true;
 				}
 			}
-			ptrValue = null;
+			value = default(AttributeValue);
 			return false;
+		}
+
+		private static uint GetHashOfKey(int key)
+		{
+			return unchecked((uint)(key ^ (key >> 12)));
 		}
 
 		private static double Int32OrSingleToDouble(int value, bool isInteger)
@@ -127,10 +116,14 @@ namespace Enigma.D3.Helpers
 
 			public override ulong GetValue(ActorCommonData acd, int modifier)
 			{
-				var highPtr = acd.GetAttributeValuePtr(_highAttributeId, modifier);
-				var lowPtr = acd.GetAttributeValuePtr(_lowAttributeId, modifier);
-				var high = highPtr == null ? _highDefaultValue : highPtr.Read<uint>();
-				var low = lowPtr == null ? _lowDefaultValue : lowPtr.Read<uint>();
+				AttributeValue highAttrib;
+				uint high = acd.TryGetAttributeValue(_highAttributeId, modifier, out highAttrib) ?
+					(uint)highAttrib.Int32 : _highDefaultValue;
+
+				AttributeValue lowAttrib;
+				uint low = acd.TryGetAttributeValue(_lowAttributeId, modifier, out lowAttrib) ?
+					(uint)lowAttrib.Int32 : _lowDefaultValue;
+
 				return ((ulong)high << 32) | low;
 			}
 		}
@@ -139,6 +132,7 @@ namespace Enigma.D3.Helpers
 		{
 			private readonly AttributeId _attributeId;
 			private readonly T _defaultValue;
+			private readonly bool _isInteger;
 
 			public SimpleAttribute(int attributeId, T defaultValue)
 				: this((AttributeId)attributeId, defaultValue) { }
@@ -147,16 +141,19 @@ namespace Enigma.D3.Helpers
 			{
 				_attributeId = attributeId;
 				_defaultValue = defaultValue;
+
+				_isInteger = typeof(T) == typeof(int);
+				if (!_isInteger && typeof(T) != typeof(float))
+					throw new NotSupportedException("Generic type T must be either int or float.");
 			}
 
 			public override T GetValue(ActorCommonData acd, int modifier = -1)
 			{
-				var valuePtr = acd.GetAttributeValuePtr(_attributeId, modifier);
-				if (valuePtr == null)
-				{
+				AttributeValue value;
+				if (!acd.TryGetAttributeValue(_attributeId, modifier, out value))
 					return _defaultValue;
-				}
-				return valuePtr.Read<T>();
+
+				return (T)(_isInteger ? (object)value.Int32 : (object)value.Single);
 			}
 		}
 	}
@@ -306,6 +303,8 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> DOTDamageTakenQueuedPlayerTick = new SimpleAttribute<int>(AttributeId.DOTDamageTakenQueuedPlayerTick, 0);
 		public static Attribute<float> HealingReceivedQueued = new SimpleAttribute<float>(AttributeId.HealingReceivedQueued, 0);
 		public static Attribute<int> HealingReceivedQueuedTick = new SimpleAttribute<int>(AttributeId.HealingReceivedQueuedTick, 0);
+		public static Attribute<float> StaggeredDamageFraction = new SimpleAttribute<float>(AttributeId.StaggeredDamageFraction, 0);
+		public static Attribute<float> StaggeredDamageDuration = new SimpleAttribute<float>(AttributeId.StaggeredDamageDuration, 0);
 		public static Attribute<int> ResourceTypePrimary = new SimpleAttribute<int>(AttributeId.ResourceTypePrimary, -1);
 		public static Attribute<int> ResourceTypeSecondary = new SimpleAttribute<int>(AttributeId.ResourceTypeSecondary, -1);
 		public static Attribute<float> ResourceCur = new SimpleAttribute<float>(AttributeId.ResourceCur, 0);
@@ -361,7 +360,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<float> AttacksPerSecondPercentReduction = new SimpleAttribute<float>(AttributeId.AttacksPerSecondPercentReduction, 0);
 		public static Attribute<float> AttacksPerSecondPercentSubtotal = new SimpleAttribute<float>(AttributeId.AttacksPerSecondPercentSubtotal, 0);
 		public static Attribute<float> AICooldownReductionPercent = new SimpleAttribute<float>(AttributeId.AICooldownReductionPercent, 0);
-		public static Attribute<float> PowerCooldownReductionPercentCap = new SimpleAttribute<float>(AttributeId.PowerCooldownReductionPercentCap, 0);
+		public static Attribute<float> PowerCooldownMinTime = new SimpleAttribute<float>(AttributeId.PowerCooldownMinTime, 0);
 		public static Attribute<float> PowerCooldownReductionPercent = new SimpleAttribute<float>(AttributeId.PowerCooldownReductionPercent, 0);
 		public static Attribute<float> PowerCooldownReductionPercentAll = new SimpleAttribute<float>(AttributeId.PowerCooldownReductionPercentAll, 0);
 		public static Attribute<float> PowerCooldownReductionPercentAllCapped = new SimpleAttribute<float>(AttributeId.PowerCooldownReductionPercentAllCapped, 0);
@@ -517,6 +516,8 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> DestroyWhenPathBlocked = new SimpleAttribute<int>(AttributeId.DestroyWhenPathBlocked, 0);
 		public static Attribute<int> SkillToggledState = new SimpleAttribute<int>(AttributeId.SkillToggledState, 0);
 		public static Attribute<int> SkillCharges = new SimpleAttribute<int>(AttributeId.SkillCharges, 0);
+		public static Attribute<int> NextChargeGainedtime = new SimpleAttribute<int>(AttributeId.NextChargeGainedtime, 0);
+		public static Attribute<int> RechargeStartTime = new SimpleAttribute<int>(AttributeId.RechargeStartTime, 0);
 		public static Attribute<int> Act = new SimpleAttribute<int>(AttributeId.Act, -1);
 		public static Attribute<int> Difficulty = new SimpleAttribute<int>(AttributeId.Difficulty, -1);
 		public static Attribute<float> LastDamageAmount = new SimpleAttribute<float>(AttributeId.LastDamageAmount, float.NaN);
@@ -556,6 +557,14 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> IsVendorBought = new SimpleAttribute<int>(AttributeId.IsVendorBought, 0);
 		public static Attribute<int> DyeType = new SimpleAttribute<int>(AttributeId.DyeType, 0);
 		public static Attribute<int> Loot20Drop = new SimpleAttribute<int>(AttributeId.Loot20Drop, 0);
+		public static Attribute<int> Unidentified = new SimpleAttribute<int>(AttributeId.Unidentified, 0);
+		public static Attribute<int> ConsumableAddSockets = new SimpleAttribute<int>(AttributeId.ConsumableAddSockets, 0);
+		public static Attribute<int> AddSocketsTypeWeapon = new SimpleAttribute<int>(AttributeId.AddSocketsTypeWeapon, 0);
+		public static Attribute<int> AddSocketsTypeOffhand = new SimpleAttribute<int>(AttributeId.AddSocketsTypeOffhand, 0);
+		public static Attribute<int> AddSocketsTypeLegs = new SimpleAttribute<int>(AttributeId.AddSocketsTypeLegs, 0);
+		public static Attribute<int> AddSocketsTypeChest = new SimpleAttribute<int>(AttributeId.AddSocketsTypeChest, 0);
+		public static Attribute<int> AddSocketsTypeHelm = new SimpleAttribute<int>(AttributeId.AddSocketsTypeHelm, 0);
+		public static Attribute<int> AddSocketsTypeJewelry = new SimpleAttribute<int>(AttributeId.AddSocketsTypeJewelry, 0);
 		public static Attribute<int> EnchantAffix = new SimpleAttribute<int>(AttributeId.EnchantAffix, -1);
 		public static Attribute<int> EnchantRangeVal = new SimpleAttribute<int>(AttributeId.EnchantRangeVal, 0);
 		public static Attribute<int> EnchantRangeMax = new SimpleAttribute<int>(AttributeId.EnchantRangeMax, 255);
@@ -614,7 +623,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> GrantsNoXP = new SimpleAttribute<int>(AttributeId.GrantsNoXP, 0);
 		public static Attribute<int> HirelingClass = new SimpleAttribute<int>(AttributeId.HirelingClass, 0);
 		public static Attribute<int> SummonedBySNO = new SimpleAttribute<int>(AttributeId.SummonedBySNO, -1);
-		public static Attribute<float> PetProcScalar = new SimpleAttribute<float>(AttributeId.PetProcScalar, 0);
+		public static Attribute<float> PetProcScalar = new SimpleAttribute<float>(AttributeId.PetProcScalar, 1);
 		public static Attribute<int> PetCannotBeDismissed = new SimpleAttribute<int>(AttributeId.PetCannotBeDismissed, 0);
 		public static Attribute<int> IsNPC = new SimpleAttribute<int>(AttributeId.IsNPC, 0);
 		public static Attribute<int> NPCIsOperatable = new SimpleAttribute<int>(AttributeId.NPCIsOperatable, 0);
@@ -854,6 +863,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<float> LookTargetBroadcastRadius = new SimpleAttribute<float>(AttributeId.LookTargetBroadcastRadius, 0);
 		public static Attribute<int> Stealthed = new SimpleAttribute<int>(AttributeId.Stealthed, 0);
 		public static Attribute<int> GemQuality = new SimpleAttribute<int>(AttributeId.GemQuality, 0);
+		public static Attribute<float> GemAttributesMultiplier = new SimpleAttribute<float>(AttributeId.GemAttributesMultiplier, 0);
 		public static Attribute<int> ItemBuffIcon = new SimpleAttribute<int>(AttributeId.ItemBuffIcon, 0);
 		public static Attribute<float> ScrollDuration = new SimpleAttribute<float>(AttributeId.ScrollDuration, 0);
 		public static Attribute<int> GizmoActorSNOToSpawn = new SimpleAttribute<int>(AttributeId.GizmoActorSNOToSpawn, -1);
@@ -1422,6 +1432,8 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> Dueling = new SimpleAttribute<int>(AttributeId.Dueling, 0);
 		public static Attribute<int> PVPPlayerRevealedOnMap = new SimpleAttribute<int>(AttributeId.PVPPlayerRevealedOnMap, 0);
 		public static Attribute<int> TargetedLegendaryChance = new SimpleAttribute<int>(AttributeId.TargetedLegendaryChance, 0);
+		public static Attribute<float> SeasonalLegendaryChance = new SimpleAttribute<float>(AttributeId.SeasonalLegendaryChance, 0);
+		public static Attribute<int> ReceivedSeasonalLegendary = new SimpleAttribute<int>(AttributeId.ReceivedSeasonalLegendary, 0);
 		public static Attribute<int> HasDroppedSpecialloot = new SimpleAttribute<int>(AttributeId.HasDroppedSpecialloot, 0);
 		public static Attribute<int> ScrollBuff = new SimpleAttribute<int>(AttributeId.ScrollBuff, 0);
 		public static Attribute<int> BuffExclusiveTypeActive = new SimpleAttribute<int>(AttributeId.BuffExclusiveTypeActive, 0);
@@ -1496,6 +1508,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<float> ItemRestBonusPool = new SimpleAttribute<float>(AttributeId.ItemRestBonusPool, 0);
 		public static Attribute<float> ItemUnluckyBonusSecs = new SimpleAttribute<float>(AttributeId.ItemUnluckyBonusSecs, 0);
 		public static Attribute<int> ItemUnluckyBonusAllow = new SimpleAttribute<int>(AttributeId.ItemUnluckyBonusAllow, 0);
+		public static Attribute<float> AvengerBuildupSecs = new SimpleAttribute<float>(AttributeId.AvengerBuildupSecs, 0);
 		public static Attribute<int> BountyObjective = new SimpleAttribute<int>(AttributeId.BountyObjective, 0);
 		public static Attribute<int> Illusion = new SimpleAttribute<int>(AttributeId.Illusion, 0);
 		public static Attribute<int> TornadoStraighten = new SimpleAttribute<int>(AttributeId.TornadoStraighten, 0);
@@ -1508,9 +1521,26 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> PierceCharge = new SimpleAttribute<int>(AttributeId.PierceCharge, 0);
 		public static Attribute<int> UpscaledLevel = new SimpleAttribute<int>(AttributeId.UpscaledLevel, 0);
 		public static Attribute<int> Resurrected = new SimpleAttribute<int>(AttributeId.Resurrected, 0);
+		public static Attribute<float> DamageSidekickMultiplier = new SimpleAttribute<float>(AttributeId.DamageSidekickMultiplier, 0);
 		public static Attribute<int> ThornsAOERadiusNextTime = new SimpleAttribute<int>(AttributeId.ThornsAOERadiusNextTime, 0);
 		public static Attribute<int> MovementDestroysWallerWalls = new SimpleAttribute<int>(AttributeId.MovementDestroysWallerWalls, 0);
+		public static Attribute<int> MailFlagIcon = new SimpleAttribute<int>(AttributeId.MailFlagIcon, 0);
+		public static Attribute<int> TieredLootRunKeyLevel = new SimpleAttribute<int>(AttributeId.TieredLootRunKeyLevel, -1);
+		public static Attribute<int> InTieredLootRunLevel = new SimpleAttribute<int>(AttributeId.InTieredLootRunLevel, -1);
+		public static Attribute<int> IsLootRunBoss = new SimpleAttribute<int>(AttributeId.IsLootRunBoss, 0);
+		public static Attribute<int> ForcedMove = new SimpleAttribute<int>(AttributeId.ForcedMove, 0);
+		public static Attribute<int> EffectiveLevel = new SimpleAttribute<int>(AttributeId.EffectiveLevel, 0);
+		public static Attribute<int> JewelRank = new SimpleAttribute<int>(AttributeId.JewelRank, 0);
+		public static Attribute<int> ItemConsoleMaxLevel = new SimpleAttribute<int>(AttributeId.ItemConsoleMaxLevel, 0);
+		public static Attribute<int> ConsolePromoItem = new SimpleAttribute<int>(AttributeId.ConsolePromoItem, 0);
 		public static Attribute<int> DoubleBloodShards = new SimpleAttribute<int>(AttributeId.DoubleBloodShards, 0);
+		public static Attribute<int> JewelUpgradesUsed = new SimpleAttribute<int>(AttributeId.JewelUpgradesUsed, 0);
+		public static Attribute<int> JewelUpgradesMax = new SimpleAttribute<int>(AttributeId.JewelUpgradesMax, 0);
+		public static Attribute<int> ItemIgnoresPickupRadiusForPickup = new SimpleAttribute<int>(AttributeId.ItemIgnoresPickupRadiusForPickup, 0);
+		public static Attribute<int> Hunter = new SimpleAttribute<int>(AttributeId.Hunter, 0);
+		public static Attribute<int> ParticipatingInTieredLootRun = new SimpleAttribute<int>(AttributeId.ParticipatingInTieredLootRun, 0);
+		public static Attribute<int> TieredLootRunRewardChoiceState = new SimpleAttribute<int>(AttributeId.TieredLootRunRewardChoiceState, -1);
+		public static Attribute<int> TieredLootRunRewardKeyValue = new SimpleAttribute<int>(AttributeId.TieredLootRunRewardKeyValue, -1);
 	}
 	#endregion
 }

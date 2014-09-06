@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,22 +8,18 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXIconList : UXItemsControl
 	{
-		// 2.0.6.24641
-		public const int SizeOf = 0xA80;
-		public const int VTable = 0x017C29A8;
+		public new const int SizeOf = 0xA70;
+		public new const int VTable = 0x01750AF8;
 
-		public UXIconList(MemoryBase memory, int address)
-			: base(memory, address) { }
-
-		public int xA58 { get { return Field<int>(0xA58); } }
-		public int xA5C { get { return Field<int>(0xA5C); } }
-		public float xA60 { get { return Field<float>(0xA60); } }
-		public float xA64 { get { return Field<float>(0xA64); } }
-		public float xA68 { get { return Field<float>(0xA68); } }
-		public float xA6C { get { return Field<float>(0xA6C); } }
-		public float xA70 { get { return Field<float>(0xA70); } }
-		public float xA74 { get { return Field<float>(0xA74); } }
-		public int xA78 { get { return Field<int>(0xA78); } }
-		public int _xA7C { get { return Field<int>(0xA7C); } }
+		public int xA48 { get { return Read<int>(0xA48); } }
+		public int xA4C { get { return Read<int>(0xA4C); } }
+		public float xA50 { get { return Read<float>(0xA50); } }
+		public float xA54 { get { return Read<float>(0xA54); } }
+		public float xA58 { get { return Read<float>(0xA58); } }
+		public float xA5C { get { return Read<float>(0xA5C); } }
+		public float xA60 { get { return Read<float>(0xA60); } }
+		public float xA64 { get { return Read<float>(0xA64); } }
+		public int xA68 { get { return Read<int>(0xA68); } }
+		public int _xA6C { get { return Read<int>(0xA6C); } }
 	}
 }

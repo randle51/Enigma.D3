@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,11 @@ namespace Enigma.D3.UI
 	{
 		public static bool TryGet<T>(this UIMap map, string name, out T value) where T : UXControl
 		{
-			Pointer ptr = null;
+			Ptr ptr = null;
 			try
 			{
 				ptr = map[name];
-				value = ptr.Dereference<T>();
+				value = ptr.Cast<T>().Dereference();
 				return true;
 			}
 			catch (KeyNotFoundException)
@@ -32,18 +33,15 @@ namespace Enigma.D3.UI
 		// 2.0.0.20874
 		public const int SizeOf = 0x34; // = 52
 
-		public UIMap(MemoryBase memory, int address)
-			: base(memory, address) { }
+		public Ptr<Pair>[] x00_Buckets { get { return ReadPointer<Ptr<Pair>>(0x00).ToArray(x08_Limit); } }// return Dereference<MemoryPointer<Pair>>(0x00, x08_Limit); } }
+		public int x04 { get { return Read<int>(0x04); } }
+		public int x08_Limit { get { return Read<int>(0x08); } }
+		public int _x0C { get { return Read<int>(0x0C); } }
+		public BasicAllocator x10_DynAllocator { get { return Read<BasicAllocator>(0x10); } }
+		public int _x2C { get { return Read<int>(0x2C); } }
+		public int x30 { get { return Read<int>(0x30); } }
 
-		public Pointer<Pair>[] x00_Buckets { get { return Dereference<Pointer<Pair>>(0x00, x08_Limit); } }
-		public int x04 { get { return Field<int>(0x04); } }
-		public int x08_Limit { get { return Field<int>(0x08); } }
-		public int _x0C { get { return Field<int>(0x0C); } }
-		public BasicAllocator x10_DynAllocator { get { return Field<BasicAllocator>(0x10); } }
-		public int _x2C { get { return Field<int>(0x2C); } }
-		public int x30 { get { return Field<int>(0x30); } }
-
-		public Pointer this[string name]
+		public Ptr this[string name]
 		{
 			get
 			{
@@ -51,7 +49,7 @@ namespace Enigma.D3.UI
 			}
 		}
 
-		public Pointer this[UIReference handle]
+		public Ptr this[UIReference handle]
 		{
 			get
 			{
@@ -59,12 +57,12 @@ namespace Enigma.D3.UI
 			}
 		}
 
-		public Pointer this[ulong hash]
+		public Ptr this[ulong hash]
 		{
 			get
 			{
 				uint index = HashUtils.Fnv32((int)hash) % (uint)x08_Limit;
-				var pair = x00_Buckets[index].Value;
+				var pair = x00_Buckets[index].Dereference();
 				while (pair != null)
 				{
 					if (pair.x08_Hash == hash)
@@ -85,7 +83,7 @@ namespace Enigma.D3.UI
 				{
 					foreach (var bucket in buckets)
 					{
-						var pair = bucket.Value;
+						var pair = bucket.Dereference();
 						while (pair != null)
 						{
 							yield return pair;
@@ -107,14 +105,11 @@ namespace Enigma.D3.UI
 		{
 			public const int SizeOf = 0x18; // = 20
 
-			public Pair(MemoryBase memory, int address)
-				: base(memory, address) { }
-
 			public Pair x00_Next { get { return Dereference<Pair>(0x00); } }
-			public int _x04 { get { return Field<int>(0x04); } } // Alignment?
-			public ulong x08_Hash { get { return Field<ulong>(0x08); } }
-			public Pointer x10_PtrComponent { get { return Field<Pointer>(0x10); } }
-			public int x14 { get { return Field<int>(0x14); } }
+			public int _x04 { get { return Read<int>(0x04); } } // Alignment?
+			public ulong x08_Hash { get { return Read<ulong>(0x08); } }
+			public Ptr x10_PtrComponent { get { return Read<Ptr>(0x10); } }
+			public int x14 { get { return Read<int>(0x14); } }
 		}
 	}
 }
