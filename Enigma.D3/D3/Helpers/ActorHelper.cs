@@ -1,4 +1,5 @@
-﻿using System;
+using Enigma.Memory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,9 @@ namespace Enigma.D3.Helpers
 			if (localData.x00_IsActorCreated != 0)
 			{
 				var objMgr = Engine.Current.ObjectManager;
-				var localPlayerDataIndex = objMgr.x994_Player.x00000_LocalDataIndex;
-				var localPlayerData = objMgr.x798_Storage.x0E4_PlayerDataCollection.x0058_Items[localPlayerDataIndex];
-				var localActor = objMgr.x910_RActors[(short)localPlayerData.x0008_ActorId];
+				var localPlayerDataIndex = objMgr.x9AC_Player.x00000_LocalDataIndex;
+				var localPlayerData = objMgr.x798_Storage.x0FC_PlayerDataCollection.x0058_Items[localPlayerDataIndex];
+				var localActor = objMgr.x928_RActors[(short)localPlayerData.x0008_ActorId];
 				return localActor;
 			}
 			return null;
@@ -41,7 +42,7 @@ namespace Enigma.D3.Helpers
 
 		private static ExpandableContainer<Actor> GetContainer()
 		{
-			return Engine.TryGet(a => a.ObjectManager.x910_RActors);
+			return Engine.TryGet(a => a.ObjectManager.x928_RActors);
 		}
 	}
 }

@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,23 +7,16 @@ using Enigma.D3.Memory;
 
 namespace Enigma.D3.Collections
 {
-	public class LinkedList : LinkedList<MemoryObject>
-	{
-		public LinkedList(MemoryBase memory, int address)
-			: base(memory, address) { }
-	}
+	public class LinkedList : LinkedList<Ptr> { }
 
 	public class LinkedList<T> : MemoryObject, IEnumerable<T>
 	{
 		// 2.0.0.20874
 		public const int SizeOf = 0x10; // = 16
 
-		public LinkedList(MemoryBase memory, int address)
-			: base(memory, address) { }
-
 		public Node x00_First { get { return Dereference<Node>(0x00); } }
 		public Node x04_Last { get { return Dereference<Node>(0x04); } }
-		public int x08_Count { get { return Field<int>(0x08); } }
+		public int x08_Count { get { return Read<int>(0x08); } }
 		public Allocator<Node> x0C_NodeAllocator { get { return Dereference<Allocator<Node>>(0x0C); } }
 
 		public IEnumerator<T> GetEnumerator()
@@ -51,10 +45,7 @@ namespace Enigma.D3.Collections
 			private static int _sizeOfValue = TypeHelper<T>.SizeOf;
 			public static int SizeOf = _sizeOfValue + 8;
 
-			public Node(MemoryBase memory, int address)
-				: base(memory, address) { }
-
-			public T x00_Value { get { return Field<T>(0x00); } }
+			public T x00_Value { get { return Read<T>(0x00); } }
 			public Node x04_Previous { get { return Dereference<Node>(_sizeOfValue + 0x00); } }
 			public Node x08_Next { get { return Dereference<Node>(_sizeOfValue + 0x04); } }
 

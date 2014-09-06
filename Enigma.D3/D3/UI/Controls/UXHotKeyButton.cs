@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,10 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXHotKeyButton : UXButton
 	{
-		// 2.0.6.24641
-		public const int SizeOf = 0xF40;
-		public const int VTable = 0x017C2B98;
+		public new const int SizeOf = 0xF50;
+		public new const int VTable = 0x01750CE8;
 
-		public UXHotKeyButton(MemoryBase memory, int address)
-			: base(memory, address) { }
-
-		public int xF38_Neg1 { get { return Field<int>(0xF38); } }
-		public int xF3C { get { return Field<int>(0xF3C); } }
+		public int xF48_Neg1 { get { return Read<int>(0xF48); } }
+		public int xF4C { get { return Read<int>(0xF4C); } }
 	}
 }

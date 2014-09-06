@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +11,7 @@ namespace Enigma.D3
 	{
 		public const int SizeOf = 4 + CriticalSection.SizeOf;
 
-		public NamedCriticalSection(MemoryBase memory, int address)
-			: base(memory, address) { }
-
-		public string x00_Name { get { return Dereference(0x00, 256); } }
-		public CriticalSection x04_CriticalSection { get { return Field<CriticalSection>(0x04); } }
+		public string x00_Name { get { return ReadStringPointer(0x00, 256).Dereference(); } }
+		public CriticalSection x04_CriticalSection { get { return Read<CriticalSection>(0x04); } }
 	}
 }

@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +8,11 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXContextMenuItem : UXButton
 	{
-		// 2.0.6.24641
-		public const int SizeOf = 0x1148;
-		public const int VTable = 0x017C5C30;
+		public new const int SizeOf = 0x1158;
+		public new const int VTable = 0x01753DE0;
 
-		public UXContextMenuItem(MemoryBase memory, int address)
-			: base(memory, address) { }
-
-		public int x0F38_One { get { return Field<int>(0xF38); } }
-		public int _x0F3C { get { return Field<int>(0xF3C); } }
-		public UIReference x0F40_UIRef { get { return Field<UIReference>(0xF40); } }
+		public int x0F48_One { get { return Read<int>(0xF48); } }
+		public int _x0F4C { get { return Read<int>(0xF4C); } }
+		public UIReference x0F50_UIRef { get { return Read<UIReference>(0xF50); } }
 	}
 }

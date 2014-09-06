@@ -1,3 +1,4 @@
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,12 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXTree : UXItemsControl
 	{
-		// 2.0.6.24641
-		public const int SizeOf = 0xE70;
-		public const int VTable = 0x017C28E0;
+		public new const int SizeOf = 0xE60;
+		public new const int VTable = 0x01750A30;
 
-		public UXTree(MemoryBase memory, int address)
-			: base(memory, address) { }
-
-		public int xA58 { get { return Field<int>(0xA58); } }
-		public int _xA5C { get { return Field<int>(0xA5C); } }
-		public UIReference xA60_UIRef_StackPanel { get { return Field<UIReference>(0xA60); } }
-		public UIReference xC68_UIRef { get { return Field<UIReference>(0xC68); } }
+		public int xA48 { get { return Read<int>(0xA48); } }
+		public int _xA4C { get { return Read<int>(0xA4C); } }
+		public UIReference xA50_UIRef_StackPanel { get { return Read<UIReference>(0xA50); } }
+		public UIReference xC58_UIRef { get { return Read<UIReference>(0xC58); } }
 	}
 }

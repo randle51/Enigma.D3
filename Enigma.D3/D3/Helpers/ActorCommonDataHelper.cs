@@ -1,4 +1,5 @@
-﻿using System;
+using Enigma.Memory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,13 +13,9 @@ namespace Enigma.D3.Helpers
 		{
 			var localData = Engine.Current.LocalData;
 			localData.TakeSnapshot();
-			if (localData.x00_IsActorCreated != 0)
+			if (localData.x00_IsActorCreated != 0 || localData.x00_IsActorCreated == unchecked((int)0xCDCDCDCD))
 			{
-				var objMgr = Engine.Current.ObjectManager;
-				var localPlayerDataIndex = objMgr.x994_Player.x00000_LocalDataIndex;
-				var localPlayerData = objMgr.x798_Storage.x0E4_PlayerDataCollection.x0058_Items[localPlayerDataIndex];
-				var localAcd = objMgr.x798_Storage.x110_ActorCommonDataManager.x00_ActorCommonData[(short)localPlayerData.x0004_AcdId];
-				return localAcd;
+				return ActorCommonData.Container[(short)PlayerData.Local.x0004_AcdId];
 			}
 			return default(ActorCommonData);
 		}
@@ -32,7 +29,7 @@ namespace Enigma.D3.Helpers
 		{
 			try
 			{
-				return Engine.Current.ObjectManager.x798_Storage.x110_ActorCommonDataManager.x00_ActorCommonData[(short)acdId];
+				return Engine.Current.ObjectManager.x798_Storage.x128_ActorCommonDataManager.x00_ActorCommonData[(short)acdId];
 			}
 			catch
 			{
@@ -92,7 +89,7 @@ namespace Enigma.D3.Helpers
 
 		private static ExpandableContainer<ActorCommonData> GetContainer()
 		{
-			return Engine.TryGet(a => a.ObjectManager.x798_Storage.x110_ActorCommonDataManager.x00_ActorCommonData);
+			return Engine.TryGet(a => a.ObjectManager.x798_Storage.x128_ActorCommonDataManager.x00_ActorCommonData);
 		}
 	}
 }
