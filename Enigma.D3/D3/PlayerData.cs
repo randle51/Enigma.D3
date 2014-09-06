@@ -7,9 +7,10 @@ using Enigma.D3.Collections;
 
 namespace Enigma.D3
 {
+	[Version("2.1.0.26451")]
 	public partial class PlayerData : MemoryObject
 	{
-		public const int SizeOf = 0xE6B0;
+		public const int SizeOf = 0xE6B0; // 59056
 
 		public int x0000_Index { get { return Read<int>(0x0000); } }
 		public int x0004_AcdId { get { return Read<int>(0x0004); } }
@@ -972,11 +973,6 @@ namespace Enigma.D3
 		public int _xE6A8 { get { return Read<int>(0xE6A8); } }
 		public int _xE6AC { get { return Read<int>(0xE6AC); } }
 
-		public IEnumerable<VendorToken> EnumerateVendorTokens()
-		{
-			return xCB6C_VendorTokens.Take(xD36C_VendorTokenCount);
-		}
-
 		public class VendorToken : MemoryObject
 		{
 			public const int SizeOf = 8;
@@ -1785,6 +1781,11 @@ namespace Enigma.D3
 		public int[] GetPassivePowerSnoIds()
 		{
 			return x00A0_ServerData.x000C_PlayerSavedData.x1278_PassivePowerSnoIds;
+		}
+
+		public IEnumerable<VendorToken> EnumerateVendorTokens()
+		{
+			return xCB6C_VendorTokens.Take(xD36C_VendorTokenCount);
 		}
 	}
 }
