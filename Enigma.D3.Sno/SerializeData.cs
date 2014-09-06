@@ -13,7 +13,7 @@ namespace Enigma.D3.Sno
 
 		public int GetRelativeOffset(SerializeMemoryObject obj)
 		{
-			return (obj.BaseAddress + Offset) - obj.Address;
+			return (obj.SerializeBaseAddress + Offset) - obj.Address;
 		}
 	}
 }

@@ -2,6 +2,7 @@ using System;
 using System.Runtime.CompilerServices;
 using Enigma.D3.Collections;
 using Enigma.D3.Memory;
+using Enigma.Memory;
 
 namespace Enigma.D3.Sno
 {
