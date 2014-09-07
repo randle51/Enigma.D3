@@ -25,6 +25,21 @@ namespace Enigma.D3.Sno
 				.Select(a => a.x0C_Ptr_SnoValue.Cast<T>().Dereference());
 		}
 
+		public static T GetSnoValue<T>(SnoGroupId groupId, int snoId) where T: SerializeMemoryObject
+		{
+			var container = Engine.TryGet((engine) => engine.SnoGroupsByCode[(int)groupId].x10_Container);
+			if (container == null)
+				return default(T);
+
+			var def = container.x11C_Ptr_Items.Cast<SnoDefinition<T>>()[(short)SnoIdToEntityId(snoId)];
+			return def.x0C_Ptr_SnoValue.Dereference();
+		}
+
+		public static int SnoIdToEntityId(int snoId)
+		{
+			return Engine.Current.Memory.Reader.Read<Ptr<int>>(0x01C634E0)[snoId];
+		}
+
 		public static SnoFile<T> LoadFile<T>(string path) where T : SerializeMemoryObject
 		{
 			var buffer = new BufferMemoryReader(File.ReadAllBytes(path));
