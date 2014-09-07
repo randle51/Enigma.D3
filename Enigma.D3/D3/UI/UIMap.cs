@@ -33,7 +33,7 @@ namespace Enigma.D3.UI
 		// 2.0.0.20874
 		public const int SizeOf = 0x34; // = 52
 
-		public Ptr<Pair>[] x00_Buckets { get { return ReadPointer<Ptr<Pair>>(0x00).ToArray(x08_Limit); } }// return Dereference<MemoryPointer<Pair>>(0x00, x08_Limit); } }
+		public Ptr<Ptr<Pair>> x00_Ptr_Buckets { get { return ReadPointer<Ptr<Pair>>(0x00); } }
 		public int x04 { get { return Read<int>(0x04); } }
 		public int x08_Limit { get { return Read<int>(0x08); } }
 		public int _x0C { get { return Read<int>(0x0C); } }
@@ -62,12 +62,12 @@ namespace Enigma.D3.UI
 			get
 			{
 				uint index = HashUtils.Fnv32((int)hash) % (uint)x08_Limit;
-				var pair = x00_Buckets[index].Dereference();
+				var pair = x00_Ptr_Buckets[(int)index].Dereference();
 				while (pair != null)
 				{
 					if (pair.x08_Hash == hash)
 						return pair.x10_PtrComponent;
-					pair = pair.x00_Next;
+					pair = pair.x00_Ptr_Next.Dereference();
 				}
 				throw new KeyNotFoundException();
 			}
@@ -78,7 +78,7 @@ namespace Enigma.D3.UI
 			int count = x08_Limit;
 			if (count > 0)
 			{
-				var buckets = x00_Buckets;
+				var buckets = x00_Ptr_Buckets.ToArray(count);
 				if (buckets != null)
 				{
 					foreach (var bucket in buckets)
@@ -87,7 +87,7 @@ namespace Enigma.D3.UI
 						while (pair != null)
 						{
 							yield return pair;
-							pair = pair.x00_Next;
+							pair = pair.x00_Ptr_Next.Dereference();
 						}
 					}
 				}
@@ -99,13 +99,11 @@ namespace Enigma.D3.UI
 			return GetEnumerator();
 		}
 
-
-
 		public class Pair : MemoryObject
 		{
 			public const int SizeOf = 0x18; // = 20
 
-			public Pair x00_Next { get { return Dereference<Pair>(0x00); } }
+			public Ptr<Pair> x00_Ptr_Next { get { return ReadPointer<Pair>(0x00); } }
 			public int _x04 { get { return Read<int>(0x04); } } // Alignment?
 			public ulong x08_Hash { get { return Read<ulong>(0x08); } }
 			public Ptr x10_PtrComponent { get { return Read<Ptr>(0x10); } }

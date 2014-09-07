@@ -7,7 +7,7 @@ using Enigma.D3.Memory;
 
 namespace Enigma.D3.UI
 {
-	public class BuffManager : MemoryObject
+	public partial class BuffManager : MemoryObject
 	{
 		// 2.0.4.23119
 		public const int SizeOf = 0x6C; // 108
@@ -21,5 +21,20 @@ namespace Enigma.D3.UI
 		public int _x54 { get { return Read<int>(0x54); } }
 		public LinkedList<Buff> x58_BuffList { get { return Read<LinkedList<Buff>>(0x58); } }
 		public int _x68 { get { return Read<int>(0x68); } }
+	}
+
+	public partial class BuffManager
+	{
+		public static BuffManager Instance { get { return Engine.TryGet(engine => engine.BuffManager); } }
+
+		public static bool IsBuffActive(int powerSnoId)
+		{
+			return Instance.IfNotNull(a => a.x1C_Buffs.Any(buff => buff.x000_PowerSnoId == powerSnoId));
+		}
+
+		public static bool IsDebuffActive(int powerSnoId)
+		{
+			return Instance.IfNotNull(a => a.x30_Debuffs.Any(debuff => debuff.x000_PowerSnoId == powerSnoId));
+		}
 	}
 }
