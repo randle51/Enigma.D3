@@ -11,9 +11,14 @@ namespace Enigma
 	{
 		public static TResult IfNotNull<T, TResult>(this T obj, Func<T, TResult> getter)
 			where T : class
-			where TResult : class
 		{
-			return obj == null ? null : getter(obj);
+			return obj == null ? default(TResult) : getter(obj);
+		}
+
+		public static TResult IfNotNull<T, TResult>(this T obj, Func<T, TResult> getter, TResult fallbackValue)
+			where T : class
+		{
+			return obj == null ? fallbackValue : getter(obj);
 		}
 	}
 }
