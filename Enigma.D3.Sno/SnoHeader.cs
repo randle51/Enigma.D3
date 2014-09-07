@@ -9,8 +9,10 @@ namespace Enigma.D3.Sno
 {
 	public class SnoHeader : MemoryObject
 	{
-		public Sno x00_SnoId;
-		public int x04_LockCount;
-		public int x08_Flags; // 1 = DoNotPurge
+		public const int SizeOf = 0x0C; // 12
+
+		public Sno x00_SnoId { get { return Read<Sno>(0x00); } }
+		public int x04_LockCount { get { return Read<int>(0x04); } }
+		public int x08_Flags { get { return Read<int>(0x08); } } // 1 = DoNotPurge
 	}
 }

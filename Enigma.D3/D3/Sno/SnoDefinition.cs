@@ -11,7 +11,7 @@ namespace Enigma.D3.Sno
 
 	public class SnoDefinition<T> : MemoryObject
 	{
-		public const int SizeOf = 20;
+		public const int SizeOf = 16;
 
 		public int x00_Id { get { return Read<int>(0x00); } }
 		public int x04_LastTouched { get { return Read<int>(0x04); } }
