@@ -15,6 +15,7 @@ namespace Enigma.D3.Sno
 
 		public int x00_Id { get { return Read<int>(0x00); } }
 		public int x04_LastTouched { get { return Read<int>(0x04); } }
+		public byte x07_SnoGroupId { get { return Read<byte>(0x07); } }
 		public int x08_Size { get { return Read<int>(0x08); } }
 		public Ptr<T> x0C_Ptr_SnoValue { get { return ReadPointer<T>(0x0C); } }
 	}

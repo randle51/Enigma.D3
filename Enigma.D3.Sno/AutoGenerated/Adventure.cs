@@ -11,6 +11,7 @@ namespace Enigma.D3.Sno
 		// 2.1.0.26451
 		public const int SizeOf = 0x24; // 36
 		
+		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
 		public Sno x0C_ActorSno { get { return Read<Sno>(0x0C); } }
 		public float x10 { get { return Read<float>(0x10); } }
 		public Angle x14_Angle { get { return Read<Angle>(0x14); } }

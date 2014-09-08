@@ -11,6 +11,7 @@ namespace Enigma.D3.Sno
 		// 2.1.0.26451
 		public const int SizeOf = 0x368; // 872
 		
+		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
 		public int x00C { get { return Read<int>(0x00C); } }
 		public int x010_Enum { get { return Read<int>(0x010); } } // Invalid = 0, Monster = 1, Gizmo = 2, Client Effect = 3, Server Prop = 4, Environment = 5, Critter = 6, Player = 7, Item = 8, Axe Symbol = 9, Projectile = 10, Custom Brain = 11
 		public Sno x014_AppearanceSno { get { return Read<Sno>(0x014); } }

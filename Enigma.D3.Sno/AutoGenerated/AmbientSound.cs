@@ -11,6 +11,7 @@ namespace Enigma.D3.Sno
 		// 2.1.0.26451
 		public const int SizeOf = 0x9C; // 156
 		
+		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
 		public int x0C { get { return Read<int>(0x0C); } }
 		public Sno x10_SoundSno { get { return Read<Sno>(0x10); } }
 		public RandomAmbientSoundParams[] x14_RandomAmbientSoundParams { get { return Read<RandomAmbientSoundParams>(0x14, 2); } }
