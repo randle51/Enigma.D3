@@ -11,6 +11,7 @@ namespace Enigma.D3.Sno
 		// 2.1.0.26451
 		public const int SizeOf = 0x288; // 648
 		
+		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
 		public GlobalServerData[] x010_GlobalServerDatas { get { return Deserialize<GlobalServerData>(x018_SerializeData); } }
 		public SerializeData x018_SerializeData { get { return Read<SerializeData>(0x018); } }
 		public int x020 { get { return Read<int>(0x020); } }

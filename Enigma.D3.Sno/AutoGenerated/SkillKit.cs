@@ -11,6 +11,7 @@ namespace Enigma.D3.Sno
 		// 2.1.0.26451
 		public const int SizeOf = 0x40; // 64
 		
+		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
 		public TraitEntry[] x10_TraitEntries { get { return Deserialize<TraitEntry>(x18_SerializeData); } }
 		public SerializeData x18_SerializeData { get { return Read<SerializeData>(0x18); } }
 		public ActiveSkillEntry[] x20_ActiveSkillEntries { get { return Deserialize<ActiveSkillEntry>(x28_SerializeData); } }

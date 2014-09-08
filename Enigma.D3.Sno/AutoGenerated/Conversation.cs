@@ -11,6 +11,7 @@ namespace Enigma.D3.Sno
 		// 2.1.0.26451
 		public const int SizeOf = 0x110; // 272
 		
+		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
 		public int x00C_Enum { get { return Read<int>(0x00C); } } // Quest Event = 13, Quest Float = 12, Quest Standard = 11, Talk Menu Gossip = 10, Ambient Gossip = 9, Lore Book = 8, Global Float = 7, Global Chatter = 6, Player Callout = 5, Follower Callout = 4, Follower Banter = 3, Ambient Float = 2, Player Emote = 1, Follower Soundset = 0
 		public int x010 { get { return Read<int>(0x010); } }
 		public Sno x014_ConversationSno { get { return Read<Sno>(0x014); } }
