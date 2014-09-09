@@ -13,7 +13,7 @@ namespace Enigma.D3.Sno
 
 		public int SerializeBaseAddress { get { return _serializeBaseAddress ?? Address; } }
 
-		protected T Field<T>(int offset)
+		public override T Read<T>(int offset)
 		{
 			var value = base.Read<T>(offset);
 			var sno = value as SerializeMemoryObject;
@@ -24,7 +24,7 @@ namespace Enigma.D3.Sno
 			return value;
 		}
 
-		protected T[] Field<T>(int offset, int count)
+		public override T[] Read<T>(int offset, int count)
 		{
 			var array = base.Read<T>(offset, count);
 			if (array != null && array.Length > 0 && array[0] is SerializeMemoryObject)
@@ -44,7 +44,7 @@ namespace Enigma.D3.Sno
 
 		protected T[] Deserialize<T>(SerializeData serializeData)
 		{
-			return Field<T>(serializeData.GetRelativeOffset(this), serializeData.Length / TypeHelper<T>.SizeOf);
+			return Read<T>(serializeData.GetRelativeOffset(this), serializeData.Length / TypeHelper<T>.SizeOf);
 		}
 
 		private void SetBaseAddress(int baseAddress)
