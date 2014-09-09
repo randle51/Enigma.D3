@@ -21,7 +21,7 @@ namespace Enigma.Memory
 			return this;
 		}
 
-		public T Read<T>(int offset)
+		public virtual T Read<T>(int offset)
 		{
 			if (!TypeHelper<T>.IsTypeSupportedByMemoryReader)
 				throw new NotSupportedException();
@@ -49,7 +49,7 @@ namespace Enigma.Memory
 			return Memory.Reader.Read<T>(GetAbsoluteAddress(offset));
 		}
 
-		public T[] Read<T>(int offset, int count)
+		public virtual T[] Read<T>(int offset, int count)
 		{
 			if (!TypeHelper<T>.IsTypeSupportedByMemoryReader)
 				throw new NotSupportedException();
