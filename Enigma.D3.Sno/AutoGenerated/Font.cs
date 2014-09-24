@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Font : SerializeMemoryObject
 	{
-		// 2.1.0.26451
+		// 2.1.1.27255
 		public const int SizeOf = 0xC8; // 200
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }

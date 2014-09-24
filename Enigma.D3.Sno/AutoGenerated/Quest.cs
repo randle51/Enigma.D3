@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Quest : SerializeMemoryObject
 	{
-		// 2.1.0.26451
+		// 2.1.1.27255
 		public const int SizeOf = 0x110; // 272
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -32,7 +32,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestUnassignedStep : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x28; // 40
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -46,7 +46,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestStep : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0xA8; // 168
 			
 			public string x00_Text { get { return DeserializeString(x08_SerializeData); } }
@@ -76,7 +76,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestCompletionStep : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x18; // 24
 			
 			public string x00_Text { get { return DeserializeString(x08_SerializeData); } }
@@ -88,7 +88,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BountyData : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x4C; // 76
 			
 			public int x00_Enum { get { return Read<int>(0x00); } } // Invalid = -1, A1 = 0, A2 = 100, A3 = 200, A4 = 300, A5 = 400, OpenWorld = 3000, Test = 1000
@@ -115,7 +115,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestStepObjectiveSet : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x18; // 24
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -126,7 +126,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestStepFailureConditionSet : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x10; // 16
 			
 			public QuestStepFailureCondition[] x00_QuestStepFailureConditions { get { return Deserialize<QuestStepFailureCondition>(x08_SerializeData); } }
@@ -136,7 +136,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestStepBonusObjectiveSet : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x28; // 40
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -151,7 +151,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestStepObjective : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x58; // 88
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -174,7 +174,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestStepFailureCondition : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x48; // 72
 			
 			public int x00_Enum { get { return Read<int>(0x00); } } // Monster Died = 0, Player Died = 1, Actor Died = 2, Timed Event Expired = 3, Item Used = 4, Game Flag Set = 5, Player Flag Set = 6, Event Received = 7
@@ -193,7 +193,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SNOName : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x08; // 8
 			
 			public SnoGroup x00_SnoGroup { get { return Read<SnoGroup>(0x00); } }

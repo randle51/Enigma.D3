@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Anim2D : SerializeMemoryObject
 	{
-		// 2.1.0.26451
+		// 2.1.1.27255
 		public const int SizeOf = 0x40; // 64
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -23,7 +23,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FrameAnim : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x14; // 20
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -36,7 +36,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Anim2DFrame : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x44; // 68
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -46,7 +46,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class RGBAColor : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x04; // 4
 			
 			public byte x00 { get { return Read<byte>(0x00); } }

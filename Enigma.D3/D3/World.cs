@@ -44,6 +44,6 @@ namespace Enigma.D3
 	{
 		public static World Local { get { return Enigma.D3.Helpers.WorldHelper.GetLocalWorld(); } }
 
-		public static Container<World> Container { get { return ObjectManager.Instance.IfNotNull(a => a.x9A4_CWorlds); } }
+		public static Container<World> Container { get { return ObjectManager.Instance.IfNotNull(a => a.x9AC_CWorlds); } }
 	}
 }

@@ -22,6 +22,6 @@ namespace Enigma.D3
 
 	public partial class PlayerDataManager
 	{
-		public static PlayerDataManager Instance { get { return Storage.Instance.IfNotNull(a => a.x0FC_PlayerDataCollection); } }
+		public static PlayerDataManager Instance { get { return Storage.Instance.IfNotNull(a => a.x104_PlayerDataCollection); } }
 	}
 }

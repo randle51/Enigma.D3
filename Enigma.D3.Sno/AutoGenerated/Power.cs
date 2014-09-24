@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Power : SerializeMemoryObject
 	{
-		// 2.1.0.26451
+		// 2.1.1.27255
 		public const int SizeOf = 0x460; // 1120
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -27,7 +27,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class PowerDef : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x2D8; // 728
 			
 			public SerializeData x000_SerializeData { get { return Read<SerializeData>(0x000); } }
@@ -61,7 +61,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ScriptFormulaDetails : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x308; // 776
 			
 			public string x000_Text { get { return ReadString(0x000, 256); } }
@@ -73,7 +73,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ActorCollisionFlags : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x10; // 16
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -85,7 +85,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BuffDef : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x10; // 16
 			
 			public SerializeData x00_SerializeData { get { return Read<SerializeData>(0x00); } }
@@ -95,7 +95,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BuffFilterDef : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x08; // 8
 			
 			public Sno x00_PowerSno { get { return Read<Sno>(0x00); } }

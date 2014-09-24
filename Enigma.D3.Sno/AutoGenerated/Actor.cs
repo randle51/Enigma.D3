@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Actor : SerializeMemoryObject
 	{
-		// 2.1.0.26451
+		// 2.1.1.27255
 		public const int SizeOf = 0x368; // 872
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -45,7 +45,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AxialCylinder : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x14; // 20
 			
 			public Vector3D x00_Vector3D { get { return Read<Vector3D>(0x00); } }
@@ -56,7 +56,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Sphere : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x10; // 16
 			
 			public Vector3D x00_Vector3D { get { return Read<Vector3D>(0x00); } }
@@ -66,7 +66,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AABB : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x18; // 24
 			
 			public Vector3D x00_Vector3D { get { return Read<Vector3D>(0x00); } }
@@ -76,7 +76,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MsgTriggeredEvent : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x19C; // 412
 			
 			public int x000 { get { return Read<int>(0x000); } }
@@ -86,7 +86,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Vector3D : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x0C; // 12
 			
 			public float x00_X { get { return Read<float>(0x00); } }
@@ -97,7 +97,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class WeightedLook : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x44; // 68
 			
 			public LookLink x00_LookLink { get { return Read<LookLink>(0x00); } }
@@ -107,7 +107,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ActorCollisionData : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x44; // 68
 			
 			public ActorCollisionFlags x00_ActorCollisionFlags { get { return Read<ActorCollisionFlags>(0x00); } }
@@ -120,7 +120,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class InventoryImages : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x08; // 8
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -130,7 +130,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TriggerEvent : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x198; // 408
 			
 			public int x000 { get { return Read<int>(0x000); } }
@@ -168,7 +168,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LookLink : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x40; // 64
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -177,7 +177,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ActorCollisionFlags : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x10; // 16
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -189,7 +189,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TriggerConditions : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x24; // 36
 			
 			public Percent x00_Percent { get { return Read<Percent>(0x00); } }
@@ -206,7 +206,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SNOName : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x08; // 8
 			
 			public SnoGroup x00_SnoGroup { get { return Read<SnoGroup>(0x00); } }
@@ -216,7 +216,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class HardpointLink : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x44; // 68
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -226,7 +226,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ConstraintLink : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x40; // 64
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -235,7 +235,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class RGBAColor : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x04; // 4
 			
 			public byte x00 { get { return Read<byte>(0x00); } }

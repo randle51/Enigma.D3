@@ -121,7 +121,7 @@ namespace Enigma.D3
 		public int _x220 { get { return Read<int>(0x220); } }
 		public int _x224 { get { return Read<int>(0x224); } }
 		public int _x228 { get { return Read<int>(0x228); } }
-		public int x22C_Frame { get { return Read<int>(0x22C); } }
+		public int x22C_Tick { get { return Read<int>(0x22C); } }
 		public int _x230 { get { return Read<int>(0x230); } }
 		public int _x234 { get { return Read<int>(0x234); } }
 		public int _x238 { get { return Read<int>(0x238); } }
@@ -248,8 +248,8 @@ namespace Enigma.D3
 		public int _x434 { get { return Read<int>(0x434); } }
 		public int _x438 { get { return Read<int>(0x438); } }
 		public int x43C { get { return Read<int>(0x43C); } }
-		public int x440_Frame { get { return Read<int>(0x440); } }
-		public int _x444 { get { return Read<int>(0x444); } }
+		public int x440_Tick { get { return Read<int>(0x440); } }
+		public int x444_Tick { get { return Read<int>(0x444); } }
 		public int _x448 { get { return Read<int>(0x448); } }
 		public int x44C_Ptr_48Bytes_BannerAttachments { get { return Read<int>(0x44C); } }
 		public int _x450 { get { return Read<int>(0x450); } }
@@ -285,7 +285,7 @@ namespace Enigma.D3
 			}
 		}
 
-		public static ExpandableContainer<Actor> Container { get { return ObjectManager.Instance.IfNotNull(a => a.x928_RActors); } }
+		public static ExpandableContainer<Actor> Container { get { return ObjectManager.Instance.IfNotNull(a => a.x930_RActors); } }
 
 		public static IEnumerable<Actor> Enumerate()
 		{
