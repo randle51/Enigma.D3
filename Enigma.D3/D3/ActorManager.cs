@@ -40,6 +40,6 @@ namespace Enigma.D3
 
 	public partial class ActorManager
 	{
-		public static ActorManager Instance { get { return ObjectManager.Instance.IfNotNull(a => a.x92C_ActorManager); } }
+		public static ActorManager Instance { get { return ObjectManager.Instance.IfNotNull(a => a.x934_ActorManager); } }
 	}
 }

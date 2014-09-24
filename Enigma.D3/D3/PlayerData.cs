@@ -126,10 +126,10 @@ namespace Enigma.D3
 		public int xD4B8_Neg1 { get { return Read<int>(0xD4B8); } }
 		public int xD4BC_Neg1 { get { return Read<int>(0xD4BC); } }
 		public int xD4C0 { get { return Read<int>(0xD4C0); } }
-		public int xD4C4 { get { return Read<int>(0xD4C4); } }
-		public int xD4C8 { get { return Read<int>(0xD4C8); } }
-		public int xD4CC { get { return Read<int>(0xD4CC); } }
-		public int xD4D0_Neg1 { get { return Read<int>(0xD4D0); } }
+		public float xD4C4_X { get { return Read<float>(0xD4C4); } }
+		public float xD4C8_Y { get { return Read<float>(0xD4C8); } }
+		public float xD4CC_Z { get { return Read<float>(0xD4CC); } }
+		public int xD4D0_Neg1 { get { return Read<int>(0xD4D0); } } // Scene or World Entry ID?
 		public ListB xD4D4_ListB { get { return Read<ListB>(0xD4D4); } }
 		public ListB xD4E8_ListB { get { return Read<ListB>(0xD4E8); } }
 		public ListB xD4FC_ListB { get { return Read<ListB>(0xD4FC); } }
@@ -230,7 +230,7 @@ namespace Enigma.D3
 		public int xD8FC { get { return Read<int>(0xD8FC); } }
 		public int xD900 { get { return Read<int>(0xD900); } }
 		public int xD904_ActorSnoId { get { return Read<int>(0xD904); } }
-		public float xD908 { get { return Read<float>(0xD908); } }
+		public float xD908_LifePercentage { get { return Read<float>(0xD908); } }
 		public int xD90C_LevelAreaSnoId { get { return Read<int>(0xD90C); } }
 		public int xD910_LevelAreaSnoId { get { return Read<int>(0xD910); } }
 		public int xD914_HeroClass { get { return Read<int>(0xD914); } }
@@ -840,9 +840,9 @@ namespace Enigma.D3
 		public int _xE294 { get { return Read<int>(0xE294); } }
 		public int _xE298 { get { return Read<int>(0xE298); } }
 		public int _xE29C { get { return Read<int>(0xE29C); } }
-		public int _xE2A0 { get { return Read<int>(0xE2A0); } }
+		public int xE2A0_InputFlags { get { return Read<int>(0xE2A0); } }
 		public int _xE2A4 { get { return Read<int>(0xE2A4); } }
-		public int _xE2A8 { get { return Read<int>(0xE2A8); } }
+		public int _xE2A8 { get { return Read<int>(0xE2A8); } } // Related to Player Map Pos?
 		public int _xE2AC { get { return Read<int>(0xE2AC); } }
 		public int _xE2B0 { get { return Read<int>(0xE2B0); } }
 		public int _xE2B4 { get { return Read<int>(0xE2B4); } }
@@ -898,12 +898,12 @@ namespace Enigma.D3
 		public int _xE37C { get { return Read<int>(0xE37C); } }
 		public int _xE380 { get { return Read<int>(0xE380); } }
 		public int _xE384 { get { return Read<int>(0xE384); } }
-		public int _xE388 { get { return Read<int>(0xE388); } }
-		public int _xE38C { get { return Read<int>(0xE38C); } }
-		public int _xE390 { get { return Read<int>(0xE390); } }
+		public int xE388_PowerUse { get { return Read<int>(0xE388); } }
+		public int xE38C_PowerUse { get { return Read<int>(0xE38C); } }
+		public int xE390_PowerUse { get { return Read<int>(0xE390); } }
 		public int _xE394 { get { return Read<int>(0xE394); } }
 		public int _xE398 { get { return Read<int>(0xE398); } }
-		public int _xE39C { get { return Read<int>(0xE39C); } }
+		public int xE39C_PowerCast { get { return Read<int>(0xE39C); } } // Used at least for TP.
 		public int _xE3A0 { get { return Read<int>(0xE3A0); } }
 		public int _xE3A4 { get { return Read<int>(0xE3A4); } }
 		public int _xE3A8 { get { return Read<int>(0xE3A8); } }
@@ -926,14 +926,14 @@ namespace Enigma.D3
 		public int _xE3EC { get { return Read<int>(0xE3EC); } }
 		public int _xE3F0 { get { return Read<int>(0xE3F0); } }
 		public int _xE3F4 { get { return Read<int>(0xE3F4); } }
-		public int _xE3F8 { get { return Read<int>(0xE3F8); } }
-		public int _xE3FC { get { return Read<int>(0xE3FC); } }
+		public int xE3F8_Power { get { return Read<int>(0xE3F8); } } // Used at least for Walk.
+		public int xE3FC_Power { get { return Read<int>(0xE3FC); } } // Used at least for Walk.
 		public int _xE400 { get { return Read<int>(0xE400); } }
 		public int _xE404 { get { return Read<int>(0xE404); } }
-		public int _xE408 { get { return Read<int>(0xE408); } }
-		public int _xE40C { get { return Read<int>(0xE40C); } }
-		public int _xE410 { get { return Read<int>(0xE410); } }
-		public int _xE414 { get { return Read<int>(0xE414); } }
+		public float xE408_X { get { return Read<float>(0xE408); } }
+		public float xE40C_Y { get { return Read<float>(0xE40C); } }
+		public float xE410_Z { get { return Read<float>(0xE410); } }
+		public int xE414 { get { return Read<int>(0xE414); } } // Scene or World Entry ID.
 		public int _xE418 { get { return Read<int>(0xE418); } }
 		public int _xE41C { get { return Read<int>(0xE41C); } }
 		public int _xE420 { get { return Read<int>(0xE420); } }
@@ -1763,7 +1763,7 @@ namespace Enigma.D3
 
 	public partial class PlayerData
 	{
-		public static PlayerData Local { get { return Engine.TryGet(engine => engine.ObjectManager.x798_Storage.x0FC_PlayerDataCollection.x0058_Items[Player.Instance.x00000_LocalDataIndex]); } }
+		public static PlayerData Local { get { return Engine.TryGet(engine => engine.ObjectManager.x798_Storage.x104_PlayerDataCollection.x0058_Items[Player.Instance.x00000_LocalDataIndex]); } }
 
 		public static PlayerData GetByIndex(int index)
 		{

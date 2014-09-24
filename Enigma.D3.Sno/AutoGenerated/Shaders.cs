@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Shaders : SerializeMemoryObject
 	{
-		// 2.1.0.26451
+		// 2.1.1.27255
 		public const int SizeOf = 0x128; // 296
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -22,7 +22,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class RenderPass : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x238; // 568
 			
 			public int x000 { get { return Read<int>(0x000); } }
@@ -45,7 +45,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class RenderParams : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x60; // 96
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -77,7 +77,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TextureStageParams : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x18; // 24
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -91,7 +91,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class RGBAColor : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x04; // 4
 			
 			public byte x00 { get { return Read<byte>(0x00); } }

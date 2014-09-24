@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Worlds : SerializeMemoryObject
 	{
-		// 2.1.0.26451
+		// 2.1.1.27255
 		public const int SizeOf = 0xB8; // 184
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -25,7 +25,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class WorldServerData : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x90; // 144
 			
 			public SerializeData x00_SerializeData { get { return Read<SerializeData>(0x00); } }
@@ -46,7 +46,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Environment : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x4C; // 76
 			
 			public RGBAColor x00_RGBAColor { get { return Read<RGBAColor>(0x00); } }
@@ -66,7 +66,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DRLGParams : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x78; // 120
 			
 			public SerializeData x00_SerializeData { get { return Read<SerializeData>(0x00); } }
@@ -83,7 +83,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SceneParams : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x18; // 24
 			
 			public SerializeData x00_SerializeData { get { return Read<SerializeData>(0x00); } }
@@ -94,7 +94,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LabelRuleSet : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x18; // 24
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -105,7 +105,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SceneClusterSet : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x18; // 24
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -116,7 +116,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class RGBAColor : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x04; // 4
 			
 			public byte x00 { get { return Read<byte>(0x00); } }
@@ -128,7 +128,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class PostFXParams : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x20; // 32
 			
 			public float[] x00_float { get { return Read<float>(0x00, 4); } }
@@ -138,7 +138,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TileInfo : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x50; // 80
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -154,7 +154,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DRLGCommand : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x98; // 152
 			
 			public string x00_Text { get { return ReadString(0x00, 128); } }
@@ -166,7 +166,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SceneChunk : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x100; // 256
 			
 			public SNOName x000_SNOName { get { return Read<SNOName>(0x000); } }
@@ -177,7 +177,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LabelRule : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0xB0; // 176
 			
 			public string x00_Text { get { return ReadString(0x00, 128); } }
@@ -191,7 +191,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SceneCluster : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0xB8; // 184
 			
 			public string x00_Text { get { return ReadString(0x00, 128); } }
@@ -205,7 +205,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class CustomTileInfo : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x28; // 40
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -219,7 +219,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SNOName : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x08; // 8
 			
 			public SnoGroup x00_SnoGroup { get { return Read<SnoGroup>(0x00); } }
@@ -229,7 +229,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class PRTransform : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x1C; // 28
 			
 			public Quaternion x00_Quaternion { get { return Read<Quaternion>(0x00); } }
@@ -239,7 +239,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SceneSpecification : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0xDC; // 220
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -266,7 +266,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LabelCondition : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x18; // 24
 			
 			public int x00_Enum { get { return Read<int>(0x00); } } // Always = 0, Label Already Set = 2, Game Is Open World = 3
@@ -277,7 +277,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LabelEntry : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x14; // 20
 			
 			public GameBalanceId x00_LabelsGameBalanceId { get { return Read<GameBalanceId>(0x00); } }
@@ -290,7 +290,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SubSceneGroup : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x20; // 32
 			
 			public Sno x00_ConditionSno { get { return Read<Sno>(0x00); } }
@@ -303,7 +303,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class IVector2D : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x08; // 8
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -313,7 +313,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class CustomTileCell : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x24; // 36
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -327,7 +327,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Quaternion : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x10; // 16
 			
 			public Vector3D x00_Vector3D { get { return Read<Vector3D>(0x00); } }
@@ -337,7 +337,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Vector3D : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x0C; // 12
 			
 			public float x00_X { get { return Read<float>(0x00); } }
@@ -348,7 +348,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SceneCachedValues : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x50; // 80
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -363,7 +363,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SubSceneEntry : SerializeMemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x20; // 32
 			
 			public Sno x00_SceneSno { get { return Read<Sno>(0x00); } }
@@ -376,7 +376,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AABB : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x18; // 24
 			
 			public Vector3D x00_Vector3D { get { return Read<Vector3D>(0x00); } }
@@ -386,7 +386,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SubSceneLabel : MemoryObject
 		{
-			// 2.1.0.26451
+			// 2.1.1.27255
 			public const int SizeOf = 0x08; // 8
 			
 			public GameBalanceId x00_GameBalanceId { get { return Read<GameBalanceId>(0x00); } }

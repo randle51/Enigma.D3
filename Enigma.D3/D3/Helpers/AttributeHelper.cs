@@ -25,7 +25,7 @@ namespace Enigma.D3.Helpers
 		public static IEnumerable<Map<int, AttributeValue>.Entry> EnumerateAttributes(this ActorCommonData acd)
 		{
 			var groupId = acd.x120_FastAttribGroupId;
-			var group = Engine.Current.ObjectManager.x798_Storage.x11C_FastAttrib.x54_Groups[(short)groupId];
+			var group = Engine.Current.ObjectManager.x798_Storage.x124_FastAttrib.x54_Groups[(short)groupId];
 			if (group != null)
 			{
 				var smallMap = group.x00C_PtrMap;
@@ -63,7 +63,7 @@ namespace Enigma.D3.Helpers
 		{
 			int key = (modifier << 12) + ((int)attribId & 0xFFF);
 			var groupId = acd.x120_FastAttribGroupId;
-			var group = Engine.Current.ObjectManager.x798_Storage.x11C_FastAttrib.x54_Groups[(short)groupId];
+			var group = Engine.Current.ObjectManager.x798_Storage.x124_FastAttrib.x54_Groups[(short)groupId];
 			if (group != null)
 			{
 				if (((group.x004_Flags & 4) != 0 && group.x00C_PtrMap.TryGetValue(key, out value, GetHashOfKey)) ||

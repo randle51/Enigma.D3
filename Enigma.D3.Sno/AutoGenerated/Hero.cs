@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Hero : SerializeMemoryObject
 	{
-		// 2.1.0.26451
+		// 2.1.1.27255
 		public const int SizeOf = 0x20; // 32
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }

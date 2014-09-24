@@ -14,14 +14,8 @@ namespace Enigma.D3.UI.Controls
 		public int x00A48 { get { return Read<int>(0x00A48); } }
 		public int _x00A4C { get { return Read<int>(0x00A4C); } }
 		public UIReference x00A50_UIRef { get { return Read<UIReference>(0x00A50); } }
-		public int x00C58 { get { return Read<int>(0x00C58); } }
-		public int _x00C5C { get { return Read<int>(0x00C5C); } }
-		public int x00C60 { get { return Read<int>(0x00C60); } }
-		public int _x00C64 { get { return Read<int>(0x00C64); } }
-		public int x00C68 { get { return Read<int>(0x00C68); } }
-		public int _x00C6C { get { return Read<int>(0x00C6C); } }
-		public int x00C70 { get { return Read<int>(0x00C70); } }
-		public int _x00C74 { get { return Read<int>(0x00C74); } }
+		public UIRect x00C58_UIRect { get { return Read<UIRect>(0x00C58); } }
+		public UIRect x00C68_UIRect { get { return Read<UIRect>(0x00C68); } }
 		public float x00C78_OffsetX { get { return Read<float>(0x00C78); } }
 		public float x00C7C_OffsetY { get { return Read<float>(0x00C7C); } }
 		public float x00C80_PrevOffsetX { get { return Read<float>(0x00C80); } } // These are set when starting to move map around.

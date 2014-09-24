@@ -29,7 +29,7 @@ namespace Enigma.D3.Helpers
 		{
 			try
 			{
-				return Engine.Current.ObjectManager.x798_Storage.x128_ActorCommonDataManager.x00_ActorCommonData[(short)acdId];
+				return Engine.Current.ObjectManager.x798_Storage.x130_ActorCommonDataManager.x00_ActorCommonData[(short)acdId];
 			}
 			catch
 			{
@@ -89,7 +89,7 @@ namespace Enigma.D3.Helpers
 
 		private static ExpandableContainer<ActorCommonData> GetContainer()
 		{
-			return Engine.TryGet(a => a.ObjectManager.x798_Storage.x128_ActorCommonDataManager.x00_ActorCommonData);
+			return Engine.TryGet(a => a.ObjectManager.x798_Storage.x130_ActorCommonDataManager.x00_ActorCommonData);
 		}
 	}
 }

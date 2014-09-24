@@ -162,6 +162,7 @@
     <Compile Include="D3\Sno\SnoGroupSearch.cs" />
     <Compile Include="D3\Storage.cs" />
     <Compile Include="D3\Symbol.cs" />
+    <Compile Include="D3\TimedEvent.cs" />
     <Compile Include="D3\UI\Buff.cs" />
     <Compile Include="D3\UI\BuffManager.cs" />
     <Compile Include="D3\UI\Controls\UXBlinker.cs" />

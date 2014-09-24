@@ -71,7 +71,7 @@ namespace Enigma.D3.MapHack
 
 				var itemsToAdd = new List<IMapMarker>();
 
-				var acds = _objectManager.x798_Storage.x128_ActorCommonDataManager.x00_ActorCommonData;
+				var acds = _objectManager.x798_Storage.x130_ActorCommonDataManager.x00_ActorCommonData;
 				if (acds == null)
 				{
 					Trace.TraceError("ACDs == null");
