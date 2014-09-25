@@ -20,7 +20,7 @@ namespace Enigma.D3.UI.Controls
 		public class X0A50 : MemoryObject
 		{
 			// 2.0.6.24641
-			public const int SizeOf = 0x1CB8; //7352
+			public const int SizeOf = 0x1264;
 
 			public UIReference[] x0000 { get { return Read<UIReference>(0x0000, 8); } }
 			public UIReference x1040_UIRef { get { return Read<UIReference>(0x1040); } }
