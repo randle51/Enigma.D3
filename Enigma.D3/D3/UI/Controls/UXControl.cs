@@ -7,11 +7,11 @@ using Enigma.D3.Helpers;
 
 namespace Enigma.D3.UI.Controls
 {
-	[Version("2.1.0.26451")]
+	[Version("2.1.1.27255")]
 	public partial class UXControl : MemoryObject
 	{
-		public const int SizeOf = 0x450;
-		public const int VTable = 0x017021C0;
+		public const int SizeOf = 0x450; //1104
+		public const int VTable = 0x0170B210;
 
 		public int x000_VTable { get { return Read<int>(0x000); } }
 		public int _x004 { get { return Read<int>(0x004); } }

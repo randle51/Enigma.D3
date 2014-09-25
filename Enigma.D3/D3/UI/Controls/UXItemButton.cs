@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXItemButton : UXButton
 	{
-		public new const int SizeOf = 0xF68;
-		public new const int VTable = 0x017510C8;
+		public new const int SizeOf = 0xF68; //3944
+		public new const int VTable = 0x0175A1C8;
 
 		public int xF48_Neg1 { get { return Read<int>(0xF48); } }
 		public int xF4C_Flags { get { return Read<int>(0xF4C); } }

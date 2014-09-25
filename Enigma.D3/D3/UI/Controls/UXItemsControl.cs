@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXItemsControl : UXItemsControlBase
 	{
-		public new const int SizeOf = 0xA48;
-		public new const int VTable = 0x01705180;
+		public new const int SizeOf = 0xA48; //2632
+		public new const int VTable = 0x0170E1F0;
 
 		public UIRect x490_UIRect { get { return Read<UIRect>(0x490); } }
 		public int x4A0_Neg1 { get { return Read<int>(0x4A0); } }

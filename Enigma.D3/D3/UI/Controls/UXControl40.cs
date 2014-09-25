@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXControl40 : UXItemsControl
 	{
-		public new const int SizeOf = 0x1CB8;
-		public new const int VTable = 0x01705C18;
+		public new const int SizeOf = 0x1CB8; //7352
+		public new const int VTable = 0x0170EC88;
 
 		public int x0A48 { get { return Read<int>(0x0A48); } }
 		public int _x0A4C { get { return Read<int>(0x0A4C); } }
@@ -20,7 +20,7 @@ namespace Enigma.D3.UI.Controls
 		public class X0A50 : MemoryObject
 		{
 			// 2.0.6.24641
-			public const int SizeOf = 0x1264;
+			public const int SizeOf = 0x1CB8; //7352
 
 			public UIReference[] x0000 { get { return Read<UIReference>(0x0000, 8); } }
 			public UIReference x1040_UIRef { get { return Read<UIReference>(0x1040); } }

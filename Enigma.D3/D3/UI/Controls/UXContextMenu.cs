@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXContextMenu : UXStackPanel
 	{
-		public new const int SizeOf = 0x12A0;
-		public new const int VTable = 0x0173D3E8;
+		public new const int SizeOf = 0x12A0; //4768
+		public new const int VTable = 0x017464D8;
 
 		public int x0A70 { get { return Read<int>(0x0A70); } }
 		public int _x0A74 { get { return Read<int>(0x0A74); } }

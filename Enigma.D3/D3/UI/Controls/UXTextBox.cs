@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXTextBox : UXLabel
 	{
-		public new const int SizeOf = 0xCE8;
-		public new const int VTable = 0x01702070;
+		public new const int SizeOf = 0xCE8; //3304
+		public new const int VTable = 0x0170B0C0;
 
 		public int xC88_Anim2DSnoId_EditBoxCursor { get { return Read<int>(0xC88); } }
 		public float xC8C_AnimClock { get { return Read<float>(0xC8C); } }
