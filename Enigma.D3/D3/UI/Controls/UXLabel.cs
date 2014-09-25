@@ -9,8 +9,8 @@ namespace Enigma.D3.UI.Controls
 	[Obsolete("Fields not checked, size + 0x20")]
 	public class UXLabel : UXItemsControl
 	{
-		public new const int SizeOf = 0xC88;
-		public new const int VTable = 0x01741328;
+		public new const int SizeOf = 0xC88; //3208
+		public new const int VTable = 0x0174A480;
 
 		public string xA48_Text_StructStart_Min84Bytes { get { return ReadStringPointer(0xA48, xA58_TextLength).Dereference(); } }
 		public int xA4C_FontSnoId { get { return Read<int>(0xA4C); } }

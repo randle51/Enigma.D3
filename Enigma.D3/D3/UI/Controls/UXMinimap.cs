@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXMinimap : UXItemsControl
 	{
-		public new const int SizeOf = 0x12100;
-		public new const int VTable = 0x01741948;
+		public new const int SizeOf = 0x12100; //73984
+		public new const int VTable = 0x0174AAA0;
 
 		public int x00A48 { get { return Read<int>(0x00A48); } }
 		public int _x00A4C { get { return Read<int>(0x00A4C); } }
@@ -54,7 +54,7 @@ namespace Enigma.D3.UI.Controls
 
 		public class Item : MemoryObject
 		{
-			public const int SizeOf = 0x114;
+			public const int SizeOf = 0x12100; //73984
 
 			public string x000_Name { get { return ReadString(0x000, 0x100); } }
 			public float x100_ScreenX { get { return Read<float>(0x100); } }

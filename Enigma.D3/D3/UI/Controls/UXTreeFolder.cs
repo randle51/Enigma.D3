@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXTreeFolder : UXItemsControl
 	{
-		public new const int SizeOf = 0xE60;
-		public new const int VTable = 0x01750998;
+		public new const int SizeOf = 0xE60; //3680
+		public new const int VTable = 0x01759A98;
 
 		public float xA48 { get { return Read<float>(0xA48); } }
 		public float xA4C { get { return Read<float>(0xA4C); } }

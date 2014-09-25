@@ -8,7 +8,7 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXChatBalloon : UXLabel
 	{
-		public new const int SizeOf = 0xC88;
-		public new const int VTable = 0x01751328;
+		public new const int SizeOf = 0xC88; //3208
+		public new const int VTable = 0x0175A428;
 	}
 }
