@@ -44,7 +44,7 @@ namespace Enigma.D3.UI.Controls
 
 		public class Struct001 : MemoryObject
 		{
-			public const int SizeOf = 0x1D80; //7552
+			public const int SizeOf = 0xB8; // 184
 
 			public RefString x00_Filter { get { return Read<RefString>(0x00); } }
 			public int _x0C { get { return Read<int>(0x0C); } }
@@ -55,7 +55,7 @@ namespace Enigma.D3.UI.Controls
 
 		public class ChatMessage : MemoryObject
 		{
-			public const int SizeOf = 0x1D80; //7552
+			public const int SizeOf = 0x68; // 104
 
 			public RefString x00_RefString { get { return Read<RefString>(0x00); } }
 			public int _x0C { get { return Read<int>(0x0C); } }

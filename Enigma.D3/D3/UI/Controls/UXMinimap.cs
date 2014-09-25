@@ -54,7 +54,7 @@ namespace Enigma.D3.UI.Controls
 
 		public class Item : MemoryObject
 		{
-			public const int SizeOf = 0x12100; //73984
+			public const int SizeOf = 0x114;
 
 			public string x000_Name { get { return ReadString(0x000, 0x100); } }
 			public float x100_ScreenX { get { return Read<float>(0x100); } }
