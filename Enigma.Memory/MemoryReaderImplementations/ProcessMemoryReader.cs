@@ -27,7 +27,7 @@ namespace Enigma.Memory
 
 			_process = process;
 			_minValidAddress = 0x00010000;
-			_maxValidAddress = process.IsLargeAddressAware() ? 0x7FFEFFFF : 0xBFFF0000;
+			_maxValidAddress = process.IsLargeAddressAware() ? 0xBFFF0000 : 0x7FFEFFFF;
 			_pointerSize = process.Is64BitProcess() ? 8 : 4;
 		}
 
