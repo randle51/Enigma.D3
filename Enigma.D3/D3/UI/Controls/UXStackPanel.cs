@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXStackPanel : UXItemsControl
 	{
 		public new const int SizeOf = 0xA70; //2672
-		public new const int VTable = 0x01759CA0;
+		public new const int VTable = 0x01770E90;
 
 		public int xA48 { get { return Read<int>(0xA48); } }
 		public int xA4C { get { return Read<int>(0xA4C); } }

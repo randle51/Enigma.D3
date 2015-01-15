@@ -63,8 +63,8 @@ namespace Enigma.D3
 		public int x134_Ptr_256Bytes_VisualInventory { get { return Read<int>(0x134); } }
 		public long x138_RelatedTo_ItemAssignedHero { get { return Read<long>(0x138); } }
 		public long x140_RelatedTo_ItemAssignedHeroId { get { return Read<long>(0x140); } }
-		public ListB x148_ListB_ItemRelated_Affixes_NodeSize12Bytes { get { return Read<ListB>(0x148); } }
-		public ListB x15C_ListB_ItemRelated_AttributesOrSockets_NodeSize12Bytes { get { return Read<ListB>(0x15C); } }
+		public ListB<int> x148_ListB_ItemRelated_Affixes_NodeSize12Bytes { get { return Read<ListB<int>>(0x148); } }
+		public ListB<int> x15C_ListB_ItemRelated_AttributesOrSockets_NodeSize12Bytes { get { return Read<ListB<int>>(0x15C); } }
 		public int x170_RareItemPrefixOrSuffix_ { get { return Read<int>(0x170); } }
 		public int x174_Neg1_RareItemStringList_ { get { return Read<int>(0x174); } }
 		public int x178_Neg1_RareItemStringListIndex_ { get { return Read<int>(0x178); } }

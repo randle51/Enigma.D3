@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXChatEditLine : UXTextBox
 	{
 		public new const int SizeOf = 0xF58; //3928
-		public new const int VTable = 0x0170B2C8;
+		public new const int VTable = 0x01722330;
 
 		public int xCE8_StructStart_Min96Bytes { get { return Read<int>(0xCE8); } }
 		public int _xCEC { get { return Read<int>(0xCEC); } }

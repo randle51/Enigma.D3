@@ -10,7 +10,7 @@ namespace Enigma.D3.UI.Controls
 	public class UX3DModel : UXItemsControl
 	{
 		public new const int SizeOf = 0xB40; //2880
-		public new const int VTable = 0x0175A6F8;
+		public new const int VTable = 0x017718E8;
 
 		public int xA48_Neg1 { get { return Read<int>(0xA48); } }
 		public int xA4C { get { return Read<int>(0xA4C); } }

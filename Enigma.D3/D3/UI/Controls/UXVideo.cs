@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXVideo : UXItemsControl
 	{
 		public new const int SizeOf = 0xAD8; //2776
-		public new const int VTable = 0x01759F80;
+		public new const int VTable = 0x01771170;
 
 		public int xA48 { get { return Read<int>(0xA48); } }
 		public int _xA4C { get { return Read<int>(0xA4C); } }

@@ -7,6 +7,7 @@ using System.Text;
 using Enigma.D3.Memory;
 using Enigma.D3.UI;
 using Enigma.D3.UI.Controls;
+using System.Diagnostics;
 
 namespace Enigma.D3.Helpers
 {
@@ -164,7 +165,7 @@ namespace Enigma.D3.Helpers
 				{
 					var uxVTable = entry.x10_PtrComponent.Cast<UXControl>().Dereference().x000_VTable;
 					var uxType = GetControlTypeFromVTable(uxVTable);
-					if (uxType == typeof(T) || (checkBaseTypes && typeof(T).IsSubclassOf(uxType)))
+					if (uxType != null && (uxType == typeof(T) || (checkBaseTypes && typeof(T).IsSubclassOf(uxType))))
 					{
 						var control = entry.x10_PtrComponent.Cast<T>().Dereference();
 						if (control.x020_Self.x000_Hash == entry.x08_Hash)
@@ -204,7 +205,12 @@ namespace Enigma.D3.Helpers
 
 		public static Type GetControlTypeFromVTable(int vtable)
 		{
-			return GetControlTypes().SingleOrDefault(a => (int)a.GetField("VTable").GetRawConstantValue() == vtable);
+			var type = GetControlTypes().SingleOrDefault(a => (int)a.GetField("VTable").GetRawConstantValue() == vtable);
+			if (type == null)
+			{
+				Trace.WriteLine("Potential missing UIControl VTable: 0x" + vtable.ToString("X8"));
+			}
+			return type;
 		}
 
 		public static Type[] GetControlTypes()
@@ -261,7 +267,7 @@ namespace Enigma.D3.Helpers
 						var control = entry.x10_PtrComponent.Cast<UXControl>().Dereference();
 						if (control.x020_Self.x000_Hash == entry.x08_Hash)
 						{
-							yield return entry.x10_PtrComponent.Cast<int>().Dereference();
+							yield return MemoryObjectFactory.UnsafeCreate(type, entry.Memory, entry.x10_PtrComponent.ValueAddress);
 						}
 						else
 						{

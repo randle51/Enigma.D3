@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXHotKey : UXControl
 	{
 		public new const int SizeOf = 0x468; //1128
-		public new const int VTable = 0x0175D600;
+		public new const int VTable = 0x01774908;
 
 		public int x450 { get { return Read<int>(0x450); } }
 		public int x454 { get { return Read<int>(0x454); } }

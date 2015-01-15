@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXTutorial : UXItemsControl
 	{
 		public new const int SizeOf = 0xC80; //3200
-		public new const int VTable = 0x0175A9E0;
+		public new const int VTable = 0x01771BD0;
 
 		public UIReference xA48_UIRef { get { return Read<UIReference>(0xA48); } }
 		public int xC50_Neg1 { get { return Read<int>(0xC50); } }

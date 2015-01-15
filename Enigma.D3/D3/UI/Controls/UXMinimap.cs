@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXMinimap : UXItemsControl
 	{
 		public new const int SizeOf = 0x12100; //73984
-		public new const int VTable = 0x0174AAA0;
+		public new const int VTable = 0x01761D00;
 
 		public int x00A48 { get { return Read<int>(0x00A48); } }
 		public int _x00A4C { get { return Read<int>(0x00A4C); } }

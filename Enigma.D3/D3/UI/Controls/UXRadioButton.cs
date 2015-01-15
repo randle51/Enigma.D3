@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXRadioButton : UXButton
 	{
 		public new const int SizeOf = 0x1198; //4504
-		public new const int VTable = 0x0175A578;
+		public new const int VTable = 0x01771768;
 
 		public int x0F48 { get { return Read<int>(0xF48); } }
 		public int x0F4C { get { return Read<int>(0xF4C); } }
