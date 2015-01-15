@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXBlinker : UXLabel
 	{
 		public new const int SizeOf = 0xCA0; //3232
-		public new const int VTable = 0x0175A028;
+		public new const int VTable = 0x01771218;
 
 		public int xC88 { get { return Read<int>(0xC88); } }
 		public int xC8C { get { return Read<int>(0xC8C); } }

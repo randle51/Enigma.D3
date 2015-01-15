@@ -18,7 +18,7 @@ namespace Enigma.D3
 		public float x014_X { get { return Read<float>(0x014); } }
 		public float x018_Y { get { return Read<float>(0x018); } }
 		public float x01C_Z { get { return Read<float>(0x01C); } }
-		public int x020 { get { return Read<int>(0x020); } }
+		public float x020 { get { return Read<float>(0x020); } }
 		public int x024 { get { return Read<int>(0x024); } }
 		public float x028 { get { return Read<float>(0x028); } }
 		public float x02C { get { return Read<float>(0x02C); } }

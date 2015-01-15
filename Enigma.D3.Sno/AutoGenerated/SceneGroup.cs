@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class SceneGroup : SerializeMemoryObject
 	{
-		// 2.1.1.27255
+		// 2.1.2.28709
 		public const int SizeOf = 0x28; // 40
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -20,7 +20,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SceneGroupItem : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x0C; // 12
 			
 			public Sno x00_SceneSno { get { return Read<Sno>(0x00); } }

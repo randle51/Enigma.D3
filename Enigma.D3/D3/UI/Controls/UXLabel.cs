@@ -10,7 +10,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXLabel : UXItemsControl
 	{
 		public new const int SizeOf = 0xC88; //3208
-		public new const int VTable = 0x0174A480;
+		public new const int VTable = 0x017616E0;
 
 		public string xA48_Text_StructStart_Min84Bytes { get { return ReadStringPointer(0xA48, xA58_TextLength).Dereference(); } }
 		public int xA4C_FontSnoId { get { return Read<int>(0xA4C); } }

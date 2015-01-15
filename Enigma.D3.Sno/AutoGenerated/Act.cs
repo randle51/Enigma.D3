@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Act : SerializeMemoryObject
 	{
-		// 2.1.1.27255
+		// 2.1.2.28709
 		public const int SizeOf = 0x1060; // 4192
 		
 		public SnoHeader x0000_Header { get { return Read<SnoHeader>(0x0000); } }
@@ -21,7 +21,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ActQuestInfo : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x04; // 4
 			
 			public Sno x00_QuestSno { get { return Read<Sno>(0x00); } }
@@ -30,7 +30,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class WaypointInfo : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x28; // 40
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -47,7 +47,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ResolvedPortalDestination : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x0C; // 12
 			
 			public Sno x00_WorldsSno { get { return Read<Sno>(0x00); } }
@@ -58,7 +58,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ActStartLocOverride : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x18; // 24
 			
 			public ResolvedPortalDestination x00_ResolvedPortalDestination { get { return Read<ResolvedPortalDestination>(0x00); } }
@@ -70,7 +70,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class IVector2D : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x08; // 8
 			
 			public int x00 { get { return Read<int>(0x00); } }

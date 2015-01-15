@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXButton : UXLabel
 	{
 		public new const int SizeOf = 0xF48; //3912
-		public new const int VTable = 0x01759D40;
+		public new const int VTable = 0x01770F30;
 
 		public int xC88_Neg1 { get { return Read<int>(0xC88); } }
 		public int xC8C_Neg1 { get { return Read<int>(0xC8C); } }

@@ -11,7 +11,7 @@ namespace Enigma.D3.Sno
 	[Version("2.1.0.26451")]
 	public partial class SnoFiles : MemoryObject
 	{
-		public const int SizeOf = 0x4A88;
+		public const int SizeOf = 0x4A88; // 19080
 
 		public X0000 x0000_Struct { get { return Read<X0000>(0x0000); } }
 		[ArraySize(2)]

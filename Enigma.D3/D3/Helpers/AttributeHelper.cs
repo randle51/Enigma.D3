@@ -548,7 +548,6 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> ItemTargetedHirelingClass = new SimpleAttribute<int>(AttributeId.ItemTargetedHirelingClass, 0);
 		public static Attribute<int> ItemStackQuantityHi = new SimpleAttribute<int>(AttributeId.ItemStackQuantityHi, 0);
 		public static Attribute<int> ItemStackQuantityLo = new SimpleAttribute<int>(AttributeId.ItemStackQuantityLo, 0);
-		public static Attribute<ulong> ItemStackQuantity = new ComplexAttribute(AttributeId.ItemStackQuantityHi, 0, AttributeId.ItemStackQuantityLo, 0);
 		public static Attribute<float> RunSpeedGranted = new SimpleAttribute<float>(AttributeId.RunSpeedGranted, 0);
 		public static Attribute<int> RunSpeedDuration = new SimpleAttribute<int>(AttributeId.RunSpeedDuration, 0);
 		public static Attribute<int> IdentifyCost = new SimpleAttribute<int>(AttributeId.IdentifyCost, 0);
@@ -557,6 +556,8 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> IsVendorBought = new SimpleAttribute<int>(AttributeId.IsVendorBought, 0);
 		public static Attribute<int> DyeType = new SimpleAttribute<int>(AttributeId.DyeType, 0);
 		public static Attribute<int> Loot20Drop = new SimpleAttribute<int>(AttributeId.Loot20Drop, 0);
+		public static Attribute<int> Post212Drop = new SimpleAttribute<int>(AttributeId.Post212Drop, 0);
+		public static Attribute<int> AncientRank = new SimpleAttribute<int>(AttributeId.AncientRank, 0);
 		public static Attribute<int> Unidentified = new SimpleAttribute<int>(AttributeId.Unidentified, 0);
 		public static Attribute<int> ConsumableAddSockets = new SimpleAttribute<int>(AttributeId.ConsumableAddSockets, 0);
 		public static Attribute<int> AddSocketsTypeWeapon = new SimpleAttribute<int>(AttributeId.AddSocketsTypeWeapon, 0);
@@ -579,6 +580,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<ulong> ItemUnlockTime = new ComplexAttribute(AttributeId.ItemUnlockTimeHi, 0, AttributeId.ItemUnlockTimeLo, 0);
 		public static Attribute<int> AlwaysPlaysGetHit = new SimpleAttribute<int>(AttributeId.AlwaysPlaysGetHit, 0);
 		public static Attribute<int> Hidden = new SimpleAttribute<int>(AttributeId.Hidden, 0);
+		public static Attribute<int> AlphaForOtherPlayers = new SimpleAttribute<int>(AttributeId.AlphaForOtherPlayers, -1);
 		public static Attribute<int> AlphaAttachments = new SimpleAttribute<int>(AttributeId.AlphaAttachments, 0);
 		public static Attribute<int> RActorFadeGroup = new SimpleAttribute<int>(AttributeId.RActorFadeGroup, -1);
 		public static Attribute<int> QuestRange = new SimpleAttribute<int>(AttributeId.QuestRange, -1);
@@ -1341,6 +1343,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<float> IntelligenceItem = new SimpleAttribute<float>(AttributeId.IntelligenceItem, 0);
 		public static Attribute<float> VitalityItem = new SimpleAttribute<float>(AttributeId.VitalityItem, 0);
 		public static Attribute<int> ItemLevelRequirementReduction = new SimpleAttribute<int>(AttributeId.ItemLevelRequirementReduction, 0);
+		public static Attribute<int> ItemLevelRequirementOverride = new SimpleAttribute<int>(AttributeId.ItemLevelRequirementOverride, 0);
 		public static Attribute<float> ItemDurabilityPercentBonus = new SimpleAttribute<float>(AttributeId.ItemDurabilityPercentBonus, 0);
 		public static Attribute<int> ItemIndestructible = new SimpleAttribute<int>(AttributeId.ItemIndestructible, 0);
 		public static Attribute<int> PlayerAllItemsIndestructible = new SimpleAttribute<int>(AttributeId.PlayerAllItemsIndestructible, 0);
@@ -1541,6 +1544,9 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> ParticipatingInTieredLootRun = new SimpleAttribute<int>(AttributeId.ParticipatingInTieredLootRun, 0);
 		public static Attribute<int> TieredLootRunRewardChoiceState = new SimpleAttribute<int>(AttributeId.TieredLootRunRewardChoiceState, -1);
 		public static Attribute<int> TieredLootRunRewardKeyValue = new SimpleAttribute<int>(AttributeId.TieredLootRunRewardKeyValue, -1);
+		public static Attribute<int> DebugMovementType = new SimpleAttribute<int>(AttributeId.DebugMovementType, 0);
+		public static Attribute<int> TieredLootRunDeathCount = new SimpleAttribute<int>(AttributeId.TieredLootRunDeathCount, 0);
+		public static Attribute<int> TieredLootRunCorpseResurrectionAllowedGameTime = new SimpleAttribute<int>(AttributeId.TieredLootRunCorpseResurrectionAllowedGameTime, 0);
 	}
 	#endregion
 }

@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Material : SerializeMemoryObject
 	{
-		// 2.1.1.27255
+		// 2.1.2.28709
 		public const int SizeOf = 0x88; // 136
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -20,7 +20,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UberMaterial : SerializeMemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x68; // 104
 			
 			public Sno x00_ShaderMapSno { get { return Read<Sno>(0x00); } }
@@ -32,7 +32,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MaterialTextureEntry : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0xA0; // 160
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -43,7 +43,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MaterialTexture : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x98; // 152
 			
 			public Sno x00_TexturesSno { get { return Read<Sno>(0x00); } }
@@ -54,7 +54,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TexAnimParams : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x90; // 144
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -79,7 +79,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Matrix4x4 : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x40; // 64
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -103,7 +103,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FrameAnim : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x14; // 20
 			
 			public int x00 { get { return Read<int>(0x00); } }

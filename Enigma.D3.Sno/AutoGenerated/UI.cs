@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class UI : SerializeMemoryObject
 	{
-		// 2.1.1.27255
+		// 2.1.2.28709
 		public const int SizeOf = 0xB8; // 184
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -24,7 +24,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIControlData : SerializeMemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x740; // 1856
 			
 			public int x000 { get { return Read<int>(0x000); } }
@@ -40,7 +40,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIStyle : SerializeMemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x290; // 656
 			
 			public long x000 { get { return Read<long>(0x000); } }
@@ -54,7 +54,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DataElements : SerializeMemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x48; // 72
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -71,7 +71,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIAnimationElements : SerializeMemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x78; // 120
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -94,7 +94,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIStyleChildSpec : SerializeMemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x260; // 608
 			
 			public string x000_Text { get { return ReadString(0x000, 512); } }
@@ -104,7 +104,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIControlElement : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x108; // 264
 			
 			public long x000 { get { return Read<long>(0x000); } }
@@ -114,7 +114,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIDataElementInt32 : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x10; // 16
 			
 			public long x00 { get { return Read<long>(0x00); } }
@@ -124,7 +124,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIDataElementFloat32 : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x10; // 16
 			
 			public long x00 { get { return Read<long>(0x00); } }
@@ -134,7 +134,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIAnimationElementInt32 : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x08; // 8
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -144,7 +144,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIAnimationElementFloat : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x08; // 8
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -154,7 +154,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIAnimationElementVector2D : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x0C; // 12
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -164,7 +164,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIAnimationDescription : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x218; // 536
 			
 			public long x000 { get { return Read<long>(0x000); } }
@@ -176,7 +176,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UIControlAnimationBinding : MemoryObject
 		{
-			// 2.1.1.27255
+			// 2.1.2.28709
 			public const int SizeOf = 0x208; // 520
 			
 			public string x000_Text { get { return ReadString(0x000, 512); } }

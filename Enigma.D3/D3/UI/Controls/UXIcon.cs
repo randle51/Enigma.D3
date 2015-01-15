@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXIcon : UXButton
 	{
 		public new const int SizeOf = 0x1580; //5504
-		public new const int VTable = 0x0175A0F0;
+		public new const int VTable = 0x017712E0;
 
 		public UIReference x0F48_UIRef_Timer { get { return Read<UIReference>(0x0F48); } }
 		public UIReference x1150_UIRef_Label { get { return Read<UIReference>(0x1150); } }

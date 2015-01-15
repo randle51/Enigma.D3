@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXTree : UXItemsControl
 	{
 		public new const int SizeOf = 0xE60; //3680
-		public new const int VTable = 0x01759B30;
+		public new const int VTable = 0x01770D20;
 
 		public int xA48 { get { return Read<int>(0xA48); } }
 		public int _xA4C { get { return Read<int>(0xA4C); } }
