@@ -131,7 +131,6 @@ namespace Enigma.D3
 		public LevelArea LevelArea { get { return ReadPointer<LevelArea>(0x01BD3BAC).Dereference(); } }
 
 		public string LevelAreaName { get { return ReadString(0x01BD3BD8, 128); } }
-		
 
 		public BuffManager BuffManager { get { return ReadPointer<BuffManager>(0x01C5D514).Dereference(); } }
 
@@ -149,6 +148,8 @@ namespace Enigma.D3
 		public LocalData LocalData { get { return Read<LocalData>(0x01C79178); } }
 
 		public Ptr<SnoFiles> PtrSnoFiles { get { return ReadPointer<SnoFiles>(0x01C7A100); } }
+
+		public FixedArray<int> SnoIdToEntityId { get { return Read<FixedArray<int>>(0x01C8A314); } }
 
 		public SnoGroupSearch SnoGroupSearch { get { return ReadPointer<SnoGroupSearch>(0x01CCAE44).Dereference(); } }
 

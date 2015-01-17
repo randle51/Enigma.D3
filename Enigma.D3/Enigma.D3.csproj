@@ -98,6 +98,7 @@
     <Compile Include="D3\AttributeValue.cs" />
     <Compile Include="D3\CameraManager.cs" />
     <Compile Include="D3\Cinematography.cs" />
+    <Compile Include="D3\Collections\FixedArray.cs" />
     <Compile Include="D3\Collections\Vector.cs" />
     <Compile Include="D3\Enums\AttributeId.cs" />
     <Compile Include="D3\Collections\Container.cs" />

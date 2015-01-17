@@ -548,6 +548,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> ItemTargetedHirelingClass = new SimpleAttribute<int>(AttributeId.ItemTargetedHirelingClass, 0);
 		public static Attribute<int> ItemStackQuantityHi = new SimpleAttribute<int>(AttributeId.ItemStackQuantityHi, 0);
 		public static Attribute<int> ItemStackQuantityLo = new SimpleAttribute<int>(AttributeId.ItemStackQuantityLo, 0);
+		public static Attribute<ulong> ItemStackQuantity = new ComplexAttribute(AttributeId.ItemStackQuantityHi, 0, AttributeId.ItemStackQuantityLo, 0);
 		public static Attribute<float> RunSpeedGranted = new SimpleAttribute<float>(AttributeId.RunSpeedGranted, 0);
 		public static Attribute<int> RunSpeedDuration = new SimpleAttribute<int>(AttributeId.RunSpeedDuration, 0);
 		public static Attribute<int> IdentifyCost = new SimpleAttribute<int>(AttributeId.IdentifyCost, 0);

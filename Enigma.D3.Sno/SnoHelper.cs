@@ -31,13 +31,16 @@ namespace Enigma.D3.Sno
 			if (container == null)
 				return default(T);
 
-			var def = container.x11C_Ptr_Items.Cast<SnoDefinition<T>>()[(short)SnoIdToEntityId(snoId)];
+			var entityId = SnoIdToEntityId(snoId);
+			if (entityId == -1)
+				return default(T);
+			var def = container.x11C_Ptr_Items.Cast<SnoDefinition<T>>()[(short)entityId];
 			return def.x0C_Ptr_SnoValue.Dereference();
 		}
 
 		public static int SnoIdToEntityId(int snoId)
 		{
-			return Engine.Current.Memory.Reader.Read<Ptr<int>>(0x01C634E0)[snoId];
+			return Engine.Current.SnoIdToEntityId[snoId];
 		}
 
 		public static SnoFile<T> LoadFile<T>(string path) where T : SerializeMemoryObject
