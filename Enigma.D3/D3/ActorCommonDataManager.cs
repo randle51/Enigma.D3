@@ -63,6 +63,6 @@ namespace Enigma.D3
 
 	public partial class ActorCommonDataManager
 	{
-		public static ActorCommonDataManager Instance { get { return Storage.Instance.IfNotNull(a => a.x130_ActorCommonDataManager); } }
+		public static ActorCommonDataManager Instance { get { return Storage.Instance.IfNotNull(a => a.x138_ActorCommonDataManager); } }
 	}
 }

@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Adventure : MemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x24; // 36
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }

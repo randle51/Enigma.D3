@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Reverb : MemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x68; // 104
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -18,7 +18,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ReverbParams : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x58; // 88
 			
 			public int x00 { get { return Read<int>(0x00); } }

@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXScrollBar : UXItemsControl
 	{
-		public new const int SizeOf = 0x16A8; //5800
-		public new const int VTable = 0x01773AB0;
+		public new const int SizeOf = 0x1680; //5760
+		public new const int VTable = 0x01829130;
 
 		public int x0A48 { get { return Read<int>(0x0A48); } }
 		public int x0A4C { get { return Read<int>(0x0A4C); } }

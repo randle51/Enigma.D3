@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXComboBox : UXItemsControl
 	{
-		public new const int SizeOf = 0xEC8; //3784
-		public new const int VTable = 0x0175ABA8;
+		public new const int SizeOf = 0xE70; //3696
+		public new const int VTable = 0x0180E460;
 
 		public int xA48 { get { return Read<int>(0xA48); } }
 		public int xA4C { get { return Read<int>(0xA4C); } }

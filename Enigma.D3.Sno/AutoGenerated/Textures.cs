@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Textures : SerializeMemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x270; // 624
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -22,7 +22,7 @@ namespace Enigma.D3.Sno
 		public int x208 { get { return Read<int>(0x208); } }
 		public SerializeData x20C_SerializeData { get { return Read<SerializeData>(0x20C); } }
 		public TexFrame[] x218_TexFrames { get { return Deserialize<TexFrame>(x20C_SerializeData); } }
-		public IVector2D x220_IVector2D { get { return Read<IVector2D>(0x220); } }
+		public DT_IVECTOR2D x220_DT_IVECTOR2D { get { return Read<DT_IVECTOR2D>(0x220); } }
 		public int x228 { get { return Read<int>(0x228); } }
 		public int x22C { get { return Read<int>(0x22C); } }
 		public int x230 { get { return Read<int>(0x230); } }
@@ -40,7 +40,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TexFrame : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x50; // 80
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -51,10 +51,10 @@ namespace Enigma.D3.Sno
 		}
 		
 		[CompilerGenerated]
-		public partial class IVector2D : MemoryObject
+		public partial class DT_IVECTOR2D : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x08; // 8
+			// 2.2.0.30894
+			public const int SizeOf = 0x04; // 4
 			
 			public int x00 { get { return Read<int>(0x00); } }
 			public int x04 { get { return Read<int>(0x04); } }
@@ -63,7 +63,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ImageFileID : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x04; // 4
 			
 			public int x00 { get { return Read<int>(0x00); } }

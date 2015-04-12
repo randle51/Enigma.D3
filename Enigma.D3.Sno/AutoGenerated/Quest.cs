@@ -8,11 +8,11 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Quest : SerializeMemoryObject
 	{
-		// 2.1.2.28709
-		public const int SizeOf = 0x110; // 272
+		// 2.2.0.30894
+		public const int SizeOf = 0x118; // 280
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
-		public int x00C_Enum { get { return Read<int>(0x00C); } } // Main Quest = 0, Event = 2, Challenge = 4, Bounty = 5
+		public int x00C_Enum { get { return Read<int>(0x00C); } } // Main Quest = 0, Event = 2, Challenge = 4, Bounty = 5, Horadric Quest = 6
 		public int x010 { get { return Read<int>(0x010); } }
 		public int x014 { get { return Read<int>(0x014); } }
 		public int x018 { get { return Read<int>(0x018); } }
@@ -32,7 +32,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestUnassignedStep : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x28; // 40
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -46,7 +46,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestStep : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0xA8; // 168
 			
 			public string x00_Text { get { return DeserializeString(x08_SerializeData); } }
@@ -76,7 +76,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestCompletionStep : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x18; // 24
 			
 			public string x00_Text { get { return DeserializeString(x08_SerializeData); } }
@@ -88,34 +88,36 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BountyData : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x4C; // 76
+			// 2.2.0.30894
+			public const int SizeOf = 0x54; // 84
 			
-			public int x00_Enum { get { return Read<int>(0x00); } } // Invalid = -1, A1 = 0, A2 = 100, A3 = 200, A4 = 300, A5 = 400, OpenWorld = 3000, Test = 1000
-			public int x04_Enum { get { return Read<int>(0x04); } } // - None - = -1, Kill Unique = 0, Kill Boss = 1, Complete Event = 2, Clear Dungeon = 3
-			public Sno x08_LevelAreaSno { get { return Read<Sno>(0x08); } }
-			public Sno x0C_WorldsSno { get { return Read<Sno>(0x0C); } }
-			public Sno x10_QuestSno { get { return Read<Sno>(0x10); } }
-			public Sno x14_WorldsSno { get { return Read<Sno>(0x14); } }
-			public Sno x18_ActorSno { get { return Read<Sno>(0x18); } }
-			public Sno x1C_WorldsSno { get { return Read<Sno>(0x1C); } }
-			public Sno x20_LevelAreaSno { get { return Read<Sno>(0x20); } }
-			public Sno x24_SceneSno { get { return Read<Sno>(0x24); } }
-			public Sno x28_WorldsSno { get { return Read<Sno>(0x28); } }
-			public GameBalanceId x2C_LabelsGameBalanceId { get { return Read<GameBalanceId>(0x2C); } }
-			public Sno x30_AdventureSno { get { return Read<Sno>(0x30); } }
-			public Sno x34_WorldsSno { get { return Read<Sno>(0x34); } }
-			public Sno x38_LevelAreaSno { get { return Read<Sno>(0x38); } }
-			public Sno x3C_EncounterSno { get { return Read<Sno>(0x3C); } }
-			public Sno x40_SceneSno { get { return Read<Sno>(0x40); } }
-			public Sno x44_WorldsSno { get { return Read<Sno>(0x44); } }
-			public GameBalanceId x48_LabelsGameBalanceId { get { return Read<GameBalanceId>(0x48); } }
+			public int x00_Enum { get { return Read<int>(0x00); } } // Invalid = -1, A1 = 0, A2 = 100, A3 = 200, A4 = 300, A5 = 400, OpenWorld = 3000, WeeklyChallenge = 4000, Test = 1000
+			public int x04_Enum { get { return Read<int>(0x04); } } // - None - = -1, Kill Unique = 0, Kill Boss = 1, Complete Event = 2, Clear Dungeon = 3, Camps = 4, HQ - Color Orbs = 5, HQ - Hot Cold = 6
+			public int x08 { get { return Read<int>(0x08); } }
+			public Sno x0C_LevelAreaSno { get { return Read<Sno>(0x0C); } }
+			public Sno x10_WorldsSno { get { return Read<Sno>(0x10); } }
+			public Sno x14_QuestSno { get { return Read<Sno>(0x14); } }
+			public Sno x18_WorldsSno { get { return Read<Sno>(0x18); } }
+			public Sno x1C_ActorSno { get { return Read<Sno>(0x1C); } }
+			public Sno x20_WorldsSno { get { return Read<Sno>(0x20); } }
+			public Sno x24_LevelAreaSno { get { return Read<Sno>(0x24); } }
+			public Sno x28_SceneSno { get { return Read<Sno>(0x28); } }
+			public Sno x2C_WorldsSno { get { return Read<Sno>(0x2C); } }
+			public GameBalanceId x30_LabelsGameBalanceId { get { return Read<GameBalanceId>(0x30); } }
+			public Sno x34_AdventureSno { get { return Read<Sno>(0x34); } }
+			public Sno x38_WorldsSno { get { return Read<Sno>(0x38); } }
+			public Sno x3C_LevelAreaSno { get { return Read<Sno>(0x3C); } }
+			public Sno x40_EncounterSno { get { return Read<Sno>(0x40); } }
+			public Sno x44_SceneSno { get { return Read<Sno>(0x44); } }
+			public Sno x48_WorldsSno { get { return Read<Sno>(0x48); } }
+			public GameBalanceId x4C_LabelsGameBalanceId { get { return Read<GameBalanceId>(0x4C); } }
+			public Sno x50_54Sno { get { return Read<Sno>(0x50); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class QuestStepObjectiveSet : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x18; // 24
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -126,7 +128,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestStepFailureConditionSet : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public QuestStepFailureCondition[] x00_QuestStepFailureConditions { get { return Deserialize<QuestStepFailureCondition>(x08_SerializeData); } }
@@ -136,7 +138,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestStepBonusObjectiveSet : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x28; // 40
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -151,11 +153,11 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestStepObjective : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x58; // 88
 			
 			public int x00 { get { return Read<int>(0x00); } }
-			public int x04_Enum { get { return Read<int>(0x04); } } // Had Conversation = 0, Possess Item = 1, Kill Monster = 2, Interact With Actor = 3, Enter Level Area = 4, Enter Scene = 5, Enter World = 6, Enter Trigger = 7, Complete Quest = 8, Player Flag Set = 9, Timed Event Expired = 10, Kill Group = 11, Game Flag Set = 12, Event Received = 13, Kill Monster From Group = 14, Kill Monster From Family = 15, Kill Elite Pack In Level Area = 16, Kill Any Monster In Level Area = 17, Kill All Monsters In World = 18
+			public int x04_Enum { get { return Read<int>(0x04); } } // Had Conversation = 0, Possess Item = 1, Kill Monster = 2, Interact With Actor = 3, Enter Level Area = 4, Enter Scene = 5, Enter World = 6, Enter Trigger = 7, Complete Quest = 8, Player Flag Set = 9, Timed Event Expired = 10, Kill Group = 11, Game Flag Set = 12, Event Received = 13, Kill Monster From Group = 14, Kill Monster From Family = 15, Kill Elite Pack In Level Area = 16, Kill Any Monster In Level Area = 17, Kill All Monsters In World = 18, HQ Act Reagents Collected = 19
 			public int x08 { get { return Read<int>(0x08); } }
 			public int x0C { get { return Read<int>(0x0C); } }
 			public SNOName x10_SNOName { get { return Read<SNOName>(0x10); } }
@@ -174,7 +176,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestStepFailureCondition : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x48; // 72
 			
 			public int x00_Enum { get { return Read<int>(0x00); } } // Monster Died = 0, Player Died = 1, Actor Died = 2, Timed Event Expired = 3, Item Used = 4, Game Flag Set = 5, Player Flag Set = 6, Event Received = 7
@@ -193,7 +195,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SNOName : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public SnoGroup x00_SnoGroup { get { return Read<SnoGroup>(0x00); } }

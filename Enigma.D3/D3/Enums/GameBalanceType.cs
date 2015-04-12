@@ -45,6 +45,8 @@ namespace Enigma.D3.Enums
 		MadeToOrderAffixFolders = 43,
 		DevilsHandRedeemableSets = 44,
 		LegacyItemConversions = 45,
-		EnchantItemAffixUseCountCostScalars = 46
+		EnchantItemAffixUseCountCostScalars = 46,
+		AffixGroup = 47,
+		TieredLootRunLevels = 48
 	}
 }

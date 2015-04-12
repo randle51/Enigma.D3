@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Encounter : SerializeMemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x20; // 32
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -19,7 +19,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class EncounterSpawnOption : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public Sno x00_ActorSno { get { return Read<Sno>(0x00); } }

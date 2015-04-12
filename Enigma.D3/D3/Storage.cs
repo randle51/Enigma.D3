@@ -32,12 +32,12 @@ namespace Enigma.D3
 		public int x044_Neg1 { get { return Read<int>(0x044); } }
 		public int x048_Neg1 { get { return Read<int>(0x048); } }
 		public int x04C_Neg1 { get { return Read<int>(0x04C); } }
-		public int _x50 { get { return Read<int>(0x50); } }//NEW
-		public int _x54 { get { return Read<int>(0x54); } }//NEW
-		public int _x58 { get { return Read<int>(0x58); } }//NEW
-		public int _x5C { get { return Read<int>(0x5C); } }//NEW
-		public int _x60 { get { return Read<int>(0x60); } }//NEW
-		public int _x64 { get { return Read<int>(0x64); } }//NEW
+		public int _x50 { get { return Read<int>(0x50); } }//NEW 27255(?)
+		public int _x54 { get { return Read<int>(0x54); } }//NEW 27255(?)
+		public int _x58 { get { return Read<int>(0x58); } }//NEW 27255(?)
+		public int _x5C { get { return Read<int>(0x5C); } }//NEW 27255(?)
+		public int _x60 { get { return Read<int>(0x60); } }//NEW 27255(?)
+		public int _x64 { get { return Read<int>(0x64); } }//NEW 27255(?)
 		public int _x68 { get { return Read<int>(0x68); } }//NEW 27255
 		public int _x06C { get { return Read<int>(0x06C); } }
 		public int _x070 { get { return Read<int>(0x070); } }
@@ -72,41 +72,43 @@ namespace Enigma.D3
 		public int _x0E4 { get { return Read<int>(0x0E4); } }
 		public int _x0E8 { get { return Read<int>(0x0E8); } }
 		public int _x0EC { get { return Read<int>(0x0EC); } }
-		public int x0F0_GameTick { get { return Read<int>(0x0F0); } }
-		public int x0F4 { get { return Read<int>(0x0F4); } }
-		public int x0F8 { get { return Read<int>(0x0F8); } }
-		public int x0FC_Ptr_12Bytes_Markers { get { return Read<int>(0x0FC); } }
-		public int x100_Ptr_368Bytes_InactiveMarkers { get { return Read<int>(0x100); } }
-		public PlayerDataManager x104_PlayerDataCollection { get { return Dereference<PlayerDataManager>(0x104); } }
-		public SceneAllocators x108_Ptr_116Bytes_SceneAllocators { get { return Dereference<SceneAllocators>(0x108); } }
-		public int x10C_Ptr_112Bytes_Items { get { return Read<int>(0x10C); } }
-		public int x110_Ptr_88Bytes { get { return Read<int>(0x110); } }
-		public Allocator x114_PtrAllocator_20x28Bytes { get { return Dereference<Allocator>(0x114); } }
-		public int _x118 { get { return Read<int>(0x118); } }
-		public int _x11C { get { return Read<int>(0x11C); } }
+		public int _x0F0 { get { return Read<int>(0x0F0); } } // Randomly inserted 8 new bytes to fix 2.2.0.30894 alignment
+		public int _x0F4 { get { return Read<int>(0x0F4); } } // Randomly inserted 8 new bytes to fix 2.2.0.30894 alignment
+		public int x0F8_GameTick { get { return Read<int>(0x0F8); } }
+		public int x0FC { get { return Read<int>(0x0FC); } }
+		public int x100 { get { return Read<int>(0x100); } }
+		public int x104_Ptr_12Bytes_Markers { get { return Read<int>(0x104); } }
+		public int x108_Ptr_368Bytes_InactiveMarkers { get { return Read<int>(0x108); } }
+		public PlayerDataManager x10C_PlayerDataCollection { get { return Dereference<PlayerDataManager>(0x10C); } }
+		public SceneAllocators x110_Ptr_116Bytes_SceneAllocators { get { return Dereference<SceneAllocators>(0x110); } }
+		public int x114_Ptr_112Bytes_Items { get { return Read<int>(0x114); } }
+		public int x118_Ptr_88Bytes { get { return Read<int>(0x118); } }
+		public Allocator x11C_PtrAllocator_20x28Bytes { get { return Dereference<Allocator>(0x11C); } }
 		public int _x120 { get { return Read<int>(0x120); } }
-		public FastAttrib x124_FastAttrib { get { return Dereference<FastAttrib>(0x124); } }
-		public int x128_Teams { get { return Read<int>(0x128); } }
-		public int _x12C { get { return Read<int>(0x12C); } }
-		public ActorCommonDataManager x130_ActorCommonDataManager { get { return Dereference<ActorCommonDataManager>(0x130); } }
-		public Allocator x134_PtrAllocator_1000x64Bytes { get { return Dereference<Allocator>(0x134); } }
-		public Allocator x138_PtrAllocator_8x64Bytes { get { return Dereference<Allocator>(0x138); } }
-		public Allocator x13C_PtrAllocator_1024x16Bytes_GameBalance { get { return Dereference<Allocator>(0x13C); } }
-		public QuestManager x140_Ptr_5864Bytes_Quests { get { return Dereference<QuestManager>(0x140); } }
-		public Allocator x144_PtrAllocator_256x220Bytes { get { return Dereference<Allocator>(0x144); } }
-		public int _x148 { get { return Read<int>(0x148); } }
-		public int x14C_Ptr_16Bytes_NavCellPath { get { return Dereference<int>(0x14C); } }
-		public int x150_Ptr_96Bytes_ActorInventory { get { return Read<int>(0x150); } }
-		public Allocator x154_PtrAllocator_16x256Bytes_VisualInventory { get { return Dereference<Allocator>(0x154); } }
-		public Allocator x158_PtrAllocator_64x12Bytes_Portals { get { return Dereference<Allocator>(0x158); } }
-		public int x15C { get { return Read<int>(0x15C); } }
-		public int x160_Ptr_320Bytes { get { return Read<int>(0x160); } }
-		public int x164_Ptr_288Bytes { get { return Read<int>(0x164); } }
-		public int _x168 { get { return Read<int>(0x168); } }
-		public ActManager x16C_Ptr_56Bytes_Acts { get { return Dereference<ActManager>(0x16C); } }
-		public int x170 { get { return Read<int>(0x170); } }
-		public int _x174 { get { return Read<int>(0x174); } }
-		public int x178_GameType { get { return Read<int>(0x178); } }
+		public int _x124 { get { return Read<int>(0x124); } }
+		public int _x128 { get { return Read<int>(0x128); } }
+		public FastAttrib x12C_FastAttrib { get { return Dereference<FastAttrib>(0x12C); } }
+		public int x130_Teams { get { return Read<int>(0x130); } }
+		public int _x134 { get { return Read<int>(0x134); } }
+		public ActorCommonDataManager x138_ActorCommonDataManager { get { return Dereference<ActorCommonDataManager>(0x138); } }
+		public Allocator x13C_PtrAllocator_1000x64Bytes { get { return Dereference<Allocator>(0x13C); } }
+		public Allocator x140_PtrAllocator_8x64Bytes { get { return Dereference<Allocator>(0x140); } }
+		public Allocator x144_PtrAllocator_1024x16Bytes_GameBalance { get { return Dereference<Allocator>(0x144); } }
+		public QuestManager x148_Ptr_5864Bytes_Quests { get { return Dereference<QuestManager>(0x148); } }
+		public Allocator x14C_PtrAllocator_256x220Bytes { get { return Dereference<Allocator>(0x14C); } }
+		public int _x150 { get { return Read<int>(0x150); } }
+		public int x154_Ptr_16Bytes_NavCellPath { get { return Dereference<int>(0x154); } }
+		public int x158_Ptr_96Bytes_ActorInventory { get { return Read<int>(0x158); } }
+		public Allocator x15C_PtrAllocator_16x256Bytes_VisualInventory { get { return Dereference<Allocator>(0x15C); } }
+		public Allocator x160_PtrAllocator_64x12Bytes_Portals { get { return Dereference<Allocator>(0x160); } }
+		public int x164 { get { return Read<int>(0x164); } }
+		public int x168_Ptr_320Bytes { get { return Read<int>(0x168); } }
+		public int x16C_Ptr_288Bytes { get { return Read<int>(0x16C); } }
+		public int _x170 { get { return Read<int>(0x170); } }
+		public ActManager x174_Ptr_56Bytes_Acts { get { return Dereference<ActManager>(0x174); } }
+		public int x178 { get { return Read<int>(0x178); } }
+		public int _x17C { get { return Read<int>(0x17C); } }
+		public int x180_GameType { get { return Read<int>(0x180); } }
 	}
 
 	public partial class Storage
@@ -115,7 +117,7 @@ namespace Enigma.D3
 
 		public int GetGameTick()
 		{
-			return Instance.x0F0_GameTick;
+			return Instance.x0F8_GameTick;
 		}
 	}
 }

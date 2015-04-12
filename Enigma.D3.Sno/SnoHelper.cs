@@ -20,12 +20,12 @@ namespace Enigma.D3.Sno
 				return Enumerable.Empty<T>();
 
 			return container
-				.Where(a=>a.x00_Id != -1)
+				.Where(a => a.x00_Id != -1)
 				.Where(a => a.x07_SnoGroupId == (byte)groupId)
 				.Select(a => a.x0C_Ptr_SnoValue.Cast<T>().Dereference());
 		}
 
-		public static T GetSnoValue<T>(SnoGroupId groupId, int snoId) where T: SerializeMemoryObject
+		public static T GetSnoValue<T>(SnoGroupId groupId, int snoId) where T : SerializeMemoryObject
 		{
 			var container = Engine.TryGet((engine) => engine.SnoGroupsByCode[(int)groupId].x10_Container);
 			if (container == null)

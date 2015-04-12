@@ -8,18 +8,18 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class QuestRange : SerializeMemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x20; // 32
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
 		public int x0C { get { return Read<int>(0x0C); } }
-		public QuestRange[] x10_QuestRanges { get { return Deserialize<QuestRange>(x18_SerializeData); } }
+		public QuestRangeData[] x10_QuestRanges { get { return Deserialize<QuestRangeData>(x18_SerializeData); } }
 		public SerializeData x18_SerializeData { get { return Read<SerializeData>(0x18); } }
 		
 		[CompilerGenerated]
 		public partial class QuestRangeData : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public QuestTime x00_QuestTime { get { return Read<QuestTime>(0x00); } }
@@ -29,7 +29,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestTime : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public Sno x00_QuestSno { get { return Read<Sno>(0x00); } }

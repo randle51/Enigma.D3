@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Trail : SerializeMemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x158; // 344
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -30,7 +30,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ColorPath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -41,7 +41,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FloatPath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -52,7 +52,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UberMaterial : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x68; // 104
 			
 			public Sno x00_ShaderMapSno { get { return Read<Sno>(0x00); } }
@@ -64,7 +64,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class InterpolationPathHeader : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x1C; // 28
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -77,18 +77,18 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ColorNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
-			public RGBAColor x00_RGBAColor { get { return Read<RGBAColor>(0x00); } }
-			public RGBAColor x04_RGBAColor { get { return Read<RGBAColor>(0x04); } }
+			public DT_RGBACOLOR x00_DT_RGBACOLOR { get { return Read<DT_RGBACOLOR>(0x00); } }
+			public DT_RGBACOLOR x04_DT_RGBACOLOR { get { return Read<DT_RGBACOLOR>(0x04); } }
 			public float x08 { get { return Read<float>(0x08); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class FloatNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -99,13 +99,13 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Material : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x48; // 72
 			
-			public RGBAColorValue x00_RGBAColorValue { get { return Read<RGBAColorValue>(0x00); } }
-			public RGBAColorValue x10_RGBAColorValue { get { return Read<RGBAColorValue>(0x10); } }
-			public RGBAColorValue x20_RGBAColorValue { get { return Read<RGBAColorValue>(0x20); } }
-			public RGBAColorValue x30_RGBAColorValue { get { return Read<RGBAColorValue>(0x30); } }
+			public DT_RGBACOLORVALUE x00_DT_RGBACOLORVALUE { get { return Read<DT_RGBACOLORVALUE>(0x00); } }
+			public DT_RGBACOLORVALUE x10_DT_RGBACOLORVALUE { get { return Read<DT_RGBACOLORVALUE>(0x10); } }
+			public DT_RGBACOLORVALUE x20_DT_RGBACOLORVALUE { get { return Read<DT_RGBACOLORVALUE>(0x20); } }
+			public DT_RGBACOLORVALUE x30_DT_RGBACOLORVALUE { get { return Read<DT_RGBACOLORVALUE>(0x30); } }
 			public float x40 { get { return Read<float>(0x40); } }
 			public int x44 { get { return Read<int>(0x44); } }
 		}
@@ -113,7 +113,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MaterialTextureEntry : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0xA0; // 160
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -124,7 +124,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class InterpolationScalar : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -133,10 +133,10 @@ namespace Enigma.D3.Sno
 		}
 		
 		[CompilerGenerated]
-		public partial class RGBAColor : MemoryObject
+		public partial class DT_RGBACOLOR : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x04; // 4
+			// 2.2.0.30894
+			public const int SizeOf = 0x03; // 3
 			
 			public byte x00 { get { return Read<byte>(0x00); } }
 			public byte x01 { get { return Read<byte>(0x01); } }
@@ -145,10 +145,10 @@ namespace Enigma.D3.Sno
 		}
 		
 		[CompilerGenerated]
-		public partial class RGBAColorValue : MemoryObject
+		public partial class DT_RGBACOLORVALUE : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x10; // 16
+			// 2.2.0.30894
+			public const int SizeOf = 0x0C; // 12
 			
 			public float x00 { get { return Read<float>(0x00); } }
 			public float x04 { get { return Read<float>(0x04); } }
@@ -159,7 +159,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MaterialTexture : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x98; // 152
 			
 			public Sno x00_TexturesSno { get { return Read<Sno>(0x00); } }
@@ -170,7 +170,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TexAnimParams : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x90; // 144
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -195,7 +195,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Matrix4x4 : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x40; // 64
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -219,7 +219,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FrameAnim : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x14; // 20
 			
 			public int x00 { get { return Read<int>(0x00); } }

@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class MarkerSet : SerializeMemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0xC8; // 200
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -26,7 +26,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Marker : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0xD0; // 208
 			
 			public string x00_Text { get { return ReadString(0x00, 128); } }
@@ -43,37 +43,37 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Circle : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
-			public Vector2D x00_Vector2D { get { return Read<Vector2D>(0x00); } }
+			public DT_VECTOR2D x00_DT_VECTOR2D { get { return Read<DT_VECTOR2D>(0x00); } }
 			public float x08 { get { return Read<float>(0x08); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class AABB : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x18; // 24
 			
-			public Vector3D x00_Vector3D { get { return Read<Vector3D>(0x00); } }
-			public Vector3D x0C_Vector3D { get { return Read<Vector3D>(0x0C); } }
+			public DT_VECTOR3D x00_DT_VECTOR3D { get { return Read<DT_VECTOR3D>(0x00); } }
+			public DT_VECTOR3D x0C_DT_VECTOR3D { get { return Read<DT_VECTOR3D>(0x0C); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class PRTransform : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x1C; // 28
 			
 			public Quaternion x00_Quaternion { get { return Read<Quaternion>(0x00); } }
-			public Vector3D x10_Vector3D { get { return Read<Vector3D>(0x10); } }
+			public DT_VECTOR3D x10_DT_VECTOR3D { get { return Read<DT_VECTOR3D>(0x10); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class SNOName : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public SnoGroup x00_SnoGroup { get { return Read<SnoGroup>(0x00); } }
@@ -83,7 +83,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MarkerLink : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x100; // 256
 			
 			public string x000_Text { get { return ReadString(0x000, 128); } }
@@ -91,20 +91,20 @@ namespace Enigma.D3.Sno
 		}
 		
 		[CompilerGenerated]
-		public partial class Vector2D : MemoryObject
+		public partial class DT_VECTOR2D : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x08; // 8
+			// 2.2.0.30894
+			public const int SizeOf = 0x04; // 4
 			
 			public float x00 { get { return Read<float>(0x00); } }
 			public float x04 { get { return Read<float>(0x04); } }
 		}
 		
 		[CompilerGenerated]
-		public partial class Vector3D : MemoryObject
+		public partial class DT_VECTOR3D : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x0C; // 12
+			// 2.2.0.30894
+			public const int SizeOf = 0x08; // 8
 			
 			public float x00_X { get { return Read<float>(0x00); } }
 			public float x04_Y { get { return Read<float>(0x04); } }
@@ -114,10 +114,10 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Quaternion : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
-			public Vector3D x00_Vector3D { get { return Read<Vector3D>(0x00); } }
+			public DT_VECTOR3D x00_DT_VECTOR3D { get { return Read<DT_VECTOR3D>(0x00); } }
 			public float x0C { get { return Read<float>(0x0C); } }
 		}
 	}

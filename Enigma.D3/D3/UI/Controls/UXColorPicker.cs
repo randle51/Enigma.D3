@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXColorPicker : UXItemsControl
 	{
-		public new const int SizeOf = 0xC78; //3192
-		public new const int VTable = 0x01770AB0;
+		public new const int SizeOf = 0xC50; //3152
+		public new const int VTable = 0x01826140;
 
 		public UIReference xA48_UIRef { get { return Read<UIReference>(0xA48); } }
 		public int xC50_Neg1 { get { return Read<int>(0xC50); } }

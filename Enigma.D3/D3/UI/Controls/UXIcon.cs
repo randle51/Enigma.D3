@@ -8,19 +8,19 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXIcon : UXButton
 	{
-		public new const int SizeOf = 0x1580; //5504
-		public new const int VTable = 0x017712E0;
+		public new const int SizeOf = 0x1478; //5240
+		public new const int VTable = 0x01826950;
 
-		public UIReference x0F48_UIRef_Timer { get { return Read<UIReference>(0x0F48); } }
-		public UIReference x1150_UIRef_Label { get { return Read<UIReference>(0x1150); } }
-		public UIReference x1358_UIRef_RechargeTimer { get { return Read<UIReference>(0x1358); } }
-		public int x1560 { get { return Read<int>(0x1560); } }
-		public int x1564 { get { return Read<int>(0x1564); } }
-		public int x1568_IsDisabled { get { return Read<int>(0x1568); } }
-		public int x156C_PowerSnoId { get { return Read<int>(0x156C); } }
-		public int _x1570 { get { return Read<int>(0x1570); } }
-		public int x1574_Neg1 { get { return Read<int>(0x1574); } }
-		public int x1578_AnnId { get { return Read<int>(0x1578); } }
-		public int _x157C { get { return Read<int>(0x157C); } }
+		public UIReference x0E40_UIRef_Timer { get { return Read<UIReference>(0x0E40); } }
+		public UIReference x1048_UIRef_Label { get { return Read<UIReference>(0x1048); } }
+		public UIReference x1250_UIRef_RechargeTimer { get { return Read<UIReference>(0x1250); } }
+		public int x1458 { get { return Read<int>(0x1458); } }
+		public int x145C { get { return Read<int>(0x145C); } }
+		public int x1460_IsDisabled { get { return Read<int>(0x1460); } }
+		public int x1464_PowerSnoId { get { return Read<int>(0x1464); } }
+		public int _x1468 { get { return Read<int>(0x1468); } }
+		public int x146C_Neg1 { get { return Read<int>(0x146C); } }
+		public int x1470_AnnId { get { return Read<int>(0x1470); } }
+		public int _x1474 { get { return Read<int>(0x1474); } }
 	}
 }

@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXProgressBar : UXItemsControl
 	{
-		public new const int SizeOf = 0x1498; //5272
-		public new const int VTable = 0x017739E8;
+		public new const int SizeOf = 0x1470; //5232
+		public new const int VTable = 0x01829068;
 
 		public int x0A48 { get { return Read<int>(0x0A48); } }
 		public int x0A4C { get { return Read<int>(0x0A4C); } }

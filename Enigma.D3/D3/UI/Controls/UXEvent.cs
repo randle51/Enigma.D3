@@ -10,7 +10,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXEvent : UXControl
 	{
 		public new const int SizeOf = 0x498; //1176
-		public new const int VTable = 0x01763D80;
+		public new const int VTable = 0x018182E0;
 
 		public int x450 { get { return Read<int>(0x450); } }
 		public int x454 { get { return Read<int>(0x454); } }

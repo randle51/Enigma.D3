@@ -155,7 +155,7 @@
       <Name>Enigma.D3</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enigma.Memory\Enigma.Memory.csproj">
-      <Project>{3a385f29-42e2-4caf-b1f2-2a1a7b90a971}</Project>
+      <Project>{3A385F29-42E2-4CAF-B1F2-2A1A7B90A971}</Project>
       <Name>Enigma.Memory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enigma.Wpf\Enigma.Wpf.csproj">

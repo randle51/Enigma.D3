@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Particle : SerializeMemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x8F8; // 2296
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -80,7 +80,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class InterpolationScalar : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -91,7 +91,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FloatPath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -102,7 +102,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class IntPath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -113,7 +113,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TimePath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -124,7 +124,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AnglePath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -135,7 +135,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class VelocityVectorPath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -146,7 +146,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class VelocityPath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -157,7 +157,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class VectorPath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -168,7 +168,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UberMaterial : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x68; // 104
 			
 			public Sno x00_ShaderMapSno { get { return Read<Sno>(0x00); } }
@@ -180,7 +180,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class EmitterParams : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x118; // 280
 			
 			public FloatPath x000_FloatPath { get { return Read<FloatPath>(0x000); } }
@@ -193,7 +193,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ColorPath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -204,7 +204,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AngularVelocityPath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -215,7 +215,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AccelVectorPath : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -226,7 +226,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MsgTriggeredEvent : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x19C; // 412
 			
 			public int x000 { get { return Read<int>(0x000); } }
@@ -236,7 +236,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class InterpolationPathHeader : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x1C; // 28
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -249,7 +249,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FloatNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -260,7 +260,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class IntNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -271,7 +271,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TimeNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public Time x00_Time { get { return Read<Time>(0x00); } }
@@ -282,7 +282,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AngleNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public Angle x00_Angle { get { return Read<Angle>(0x00); } }
@@ -293,7 +293,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class VelocityVectorNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x1C; // 28
 			
 			public VelocityVector3D x00_VelocityVector3D { get { return Read<VelocityVector3D>(0x00); } }
@@ -304,7 +304,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class VelocityNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public Velocity x00_Velocity { get { return Read<Velocity>(0x00); } }
@@ -315,24 +315,24 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class VectorNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x1C; // 28
 			
-			public Vector3D x00_Vector3D { get { return Read<Vector3D>(0x00); } }
-			public Vector3D x0C_Vector3D { get { return Read<Vector3D>(0x0C); } }
+			public DT_VECTOR3D x00_DT_VECTOR3D { get { return Read<DT_VECTOR3D>(0x00); } }
+			public DT_VECTOR3D x0C_DT_VECTOR3D { get { return Read<DT_VECTOR3D>(0x0C); } }
 			public float x18 { get { return Read<float>(0x18); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class Material : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x48; // 72
 			
-			public RGBAColorValue x00_RGBAColorValue { get { return Read<RGBAColorValue>(0x00); } }
-			public RGBAColorValue x10_RGBAColorValue { get { return Read<RGBAColorValue>(0x10); } }
-			public RGBAColorValue x20_RGBAColorValue { get { return Read<RGBAColorValue>(0x20); } }
-			public RGBAColorValue x30_RGBAColorValue { get { return Read<RGBAColorValue>(0x30); } }
+			public DT_RGBACOLORVALUE x00_DT_RGBACOLORVALUE { get { return Read<DT_RGBACOLORVALUE>(0x00); } }
+			public DT_RGBACOLORVALUE x10_DT_RGBACOLORVALUE { get { return Read<DT_RGBACOLORVALUE>(0x10); } }
+			public DT_RGBACOLORVALUE x20_DT_RGBACOLORVALUE { get { return Read<DT_RGBACOLORVALUE>(0x20); } }
+			public DT_RGBACOLORVALUE x30_DT_RGBACOLORVALUE { get { return Read<DT_RGBACOLORVALUE>(0x30); } }
 			public float x40 { get { return Read<float>(0x40); } }
 			public int x44 { get { return Read<int>(0x44); } }
 		}
@@ -340,7 +340,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MaterialTextureEntry : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0xA0; // 160
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -351,18 +351,18 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ColorNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
-			public RGBAColor x00_RGBAColor { get { return Read<RGBAColor>(0x00); } }
-			public RGBAColor x04_RGBAColor { get { return Read<RGBAColor>(0x04); } }
+			public DT_RGBACOLOR x00_DT_RGBACOLOR { get { return Read<DT_RGBACOLOR>(0x00); } }
+			public DT_RGBACOLOR x04_DT_RGBACOLOR { get { return Read<DT_RGBACOLOR>(0x04); } }
 			public float x08 { get { return Read<float>(0x08); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class AngularVelocityNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public AngularVelocity x00_AngularVelocity { get { return Read<AngularVelocity>(0x00); } }
@@ -373,7 +373,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AccelVectorNode : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x1C; // 28
 			
 			public AccelVector3D x00_AccelVector3D { get { return Read<AccelVector3D>(0x00); } }
@@ -384,7 +384,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TriggerEvent : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x198; // 408
 			
 			public int x000 { get { return Read<int>(0x000); } }
@@ -413,16 +413,16 @@ namespace Enigma.D3.Sno
 			public Velocity x17C_Velocity { get { return Read<Velocity>(0x17C); } }
 			public int x180 { get { return Read<int>(0x180); } }
 			public Time x184_Time { get { return Read<Time>(0x184); } }
-			public RGBAColor x188_RGBAColor { get { return Read<RGBAColor>(0x188); } }
+			public DT_RGBACOLOR x188_DT_RGBACOLOR { get { return Read<DT_RGBACOLOR>(0x188); } }
 			public Time x18C_Time { get { return Read<Time>(0x18C); } }
-			public RGBAColor x190_RGBAColor { get { return Read<RGBAColor>(0x190); } }
+			public DT_RGBACOLOR x190_DT_RGBACOLOR { get { return Read<DT_RGBACOLOR>(0x190); } }
 			public Time x194_Time { get { return Read<Time>(0x194); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class VelocityVector3D : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public Velocity x00_Velocity { get { return Read<Velocity>(0x00); } }
@@ -431,10 +431,10 @@ namespace Enigma.D3.Sno
 		}
 		
 		[CompilerGenerated]
-		public partial class Vector3D : MemoryObject
+		public partial class DT_VECTOR3D : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x0C; // 12
+			// 2.2.0.30894
+			public const int SizeOf = 0x08; // 8
 			
 			public float x00_X { get { return Read<float>(0x00); } }
 			public float x04_Y { get { return Read<float>(0x04); } }
@@ -442,10 +442,10 @@ namespace Enigma.D3.Sno
 		}
 		
 		[CompilerGenerated]
-		public partial class RGBAColorValue : MemoryObject
+		public partial class DT_RGBACOLORVALUE : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x10; // 16
+			// 2.2.0.30894
+			public const int SizeOf = 0x0C; // 12
 			
 			public float x00 { get { return Read<float>(0x00); } }
 			public float x04 { get { return Read<float>(0x04); } }
@@ -456,7 +456,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MaterialTexture : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x98; // 152
 			
 			public Sno x00_TexturesSno { get { return Read<Sno>(0x00); } }
@@ -465,10 +465,10 @@ namespace Enigma.D3.Sno
 		}
 		
 		[CompilerGenerated]
-		public partial class RGBAColor : MemoryObject
+		public partial class DT_RGBACOLOR : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x04; // 4
+			// 2.2.0.30894
+			public const int SizeOf = 0x03; // 3
 			
 			public byte x00 { get { return Read<byte>(0x00); } }
 			public byte x01 { get { return Read<byte>(0x01); } }
@@ -479,7 +479,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AccelVector3D : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public Acceleration x00_Acceleration { get { return Read<Acceleration>(0x00); } }
@@ -490,7 +490,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TriggerConditions : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x24; // 36
 			
 			public Percent x00_Percent { get { return Read<Percent>(0x00); } }
@@ -507,7 +507,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SNOName : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public SnoGroup x00_SnoGroup { get { return Read<SnoGroup>(0x00); } }
@@ -517,7 +517,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class HardpointLink : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x44; // 68
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -527,7 +527,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LookLink : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x40; // 64
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -536,7 +536,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ConstraintLink : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x40; // 64
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -545,7 +545,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TexAnimParams : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x90; // 144
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -570,7 +570,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Matrix4x4 : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x40; // 64
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -594,7 +594,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FrameAnim : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x14; // 20
 			
 			public int x00 { get { return Read<int>(0x00); } }

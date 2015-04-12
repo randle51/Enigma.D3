@@ -14,7 +14,7 @@ namespace Enigma.Memory
 		private readonly MemoryAddress _minValidAddress;
 		private readonly MemoryAddress _maxValidAddress;
 		private readonly List<Page> _pages;
-		private readonly List<int> _pageStarts;
+		private readonly List<uint> _pageStarts;
 		private readonly int _pointerSize;
 
 		public MiniDumpMemoryReader(string path)
@@ -35,6 +35,7 @@ namespace Enigma.Memory
 
 			var mainModule = modules.FirstOrDefault(a => a.VersionInfo.FileType == 1);
 			MainModuleVersion = mainModule.VersionInfo.FileVersion;
+			ImageBase = mainModule.BaseOfImage;
 
 			var memory64ListDir = dirs.SingleOrDefault(a => a.StreamType == MiniDump.StreamType.Memory64ListStream);
 			if (memory64ListDir.StreamType != MiniDump.StreamType.Memory64ListStream)
@@ -56,7 +57,7 @@ namespace Enigma.Memory
 			}
 
 			_pages = pages;
-			_pageStarts = _pages.Select(a => (int)a.StartOfMemoryRange).ToList();
+			_pageStarts = _pages.Select(a => a.StartOfMemoryRange).ToList();
 			_minValidAddress = _pages[0].StartOfMemoryRange;
 			_maxValidAddress = _pages[_pages.Count - 1].StartOfMemoryRange + _pages[_pages.Count - 1].DataSize;
 			_pointerSize = 4; // TODO: Get 32-bit vs 64-bit info from the minidump somewhere..
@@ -66,9 +67,15 @@ namespace Enigma.Memory
 
 		public override MemoryAddress MaxValidAddress { get { return _maxValidAddress; } }
 
+		public MemoryAddress MinUsedAddress { get { return _pages[0].StartOfMemoryRange; } }
+
+		public MemoryAddress MaxUsedAddress { get { return _pages[_pages.Count - 1].StartOfMemoryRange + _pages[_pages.Count - 1].DataSize; } }
+
 		public override bool IsValid { get { return !_fileStream.SafeFileHandle.IsInvalid; } }
 
 		public override int PointerSize { get { return _pointerSize; } }
+
+		public MemoryAddress ImageBase { get; private set; }
 
 		public Version MainModuleVersion { get; private set; }
 
@@ -92,9 +99,50 @@ namespace Enigma.Memory
 			}
 		}
 
+		public bool TryReadByte(MemoryAddress address, out byte b)
+		{
+			int page;
+			if (TryGetPageIndex(address, out page))
+			{
+				_fileStream.Position = _pages[page].TranslateToRva(address);
+				b = (byte)_fileStream.ReadByte();
+				return true;
+			}
+			b = 0;
+			return false;
+		}
+
+		private bool TryGetPageIndex(int address, out int index)
+		{
+			index = _pageStarts.BinarySearch((uint)address);
+			if (index < 0)
+			{
+				int closest = ~index - 1;
+				if (_pages[closest].Contains(address))
+				{
+					index = closest;
+					return true;
+				}
+				else
+				{
+					if (closest + 1 < _pages.Count &&
+						_pages[closest + 1].Contains(address))
+					{
+						index = closest + 1;
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+
 		private int GetPageIndex(int address)
 		{
-			int index = _pageStarts.BinarySearch(address);
+			int index = _pageStarts.BinarySearch((uint)address);
 			if (index < 0)
 			{
 				int closest = ~index - 1;
@@ -131,7 +179,7 @@ namespace Enigma.Memory
 
 			public bool Contains(int address)
 			{
-				return unchecked(address >= StartOfMemoryRange && address < StartOfMemoryRange + DataSize);
+				return unchecked((uint)address >= StartOfMemoryRange && (uint)address < StartOfMemoryRange + DataSize);
 			}
 
 			public int TranslateToRva(int address)

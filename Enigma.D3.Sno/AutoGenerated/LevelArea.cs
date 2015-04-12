@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class LevelArea : SerializeMemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x28; // 40
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -21,7 +21,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LevelAreaServerData : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x360; // 864
 			
 			public Sno x000_LevelAreaSno { get { return Read<Sno>(0x000); } }
@@ -35,7 +35,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class GizmoLocSet : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x340; // 832
 			
 			public GizmoLocSpawnType[] x000_GizmoLocSpawnTypes { get { return Read<GizmoLocSpawnType>(0x000, 52); } }
@@ -44,7 +44,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LevelAreaSpawnPopulation : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x98; // 152
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -64,7 +64,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class GizmoLocSpawnType : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public GizmoLocSpawnEntry[] x00_GizmoLocSpawnEntries { get { return Deserialize<GizmoLocSpawnEntry>(x08_SerializeData); } }
@@ -74,7 +74,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LevelAreaSpawnGroup : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x38; // 56
 			
 			public int x00_Enum { get { return Read<int>(0x00); } } // Count per 100 sq ft = 0, Exactly = 1
@@ -92,7 +92,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class GizmoLocSpawnEntry : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x28; // 40
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -108,7 +108,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LevelAreaSpawnItem : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x20; // 32
 			
 			public SNOName x00_SNOName { get { return Read<SNOName>(0x00); } }
@@ -123,7 +123,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class GizmoLocSpawnChoice : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x14; // 20
 			
 			public SNOName x00_SNOName { get { return Read<SNOName>(0x00); } }
@@ -135,7 +135,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SNOName : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public SnoGroup x00_SnoGroup { get { return Read<SnoGroup>(0x00); } }

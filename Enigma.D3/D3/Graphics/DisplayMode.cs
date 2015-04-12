@@ -8,7 +8,7 @@ namespace Enigma.D3.Graphics
 {
 	public class DisplayMode : MemoryObject
 	{
-		// 2.0.0.20874
+		// 2.2.0.30894
 		public const int SizeOf = 0x30;
 
 		public DisplayModeFlags x00_Flags { get { return (DisplayModeFlags)Read<int>(0x00); } }
@@ -23,5 +23,6 @@ namespace Enigma.D3.Graphics
 		public int x24_Height { get { return Read<int>(0x24); } }
 		public int x28_RefreshRate { get { return Read<int>(0x28); } }
 		public int x2C_BitDepth { get { return Read<int>(0x2C); } }
+		public int x30_DisplayModeMSAALevel { get { return Read<int>(0x30); } }
 	}
 }

@@ -115,12 +115,12 @@ namespace Enigma.Memory
 			return new Ptr<T>(Memory, ReadMemoryAddress(offset));
 		}
 
-		public Ptr<string> ReadStringPointer(int offset, int maxLength)
+		public StringPointer ReadStringPointer(int offset, int maxLength)
 		{
 			return new StringPointer(Memory, ReadMemoryAddress(offset), maxLength);
 		}
 
-		public Ptr<string> ReadStringPointer(int offset, int maxLength, Encoding encoding)
+		public StringPointer ReadStringPointer(int offset, int maxLength, Encoding encoding)
 		{
 			return new StringPointer(Memory, ReadMemoryAddress(offset), maxLength, encoding);
 		}

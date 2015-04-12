@@ -232,7 +232,7 @@ namespace Enigma.D3.Helpers
 
 		public static UIMap GetUIMap()
 		{
-			return Engine.TryGet(engine => engine.ObjectManager.x9A4_UI.x0000_Controls.x10_Map);
+			return Engine.TryGet(engine => engine.ObjectManager.x9AC_UI.x0000_Controls.x10_Map);
 		}
 
 		private static TResult GetIfNotNull<T, TResult>(T input, Func<T, TResult> getter)

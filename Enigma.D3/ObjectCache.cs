@@ -9,28 +9,28 @@ namespace Enigma
 {
 	public class ObjectCache<T>
 	{
-		private static readonly TimeSpan DefaultLifeLength = TimeSpan.FromMilliseconds(1000d / 60);
+		private static readonly TimeSpan DefaultLifeSpan = TimeSpan.FromMilliseconds(1000d / 60);
 
 		public static implicit operator T(ObjectCache<T> cache) { return cache.Value; }
 
 		private readonly Func<T> _get;
-		private readonly TimeSpan _lifeLength;
-		private readonly long _lifeLengthInTicks;
+		private readonly TimeSpan _lifeSpan;
+		private readonly long _lifeSpanInTicks;
 		private T _value;
 		private long _expirationTick;
 
 		public bool IsFinalIfNotNull;
 
 		public ObjectCache(Func<T> get)
-			: this(get, DefaultLifeLength) { }
+			: this(get, DefaultLifeSpan) { }
 
-		public ObjectCache(Func<T> get, TimeSpan lifeLength)
+		public ObjectCache(Func<T> get, TimeSpan lifeSpan)
 		{
 			if (get == null)
 				throw new ArgumentNullException("get");
 			_get = get;
-			_lifeLength = lifeLength;
-			_lifeLengthInTicks = _lifeLength.Ticks;
+			_lifeSpan = lifeSpan;
+			_lifeSpanInTicks = _lifeSpan.Ticks;
 		}
 
 		public T Value
@@ -44,7 +44,7 @@ namespace Enigma
 				if (tick > _expirationTick)
 				{
 					_value = _get();
-					_expirationTick = tick + _lifeLengthInTicks;
+					_expirationTick = tick + _lifeSpanInTicks;
 				}
 				return _value;
 			}

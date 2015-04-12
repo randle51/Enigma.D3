@@ -9,11 +9,12 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXItemsControlBase : UXControl
 	{
-		public new const int SizeOf = 0x490; //1168
-		public new const int VTable = 0x01725D50;
+		public new const int SizeOf = 0x468; //1128
+		public new const int VTable = 0x017D2D80;
 
-		public Vector<UIControlReference> x450_Children { get { return Read<Vector<UIControlReference>>(0x450); } }
-		public Ptr<UXControl> x488_Ptr_UIControl { get { return ReadPointer<UXControl>(0x488); } }
-		public Ptr<UXControl> x48C_Ptr_UIControl { get { return ReadPointer<UXControl>(0x48C); } }
+		public LightVector<UIControlReference> Children { get { return Read<LightVector<UIControlReference>>(0x450); } }
+		public Ptr<UXControl> x45C_Ptr_UIControl { get { return ReadPointer<UXControl>(0x45C); } }
+		public Ptr<UXControl> x460_Ptr_UIControl { get { return ReadPointer<UXControl>(0x460); } }
+		public int _x464 { get { return Read<int>(0x464); } }
 	}
 }
