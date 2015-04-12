@@ -16,9 +16,8 @@ namespace Enigma.D3.Helpers
 			if (localData.x00_IsActorCreated != 0)
 			{
 				var objMgr = Engine.Current.ObjectManager;
-				var localPlayerDataIndex = objMgr.x9B4_Player.x00000_LocalDataIndex;
-				var localPlayerData = objMgr.x798_Storage.x104_PlayerDataCollection.x0058_Items[localPlayerDataIndex];
-				var localActor = objMgr.x930_RActors[(short)localPlayerData.x0008_ActorId];
+				var localPlayerData = PlayerData.Local;
+				var localActor = Actor.Container[(short)localPlayerData.x0008_ActorId];
 				return localActor;
 			}
 			return null;
@@ -42,7 +41,7 @@ namespace Enigma.D3.Helpers
 
 		private static ExpandableContainer<Actor> GetContainer()
 		{
-			return Engine.TryGet(a => a.ObjectManager.x930_RActors);
+			return Engine.TryGet(a => a.ObjectManager.x938_RActors);
 		}
 	}
 }

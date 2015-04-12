@@ -9,7 +9,7 @@ namespace Enigma.D3.UI.Controls
 	public class UXDrawHook : UXControl
 	{
 		public new const int SizeOf = 0x458; //1112
-		public new const int VTable = 0x01771B60;
+		public new const int VTable = 0x018271F0;
 
 		public int x450 { get { return Read<int>(0x450); } }
 		public int _x454 { get { return Read<int>(0x454); } }

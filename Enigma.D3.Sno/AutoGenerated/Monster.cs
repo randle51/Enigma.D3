@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Monster : SerializeMemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x540; // 1344
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -18,7 +18,7 @@ namespace Enigma.D3.Sno
 		public int x018_Enum { get { return Read<int>(0x018); } } //  = -1, Undead = 0, Demon = 1, Beast = 2, Human = 3, Breakable = 4, Scenery = 5, Ally = 6, Team = 7, Helper = 8, CorruptedAngel = 9, Pandemonium = 10, Adria = 11, Blood Golem = 12
 		public int x01C_Enum { get { return Read<int>(0x01C); } } //  = 0, Fallen = 1, GoatMen = 2, Rogue = 3, Skeleton = 4, Zombie = 5, Spider = 6, Triune = 7, WoodWraith = 8, Human = 9, Animal = 10, TreasureGoblin = 11, CrazedAngel = 12
 		public int x020_Enum { get { return Read<int>(0x020); } } //  = -1, Big = 3, Standard = 4, Ranged = 5, Swarm = 6, Boss = 7
-		public Monster x024_Monster { get { return Read<Monster>(0x024); } }
+		public MonsterData x024_Monster { get { return Read<MonsterData>(0x024); } }
 		public int x038_Enum { get { return Read<int>(0x038); } } // None = -1, Physical = 0, Fire = 1, Lightning = 2, Cold = 3, Poison = 4, Arcane = 5, Holy = 6
 		public int x03C { get { return Read<int>(0x03C); } }
 		public int x040 { get { return Read<int>(0x040); } }
@@ -76,7 +76,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MonsterData : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x14; // 20
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -89,7 +89,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class HealthDropInfo : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -100,7 +100,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SkillDeclaration : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public Sno x00_PowerSno { get { return Read<Sno>(0x00); } }
@@ -110,7 +110,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MonsterSkillDeclaration : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -122,7 +122,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MonsterMinionSpawnGroup : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x18; // 24
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -134,7 +134,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MonsterChampionSpawnGroup : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x18; // 24
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -146,7 +146,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MonsterMinionSpawnItem : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x14; // 20
 			
 			public Sno x00_ActorSno { get { return Read<Sno>(0x00); } }
@@ -159,7 +159,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MonsterChampionSpawnItem : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public Sno x00_ActorSno { get { return Read<Sno>(0x00); } }

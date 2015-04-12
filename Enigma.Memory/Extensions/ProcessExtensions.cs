@@ -58,6 +58,18 @@ namespace Enigma.Memory
 			return !is32BitOn64Bit;
 		}
 
+		public static DateTime RetrieveLinkerTimestamp(this Process process)
+		{
+			using (var reader = new FileMemoryReader(process.MainModule.FileName))
+			{
+				if (reader.Read<short>(0x00) != 0x5A4D)
+					throw new InvalidDataException("No MZ header.");
+				int peHeaderLocation = reader.Read<int>(0x3C);
+				int unixTimestamp = reader.Read<int>(peHeaderLocation + 0x08);
+				return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(unixTimestamp);
+			}
+		}
+
 		private static class Win32
 		{
 			[DllImport("Kernel32.dll", SetLastError = true)]

@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class AnimSet : SerializeMemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x1E0; // 480
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -20,7 +20,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AnimSetTagMap : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public SerializeData x00_SerializeData { get { return Read<SerializeData>(0x00); } }

@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class ConversationList : SerializeMemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x20; // 32
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -18,7 +18,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ConversationListEntry : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x14C; // 332
 			
 			public Sno x000_ConversationSno { get { return Read<Sno>(0x000); } }

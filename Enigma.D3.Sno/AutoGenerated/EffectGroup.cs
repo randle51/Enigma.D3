@@ -8,7 +8,7 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class EffectGroup : SerializeMemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x78; // 120
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -25,7 +25,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class EffectItem : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x1E0; // 480
 			
 			public int x000 { get { return Read<int>(0x000); } }
@@ -36,7 +36,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MsgTriggeredEvent : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x19C; // 412
 			
 			public int x000 { get { return Read<int>(0x000); } }
@@ -46,7 +46,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TriggerEvent : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x198; // 408
 			
 			public int x000 { get { return Read<int>(0x000); } }
@@ -75,16 +75,16 @@ namespace Enigma.D3.Sno
 			public Velocity x17C_Velocity { get { return Read<Velocity>(0x17C); } }
 			public int x180 { get { return Read<int>(0x180); } }
 			public Time x184_Time { get { return Read<Time>(0x184); } }
-			public RGBAColor x188_RGBAColor { get { return Read<RGBAColor>(0x188); } }
+			public DT_RGBACOLOR x188_DT_RGBACOLOR { get { return Read<DT_RGBACOLOR>(0x188); } }
 			public Time x18C_Time { get { return Read<Time>(0x18C); } }
-			public RGBAColor x190_RGBAColor { get { return Read<RGBAColor>(0x190); } }
+			public DT_RGBACOLOR x190_DT_RGBACOLOR { get { return Read<DT_RGBACOLOR>(0x190); } }
 			public Time x194_Time { get { return Read<Time>(0x194); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class TriggerConditions : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x24; // 36
 			
 			public Percent x00_Percent { get { return Read<Percent>(0x00); } }
@@ -101,7 +101,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SNOName : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public SnoGroup x00_SnoGroup { get { return Read<SnoGroup>(0x00); } }
@@ -111,7 +111,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class HardpointLink : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x44; // 68
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -121,7 +121,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LookLink : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x40; // 64
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -130,17 +130,17 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ConstraintLink : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x40; // 64
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
 		}
 		
 		[CompilerGenerated]
-		public partial class RGBAColor : MemoryObject
+		public partial class DT_RGBACOLOR : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x04; // 4
+			// 2.2.0.30894
+			public const int SizeOf = 0x03; // 3
 			
 			public byte x00 { get { return Read<byte>(0x00); } }
 			public byte x01 { get { return Read<byte>(0x01); } }

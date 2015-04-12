@@ -27,7 +27,6 @@ namespace Enigma.D3.Collections
 		public int x120_Allocation { get { return Read<int>(0x120); } } // 0 in Container, BlockAllocations in ExpandableContainer
 
 		public int x110_NextId { get { return Read<int>(0x110); } }
-		public T[] x11C_Items { get { return Dereference<T>(0x11C, x100_Capacity); } }
 		public Ptr<T> x11C_Ptr_Items { get { return ReadPointer<T>(0x11C); } }
 
 		public IEnumerator<T> GetEnumerator()

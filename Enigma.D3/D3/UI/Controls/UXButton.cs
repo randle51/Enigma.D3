@@ -8,26 +8,93 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXButton : UXLabel
 	{
-		public new const int SizeOf = 0xF48; //3912
-		public new const int VTable = 0x01770F30;
+		public new const int SizeOf = 0xE40; //3648
+		public new const int VTable = 0x018265A0;
 
-		public int xC88_Neg1 { get { return Read<int>(0xC88); } }
-		public int xC8C_Neg1 { get { return Read<int>(0xC8C); } }
-		public int xC90_Neg1 { get { return Read<int>(0xC90); } }
-		public int xC94_Neg1 { get { return Read<int>(0xC94); } }
-		public int xC98_Neg1 { get { return Read<int>(0xC98); } }
-		public int xC9C_Neg1 { get { return Read<int>(0xC9C); } }
-		public int xCA0_Neg1 { get { return Read<int>(0xCA0); } }
-		public int xCA4_Neg1 { get { return Read<int>(0xCA4); } }
-		public int xCA8_Neg1 { get { return Read<int>(0xCA8); } }
-		public int xCAC_Neg1 { get { return Read<int>(0xCAC); } }
-		public int xCB0_Neg1 { get { return Read<int>(0xCB0); } }
-		public int xCB4_Neg1 { get { return Read<int>(0xCB4); } }
+		public int _xB78 { get { return Read<int>(0xB78); } }
+		public int xB80_Neg1 { get { return Read<int>(0xB80); } }
+		public int xB84_Neg1 { get { return Read<int>(0xB84); } }
+		public int xB88_Neg1 { get { return Read<int>(0xB88); } }
+		public int xB8C_Neg1 { get { return Read<int>(0xB8C); } }
+		public int xB90_Neg1 { get { return Read<int>(0xB90); } }
+		public int xB94_Neg1 { get { return Read<int>(0xB94); } }
+		public int xB98_Neg1 { get { return Read<int>(0xB98); } }
+		public int xB9C_Neg1 { get { return Read<int>(0xB9C); } }
+		public int xBA0_Neg1 { get { return Read<int>(0xBA0); } }
+		public int xBA4_Neg1 { get { return Read<int>(0xBA4); } }
+		public int xBA8_Neg1 { get { return Read<int>(0xBA8); } }
+		public int xBAC_Neg1 { get { return Read<int>(0xBAC); } }
+		public int _xBB0 { get { return Read<int>(0xBB0); } }
+		public int xBB4_Neg1 { get { return Read<int>(0xBB4); } }
+		public int xBB8_Neg1 { get { return Read<int>(0xBB8); } }
+		public int xBBC_Neg1 { get { return Read<int>(0xBBC); } }
+		public int xBC0_Neg1 { get { return Read<int>(0xBC0); } }
+		public int _xBC4 { get { return Read<int>(0xBC4); } }
+		public int _xBC8 { get { return Read<int>(0xBC8); } }
+		public int _xBCC { get { return Read<int>(0xBCC); } }
+		public int _xBD0 { get { return Read<int>(0xBD0); } }
+		public int _xBD4 { get { return Read<int>(0xBD4); } }
+		public int _xBD8 { get { return Read<int>(0xBD8); } }
+		public int _xBDC { get { return Read<int>(0xBDC); } }
+		public int _xBE0 { get { return Read<int>(0xBE0); } }
+		public int _xBE4 { get { return Read<int>(0xBE4); } }
+		public int _xBE8 { get { return Read<int>(0xBE8); } }
+		public int _xBEC { get { return Read<int>(0xBEC); } }
+		public int _xBF0 { get { return Read<int>(0xBF0); } }
+		public int _xBF4 { get { return Read<int>(0xBF4); } }
+		public int _xBF8 { get { return Read<int>(0xBF8); } }
+		public int _xBFC { get { return Read<int>(0xBFC); } }
+		public int _xC00 { get { return Read<int>(0xC00); } }
+		public int _xC04 { get { return Read<int>(0xC04); } }
+		public int _xC08 { get { return Read<int>(0xC08); } }
+		public int _xC0C { get { return Read<int>(0xC0C); } }
+		public int _xC10 { get { return Read<int>(0xC10); } }
+		public int _xC14 { get { return Read<int>(0xC14); } }
+		public int _xC18 { get { return Read<int>(0xC18); } }
+		public int _xC1C { get { return Read<int>(0xC1C); } }
+		public int _xC20 { get { return Read<int>(0xC20); } }
+		public int _xC24 { get { return Read<int>(0xC24); } }
+		public int _xC28 { get { return Read<int>(0xC28); } }
+		public int _xC2C { get { return Read<int>(0xC2C); } }
+		public int _xC30 { get { return Read<int>(0xC30); } }
+		public int _xC34 { get { return Read<int>(0xC34); } }
+		public int _xC38 { get { return Read<int>(0xC38); } }
+		public int _xC3C { get { return Read<int>(0xC3C); } }
+		public int _xC40 { get { return Read<int>(0xC40); } }
+		public int _xC44 { get { return Read<int>(0xC44); } }
+		public int _xC48 { get { return Read<int>(0xC48); } }
+		public int _xC4C { get { return Read<int>(0xC4C); } }
+		public int _xC50 { get { return Read<int>(0xC50); } }
+		public int _xC54 { get { return Read<int>(0xC54); } }
+		public int _xC58 { get { return Read<int>(0xC58); } }
+		public int _xC5C { get { return Read<int>(0xC5C); } }
+		public int _xC60 { get { return Read<int>(0xC60); } }
+		public int _xC64 { get { return Read<int>(0xC64); } }
+		public int _xC68 { get { return Read<int>(0xC68); } }
+		public int _xC6C { get { return Read<int>(0xC6C); } }
+		public int _xC70 { get { return Read<int>(0xC70); } }
+		public int _xC74 { get { return Read<int>(0xC74); } }
+		public int _xC78 { get { return Read<int>(0xC78); } }
+		public int _xC7C { get { return Read<int>(0xC7C); } }
+		public int _xC80 { get { return Read<int>(0xC80); } }
+		public int _xC84 { get { return Read<int>(0xC84); } }
+		public int _xC88 { get { return Read<int>(0xC88); } }
+		public int _xC8C { get { return Read<int>(0xC8C); } }
+		public int _xC90 { get { return Read<int>(0xC90); } }
+		public int _xC94 { get { return Read<int>(0xC94); } }
+		public int _xC98 { get { return Read<int>(0xC98); } }
+		public int _xC9C { get { return Read<int>(0xC9C); } }
+		public int _xCA0 { get { return Read<int>(0xCA0); } }
+		public int _xCA4 { get { return Read<int>(0xCA4); } }
+		public int _xCA8 { get { return Read<int>(0xCA8); } }
+		public int _xCAC { get { return Read<int>(0xCAC); } }
+		public int _xCB0 { get { return Read<int>(0xCB0); } }
+		public int _xCB4 { get { return Read<int>(0xCB4); } }
 		public int _xCB8 { get { return Read<int>(0xCB8); } }
-		public int xCBC_Neg1 { get { return Read<int>(0xCBC); } }
-		public int xCC0_Neg1 { get { return Read<int>(0xCC0); } }
-		public int xCC4_Neg1 { get { return Read<int>(0xCC4); } }
-		public int xCC8_Neg1 { get { return Read<int>(0xCC8); } }
+		public int _xCBC { get { return Read<int>(0xCBC); } }
+		public int _xCC0 { get { return Read<int>(0xCC0); } }
+		public int _xCC4 { get { return Read<int>(0xCC4); } }
+		public int _xCC8 { get { return Read<int>(0xCC8); } }
 		public int _xCCC { get { return Read<int>(0xCCC); } }
 		public int _xCD0 { get { return Read<int>(0xCD0); } }
 		public int _xCD4 { get { return Read<int>(0xCD4); } }
@@ -121,71 +188,5 @@ namespace Enigma.D3.UI.Controls
 		public int _xE34 { get { return Read<int>(0xE34); } }
 		public int _xE38 { get { return Read<int>(0xE38); } }
 		public int _xE3C { get { return Read<int>(0xE3C); } }
-		public int _xE40 { get { return Read<int>(0xE40); } }
-		public int _xE44 { get { return Read<int>(0xE44); } }
-		public int _xE48 { get { return Read<int>(0xE48); } }
-		public int _xE4C { get { return Read<int>(0xE4C); } }
-		public int _xE50 { get { return Read<int>(0xE50); } }
-		public int _xE54 { get { return Read<int>(0xE54); } }
-		public int _xE58 { get { return Read<int>(0xE58); } }
-		public int _xE5C { get { return Read<int>(0xE5C); } }
-		public int _xE60 { get { return Read<int>(0xE60); } }
-		public int _xE64 { get { return Read<int>(0xE64); } }
-		public int _xE68 { get { return Read<int>(0xE68); } }
-		public int _xE6C { get { return Read<int>(0xE6C); } }
-		public int _xE70 { get { return Read<int>(0xE70); } }
-		public int _xE74 { get { return Read<int>(0xE74); } }
-		public int _xE78 { get { return Read<int>(0xE78); } }
-		public int _xE7C { get { return Read<int>(0xE7C); } }
-		public int _xE80 { get { return Read<int>(0xE80); } }
-		public int _xE84 { get { return Read<int>(0xE84); } }
-		public int _xE88 { get { return Read<int>(0xE88); } }
-		public int _xE8C { get { return Read<int>(0xE8C); } }
-		public int _xE90 { get { return Read<int>(0xE90); } }
-		public int _xE94 { get { return Read<int>(0xE94); } }
-		public int _xE98 { get { return Read<int>(0xE98); } }
-		public int _xE9C { get { return Read<int>(0xE9C); } }
-		public int _xEA0 { get { return Read<int>(0xEA0); } }
-		public int _xEA4 { get { return Read<int>(0xEA4); } }
-		public int _xEA8 { get { return Read<int>(0xEA8); } }
-		public int _xEAC { get { return Read<int>(0xEAC); } }
-		public int _xEB0 { get { return Read<int>(0xEB0); } }
-		public int _xEB4 { get { return Read<int>(0xEB4); } }
-		public int _xEB8 { get { return Read<int>(0xEB8); } }
-		public int _xEBC { get { return Read<int>(0xEBC); } }
-		public int _xEC0 { get { return Read<int>(0xEC0); } }
-		public int _xEC4 { get { return Read<int>(0xEC4); } }
-		public int _xEC8 { get { return Read<int>(0xEC8); } }
-		public int _xECC { get { return Read<int>(0xECC); } }
-		public int _xED0 { get { return Read<int>(0xED0); } }
-		public int _xED4 { get { return Read<int>(0xED4); } }
-		public int _xED8 { get { return Read<int>(0xED8); } }
-		public int _xEDC { get { return Read<int>(0xEDC); } }
-		public int _xEE0 { get { return Read<int>(0xEE0); } }
-		public int _xEE4 { get { return Read<int>(0xEE4); } }
-		public int _xEE8 { get { return Read<int>(0xEE8); } }
-		public int _xEEC { get { return Read<int>(0xEEC); } }
-		public int _xEF0 { get { return Read<int>(0xEF0); } }
-		public int _xEF4 { get { return Read<int>(0xEF4); } }
-		public int _xEF8 { get { return Read<int>(0xEF8); } }
-		public int _xEFC { get { return Read<int>(0xEFC); } }
-		public int _xF00 { get { return Read<int>(0xF00); } }
-		public int _xF04 { get { return Read<int>(0xF04); } }
-		public int _xF08 { get { return Read<int>(0xF08); } }
-		public int _xF0C { get { return Read<int>(0xF0C); } }
-		public int _xF10 { get { return Read<int>(0xF10); } }
-		public int _xF14 { get { return Read<int>(0xF14); } }
-		public int _xF18 { get { return Read<int>(0xF18); } }
-		public int _xF1C { get { return Read<int>(0xF1C); } }
-		public int _xF20 { get { return Read<int>(0xF20); } }
-		public int _xF24 { get { return Read<int>(0xF24); } }
-		public int _xF28 { get { return Read<int>(0xF28); } }
-		public int _xF2C { get { return Read<int>(0xF2C); } }
-		public int _xF30 { get { return Read<int>(0xF30); } }
-		public int _xF34 { get { return Read<int>(0xF34); } }
-		public int _xF38 { get { return Read<int>(0xF38); } }
-		public int _xF3C { get { return Read<int>(0xF3C); } }
-		public int _xF40 { get { return Read<int>(0xF40); } }
-		public int _xF44 { get { return Read<int>(0xF44); } }
 	}
 }

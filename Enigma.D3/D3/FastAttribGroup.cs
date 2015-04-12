@@ -615,5 +615,10 @@ namespace Enigma.D3
 		public int _x9BC { get { return Read<int>(0x9BC); } }
 		public int _x9C0 { get { return Read<int>(0x9C0); } }
 		public int _x9C4 { get { return Read<int>(0x9C4); } }
+
+		public static FastAttribGroup Get(int groupId)
+		{
+			return FastAttrib.Instance.IfNotNull(fastAttrib => fastAttrib.x54_Groups[(short)groupId]);
+		}
 	}
 }

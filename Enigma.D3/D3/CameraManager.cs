@@ -187,6 +187,6 @@ namespace Enigma.D3
 
 	public partial class CameraManager
 	{
-		public static CameraManager Instance { get { return ObjectManager.Instance.IfNotNull(a => a.x9A8_CameraManager); } }
+		public static CameraManager Instance { get { return ObjectManager.Instance.IfNotNull(a => a.x9B0_CameraManager); } }
 	}
 }

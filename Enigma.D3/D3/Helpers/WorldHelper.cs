@@ -11,7 +11,7 @@ namespace Enigma.D3.Helpers
 		public static World GetLocalWorld()
 		{
 			var worldSnoId = Engine.Current.LocalData.x0C_WorldSnoId;
-			foreach (var world in Engine.Current.ObjectManager.x9AC_CWorlds)
+			foreach (var world in World.Container)
 			{
 				if (world.x04_SnoId == worldSnoId)
 					return world;

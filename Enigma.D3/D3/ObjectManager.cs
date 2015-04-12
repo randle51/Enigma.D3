@@ -11,8 +11,8 @@ namespace Enigma.D3
 {
 	public partial class ObjectManager : MemoryObject
 	{
-		// 2.1.1.27255
-		public const int SizeOf = 0x9E8;
+		// 2.2.0.30894
+		public const int SizeOf = 0x9F0;
 
 		public Time x000_Time { get { return Read<Time>(0x000); } }
 		public int _x00C { get { return Read<int>(0x00C); } }
@@ -36,52 +36,52 @@ namespace Enigma.D3
 		public int _x794_int { get { return Read<int>(0x794); } }
 		public Storage x798_Storage { get { return Read<Storage>(0x798); } }
 		// ??? No idea how large Storage is.
-		public ExpandableContainer<Actor> x930_RActors { get { return Dereference<ExpandableContainer<Actor>>(0x930); } }
-		public ActorManager x934_ActorManager { get { return Dereference<ActorManager>(0x934); } }
-		public Ptr x938_Ptr_ { get { return Read<Ptr>(0x938); } }
-		public Ptr x93C_Ptr_ { get { return Read<Ptr>(0x93C); } }
-		public int _x940_int { get { return Read<int>(0x940); } }
+		public ExpandableContainer<Actor> x938_RActors { get { return Dereference<ExpandableContainer<Actor>>(0x938); } }
+		public ActorManager x93C_ActorManager { get { return Dereference<ActorManager>(0x93C); } }
+		public Ptr x940_Ptr_ { get { return Read<Ptr>(0x940); } }
 		public Ptr x944_Ptr_ { get { return Read<Ptr>(0x944); } }
-		public Ptr x948_Ptr_ { get { return Read<Ptr>(0x948); } }
+		public int _x948_int { get { return Read<int>(0x948); } }
 		public Ptr x94C_Ptr_ { get { return Read<Ptr>(0x94C); } }
 		public Ptr x950_Ptr_ { get { return Read<Ptr>(0x950); } }
-		public Cinematography x954_Cinematography { get { return Dereference<Cinematography>(0x954); } }
+		public Ptr x954_Ptr_ { get { return Read<Ptr>(0x954); } }
 		public Ptr x958_Ptr_ { get { return Read<Ptr>(0x958); } }
-		public Ptr x95C_Ptr_ { get { return Read<Ptr>(0x95C); } }
+		public Cinematography x95C_Cinematography { get { return Dereference<Cinematography>(0x95C); } }
 		public Ptr x960_Ptr_ { get { return Read<Ptr>(0x960); } }
 		public Ptr x964_Ptr_ { get { return Read<Ptr>(0x964); } }
 		public Ptr x968_Ptr_ { get { return Read<Ptr>(0x968); } }
 		public Ptr x96C_Ptr_ { get { return Read<Ptr>(0x96C); } }
-		public Container<Scene> x970_Scenes { get { return Dereference<Container<Scene>>(0x970); } }
-		public int _x974_int { get { return Read<int>(0x974); } }
-		public Ptr x978_Ptr_ { get { return Read<Ptr>(0x978); } }
-		public Ptr x97C_Ptr_ { get { return Read<Ptr>(0x97C); } }
+		public Ptr x970_Ptr_ { get { return Read<Ptr>(0x970); } }
+		public Ptr x974_Ptr_ { get { return Read<Ptr>(0x974); } }
+		public Container<Scene> x978_Scenes { get { return Dereference<Container<Scene>>(0x978); } }
+		public int _x97C_int { get { return Read<int>(0x97C); } }
 		public Ptr x980_Ptr_ { get { return Read<Ptr>(0x980); } }
-		public Ptr<Allocator> x984_Ptr_Allocator_296x64Bytes { get { return Read<Ptr<Allocator>>(0x984); } }
+		public Ptr x984_Ptr_ { get { return Read<Ptr>(0x984); } }
 		public Ptr x988_Ptr_ { get { return Read<Ptr>(0x988); } }
-		public Ptr<X98C> x98C_Ptr_Struct { get { return Read<Ptr<X98C>>(0x98C); } }
+		public Ptr<Allocator> x98C_Ptr_Allocator_296x64Bytes { get { return Read<Ptr<Allocator>>(0x98C); } }
 		public Ptr x990_Ptr_ { get { return Read<Ptr>(0x990); } }
-		public Ptr x994_Ptr_ { get { return Read<Ptr>(0x994); } }
+		public Ptr<X98C> x994_Ptr_Struct { get { return Read<Ptr<X98C>>(0x994); } }
 		public Ptr x998_Ptr_ { get { return Read<Ptr>(0x998); } }
 		public Ptr x99C_Ptr_ { get { return Read<Ptr>(0x99C); } }
 		public Ptr x9A0_Ptr_ { get { return Read<Ptr>(0x9A0); } }
-		public UIManager x9A4_UI { get { return Dereference<UIManager>(0x9A4); } }
-		public CameraManager x9A8_CameraManager { get { return Dereference<CameraManager>(0x9A8); } }
-		public Container<World> x9AC_CWorlds { get { return Dereference<Container<World>>(0x9AC); } }
-		public Ptr x9B0_Ptr_ { get { return Read<Ptr>(0x9B0); } }
-		public Player x9B4_Player { get { return Dereference<Player>(0x9B4); } }
-		public PlayerInput x9B8_PlayerInput { get { return Dereference<PlayerInput>(0x9B8); } }
-		public Ptr x9BC_Ptr_ { get { return Read<Ptr>(0x9BC); } }
-		public Ptr x9C0_Ptr_ { get { return Read<Ptr>(0x9C0); } }
-		public int _x9C4_int { get { return Read<int>(0x9C4); } }
-		public int _x9C8_int { get { return Read<int>(0x9C8); } }
-		public Ptr x9CC_Ptr_ { get { return Read<Ptr>(0x9CC); } }
-		public Ptr x9D0_Ptr_ { get { return Read<Ptr>(0x9D0); } }
+		public Ptr x9A4_Ptr_ { get { return Read<Ptr>(0x9A4); } }
+		public Ptr x9A8_Ptr_ { get { return Read<Ptr>(0x9A8); } }
+		public UIManager x9AC_UI { get { return Dereference<UIManager>(0x9AC); } }
+		public CameraManager x9B0_CameraManager { get { return Dereference<CameraManager>(0x9B0); } }
+		public Container<World> x9B4_CWorlds { get { return Dereference<Container<World>>(0x9B4); } }
+		public Ptr x9B8_Ptr_ { get { return Read<Ptr>(0x9B8); } }
+		public Player x9BC_Player { get { return Dereference<Player>(0x9BC); } }
+		public PlayerInput x9C0_PlayerInput { get { return Dereference<PlayerInput>(0x9C0); } }
+		public Ptr x9C4_Ptr_ { get { return Read<Ptr>(0x9C4); } }
+		public Ptr x9C8_Ptr_ { get { return Read<Ptr>(0x9C8); } }
+		public int _x9CC_int { get { return Read<int>(0x9CC); } }
+		public int _x9D0_int { get { return Read<int>(0x9D0); } }
 		public Ptr x9D4_Ptr_ { get { return Read<Ptr>(0x9D4); } }
-		public Ptr<Allocator> x9D8_Ptr_Allocator_224x1024Bytes { get { return Read<Ptr<Allocator>>(0x9D8); } }
-		public Ptr<ListPack<TimedEvent>> x9DC_Ptr_TimedEvents { get { return ReadPointer<ListPack<TimedEvent>>(0x9DC); } }
-		public Ptr x9E0_Ptr_ { get { return Read<Ptr>(0x9E0); } }
-		public Ptr<Allocator> x9E4_Ptr_Allocator_656x1024Bytes { get { return Read<Ptr<Allocator>>(0x9E4); } }
+		public Ptr x9D8_Ptr_ { get { return Read<Ptr>(0x9D8); } }
+		public Ptr x9DC_Ptr_ { get { return Read<Ptr>(0x9DC); } }
+		public Ptr<Allocator> x9E0_Ptr_Allocator_224x1024Bytes { get { return Read<Ptr<Allocator>>(0x9E0); } }
+		public Ptr<ListPack<TimedEvent>> x9E4_Ptr_TimedEvents { get { return ReadPointer<ListPack<TimedEvent>>(0x9E4); } }
+		public Ptr x9E8_Ptr_ { get { return Read<Ptr>(0x9E8); } }
+		public Ptr<Allocator> x9EC_Ptr_Allocator_656x1024Bytes { get { return Read<Ptr<Allocator>>(0x9EC); } }
 
 		public class X98C : MemoryObject
 		{
@@ -183,7 +183,7 @@ namespace Enigma.D3
 			public int _x0E8 { get { return Read<int>(0x0E8); } }
 			public int _x0EC { get { return Read<int>(0x0EC); } }
 			public int _x0F0 { get { return Read<int>(0x0F0); } }
-			public int _x0F4 { get { return Read<int>(0x0F4); } }
+			public float x0F4_RiftProgress { get { return Read<float>(0x0F4); } }
 			public int _x0F8 { get { return Read<int>(0x0F8); } }
 			public int _x0FC { get { return Read<int>(0x0FC); } }
 			public int _x100 { get { return Read<int>(0x100); } }

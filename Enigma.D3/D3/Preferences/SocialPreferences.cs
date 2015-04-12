@@ -22,5 +22,6 @@ namespace Enigma.D3.Preferences
 		public int x20_NotifyFriendBroadcastDisabled { get { return Read<int>(0x20); } }  // default = 0, min = 0, max = 1
 		public int x24_ShowLocalPlayersListDisabled { get { return Read<int>(0x24); } }  // default = 0, min = 0, max = 1
 		public int x28_NotifyGuildMemberOnlineDisabled { get { return Read<int>(0x28); } }  // default = 0, min = 0, max = 1
+		public int x2C_NotifyGuildAchievementDisabled { get { return Read<int>(0x2C); } }  // default = 0, min = 0, max = 1
 	}
 }

@@ -44,7 +44,7 @@ namespace Enigma.D3.Helpers
 		public static uint Lcg(string data)
 		{
 			uint hash = 0;
-			foreach (var c in Encoding.ASCII.GetBytes(data.ToLower()))
+			foreach (var c in Encoding.ASCII.GetBytes(data))
 			{
 				hash = hash * 33 + c;
 			}

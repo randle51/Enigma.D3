@@ -8,13 +8,13 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Explosion : MemoryObject
 	{
-		// 2.1.2.28709
+		// 2.2.0.30894
 		public const int SizeOf = 0x40; // 64
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
 		public int x0C { get { return Read<int>(0x0C); } }
 		public int x10 { get { return Read<int>(0x10); } }
-		public Vector3D x14_Vector3D { get { return Read<Vector3D>(0x14); } }
+		public DT_VECTOR3D x14_DT_VECTOR3D { get { return Read<DT_VECTOR3D>(0x14); } }
 		public Impulse x20_Impulse { get { return Read<Impulse>(0x20); } }
 		public float x24 { get { return Read<float>(0x24); } }
 		public float x28 { get { return Read<float>(0x28); } }
@@ -25,10 +25,10 @@ namespace Enigma.D3.Sno
 		public int x3C { get { return Read<int>(0x3C); } }
 		
 		[CompilerGenerated]
-		public partial class Vector3D : MemoryObject
+		public partial class DT_VECTOR3D : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x0C; // 12
+			// 2.2.0.30894
+			public const int SizeOf = 0x08; // 8
 			
 			public float x00_X { get { return Read<float>(0x00); } }
 			public float x04_Y { get { return Read<float>(0x04); } }

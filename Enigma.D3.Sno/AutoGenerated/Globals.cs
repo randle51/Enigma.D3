@@ -8,8 +8,8 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Globals : SerializeMemoryObject
 	{
-		// 2.1.2.28709
-		public const int SizeOf = 0x290; // 656
+		// 2.2.0.30894
+		public const int SizeOf = 0x2A8; // 680
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
 		public GlobalServerData[] x010_GlobalServerDatas { get { return Deserialize<GlobalServerData>(x018_SerializeData); } }
@@ -38,14 +38,12 @@ namespace Enigma.D3.Sno
 		public int x080 { get { return Read<int>(0x080); } }
 		public int[] x084_int { get { return Read<int>(0x084, 4); } }
 		public BannerParams x098_BannerParams { get { return Read<BannerParams>(0x098); } }
-		public int x180 { get { return Read<int>(0x180); } }
-		public int x184 { get { return Read<int>(0x184); } }
 		public int x188 { get { return Read<int>(0x188); } }
 		public int x18C { get { return Read<int>(0x18C); } }
-		public float x190 { get { return Read<float>(0x190); } }
+		public int x190 { get { return Read<int>(0x190); } }
 		public int x194 { get { return Read<int>(0x194); } }
 		public float x198 { get { return Read<float>(0x198); } }
-		public float x19C { get { return Read<float>(0x19C); } }
+		public int x19C { get { return Read<int>(0x19C); } }
 		public float x1A0 { get { return Read<float>(0x1A0); } }
 		public float x1A4 { get { return Read<float>(0x1A4); } }
 		public float x1A8 { get { return Read<float>(0x1A8); } }
@@ -65,26 +63,28 @@ namespace Enigma.D3.Sno
 		public float x1E0 { get { return Read<float>(0x1E0); } }
 		public float x1E4 { get { return Read<float>(0x1E4); } }
 		public float x1E8 { get { return Read<float>(0x1E8); } }
-		public int x1EC { get { return Read<int>(0x1EC); } }
+		public float x1EC { get { return Read<float>(0x1EC); } }
 		public float x1F0 { get { return Read<float>(0x1F0); } }
 		public int x1F4 { get { return Read<int>(0x1F4); } }
-		public int x1F8 { get { return Read<int>(0x1F8); } }
-		public float x1FC { get { return Read<float>(0x1FC); } }
-		public float x200 { get { return Read<float>(0x200); } }
+		public float x1F8 { get { return Read<float>(0x1F8); } }
+		public int x1FC { get { return Read<int>(0x1FC); } }
+		public int x200 { get { return Read<int>(0x200); } }
 		public float x204 { get { return Read<float>(0x204); } }
 		public float x208 { get { return Read<float>(0x208); } }
 		public float x20C { get { return Read<float>(0x20C); } }
 		public float x210 { get { return Read<float>(0x210); } }
 		public float x214 { get { return Read<float>(0x214); } }
-		public AssetList[] x218_AssetLists { get { return Read<AssetList>(0x218, 7); } }
-		public float x288 { get { return Read<float>(0x288); } }
-		public float x28C { get { return Read<float>(0x28C); } }
+		public float x218 { get { return Read<float>(0x218); } }
+		public float x21C { get { return Read<float>(0x21C); } }
+		public AssetList[] x220_AssetLists { get { return Read<AssetList>(0x220, 8); } }
+		public float x2A0 { get { return Read<float>(0x2A0); } }
+		public float x2A4 { get { return Read<float>(0x2A4); } }
 		
 		[CompilerGenerated]
 		public partial class GlobalServerData : SerializeMemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x2C8; // 712
+			// 2.2.0.30894
+			public const int SizeOf = 0x2E0; // 736
 			
 			public ActorGroup[] x000_ActorGroups { get { return Deserialize<ActorGroup>(x008_SerializeData); } }
 			public SerializeData x008_SerializeData { get { return Read<SerializeData>(0x008); } }
@@ -159,20 +159,27 @@ namespace Enigma.D3.Sno
 			public float x284 { get { return Read<float>(0x284); } }
 			public float x288 { get { return Read<float>(0x288); } }
 			public float x28C { get { return Read<float>(0x28C); } }
-			public int x290 { get { return Read<int>(0x290); } }
+			public float x290 { get { return Read<float>(0x290); } }
 			public int x294 { get { return Read<int>(0x294); } }
 			public int x298 { get { return Read<int>(0x298); } }
-			public float x29C { get { return Read<float>(0x29C); } }
-			public float x2A0 { get { return Read<float>(0x2A0); } }
-			public float x2A4 { get { return Read<float>(0x2A4); } }
-			public float[] x2A8_float { get { return Read<float>(0x2A8, 6); } }
-			public float x2C0 { get { return Read<float>(0x2C0); } }
+			public int x29C { get { return Read<int>(0x29C); } }
+			public int x2A0 { get { return Read<int>(0x2A0); } }
+			public int x2A4 { get { return Read<int>(0x2A4); } }
+			public int x2A8 { get { return Read<int>(0x2A8); } }
+			public float x2AC { get { return Read<float>(0x2AC); } }
+			public float x2B0 { get { return Read<float>(0x2B0); } }
+			public float x2B4 { get { return Read<float>(0x2B4); } }
+			public float[] x2B8_float { get { return Read<float>(0x2B8, 6); } }
+			public float x2D0 { get { return Read<float>(0x2D0); } }
+			public int x2D4 { get { return Read<int>(0x2D4); } }
+			public int x2D8 { get { return Read<int>(0x2D8); } }
+			public float x2DC { get { return Read<float>(0x2DC); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class StartLocationName : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x44; // 68
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -182,8 +189,8 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BannerParams : SerializeMemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0xE8; // 232
+			// 2.2.0.30894
+			public const int SizeOf = 0xF0; // 240
 			
 			public BannerTexturePair[] x00_BannerTexturePairs { get { return Deserialize<BannerTexturePair>(x08_SerializeData); } }
 			public SerializeData x08_SerializeData { get { return Read<SerializeData>(0x08); } }
@@ -218,7 +225,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AssetList : SerializeMemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public AssetListEntry[] x00_AssetListEntries { get { return Deserialize<AssetListEntry>(x08_SerializeData); } }
@@ -228,7 +235,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ActorGroup : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x44; // 68
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -238,7 +245,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class GlobalScriptVariable : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x28; // 40
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -249,7 +256,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DifficultyTuningParams : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x34; // 52
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -270,7 +277,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BannerTexturePair : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public Sno x00_TexturesSno { get { return Read<Sno>(0x00); } }
@@ -281,10 +288,10 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BannerColorSet : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x54; // 84
 			
-			public RGBAColor[] x00_RGBAColors { get { return Read<RGBAColor>(0x00, 2); } }
+			public DT_RGBACOLOR[] x00_DT_RGBACOLORs { get { return Read<DT_RGBACOLOR>(0x00, 2); } }
 			public string x08_Text { get { return ReadString(0x08, 64); } }
 			public int x48 { get { return Read<int>(0x48); } }
 			public int x4C { get { return Read<int>(0x4C); } }
@@ -293,7 +300,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BannerSigilPlacement : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x44; // 68
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -303,7 +310,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class EpicBannerDescription : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x94; // 148
 			
 			public Sno x00_TexturesSno { get { return Read<Sno>(0x00); } }
@@ -316,7 +323,7 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AssetListEntry : MemoryObject
 		{
-			// 2.1.2.28709
+			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -324,10 +331,10 @@ namespace Enigma.D3.Sno
 		}
 		
 		[CompilerGenerated]
-		public partial class RGBAColor : MemoryObject
+		public partial class DT_RGBACOLOR : MemoryObject
 		{
-			// 2.1.2.28709
-			public const int SizeOf = 0x04; // 4
+			// 2.2.0.30894
+			public const int SizeOf = 0x03; // 3
 			
 			public byte x00 { get { return Read<byte>(0x00); } }
 			public byte x01 { get { return Read<byte>(0x01); } }

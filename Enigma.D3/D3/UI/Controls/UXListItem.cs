@@ -8,8 +8,8 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXListItem : UXLabel
 	{
-		public new const int SizeOf = 0xF18; //3864
-		public new const int VTable = 0x01774838;
+		public new const int SizeOf = 0xE08; //3592
+		public new const int VTable = 0x01829E98;
 
 		public int xC88 { get { return Read<int>(0xC88); } }
 		public int _xC8C { get { return Read<int>(0xC8C); } }

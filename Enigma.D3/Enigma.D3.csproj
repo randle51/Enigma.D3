@@ -99,6 +99,7 @@
     <Compile Include="D3\CameraManager.cs" />
     <Compile Include="D3\Cinematography.cs" />
     <Compile Include="D3\Collections\FixedArray.cs" />
+    <Compile Include="D3\Collections\LightVector.cs" />
     <Compile Include="D3\Collections\Vector.cs" />
     <Compile Include="D3\Enums\AttributeId.cs" />
     <Compile Include="D3\Collections\Container.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="D3\FastAttribGroup.cs" />
     <Compile Include="D3\FieldDescriptor.cs" />
     <Compile Include="D3\FloatingNumber.cs" />
+    <Compile Include="D3\TrickleManager.cs" />
     <Compile Include="D3\Marker.cs" />
     <Compile Include="D3\Sno\SnoFiles.cs" />
     <Compile Include="D3\Helpers\ActorCommonDataHelper.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="D3\Storage.cs" />
     <Compile Include="D3\Symbol.cs" />
     <Compile Include="D3\TimedEvent.cs" />
+    <Compile Include="D3\Trickle.cs" />
     <Compile Include="D3\UI\Buff.cs" />
     <Compile Include="D3\UI\BuffManager.cs" />
     <Compile Include="D3\UI\Controls\UXBlinker.cs" />
@@ -242,6 +245,7 @@
     <Compile Include="D3\Win32\Handle.cs" />
     <Compile Include="D3\World.cs" />
     <Compile Include="D3\WorldPosition.cs" />
+    <Compile Include="IUpdate.cs" />
     <Compile Include="ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="D3\Win32\CriticalSection.cs" />

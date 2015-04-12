@@ -8,32 +8,32 @@ namespace Enigma.D3.UI.Controls
 {
 	public class UXTextBox : UXLabel
 	{
-		public new const int SizeOf = 0xCE8; //3304
-		public new const int VTable = 0x01722180;
+		public new const int SizeOf = 0xBD8; //3032
+		public new const int VTable = 0x017CF0A8;
 
-		public int xC88_Anim2DSnoId_EditBoxCursor { get { return Read<int>(0xC88); } }
-		public float xC8C_AnimClock { get { return Read<float>(0xC8C); } }
-		public float xC90_AnimClock { get { return Read<float>(0xC90); } }
-		public float xC94_AnimClockFrom { get { return Read<float>(0xC94); } }
-		public float xC98_AnimClockTo { get { return Read<float>(0xC98); } }
-		public int xC9C_Flags { get { return Read<int>(0xC9C); } }
-		public int xCA0_CaretPosition { get { return Read<int>(0xCA0); } }
-		public int xCA4_CaretMaxPosition { get { return Read<int>(0xCA4); } }
-		public int xCA8_InputMaxLength { get { return Read<int>(0xCA8); } }
-		public int xCAC_InputLength { get { return Read<int>(0xCAC); } }
-		public int xCB0 { get { return Read<int>(0xCB0); } }
-		public int xCB4 { get { return Read<int>(0xCB4); } }
-		public int xCB8 { get { return Read<int>(0xCB8); } }
-		public int xCBC { get { return Read<int>(0xCBC); } }
-		public int xCC0 { get { return Read<int>(0xCC0); } }
-		public int xCC4 { get { return Read<int>(0xCC4); } }
-		public int xCC8 { get { return Read<int>(0xCC8); } }
-		public int xCCC { get { return Read<int>(0xCCC); } }
-		public int xCD0 { get { return Read<int>(0xCD0); } }
-		public int xCD4 { get { return Read<int>(0xCD4); } }
-		public int xCD8 { get { return Read<int>(0xCD8); } }
-		public float xCDC { get { return Read<float>(0xCDC); } }
-		public float xCE0 { get { return Read<float>(0xCE0); } }
-		public int xCE4 { get { return Read<int>(0xCE4); } }
+		public int xB78_Anim2DSnoId_EditBoxCursor { get { return Read<int>(0xB78); } }
+		public float xB7C_AnimClock { get { return Read<float>(0xB7C); } }
+		public float xB80_AnimClock { get { return Read<float>(0xB80); } }
+		public float xB84_AnimClockFrom { get { return Read<float>(0xB84); } }
+		public float xB88_AnimClockTo { get { return Read<float>(0xB88); } }
+		public int xB8C_Flags { get { return Read<int>(0xB8C); } }
+		public int xB90_CaretPosition { get { return Read<int>(0xB90); } }
+		public int xB94_CaretMaxPosition { get { return Read<int>(0xB94); } }
+		public int xB98_InputMaxLength { get { return Read<int>(0xB98); } }
+		public int xB9C_InputLength { get { return Read<int>(0xB9C); } }
+		public int xBA0 { get { return Read<int>(0xBA0); } }
+		public int xBA4 { get { return Read<int>(0xBA4); } }
+		public int xBA8 { get { return Read<int>(0xBA8); } }
+		public int xBAC { get { return Read<int>(0xBAC); } }
+		public int xBB0 { get { return Read<int>(0xBB0); } }
+		public int xBB4 { get { return Read<int>(0xBB4); } }
+		public int xBB8 { get { return Read<int>(0xBB8); } }
+		public int xBBC { get { return Read<int>(0xBBC); } }
+		public int xBC0 { get { return Read<int>(0xBC0); } }
+		public int xBC4 { get { return Read<int>(0xBC4); } }
+		public int xBC8 { get { return Read<int>(0xBC8); } }
+		public float xBCC { get { return Read<float>(0xBCC); } }
+		public float xBD0 { get { return Read<float>(0xBD0); } }
+		public int xBD4 { get { return Read<int>(0xBD4); } }
 	}
 }

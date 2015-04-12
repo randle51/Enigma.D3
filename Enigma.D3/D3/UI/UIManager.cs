@@ -9,7 +9,7 @@ using Enigma.D3.Memory;
 namespace Enigma.D3.UI
 {
 	[Obsolete]
-	public class UIManager : MemoryObject
+	public partial class UIManager : MemoryObject
 	{
 		// 2.0.0.21806
 		public const int SizeOf = 0x2710; // = 10000
@@ -53,5 +53,10 @@ namespace Enigma.D3.UI
 			public int x68 { get { return Read<int>(0x68); } }
 			public int _x6C { get { return Read<int>(0x6C); } }
 		}
+	}
+
+	public partial class UIManager
+	{
+		public static UIManager Instance { get { return ObjectManager.Instance.x9AC_UI; } }
 	}
 }

@@ -11,7 +11,7 @@ namespace Enigma.D3
 		public const int SizeOf = 0x0C;
 
 		public RefStringData x00_Data { get { return Dereference<RefStringData>(0x00); } }
-		public string x04_PtrText { get { return ReadStringPointer(0x04, 256).Dereference(); } } // Dynamic Size?
+		public string x04_PtrText { get { return ReadStringPointer(0x04, x00_Data == null ? 256 : x00_Data.x08_MaxLength).Dereference(); } } // Dynamic Size?
 		public int x08_Bool { get { return Read<int>(0x08); } }
 
 		public override string ToString()

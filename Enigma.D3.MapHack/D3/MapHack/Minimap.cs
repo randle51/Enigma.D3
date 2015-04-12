@@ -28,7 +28,7 @@ namespace Enigma.D3.MapHack
 		{
 			_minimapItems = new ObservableCollection<IMapMarker>();
 
-			_root = new Canvas() { Height = 1200d };
+			_root = new Canvas() { Height = 1200.5d };
 			_window = overlay;
 			_window.Children.Add(_root);
 			_window.SizeChanged += (s, e) => UpdateSizeAndPosition();
@@ -71,7 +71,7 @@ namespace Enigma.D3.MapHack
 
 				var itemsToAdd = new List<IMapMarker>();
 
-				var acds = _objectManager.x798_Storage.x130_ActorCommonDataManager.x00_ActorCommonData;
+				var acds = ActorCommonData.Container;
 				if (acds == null)
 				{
 					Trace.TraceError("ACDs == null");
