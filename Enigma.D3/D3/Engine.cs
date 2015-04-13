@@ -127,8 +127,8 @@ namespace Enigma.D3
 
 		public int MapActId { get { return Read<int>(0x01B5D320); } }
 
-		// TODO: Validate array size
-		public UIReference[] UIReferences { get { return Read<UIReference>(0x01B5D8D0, 2320); } } // 1000 + 911 + 202 + 206 = 2320
+		[ArraySize(2550)]
+		public UIReference[] UIReferences { get { return Read<UIReference>(0x01B5D8D0, 2550); } } // 1000 + 1000 + 109 + 441 = 2550
 
 		public LevelArea LevelArea { get { return ReadPointer<LevelArea>(0x01CADE44).Dereference(); } }
 
@@ -151,25 +151,20 @@ namespace Enigma.D3
 
 		public LocalData LocalData { get { return Read<LocalData>(0x01D53E68); } }
 
-		[Obsolete("Not updated for 2.2.0.30894")]
-		public Ptr<SnoFiles> PtrSnoFiles { get { return ReadPointer<SnoFiles>(0x01C7A100); } }
+		public Ptr<SnoFiles> PtrSnoFiles { get { return ReadPointer<SnoFiles>(0x01D54F08); } }
 
-		[Obsolete("Not updated for 2.2.0.30894")]
-		public FixedArray<int> SnoIdToEntityId { get { return Read<FixedArray<int>>(0x01C8A314); } }
+		public FixedArray<int> SnoIdToEntityId { get { return Read<FixedArray<int>>(0x01D65234); } }
 
-		[Obsolete("Not updated for 2.2.0.30894")]
-		public SnoGroupSearch SnoGroupSearch { get { return ReadPointer<SnoGroupSearch>(0x01CCAE44).Dereference(); } }
+		public SnoGroupSearch SnoGroupSearch { get { return ReadPointer<SnoGroupSearch>(0x01DA36E4).Dereference(); } }
 
-		[Obsolete("Not updated for 2.2.0.30894")]
-		public Ptr<SnoFilesAsync> SnoFilesAsync { get { return ReadPointer<SnoFilesAsync>(0x01CCAE48); } }
+		public Ptr<SnoFilesAsync> SnoFilesAsync { get { return ReadPointer<SnoFilesAsync>(0x01DA36E8); } }
 
-		[Obsolete("Not updated for 2.1.2.28709")] // TODO
-		public MessageDescriptor MessageDescriptor { get { return ReadPointer<MessageDescriptor>(0x01D14008).Dereference(); } }
+		public MessageDescriptor MessageDescriptor { get { return ReadPointer<MessageDescriptor>(0x01E059E4).Dereference(); } }
 
 		public ContainerManager ContainerManager { get { return ReadPointer<ContainerManager>(0x01E066E4).Dereference(); } }
 
-		// TODO: Verify size
-		public UIHandler[] UIHandlers { get { return Read<UIHandler>(0x01AD7458, 1177); } }
+		[ArraySize(1223)]
+		public UIHandler[] UIHandlers { get { return Read<UIHandler>(0x01AD7458, 1223); } }
 
 		public SnoGroupInitializer[] SnoGroupInitializers { get { return Read<SnoGroupInitializer>(0x01AE0808, 60); } }
 
