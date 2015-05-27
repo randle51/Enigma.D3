@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Condition : MemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x4C4; // 1220
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -59,7 +58,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LoreSubcondition : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public Sno x00_LoreSno { get { return Read<Sno>(0x00); } }
@@ -69,7 +67,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class QuestSubcondition : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public Sno x00_QuestSno { get { return Read<Sno>(0x00); } }
@@ -81,7 +78,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ItemSubcondition : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public GameBalanceId x00_ItemsGameBalanceId { get { return Read<GameBalanceId>(0x00); } }
@@ -93,7 +89,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FollowerSubcondition : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public int x00_Enum { get { return Read<int>(0x00); } } // - None - = 0, Templar = 1, Scoundrel = 2, Enchantress = 3
@@ -103,7 +98,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class LabelSubcondition : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public GameBalanceId x00_LabelsGameBalanceId { get { return Read<GameBalanceId>(0x00); } }
@@ -113,7 +107,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SkillSubcondition : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public Sno x00_PowerSno { get { return Read<Sno>(0x00); } }
@@ -124,7 +117,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MonsterSubcondition : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x04; // 4
 			
 			public Sno x00_ActorSno { get { return Read<Sno>(0x00); } }
@@ -133,7 +125,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class GameFlagSubcondition : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x80; // 128
 			
 			public string x00_Text { get { return ReadString(0x00, 128); } }
@@ -142,7 +133,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class PlayerFlagSubcondition : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x80; // 128
 			
 			public string x00_Text { get { return ReadString(0x00, 128); } }
@@ -151,7 +141,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BuffSubcondition : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public Sno x00_PowerSno { get { return Read<Sno>(0x00); } }

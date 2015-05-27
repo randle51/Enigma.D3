@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Recipe : MemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x48; // 72
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -18,7 +17,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ItemSpecifierData : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x38; // 56
 			
 			public GameBalanceId x00_ItemsGameBalanceId { get { return Read<GameBalanceId>(0x00); } }

@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Tutorial : MemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x30; // 48
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -24,7 +23,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DT_IVECTOR2D : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x04; // 4
 			
 			public int x00 { get { return Read<int>(0x00); } }

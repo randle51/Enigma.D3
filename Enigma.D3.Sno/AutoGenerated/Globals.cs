@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Globals : SerializeMemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x2A8; // 680
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -83,7 +82,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class GlobalServerData : SerializeMemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x2E0; // 736
 			
 			public ActorGroup[] x000_ActorGroups { get { return Deserialize<ActorGroup>(x008_SerializeData); } }
@@ -179,7 +177,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class StartLocationName : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x44; // 68
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -189,7 +186,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BannerParams : SerializeMemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0xF0; // 240
 			
 			public BannerTexturePair[] x00_BannerTexturePairs { get { return Deserialize<BannerTexturePair>(x08_SerializeData); } }
@@ -225,7 +221,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AssetList : SerializeMemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public AssetListEntry[] x00_AssetListEntries { get { return Deserialize<AssetListEntry>(x08_SerializeData); } }
@@ -235,7 +230,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ActorGroup : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x44; // 68
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -245,7 +239,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class GlobalScriptVariable : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x28; // 40
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -256,7 +249,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DifficultyTuningParams : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x34; // 52
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -277,7 +269,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BannerTexturePair : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public Sno x00_TexturesSno { get { return Read<Sno>(0x00); } }
@@ -288,7 +279,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BannerColorSet : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x54; // 84
 			
 			public DT_RGBACOLOR[] x00_DT_RGBACOLORs { get { return Read<DT_RGBACOLOR>(0x00, 2); } }
@@ -300,7 +290,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class BannerSigilPlacement : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x44; // 68
 			
 			public string x00_Text { get { return ReadString(0x00, 64); } }
@@ -310,7 +299,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class EpicBannerDescription : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x94; // 148
 			
 			public Sno x00_TexturesSno { get { return Read<Sno>(0x00); } }
@@ -323,7 +311,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AssetListEntry : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -333,7 +320,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DT_RGBACOLOR : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x03; // 3
 			
 			public byte x00 { get { return Read<byte>(0x00); } }

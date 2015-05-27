@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Explosion : MemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x40; // 64
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -27,7 +26,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DT_VECTOR3D : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x08; // 8
 			
 			public float x00_X { get { return Read<float>(0x00); } }

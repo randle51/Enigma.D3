@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class AmbientSound : MemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x9C; // 156
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -28,7 +27,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class RandomAmbientSoundParams : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x14; // 20
 			
 			public Sno x00_SoundSno { get { return Read<Sno>(0x00); } }

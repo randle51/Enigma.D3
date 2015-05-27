@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Trail : SerializeMemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x158; // 344
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -30,7 +29,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ColorPath : SerializeMemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -41,7 +39,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FloatPath : SerializeMemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -52,7 +49,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class UberMaterial : SerializeMemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x68; // 104
 			
 			public Sno x00_ShaderMapSno { get { return Read<Sno>(0x00); } }
@@ -64,7 +60,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class InterpolationPathHeader : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x1C; // 28
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -77,7 +72,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ColorNode : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public DT_RGBACOLOR x00_DT_RGBACOLOR { get { return Read<DT_RGBACOLOR>(0x00); } }
@@ -88,7 +82,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FloatNode : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -99,7 +92,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Material : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x48; // 72
 			
 			public DT_RGBACOLORVALUE x00_DT_RGBACOLORVALUE { get { return Read<DT_RGBACOLORVALUE>(0x00); } }
@@ -113,7 +105,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MaterialTextureEntry : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0xA0; // 160
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -124,7 +115,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class InterpolationScalar : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -135,7 +125,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DT_RGBACOLOR : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x03; // 3
 			
 			public byte x00 { get { return Read<byte>(0x00); } }
@@ -147,7 +136,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DT_RGBACOLORVALUE : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -159,7 +147,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class MaterialTexture : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x98; // 152
 			
 			public Sno x00_TexturesSno { get { return Read<Sno>(0x00); } }
@@ -170,7 +157,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class TexAnimParams : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x90; // 144
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -195,7 +181,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class Matrix4x4 : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x40; // 64
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -219,7 +204,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FrameAnim : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x14; // 20
 			
 			public int x00 { get { return Read<int>(0x00); } }
