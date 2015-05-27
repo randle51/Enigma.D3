@@ -21,7 +21,7 @@ namespace Enigma.D3
 		[ThreadStatic]
 		private static Engine _current;
 
-		public static readonly Version SupportedVersion = new Version(2, 2, 0, 30894);
+		public static readonly Version SupportedVersion = new Version(2, 2, 1, 31666);
 
 		public static Engine Create()
 		{
@@ -113,60 +113,63 @@ namespace Enigma.D3
 			}
 		}
 
+		// TODO: Validate Count
+		public AttributeDescriptor[] AttributeDescriptors { get { return Read<AttributeDescriptor>(0x01B13750, 1410); } }
 
-		public AttributeDescriptor[] AttributeDescriptors { get { return Read<AttributeDescriptor>(0x01AE5720, 1410); } }
+		public VideoPreferences VideoPreferences { get { return Read<VideoPreferences>(0x01B3EC40); } }
+		public SoundPreferences SoundPreferences { get { return Read<SoundPreferences>(0x01B3ECD4); } }
 
-		public VideoPreferences VideoPreferences { get { return Read<VideoPreferences>(0x01B10A98); } }
-		public SoundPreferences SoundPreferences { get { return Read<SoundPreferences>(0x01B10B2C); } }
+		public GameplayPreferences GameplayPreferences { get { return Read<GameplayPreferences>(0x01B3F174); } }
 
-		public GameplayPreferences GameplayPreferences { get { return Read<GameplayPreferences>(0x01B10FCC); } }
+		public SocialPreferences SocialPreferences { get { return Read<SocialPreferences>(0x01B3F1D4); } }
 
-		public SocialPreferences SocialPreferences { get { return Read<SocialPreferences>(0x01B1102C); } }
+		public ChatPreferences ChatPreferences { get { return Read<ChatPreferences>(0x01B3F204); } }
 
-		public ChatPreferences ChatPreferences { get { return Read<ChatPreferences>(0x01B1105C); } }
+		public int MapActId { get { return Read<int>(0x01B8B4C8); } }
 
-		public int MapActId { get { return Read<int>(0x01B5D320); } }
+		[ArraySize(2550)] // TODO: Validate Count
+		public UIReference[] UIReferences { get { return Read<UIReference>(0x01B8BA78, 2550); } } // 1000 + 1000 + 109 + 441 = 2550
 
-		[ArraySize(2550)]
-		public UIReference[] UIReferences { get { return Read<UIReference>(0x01B5D8D0, 2550); } } // 1000 + 1000 + 109 + 441 = 2550
+		public LevelArea LevelArea { get { return ReadPointer<LevelArea>(0x01CE4834).Dereference(); } }
 
-		public LevelArea LevelArea { get { return ReadPointer<LevelArea>(0x01CADE44).Dereference(); } }
+		public string LevelAreaName { get { return ReadString(0x01CE4860, 128); } }
 
-		public string LevelAreaName { get { return ReadString(0x01CADE70, 128); } }
-
+		// TODO:
 		public TrickleManager TrickleManager { get { return ReadPointer<TrickleManager>(0x01C36400).Dereference(); } }
 
-		public BuffManager BuffManager { get { return ReadPointer<BuffManager>(0x01D38388).Dereference(); } }
+		public BuffManager BuffManager { get { return ReadPointer<BuffManager>(0x01D6ED7C).Dereference(); } }
 
 		[ArraySize(70)]
-		public SnoGroupManager[] SnoGroupsByCode { get { return Read<Ptr<SnoGroupManager>>(0x01D509C0, 70).Select(a => a.Dereference()).ToArray(); } }
+		public SnoGroupManager[] SnoGroupsByCode { get { return Read<Ptr<SnoGroupManager>>(0x01D873D8, 70).Select(a => a.Dereference()).ToArray(); } }
 
 		[ArraySize(60)] // In reality it's 61 with last item set to null.
-		public SnoGroupManager[] SnoGroups { get { return ReadPointer<Ptr<SnoGroupManager>>(0x01D50ADC).ToArray(60).Select(a => a.Dereference()).ToArray(); } }
+		public SnoGroupManager[] SnoGroups { get { return ReadPointer<Ptr<SnoGroupManager>>(0x01D874F4).ToArray(60).Select(a => a.Dereference()).ToArray(); } }
 
-		public ObjectManager ObjectManager { get { return ReadPointer<ObjectManager>(0x01D52BC4).Dereference(); } }
-		public ObjectManager ObjectManagerPristine { get { return ReadPointer<ObjectManager>(0x01D52BC8).Dereference(); } } // This address is used in initialization and finalization methods.
+		public ObjectManager ObjectManager { get { return ReadPointer<ObjectManager>(0x01D895DC).Dereference(); } }
+		public ObjectManager ObjectManagerPristine { get { return ReadPointer<ObjectManager>(0x01D895E0).Dereference(); } } // This address is used in initialization and finalization methods.
 
-		public int ApplicationLoopCount { get { return Read<int>(0x01D52C38); } }
+		public int ApplicationLoopCount { get { return Read<int>(0x01D89650); } }
 
-		public LocalData LocalData { get { return Read<LocalData>(0x01D53E68); } }
+		public LocalData LocalData { get { return Read<LocalData>(0x01D8A880); } }
 
+		// TODO:
 		public Ptr<SnoFiles> PtrSnoFiles { get { return ReadPointer<SnoFiles>(0x01D54F08); } }
 
+		// TODO:
 		public FixedArray<int> SnoIdToEntityId { get { return Read<FixedArray<int>>(0x01D65234); } }
 
-		public SnoGroupSearch SnoGroupSearch { get { return ReadPointer<SnoGroupSearch>(0x01DA36E4).Dereference(); } }
+		public SnoGroupSearch SnoGroupSearch { get { return ReadPointer<SnoGroupSearch>(0x01DDA154).Dereference(); } }
 
-		public Ptr<SnoFilesAsync> SnoFilesAsync { get { return ReadPointer<SnoFilesAsync>(0x01DA36E8); } }
+		public Ptr<SnoFilesAsync> SnoFilesAsync { get { return ReadPointer<SnoFilesAsync>(0x01DDA158); } }
 
-		public MessageDescriptor MessageDescriptor { get { return ReadPointer<MessageDescriptor>(0x01E059E4).Dereference(); } }
+		public MessageDescriptor MessageDescriptor { get { return ReadPointer<MessageDescriptor>(0x01E3C46C).Dereference(); } }
 
 		public ContainerManager ContainerManager { get { return ReadPointer<ContainerManager>(0x01E066E4).Dereference(); } }
 
-		[ArraySize(1223)]
-		public UIHandler[] UIHandlers { get { return Read<UIHandler>(0x01AD7458, 1223); } }
+		[ArraySize(1223)] // TODO: Validate Count
+		public UIHandler[] UIHandlers { get { return Read<UIHandler>(0x01B05440, 1223); } }
 
-		public SnoGroupInitializer[] SnoGroupInitializers { get { return Read<SnoGroupInitializer>(0x01AE0808, 60); } }
+		public SnoGroupInitializer[] SnoGroupInitializers { get { return Read<SnoGroupInitializer>(0x01B0E820, 60); } }
 
 		public void Dispose()
 		{

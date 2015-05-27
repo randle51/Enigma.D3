@@ -35,7 +35,7 @@ namespace Enigma.D3
 		public int _x20 { get { return Read<int>(0x20); } } // Health? 0..1f
 		public int _x24 { get { return Read<int>(0x24); } }
 		public int _x28 { get { return Read<int>(0x28); } }
-		public int _x2C { get { return Read<int>(0x2C); } }
+		public int x2C_TextureSnoId { get { return Read<int>(0x2C); } }
 		public int _x30 { get { return Read<int>(0x30); } }
 		public int x34_StringList { get { return Read<int>(0x34); } }
 		public int _x38 { get { return Read<int>(0x38); } }

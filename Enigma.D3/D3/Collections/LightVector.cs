@@ -34,6 +34,33 @@ namespace Enigma.D3.Collections
 		{
 			return GetEnumerator();
 		}
-	}
 
+		public T[] ToBufferedArray(ref byte[] buffer)
+		{
+			if (!typeof(T).IsMemoryObjectType())
+				return x00_PtrItems.ToArray(x04_Size);
+
+			TakeSnapshot();
+			
+			var count = x04_Size;
+			var bufferSize = TypeHelper<T>.SizeOf * count;
+			if (buffer.Length < bufferSize)
+				Array.Resize(ref buffer, bufferSize);
+			Memory.Reader.ReadBytes(x00_PtrItems.ValueAddress, buffer);
+			var items = new T[count];
+			var address = x00_PtrItems.ValueAddress;
+			var offset = 0;
+			for (int i = 0; i < count; i++)
+			{
+				x00_PtrItems.ToArray(0);
+				var memoryObject = MemoryObjectFactory.UnsafeCreate(typeof(T), Memory, address + offset);
+				memoryObject.SetSnapshot(buffer, offset, TypeHelper<T>.SizeOf);
+				items[i] = (T)(object)memoryObject;
+				offset += TypeHelper<T>.SizeOf;
+			}
+			FreeSnapshot();
+
+			return items;
+		}
+	}
 }

@@ -7,10 +7,9 @@ using Enigma.D3.Collections;
 
 namespace Enigma.D3
 {
-	[Version("2.1.0.26451")]
 	public partial class PlayerData : MemoryObject
 	{
-		public const int SizeOf = 42000;//0xE6B0; // 59056
+		public const int SizeOf = 42032; // 2.2.1.31666
 
 		public int x0000_Index { get { return Read<int>(0x0000); } }
 		public int x0004_AcdId { get { return Read<int>(0x0004); } }
