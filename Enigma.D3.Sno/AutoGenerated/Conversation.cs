@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Conversation : SerializeMemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x110; // 272
 		
 		public SnoHeader x000_Header { get { return Read<SnoHeader>(0x000); } }
@@ -34,7 +33,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ConversationTreeNode : SerializeMemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x408; // 1032
 			
 			public int x000 { get { return Read<int>(0x000); } }
@@ -67,7 +65,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class ConvLocaleDisplayTimes : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public int[] x00_int { get { return Read<int>(0x00, 12); } }

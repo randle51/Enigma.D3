@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Surface : SerializeMemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x28; // 40
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -16,6 +15,6 @@ namespace Enigma.D3.Sno
 		public Sno x10_ParticleSno { get { return Read<Sno>(0x10); } }
 		public int x14 { get { return Read<int>(0x14); } }
 		public SerializeData x18_SerializeData { get { return Read<SerializeData>(0x18); } }
-		public int[] x20_TagMap { get { return Deserialize<int>(x18_SerializeData); } }
+		public int[] x20_TagMap { get { return Deserialize<int>(x18_SerializeData); } } // type: 0x00050000
 	}
 }

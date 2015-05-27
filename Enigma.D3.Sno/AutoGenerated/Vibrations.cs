@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Vibrations : SerializeMemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x88; // 136
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -24,7 +23,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FloatPath : SerializeMemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x30; // 48
 			
 			public InterpolationPathHeader x00_InterpolationPathHeader { get { return Read<InterpolationPathHeader>(0x00); } }
@@ -35,7 +33,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class InterpolationPathHeader : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x1C; // 28
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -48,7 +45,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class FloatNode : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -59,7 +55,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class InterpolationScalar : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public int x00 { get { return Read<int>(0x00); } }

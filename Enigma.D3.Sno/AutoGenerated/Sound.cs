@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class Sound : SerializeMemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0xA8; // 168
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -42,7 +41,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class SoundPermutation : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0xC0; // 192
 			
 			public Sno x00_SoundBankSno { get { return Read<Sno>(0x00); } }
@@ -64,7 +62,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DspEffect : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x108; // 264
 			
 			public int x000_Enum { get { return Read<int>(0x000); } } // Chorus = 0, Compressor = 1, Distortion = 2, Echo = 3, Flange = 4, High Pass Filter = 5, Low Pass Filter = 6, Low Pass Filter (Simple) = 7, Parametric EQ = 8, SFX Reverb = 9
@@ -89,7 +86,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class RTPCParams : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x18; // 24
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -101,7 +97,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class DspParam : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -113,7 +108,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class InterpolationScalar : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public int x00 { get { return Read<int>(0x00); } }

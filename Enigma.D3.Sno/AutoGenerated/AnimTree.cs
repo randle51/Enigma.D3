@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class AnimTree : SerializeMemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x60; // 96
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -28,7 +27,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AnimTreeLeaf : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x24; // 36
 			
 			public int x00_Enum { get { return Read<int>(0x00); } } // Animation = 0, PiecewiseLinearBlend = 1, BoneWeightedBlend = 2, SwitchBlend = 3, Pose = 4, AdditiveBlend = 5, BoneWeightsLinearBlend = 6, BoneWeightsMultiplyBlend = 7
@@ -45,7 +43,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AnimTreeNode : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x12C; // 300
 			
 			public int x000_Enum { get { return Read<int>(0x000); } } // Animation = 0, PiecewiseLinearBlend = 1, BoneWeightedBlend = 2, SwitchBlend = 3, Pose = 4, AdditiveBlend = 5, BoneWeightsLinearBlend = 6, BoneWeightsMultiplyBlend = 7
@@ -61,7 +58,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AnimTreeLayerName : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x04; // 4
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -70,7 +66,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AnimTreeBlendCase : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public int x00_Enum { get { return Read<int>(0x00); } } // ForwardSpeed = 0, TurnSpeed = 1, IsIdle = 2, WeaponClass = 3, WalkSlowSpeed = 4, WalkSpeed = 5, RunSpeed = 6, SprintSpeed = 7, InTown = 8, IsSpecialMove = 9, AbsTurnSpeed = 10, AimYaw = 11, AimBlend = 12, IsAlive = 13, IsTurning = 14, None = 16
@@ -81,7 +76,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class AnimTreeBlendRamp : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x18; // 24
 			
 			public float x00 { get { return Read<float>(0x00); } }

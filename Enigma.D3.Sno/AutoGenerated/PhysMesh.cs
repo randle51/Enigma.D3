@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class PhysMesh : SerializeMemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x30; // 48
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -21,7 +20,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class CollisionMesh : SerializeMemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x70; // 112
 			
 			public dmMeshNode[] x00_dmMeshNodes { get { return Deserialize<dmMeshNode>(x60_SerializeData); } }
@@ -44,7 +42,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class dmMeshNode : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public short x00 { get { return Read<short>(0x00); } }
@@ -59,7 +56,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class dmFloat4 : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x10; // 16
 			
 			public float x00 { get { return Read<float>(0x00); } }
@@ -71,7 +67,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class dmMeshTriangle : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x1C; // 28
 			
 			public int x00 { get { return Read<int>(0x00); } }
@@ -87,7 +82,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class dmFloat3 : MemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x0C; // 12
 			
 			public float x00 { get { return Read<float>(0x00); } }

@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class StringList : SerializeMemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x28; // 40
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
@@ -18,7 +17,6 @@ namespace Enigma.D3.Sno
 		[CompilerGenerated]
 		public partial class StringTableEntry : SerializeMemoryObject
 		{
-			// 2.2.0.30894
 			public const int SizeOf = 0x28; // 40
 			
 			public string x00_Text { get { return DeserializeString(x08_SerializeData); } }

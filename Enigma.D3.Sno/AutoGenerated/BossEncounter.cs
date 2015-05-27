@@ -8,7 +8,6 @@ namespace Enigma.D3.Sno
 	[CompilerGenerated]
 	public partial class BossEncounter : MemoryObject
 	{
-		// 2.2.0.30894
 		public const int SizeOf = 0x68; // 104
 		
 		public SnoHeader x00_Header { get { return Read<SnoHeader>(0x00); } }
