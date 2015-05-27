@@ -14,5 +14,10 @@ namespace Enigma.D3
 		public int Int32;
 		[FieldOffset(0)]
 		public float Single;
+
+		public override string ToString()
+		{
+			return "int32: " + Int32 + ", float: " + Single;
+		}
 	}
 }

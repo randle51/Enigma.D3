@@ -94,6 +94,8 @@ namespace Enigma.D3.Helpers
 			return GetValue(acd, -1);
 		}
 
+		public abstract T DefaultValue { get; }
+
 		public abstract T GetValue(ActorCommonData acd, int modifier);
 	}
 
@@ -113,6 +115,8 @@ namespace Enigma.D3.Helpers
 				_lowAttributeId = lowAttributeId;
 				_lowDefaultValue = lowDefaultValue;
 			}
+
+			public override ulong DefaultValue { get { return _highDefaultValue << 32 | _lowDefaultValue; } }
 
 			public override ulong GetValue(ActorCommonData acd, int modifier)
 			{
@@ -146,6 +150,8 @@ namespace Enigma.D3.Helpers
 				if (!_isInteger && typeof(T) != typeof(float))
 					throw new NotSupportedException("Generic type T must be either int or float.");
 			}
+
+			public override T DefaultValue { get { return _defaultValue; } }
 
 			public override T GetValue(ActorCommonData acd, int modifier = -1)
 			{
