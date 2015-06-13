@@ -30,5 +30,7 @@
         <CheckBox Content="Show Monsters" IsChecked="{Binding Options.ShowMonsters}" Margin="10,5" />
         <CheckBox Content="Show Chests" IsChecked="{Binding Options.ShowChests}" Margin="10,5" />
         <CheckBox Content="Show Wreckables" IsChecked="{Binding Options.ShowWreckables}" Margin="10,5" />
+        <Separator />
+        <CheckBox Content="Debug Visibility" IsChecked="{Binding Options.DebugVisibility}" Margin="10,5" ToolTip="Covers the minimap area with a solid color to verify that overlay rendering is working." />
     </StackPanel>
 </Window>
