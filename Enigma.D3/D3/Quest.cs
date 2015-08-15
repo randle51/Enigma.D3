@@ -8,18 +8,18 @@ namespace Enigma.D3
 {
 	public class Quest : MemoryObject
 	{
-		// 2.0.4.23119
-		public const int SizeOf = 0x164;
+		// 2.2.1.31666
+		public const int SizeOf = 0x168;
 
 		public int x000_QuestSnoId { get { return Read<int>(0x000); } }
 		public int x004_CreationTick { get { return Read<int>(0x004); } }
 		public int x008 { get { return Read<int>(0x008); } }
-		public int x00C_AcdId { get { return Read<int>(0x00C); } }
-		public float x010_QuestMeterProgress_ { get { return Read<float>(0x010); } }
-		public int x014_QuestState { get { return Read<int>(0x014); } } // 0 = NotStarted? 1 = Started? 2 = Completed?
-		public int x018_QuestStep { get { return Read<int>(0x018); } }
-		public int x01C_Neg1 { get { return Read<int>(0x01C); } }
-		public int _x020 { get { return Read<int>(0x020); } }
+		public int x00C { get { return Read<int>(0x00C); } }
+		public int x010_AcdId { get { return Read<int>(0x010); } }
+		public float x014_QuestMeterProgress_ { get { return Read<float>(0x014); } }
+		public int x018_QuestState { get { return Read<int>(0x018); } } // 0 = NotStarted? 1 = Started? 2 = Completed?
+		public int x01C_QuestStep { get { return Read<int>(0x01C); } }
+		public int x020_Neg1 { get { return Read<int>(0x020); } }
 		public int _x024 { get { return Read<int>(0x024); } }
 		public int _x028 { get { return Read<int>(0x028); } }
 		public int _x02C { get { return Read<int>(0x02C); } }
@@ -39,8 +39,8 @@ namespace Enigma.D3
 		public int _x064 { get { return Read<int>(0x064); } }
 		public int _x068 { get { return Read<int>(0x068); } }
 		public int _x06C { get { return Read<int>(0x06C); } }
-		public int x070_StructStart_ { get { return Read<int>(0x070); } }
-		public int _x074 { get { return Read<int>(0x074); } }
+		public int _x070 { get { return Read<int>(0x070); } }
+		public int x074_StructStart_ { get { return Read<int>(0x074); } }
 		public int _x078 { get { return Read<int>(0x078); } }
 		public int _x07C { get { return Read<int>(0x07C); } }
 		public int _x080 { get { return Read<int>(0x080); } }
@@ -99,6 +99,7 @@ namespace Enigma.D3
 		public int _x154 { get { return Read<int>(0x154); } }
 		public int _x158 { get { return Read<int>(0x158); } }
 		public int _x15C { get { return Read<int>(0x15C); } }
-		public int x160_Neg1 { get { return Read<int>(0x160); } }
+		public int _x160 { get { return Read<int>(0x160); } }
+		public int x164_Neg1 { get { return Read<int>(0x164); } }
 	}
 }
