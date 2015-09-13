@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E01F9C34-F404-48DC-92E2-991DA7ADF9EB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Enigma.D3</RootNamespace>
+    <AssemblyName>Enigma.D3.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataTypes\AABB.cs" />
+    <Compile Include="DataTypes\Acceleration.cs" />
+    <Compile Include="DataTypes\Angle.cs" />
+    <Compile Include="DataTypes\AngularVelocity.cs" />
+    <Compile Include="DataTypes\AttributeParameter.cs" />
+    <Compile Include="DataTypes\DataId.cs" />
+    <Compile Include="DataTypes\GameBalanceId.cs" />
+    <Compile Include="DataTypes\HighPrecisionPercent.cs" />
+    <Compile Include="DataTypes\Impulse.cs" />
+    <Compile Include="DataTypes\IntVector2.cs" />
+    <Compile Include="DataTypes\Mass.cs" />
+    <Compile Include="DataTypes\Matrix4x4.cs" />
+    <Compile Include="DataTypes\Percent.cs" />
+    <Compile Include="DataTypes\Plane.cs" />
+    <Compile Include="DataTypes\Quaternion.cs" />
+    <Compile Include="DataTypes\Quaternion16.cs" />
+    <Compile Include="DataTypes\Sno.cs" />
+    <Compile Include="DataTypes\SnoGroup.cs" />
+    <Compile Include="DataTypes\SnoName.cs" />
+    <Compile Include="DataTypes\SnoNameHandle.cs" />
+    <Compile Include="DataTypes\Sphere.cs" />
+    <Compile Include="DataTypes\Time.cs" />
+    <Compile Include="DataTypes\Translateable.cs" />
+    <Compile Include="DataTypes\Vector2.cs" />
+    <Compile Include="DataTypes\Vector3.cs" />
+    <Compile Include="DataTypes\Velocity.cs" />
+    <Compile Include="Enums\ActorType.cs" />
+    <Compile Include="Enums\AttributeId.cs" />
+    <Compile Include="Enums\DamageType.cs" />
+    <Compile Include="Enums\FollowerType.cs" />
+    <Compile Include="Enums\GameBalanceType.cs" />
+    <Compile Include="Enums\GemType.cs" />
+    <Compile Include="Enums\GizmoType.cs" />
+    <Compile Include="Enums\HeroClass.cs" />
+    <Compile Include="Enums\ItemLocation.cs" />
+    <Compile Include="Enums\ItemQuality.cs" />
+    <Compile Include="Enums\MonsterQuality.cs" />
+    <Compile Include="Enums\MonsterState.cs" />
+    <Compile Include="Enums\NpcType.cs" />
+    <Compile Include="Enums\ResourceType.cs" />
+    <Compile Include="Enums\SnoGroupId.cs" />
+    <Compile Include="Enums\WorldType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -150,9 +150,13 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Enigma.D3\Enigma.D3.csproj">
+    <ProjectReference Include="..\Enigma.D3.Core\Enigma.D3.Core.csproj">
+      <Project>{e01f9c34-f404-48dc-92e2-991da7adf9eb}</Project>
+      <Name>Enigma.D3.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enigma.D3.Memory\Enigma.D3.Memory.csproj">
       <Project>{23848103-7dc0-4ab0-958f-b8793ffd1f2d}</Project>
-      <Name>Enigma.D3</Name>
+      <Name>Enigma.D3.Memory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enigma.Memory\Enigma.Memory.csproj">
       <Project>{3A385F29-42E2-4CAF-B1F2-2A1A7B90A971}</Project>
