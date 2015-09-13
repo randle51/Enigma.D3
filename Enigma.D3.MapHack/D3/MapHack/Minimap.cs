@@ -26,8 +26,6 @@ namespace Enigma.D3.MapHack
 
 		public Minimap(Canvas overlay)
 		{
-			MapMarkerOptions.Instance.PropertyChanged += (s, e) => Refresh();
-
 			_minimapItems = new ObservableCollection<IMapMarker>();
 
 			_root = new Canvas() { Height = 1200.5d };
@@ -39,8 +37,6 @@ namespace Enigma.D3.MapHack
 
 			UpdateSizeAndPosition();
 		}
-
-		public bool DebugVisibility { get { return MapMarkerOptions.Instance.DebugVisibility; } }
 
 		public ObservableCollection<IMapMarker> MinimapMarkers { get { return _minimapItems; } }
 
