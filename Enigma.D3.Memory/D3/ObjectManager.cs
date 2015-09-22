@@ -127,7 +127,7 @@ namespace Enigma.D3
 			public int _x068 { get { return Read<int>(0x068); } }
 			public int _x06C { get { return Read<int>(0x06C); } }
 			public int _x070 { get { return Read<int>(0x070); } }
-			public int _x074 { get { return Read<int>(0x074); } }
+			public float x074_RiftSouls { get { return Read<int>(0x074); } }
 			public int _x078 { get { return Read<int>(0x078); } }
 			public int _x07C { get { return Read<int>(0x07C); } }
 			public float _x080 { get { return Read<float>(0x080); } }
