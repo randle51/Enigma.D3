@@ -10,7 +10,7 @@ namespace Enigma.D3
 	[Obsolete("Fields most likely wrong. Size is accurate.")]
 	public partial class PlayerData : MemoryObject
 	{
-		public const int SizeOf = 0xA438; // 42040
+		public const int SizeOf = 0xB360;
 
 		public int x0000_Index { get { return Read<int>(0x0000); } }
 		public int x0004_AcdId { get { return Read<int>(0x0004); } }
