@@ -15,18 +15,18 @@ namespace Enigma.D3
 {
 	public class Engine : MemoryObject, IDisposable
 	{
-		[Obsolete("Values should come from the generated ObjectPtr class instead.")]
+		[Obsolete("Values are only valid if they come from the generated ObjectPtr class.")]
 		private static class Addr
 		{
 			public const int SnoGroupInitializers = 0x01C36944 - 4;
-			public const int SnoGroupByCode = 0x01E9B510;
+			public const int SnoGroupByCode = ObjectPtr.SNOGroupsByCode;
 			public const int SnoGroups = ObjectPtr.SNOGroups;
 			public const int SnoGroupSearch = 0x01E2021C; // Not updated.
 			public const int SnoFilesAsync = 0x01F12644;
 			public const int ObjectManager = ObjectPtr.ObjectManager;
 			public const int ObjectManagerPristine = ObjectPtr.ObjectManagerPristine;
 			public const int MessageDescriptor = ObjectPtr.MessageDescriptor;
-			public const int MapActId = 0x01E24598;
+			public const int MapActId = ObjectPtr.MapActId;
 			public const int LocalData = ObjectPtr.LocalData;
 			public const int LevelArea = 0x01D27778; // Not updated. 0x01E206B0 or 0x01E241F8
 			public const int LevelAreaName = 0x01D277A8; // Not updated.
