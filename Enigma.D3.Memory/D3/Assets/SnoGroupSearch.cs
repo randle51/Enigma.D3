@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Enigma.D3.Memory;
+using Enigma.D3.Memory.TypeSystem;
 
 namespace Enigma.D3.Assets
 {

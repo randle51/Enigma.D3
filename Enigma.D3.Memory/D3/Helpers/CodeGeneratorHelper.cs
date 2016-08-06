@@ -11,7 +11,7 @@ namespace Enigma.D3.Helpers
 		public static string GetSnoGroupFields()
 		{
 			StringBuilder sb = new StringBuilder();
-			var snoGroups = Engine.Current.SnoGroups;
+			var snoGroups = Engine.Current.SNOGroups;
 			int index = 0;
 			var snoGroup = snoGroups[index];
 			while (snoGroup != null)
@@ -29,7 +29,7 @@ namespace Enigma.D3.Helpers
 			StringBuilder sb = new StringBuilder();
 			sb.AppendLine("public enum SnoGroupType");
 			sb.AppendLine("{");
-			foreach (var g in Engine.Current.SnoGroups.Where(a => a != null).OrderBy(a => a.x3C_SnoGroupId))
+			foreach (var g in Engine.Current.SNOGroups.Where(a => a != null).OrderBy(a => a.x3C_SnoGroupId))
 			{
 				sb.Append("\t").Append(g.x1C_Name).Append(" = ").Append((int)g.x3C_SnoGroupId).Append(",").AppendLine();
 			}
@@ -39,7 +39,7 @@ namespace Enigma.D3.Helpers
 
 		public static string GetSnoGroupDump()
 		{
-			return GetCascadingDump(Engine.Current.SnoGroups);
+			return GetCascadingDump(Engine.Current.SNOGroups);
 		}
 
 		public static string GetDump<T>(IEnumerable<T> values)

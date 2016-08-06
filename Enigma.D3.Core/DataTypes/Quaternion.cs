@@ -14,8 +14,6 @@ namespace Enigma.D3.DataTypes
 		public float Z;
 
 		public override string ToString()
-		{
-			return "quat(" + string.Join(", ", X, Y, Z, W) + ")";
-		}
+			=> $"quat({X}, {Y}, {Z}, {W})";
 	}
 }

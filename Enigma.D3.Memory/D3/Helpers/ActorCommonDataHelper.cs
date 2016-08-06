@@ -39,7 +39,7 @@ namespace Enigma.D3.Helpers
 
 		public static IEnumerable<ActorCommonData> EnumerateItems()
 		{
-			return Enumerate(a => a.x0B0_GameBalanceType == Enums.GameBalanceType.Items);
+			return Enumerate(a => a.x0B0_GameBalanceType == Enums.GBType.Items);
 		}
 
 		public static IEnumerable<ActorCommonData> EnumerateGroundItems()

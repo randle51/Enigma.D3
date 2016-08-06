@@ -7,7 +7,7 @@
     <ProjectGuid>{23848103-7DC0-4AB0-958F-B8793FFD1F2D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Enigma</RootNamespace>
+    <RootNamespace>Enigma.D3.Memory</RootNamespace>
     <AssemblyName>Enigma.D3.Memory</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -96,7 +96,6 @@
     <Compile Include="ArraySizeAttribute.cs" />
     <Compile Include="D3\ActTransitions.cs" />
     <Compile Include="D3\AnimationBuffer.cs" />
-    <Compile Include="D3\AttributeDescriptor.cs" />
     <Compile Include="D3\AttributeKey.cs" />
     <Compile Include="D3\AttributeValue.cs" />
     <Compile Include="D3\CameraManager.cs" />
@@ -116,7 +115,6 @@
     <Compile Include="D3\CutsceneManager.cs" />
     <Compile Include="D3\FastAttrib.cs" />
     <Compile Include="D3\FastAttribGroup.cs" />
-    <Compile Include="D3\FieldDescriptor.cs" />
     <Compile Include="D3\FloatingNumber.cs" />
     <Compile Include="D3\InactiveMarkerManager.cs" />
     <Compile Include="D3\LightManager.cs" />
@@ -164,7 +162,6 @@
     <Compile Include="D3\Assets\SnoGroupInitializer.cs" />
     <Compile Include="D3\Assets\SnoGroupSearch.cs" />
     <Compile Include="D3\Storage.cs" />
-    <Compile Include="D3\Symbol.cs" />
     <Compile Include="D3\TimedEvent.cs" />
     <Compile Include="D3\Trickle.cs" />
     <Compile Include="D3\UI\Buff.cs" />
@@ -223,7 +220,6 @@
     <Compile Include="D3\UI\ControlType.cs" />
     <Compile Include="D3\UI\UIControlReference.cs" />
     <Compile Include="D3\UI\UIRect.cs" />
-    <Compile Include="D3\ValueTypeDescriptor.cs" />
     <Compile Include="D3\GameGlobals.cs" />
     <Compile Include="D3\Graphics\DisplayMode.cs" />
     <Compile Include="D3\Graphics\DisplayModeFlags.cs" />
@@ -233,7 +229,6 @@
     <Compile Include="D3\Memory\Allocator.cs" />
     <Compile Include="D3\Memory\AllocatorBlock.cs" />
     <Compile Include="D3\Memory\BasicAllocator.cs" />
-    <Compile Include="D3\MessageDescriptor.cs" />
     <Compile Include="D3\NamedCriticalSection.cs" />
     <Compile Include="D3\ObjectManager.cs" />
     <Compile Include="D3\PlayerDataManager.cs" />
@@ -257,6 +252,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="D3\Win32\CriticalSection.cs" />
     <Compile Include="ObjectCache.cs" />
+    <Compile Include="TypeSystem\AttributeDescriptor.cs" />
+    <Compile Include="TypeSystem\FieldDescriptor.cs" />
+    <Compile Include="TypeSystem\MessageDescriptor.cs" />
+    <Compile Include="TypeSystem\SymbolDescriptor.cs" />
+    <Compile Include="TypeSystem\ValueTypeDescriptor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="D3\PlayerData.cs" />
@@ -274,6 +274,7 @@
   <ItemGroup>
     <Content Include="Scan.html" />
   </ItemGroup>
+  <Import Project="..\Enigma.D3.Memory.Generated\Enigma.D3.Memory.Generated.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

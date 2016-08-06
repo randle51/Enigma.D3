@@ -5,36 +5,36 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using Enigma.D3.Collections;
-using Enigma.D3.Graphics;
 using Enigma.D3.Memory;
 using Enigma.D3.Preferences;
 using Enigma.D3.UI;
-using Enigma.D3.Win32;
 using Enigma.D3.Assets;
+using Enigma.D3.Memory.TypeSystem;
 
 namespace Enigma.D3
 {
 	public class Engine : MemoryObject, IDisposable
 	{
+		[Obsolete("Values should come from the generated ObjectPtr class instead.")]
 		private static class Addr
 		{
 			public const int SnoGroupInitializers = 0x01C36944 - 4;
 			public const int SnoGroupByCode = 0x01E9B510;
-			public const int SnoGroups = 0x01E9A148;
+			public const int SnoGroups = ObjectPtr.SNOGroups;
 			public const int SnoGroupSearch = 0x01E2021C; // Not updated.
 			public const int SnoFilesAsync = 0x01F12644;
-			public const int ObjectManager = 0x01E9A234;
-			public const int ObjectManagerPristine = 0x01E9A238;
-			public const int MessageDescriptor = 0x01F5C37C;
+			public const int ObjectManager = ObjectPtr.ObjectManager;
+			public const int ObjectManagerPristine = ObjectPtr.ObjectManagerPristine;
+			public const int MessageDescriptor = ObjectPtr.MessageDescriptor;
 			public const int MapActId = 0x01E24598;
-			public const int LocalData = 0x01E9B4D8;
+			public const int LocalData = ObjectPtr.LocalData;
 			public const int LevelArea = 0x01D27778; // Not updated. 0x01E206B0 or 0x01E241F8
 			public const int LevelAreaName = 0x01D277A8; // Not updated.
 			public const int GameplayPreferences = 0x01BA1F94; // Not updated.
-			public const int ContainerManager = 0x01F5B670;
+			public const int ContainerManager = ObjectPtr.ContainerManager;
 			public const int BuffManager = 0x01DB4990; // Not updated.
-			public const int ApplicationLoopCount = 0x01E9A2A8;
-			public const int AttributeDescriptors = 0x01EEA578;
+			public const int ApplicationLoopCount = ObjectPtr.ApplicationLoopCount;
+			public const int AttributeDescriptors = ObjectPtr.AttributeDescriptors;
 			public const int VideoPreferences = 0x01BA1A50; // Not updated.
 			public const int ChatPreferences = 0x01BA2024; // Not updated.
 			public const int SoundPreferences = 0x01BA1AE4; // Not updated.
@@ -46,10 +46,9 @@ namespace Enigma.D3
 			public const int PtrSnoFiles = 0x01DD1610; // Not updated.
 		}
 
+		[Obsolete("Values should come from the generated Globals class instead.")]
 		private static class Const
 		{
-			public const int CountAttributeDescriptors = 1435;
-
 			public const int CountUIReferences = 2767; // Not updated.
 			public const int SizeOfUIHandler = 12; // Not updated.
 			public const int CountUIHandlers = 0x3AEC / SizeOfUIHandler; // Not updated.
@@ -61,7 +60,7 @@ namespace Enigma.D3
 		[ThreadStatic]
 		private static Engine _current;
 
-		public static readonly Version SupportedVersion = new Version(2, 4, 0, 35616);
+		public static readonly Version SupportedVersion = Globals.SupportedVersion;
 
 		public static Engine Create()
 		{
@@ -154,8 +153,8 @@ namespace Enigma.D3
 			}
 		}
 
-		[ArraySize(Const.CountAttributeDescriptors)]
-		public AttributeDescriptor[] AttributeDescriptors { get { return Read<AttributeDescriptor>(Addr.AttributeDescriptors, Const.CountAttributeDescriptors); } }
+		[ArraySize(Globals.AttributeDescriptorsCount)]
+		public AttributeDescriptor[] AttributeDescriptors { get { return Read<AttributeDescriptor>(Addr.AttributeDescriptors, Globals.AttributeDescriptorsCount); } }
 
 		public VideoPreferences VideoPreferences { get { return Read<VideoPreferences>(Addr.VideoPreferences); } }
 		public SoundPreferences SoundPreferences { get { return Read<SoundPreferences>(Addr.SoundPreferences); } }
@@ -182,8 +181,8 @@ namespace Enigma.D3
 		[ArraySize(70)]
 		public SnoGroupManager[] SnoGroupsByCode { get { return Read<Ptr<SnoGroupManager>>(Addr.SnoGroupByCode, 70).Select(a => a.Dereference()).ToArray(); } }
 
-		[ArraySize(60)] // In reality it's 61 with last item set to null.
-		public SnoGroupManager[] SnoGroups { get { return ReadPointer<Ptr<SnoGroupManager>>(Addr.SnoGroups).ToArray(60).Select(a => a.Dereference()).ToArray(); } }
+		[ArraySize(Globals.SNOGroupsCount)] // In reality it's +1 count with last item set to null.
+		public SnoGroupManager[] SNOGroups { get { return ReadPointer<Ptr<SnoGroupManager>>(Addr.SnoGroups).ToArray(Globals.SNOGroupsCount).Select(ptr => ptr.Dereference()).ToArray(); } }
 
 		public ObjectManager ObjectManager { get { return ReadPointer<ObjectManager>(Addr.ObjectManager).Dereference(); } }
 		public ObjectManager ObjectManagerPristine { get { return ReadPointer<ObjectManager>(Addr.ObjectManagerPristine).Dereference(); } } // This address is used in initialization and finalization methods.

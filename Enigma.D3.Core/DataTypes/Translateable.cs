@@ -8,21 +8,13 @@ namespace Enigma.D3.DataTypes
 {
 	public struct Translateable
 	{
-		public static implicit operator int(Translateable translateable)
-		{
-			return translateable.Value;
-		}
+		public static implicit operator int(Translateable translateable) => translateable.Value;
 
-		public static implicit operator Translateable(int value)
-		{
-			return new Translateable { Value = value };
-		}
+		public static implicit operator Translateable(int value) => new Translateable { Value = value };
 
 		public int Value;
 
 		public override string ToString()
-		{
-			return Value.ToString();
-		}
+			=> Value.ToString();
 	}
 }

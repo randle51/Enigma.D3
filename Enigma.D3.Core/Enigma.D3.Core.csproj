@@ -46,6 +46,7 @@
     <Compile Include="DataTypes\AttributeParameter.cs" />
     <Compile Include="DataTypes\DataId.cs" />
     <Compile Include="DataTypes\GameBalanceId.cs" />
+    <Compile Include="DataTypes\GBID.cs" />
     <Compile Include="DataTypes\HighPrecisionPercent.cs" />
     <Compile Include="DataTypes\Impulse.cs" />
     <Compile Include="DataTypes\IntVector2.cs" />
@@ -55,6 +56,8 @@
     <Compile Include="DataTypes\Plane.cs" />
     <Compile Include="DataTypes\Quaternion.cs" />
     <Compile Include="DataTypes\Quaternion16.cs" />
+    <Compile Include="DataTypes\QuaternionI.cs" />
+    <Compile Include="DataTypes\RGBAColor.cs" />
     <Compile Include="DataTypes\Sno.cs" />
     <Compile Include="DataTypes\SnoGroup.cs" />
     <Compile Include="DataTypes\SnoName.cs" />
@@ -63,13 +66,13 @@
     <Compile Include="DataTypes\Time.cs" />
     <Compile Include="DataTypes\Translateable.cs" />
     <Compile Include="DataTypes\Vector2.cs" />
+    <Compile Include="DataTypes\Vector2I.cs" />
     <Compile Include="DataTypes\Vector3.cs" />
     <Compile Include="DataTypes\Velocity.cs" />
     <Compile Include="Enums\ActorType.cs" />
-    <Compile Include="Enums\AttributeId.cs" />
     <Compile Include="Enums\DamageType.cs" />
     <Compile Include="Enums\FollowerType.cs" />
-    <Compile Include="Enums\GameBalanceType.cs" />
+    <Compile Include="Enums\GBType.cs" />
     <Compile Include="Enums\GemType.cs" />
     <Compile Include="Enums\GizmoType.cs" />
     <Compile Include="Enums\HeroClass.cs" />
@@ -80,10 +83,12 @@
     <Compile Include="Enums\NpcType.cs" />
     <Compile Include="Enums\ResourceType.cs" />
     <Compile Include="Enums\SnoGroupId.cs" />
+    <Compile Include="Enums\SNOType.cs" />
     <Compile Include="Enums\WorldType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
+  <Import Project="..\Enigma.D3.Core.Generated\Enigma.D3.Core.Generated.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

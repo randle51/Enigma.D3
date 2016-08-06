@@ -10,21 +10,13 @@ namespace Enigma.D3.DataTypes
 	{
 		public const float RadianToDegree = 180f / (float)Math.PI; //57.295776f;
 
-		public static implicit operator float(Angle angle)
-		{
-			return angle.Value;
-		}
+		public static implicit operator float(Angle angle) => angle.Value;
 
-		public static implicit operator Angle(float value)
-		{
-			return new Angle { Value = value };
-		}
+		public static implicit operator Angle(float value) => new Angle { Value = value };
 
 		public float Value;
 
 		public override string ToString()
-		{
-			return (Value * RadianToDegree).ToString("0.00") + "-|";
-		}
+			=> (Value * RadianToDegree).ToString("0.00") + "-|";
 	}
 }

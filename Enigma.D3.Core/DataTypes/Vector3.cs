@@ -13,8 +13,6 @@ namespace Enigma.D3.DataTypes
 		public float Z;
 
 		public override string ToString()
-		{
-			return "vec3(" + string.Join(", ", X, Y, Z) + ")";
-		}
+			=> $"vec3({X}, {Y}, {Z})";
 	}
 }

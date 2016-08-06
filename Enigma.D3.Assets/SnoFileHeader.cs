@@ -7,7 +7,7 @@ using Enigma.Memory;
 
 namespace Enigma.D3.Assets
 {
-	public struct SnoFileHeader
+	public struct SNOFileHeader
 	{
 		public uint MagicBytes;
 		public uint Reserved0;
