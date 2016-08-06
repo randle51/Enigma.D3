@@ -2,6 +2,7 @@ namespace Enigma.D3.Memory
 {
 	public static class ObjectPtr
 	{
+		public const int MapActId = 0x01E30EE0;
 		public const int SNOGroups = 0x01EA3FE4;
 		public const int ObjectManager = 0x01EA60D4;
 		public const int ObjectManagerPristine = 0x01EA60D8;

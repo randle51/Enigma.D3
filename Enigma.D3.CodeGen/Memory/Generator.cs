@@ -39,6 +39,7 @@ namespace Enigma.D3.CodeGen.Memory
 			objPtrs.Add("ApplicationLoopCount", symbols.BestMatch("ApplicationLoopCount"));
 			objPtrs.Add("ObjectManager", symbols.BestMatch("ObjectManager"));
 			objPtrs.Add("ObjectManagerPristine", symbols.BestMatch("ObjectManagerPristine"));
+			objPtrs.Add("MapActId", symbols.BestMatch("MapActId"));
 			WriteObjectPtrFile(Path.Combine(dir.FullName, "ObjectPtr.cs"), objPtrs);
 
 			var methodPtrs = new Dictionary<string, uint>();
@@ -99,7 +100,11 @@ namespace Enigma.D3.CodeGen.Memory
 			sb.AppendLine("\tpublic static class ObjectPtr");
 			sb.AppendLine("\t{");
 			foreach (var pair in objPtrs.OrderBy(a => a.Value))
+			{
+				if (pair.Value == 0)
+					sb.AppendLine($"\t\t#error Could not find {pair.Key} :(");
 				sb.AppendLine($"\t\tpublic const int {pair.Key} = 0x{pair.Value:X8};");
+			}
 			sb.AppendLine("\t}");
 			sb.AppendLine("}");
 			File.WriteAllText(path, sb.ToString());
@@ -113,7 +118,11 @@ namespace Enigma.D3.CodeGen.Memory
 			sb.AppendLine("\tpublic static class MethodPtr");
 			sb.AppendLine("\t{");
 			foreach (var pair in methodPtrs)
+			{
+				if (pair.Value == 0)
+					sb.AppendLine($"\t\t#error Could not find {pair.Key} :(");
 				sb.AppendLine($"\t\tpublic const int {pair.Key} = 0x{pair.Value:X8};");
+			}
 			sb.AppendLine("\t}");
 			sb.AppendLine("}");
 			File.WriteAllText(path, sb.ToString());
