@@ -6,23 +6,15 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.DataTypes
 {
-	public struct Sno
+	public struct SNO
 	{
-		public static implicit operator int(Sno sno)
-		{
-			return sno.Value;
-		}
+		public static implicit operator uint(SNO sno) => sno.Value;
 
-		public static implicit operator Sno(int value)
-		{
-			return new Sno { Value = value };
-		}
+		public static implicit operator SNO(uint value) => new SNO { Value = value };
 
-		public int Value;
+		public uint Value;
 
 		public override string ToString()
-		{
-			return Value.ToString();
-		}
+			=> Value.ToString();
 	}
 }

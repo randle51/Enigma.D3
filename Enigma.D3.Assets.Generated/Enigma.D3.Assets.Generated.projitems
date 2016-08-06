@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>966c65df-1054-4d67-91ee-31c155f0c8f8</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Enigma.D3.Assets</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Accolade.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Account.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Act.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Actor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Adventure.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AmbientSound.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Anim.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Anim2D.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AnimSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AnimTree.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Appearance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BossEncounter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Cloth.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Condition.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Conversation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConversationList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)EffectGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Encounter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Explosion.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FlagSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Font.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameBalance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Globals.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hero.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LevelArea.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Light.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Lore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MarkerSet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Material.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Monster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Music.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Observer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Particle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Physics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PhysMesh.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Power.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Quest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QuestRange.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Recipe.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reverb.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rope.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SceneGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShaderMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shaders.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shakes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SkillKit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sound.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SoundBank.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StringList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Surface.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Textures.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TimedEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Trail.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TreasureClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tutorial.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UI.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Weather.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Vibrations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Worlds.cs" />
+  </ItemGroup>
+</Project>

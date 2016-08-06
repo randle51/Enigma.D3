@@ -1,3 +1,4 @@
+using Enigma.D3.Memory.TypeSystem;
 using Enigma.Memory;
 using System;
 using System.Collections.Generic;
@@ -8,19 +9,19 @@ namespace Enigma.D3.Helpers
 {
 	public static class SymbolHelper
 	{
-		public static List<Symbol> GetAllSymbols(int address)
+		public static List<SymbolDescriptor> GetAllSymbols(int address)
 		{
-			List<Symbol> symbols = new List<Symbol>();
-			var symbol = Engine.Current.Memory.Reader.Read<Symbol>(address);
+			List<SymbolDescriptor> symbols = new List<SymbolDescriptor>();
+			var symbol = Engine.Current.Memory.Reader.Read<SymbolDescriptor>(address);
 			while (symbol != null)
 			{
-				if (symbol.x04_Name == null)
+				if (symbol.x04_PtrName.Dereference() == null)
 					break;
 
 				symbols.Add(symbol);
 
-				address += Symbol.SizeOf;
-				symbol = Engine.Current.Memory.Reader.Read<Symbol>(address);
+				address += SymbolDescriptor.SizeOf;
+				symbol = Engine.Current.Memory.Reader.Read<SymbolDescriptor>(address);
 			}
 			return symbols;
 		}

@@ -6,6 +6,7 @@ using System.Text;
 using Enigma.D3.Collections;
 using Enigma.D3.Enums;
 using Enigma.D3.Win32;
+using Enigma.D3.Memory.TypeSystem;
 
 namespace Enigma.D3.Assets
 {

@@ -8,21 +8,13 @@ namespace Enigma.D3.DataTypes
 {
 	public struct AttributeParameter
 	{
-		public static implicit operator int(AttributeParameter attributeParameter)
-		{
-			return attributeParameter.Value;
-		}
+		public static implicit operator int(AttributeParameter attributeParameter) => attributeParameter.Value;
 
-		public static implicit operator AttributeParameter(int value)
-		{
-			return new AttributeParameter { Value = value };
-		}
+		public static implicit operator AttributeParameter(int value) => new AttributeParameter { Value = value };
 
 		public int Value;
 
 		public override string ToString()
-		{
-			return Value.ToString();
-		}
+			=> Value.ToString();
 	}
 }

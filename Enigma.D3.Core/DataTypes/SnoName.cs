@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.DataTypes
 {
-	public struct SnoName
+	public struct SNOName
 	{
-		public SnoGroup SnoGroup;
-		public SnoNameHandle Handle;
+		public SNOGroup SNOGroup;
+		public SNONameHandle Handle;
 	}
 }

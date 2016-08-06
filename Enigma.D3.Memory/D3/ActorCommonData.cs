@@ -27,7 +27,7 @@ namespace Enigma.D3
 		public int x0A4_GameTick { get { return Read<int>(0x0A4); } }
 		public int x0A8_GameTick { get { return Read<int>(0x0A8); } }
 		public int x0AC_GameTick { get { return Read<int>(0x0AC); } }
-		public GameBalanceType x0B0_GameBalanceType { get { return (GameBalanceType)Read<int>(0x0B0); } }
+		public GBType x0B0_GameBalanceType { get { return (GBType)Read<int>(0x0B0); } }
 		public int x0B4_GameBalanceId { get { return Read<int>(0x0B4); } }
 		public MonsterQuality x0B8_MonsterQuality { get { return (MonsterQuality)Read<int>(0x0B8); } }
 		public int x0BC_IsItem_StructStart_Min100Bytes { get { return Read<int>(0x0BC); } }

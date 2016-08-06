@@ -505,7 +505,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<float> ThornsFixed = new SimpleAttribute<float>(AttributeId.ThornsFixed, 0);
 		public static Attribute<float> ThornsAOERadius = new SimpleAttribute<float>(AttributeId.ThornsAOERadius, 0);
 		public static Attribute<int> ThornsHasDamageType = new SimpleAttribute<int>(AttributeId.ThornsHasDamageType, 0);
-		public static Attribute<float> OnHitThornsProcChance = new SimpleAttribute<float>(AttributeId.OnHitThornsProcChance, 0);
+		public static Attribute<float> OnFirstHitThornsPercent = new SimpleAttribute<float>(AttributeId.OnFirstHitThornsPercent, 0);
 		public static Attribute<float> StealHealthPercent = new SimpleAttribute<float>(AttributeId.StealHealthPercent, 0);
 		public static Attribute<float> StealManaPercent = new SimpleAttribute<float>(AttributeId.StealManaPercent, 0);
 		public static Attribute<float> ResourceOnHit = new SimpleAttribute<float>(AttributeId.ResourceOnHit, 0);
