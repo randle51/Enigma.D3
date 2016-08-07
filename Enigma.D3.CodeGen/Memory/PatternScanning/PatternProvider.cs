@@ -45,6 +45,7 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 
 			// Preferences
 			yield return "55|8BEC|56|8B7508|6A06|68........|56|B9........|E8........|83C40C|85C0|0F84 00 0000 0000 :0000 CPreferences::Dump ^0027 .data:VideoPreferences ^0044 .data:SoundPreferences ^0061 .data:GameplayPreferences ^0093 .data:SocialPreferences ^00AC .data:ChatPreferences";
+			yield return "55|8BEC|56|8B7508|6A06|68........|68........|56|E8........|83C410|85C0|0F84 00 0000 0000 :0000 CPreferences::Dump ^002C .data:VideoPreferences ^0049 .data:SoundPreferences ^0066 .data:GameplayPreferences ^0098 .data:SocialPreferences ^00B1 .data:ChatPreferences";
 
 			// UIHandlers
 			yield return "55|8BEC|83EC0C|56|57|E8........|8BF8|897DF4|C745FC00000000|33F6|EB03|8D4900 00 0000 0000 :0000 CUIManager::BindHandlers ^0022 .data:UIHandlers ^0091:1 sizeof(UIHandler) ^0094 UIHandlersSize";

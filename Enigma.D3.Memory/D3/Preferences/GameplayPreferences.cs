@@ -32,5 +32,6 @@ namespace Enigma.D3.Preferences
 		public int x48_ElectiveMode { get { return Read<int>(0x48); } }  // default = 0, min = 0, max = 1
 		public int x4C_DisableCutscenes { get { return Read<int>(0x4C); } }  // default = 0, min = 0, max = 1
 		public int x50_ItemRarityIcons { get { return Read<int>(0x50); } }  // default = 0, min = 0, max = 1
+		public int x54_DisableShortFloatingNumbers { get { return Read<int>(0x54); } }  // default = 0, min = 0, max = 1
 	}
 }

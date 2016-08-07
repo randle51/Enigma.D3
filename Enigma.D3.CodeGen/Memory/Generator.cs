@@ -40,6 +40,12 @@ namespace Enigma.D3.CodeGen.Memory
 			objPtrs.Add("ObjectManager", symbols.BestMatch("ObjectManager"));
 			objPtrs.Add("ObjectManagerPristine", symbols.BestMatch("ObjectManagerPristine"));
 			objPtrs.Add("MapActId", symbols.BestMatch("MapActId"));
+			objPtrs.Add("VideoPreferences", symbols.BestMatch("VideoPreferences"));
+			objPtrs.Add("SoundPreferences", symbols.BestMatch("SoundPreferences"));
+			objPtrs.Add("GameplayPreferences", symbols.BestMatch("GameplayPreferences"));
+			objPtrs.Add("SocialPreferences", symbols.BestMatch("SocialPreferences"));
+			objPtrs.Add("ChatPreferences", symbols.BestMatch("ChatPreferences"));
+			objPtrs.Add("HotkeyPreferences", objPtrs["SoundPreferences"] == 0 ? 0 : objPtrs["SoundPreferences"] + 0x50);
 			WriteObjectPtrFile(Path.Combine(dir.FullName, "ObjectPtr.cs"), objPtrs);
 
 			var methodPtrs = new Dictionary<string, uint>();
