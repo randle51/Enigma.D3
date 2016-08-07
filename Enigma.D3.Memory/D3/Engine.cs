@@ -10,6 +10,7 @@ using Enigma.D3.Preferences;
 using Enigma.D3.UI;
 using Enigma.D3.Assets;
 using Enigma.D3.Memory.TypeSystem;
+using Enigma.D3.Memory.Input;
 
 namespace Enigma.D3
 {
@@ -30,15 +31,16 @@ namespace Enigma.D3
 			public const int LocalData = ObjectPtr.LocalData;
 			public const int LevelArea = 0x01D27778; // Not updated. 0x01E206B0 or 0x01E241F8
 			public const int LevelAreaName = 0x01D277A8; // Not updated.
-			public const int GameplayPreferences = 0x01BA1F94; // Not updated.
 			public const int ContainerManager = ObjectPtr.ContainerManager;
 			public const int BuffManager = 0x01DB4990; // Not updated.
 			public const int ApplicationLoopCount = ObjectPtr.ApplicationLoopCount;
 			public const int AttributeDescriptors = ObjectPtr.AttributeDescriptors;
-			public const int VideoPreferences = 0x01BA1A50; // Not updated.
-			public const int ChatPreferences = 0x01BA2024; // Not updated.
-			public const int SoundPreferences = 0x01BA1AE4; // Not updated.
-			public const int SocialPreferences = 0x01BA1FF4; // Not updated.
+			public const int VideoPreferences = ObjectPtr.VideoPreferences;
+			public const int SoundPreferences = ObjectPtr.SoundPreferences;
+			public const int HotkeyPreferences = ObjectPtr.HotkeyPreferences;
+			public const int GameplayPreferences = ObjectPtr.GameplayPreferences;
+			public const int ChatPreferences = ObjectPtr.ChatPreferences;
+			public const int SocialPreferences = ObjectPtr.SocialPreferences;
 			public const int UIHandlers = 0x01B684D0; // Not updated.
 			public const int UIReferences = 0x01BBB8F8; // Not updated. 0x01C70368 or 0x01CEF2A8
 			public const int SnoIdToEntityId = 0x00000000; // Not updated.
@@ -152,6 +154,9 @@ namespace Enigma.D3
 				return processMemory == null ? null : processMemory.Process;
 			}
 		}
+
+		[ArraySize(70)]
+		public Hotkey[] Hotkeys { get { return Read<Hotkey>(Addr.HotkeyPreferences, 70); } }
 
 		[ArraySize(Globals.AttributeDescriptorsCount)]
 		public AttributeDescriptor[] AttributeDescriptors { get { return Read<AttributeDescriptor>(Addr.AttributeDescriptors, Globals.AttributeDescriptorsCount); } }
