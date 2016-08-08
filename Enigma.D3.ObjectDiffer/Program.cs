@@ -70,7 +70,7 @@ namespace Enigma.D3.ObjectDiffer
 			string output = value.ToString();
 			if (Math.Abs(value) > 100000)
 				output = "0x" + value.ToString("X");
-			Console.Write(" " + output.PadRight(10));
+			Write(" " + output.PadRight(10));
 		}
 
 		private static void WriteValue(float value)
@@ -78,7 +78,7 @@ namespace Enigma.D3.ObjectDiffer
 			var color = ConsoleColor.Gray;
 			if (Math.Abs(value) > 100000 || Math.Abs(value) < 0.001)
 				color = ConsoleColor.DarkGray;
-			Console.Write(" " + value, color);
+			Write(" " + value, color);
 		}
 
 		private static void Write(string text, ConsoleColor color = ConsoleColor.Gray)
