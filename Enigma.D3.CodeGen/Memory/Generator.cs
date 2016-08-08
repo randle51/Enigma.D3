@@ -57,6 +57,9 @@ namespace Enigma.D3.CodeGen.Memory
 			globals.Add("static readonly Version SupportedVersion", $"new Version({version})");
 			globals.Add("const int SNOGroupsCount", "60"); // TODO: Don't hardcode.
 			globals.Add("const int AttributeDescriptorsCount", GetAttributeDescriptorsCount(symbols).ToString());
+			globals.Add("const int SizeOf_PlayerData", symbols.BestMatch("sizeof(PlayerData)").ToHex());
+			globals.Add("const int Offset_PlayerData_HeroName", GetOffset_PlayerData_HeroName(symbols.BestMatch("sizeof(PlayerData)")).ToHex());
+			globals.Add("const int Offset_PlayerData_LifePercentage", GetOffset_PlayerData_LifePercentage(symbols.BestMatch("sizeof(PlayerData)")).ToHex());
 			WriteGlobalsFile(Path.Combine(dir.FullName, "Globals.cs"), globals);
 
 			var project = new SharedProject("862a67ee-9ceb-42fe-9406-d7feafc55b00", "Enigma.D3.Memory");
@@ -70,6 +73,48 @@ namespace Enigma.D3.CodeGen.Memory
 				project.Deploy(
 					dir,
 					Program.SolutionDirectory.CreateSubdirectory(project.RootNamespace + ".Generated"));
+			}
+		}
+
+		private static uint GetOffset_PlayerData_LifePercentage(uint sizeof_playerdata)
+		{
+			if (sizeof_playerdata == 0 || Engine.Current == null)
+				return 0;
+
+			var actor = Actor.Local;
+			var player = PlayerData.Local;
+			var data = PlayerData.Local.GetPointer().Cast<byte>().ToArray((int)sizeof_playerdata);
+
+			var signature = BitConverter.GetBytes(actor.x08C_ActorSnoId);
+			var pattern = new BinaryPattern(signature);
+			try
+			{
+				var match = pattern.NextMatch(data, 0);
+				return (uint)match + 4;
+			}
+			catch
+			{
+				return 0;
+			}
+		}
+
+		private static uint GetOffset_PlayerData_HeroName(uint sizeof_playerdata)
+		{
+			if (sizeof_playerdata == 0 || Engine.Current == null)
+				return 0;
+
+			var data = PlayerData.Local.GetPointer().Cast<byte>().ToArray((int)sizeof_playerdata);
+			var pattern = new BinaryPattern(Encoding.ASCII.GetBytes("Default"));
+			//new byte[] { (byte)'D', (byte)'e', (byte)'f', (byte)'a', (byte)'u', (byte)'l', (byte)'t' });
+
+			try
+			{
+				var match = pattern.NextMatch(data, 0);
+				return (uint)(match - 49);
+			}
+			catch
+			{
+				return 0;
 			}
 		}
 
@@ -149,5 +194,7 @@ namespace Enigma.D3.CodeGen.Memory
 			sb.AppendLine("}");
 			File.WriteAllText(path, sb.ToString());
 		}
+
+		private static string ToHex(this uint value) => "0x" + value.ToString("X");
 	}
 }

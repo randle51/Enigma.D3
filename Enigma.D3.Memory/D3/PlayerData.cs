@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Enigma.D3.Collections;
+using Enigma.D3.Memory;
 
 namespace Enigma.D3
 {
 	[Obsolete("Fields most likely wrong. Size is accurate.")]
 	public partial class PlayerData : MemoryObject
 	{
-		public const int SizeOf = 0xB360;
+		public const int SizeOf = Globals.SizeOf_PlayerData;
 
 		public int x0000_Index { get { return Read<int>(0x0000); } }
 		public int x0004_AcdId { get { return Read<int>(0x0004); } }
@@ -1765,7 +1766,7 @@ namespace Enigma.D3
 	public partial class PlayerData
 	{
 		public static PlayerData Local { get { return Engine.TryGet(engine => PlayerDataManager.Instance.x0038_Items[Player.Instance.x00000_LocalDataIndex]); } }
-
+		
 		public static PlayerData GetByIndex(int index)
 		{
 			if (index < 0 || index >= 8)
@@ -1774,16 +1775,19 @@ namespace Enigma.D3
 			return PlayerDataManager.Instance.IfNotNull(a => a.x0038_Items[index]);
 		}
 
+		[Obsolete]
 		public int[] GetActivePowerSnoIds()
 		{
 			return x00A0_ServerData.x000C_PlayerSavedData.x1218_ActiveSkillSavedData.Select(a => a.x00_PowerSnoId).ToArray();
 		}
 
+		[Obsolete]
 		public ActiveSkillSavedData[] GetActiveSkills()
 		{
 			return x00A0_ServerData.x000C_PlayerSavedData.x1218_ActiveSkillSavedData;
 		}
 
+		[Obsolete]
 		public int[] GetPassivePowerSnoIds()
 		{
 			return x00A0_ServerData.x000C_PlayerSavedData.x1278_PassivePowerSnoIds;
@@ -1795,6 +1799,7 @@ namespace Enigma.D3
 			return x88A4_VendorTokens.Take(x90A4_VendorTokenCount);
 		}
 
+		[Obsolete]
 		public long GetCurrency(CurrencyType type)
 		{
 			return Read<long>((24 * (int)type) + 0x8520);
@@ -1802,12 +1807,17 @@ namespace Enigma.D3
 
 		public long GetHeroId()
 		{
-			return x9180_HeroId;
+			return Read<long>(Globals.Offset_PlayerData_HeroName - sizeof(long));
 		}
 
 		public string GetHeroName()
 		{
-			return x9188_HeroName;
+			return ReadString(Globals.Offset_PlayerData_HeroName, 49);
+		}
+
+		public float GetLifePercentage()
+		{
+			return Read<float>(Globals.Offset_PlayerData_LifePercentage);
 		}
 	}
 
