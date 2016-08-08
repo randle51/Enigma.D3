@@ -1819,6 +1819,16 @@ namespace Enigma.D3
 		{
 			return Read<float>(Globals.Offset_PlayerData_LifePercentage);
 		}
+
+		public int GetLevel()
+		{
+			return Read<int>(Globals.Offset_PlayerData_LifePercentage + 0x10);
+		}
+
+		public int GetAltLevel()
+		{
+			return Read<int>(Globals.Offset_PlayerData_LifePercentage + 0x14);
+		}
 	}
 
 	public enum CurrencyType
