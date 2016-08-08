@@ -8,7 +8,8 @@ is omitted, copy-paste the files manually (output created next to generator).
 
 In order to update  Enigma.D3.Core and Enigma.D3.Assets we need a minidump of a D3 process. The game
 needs to be fully initialized, getting to the login screen is enough. The minidump needs to be located
-at "%TEMP%\Diablo III.DMP".
+at "%TEMP%\Diablo III.DMP". Some additional offsets can be generated for "-memory", these require the
+minidump to contain a populated PlayerData structure, meaning player must be inside a game.
 
 To create a dump using Task Manager:
 	Open the "Windows Task Manager"
