@@ -15,6 +15,8 @@ namespace Enigma.D3.CodeGen
 		{
 			if (args.Contains("-memory"))
 			{
+				if (GetMiniDumpFile().Exists)
+					Engine.Create(new MiniDumpMemoryReader(GetMiniDumpFile().FullName));
 				Memory.Generator.Run();
 			}
 			if (args.Contains("-core"))
@@ -43,7 +45,7 @@ namespace Enigma.D3.CodeGen
 		{
 			return new FileInfo(Path.Combine(Path.GetTempPath(), "Diablo III.dmp"));
 		}
-		
+
 		public static DirectoryInfo SolutionDirectory
 		{
 			get

@@ -40,6 +40,9 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 		public readonly byte[] Bytes;
 		public readonly byte[] Mask;
 
+		public BinaryPattern(byte[] bytes)
+			: this(bytes, Enumerable.Range(0, bytes?.Length ?? 0).Select(i => (byte)0xFF).ToArray()) { }
+
 		public BinaryPattern(byte[] bytes, byte[] mask)
 		{
 			if (bytes == null)
