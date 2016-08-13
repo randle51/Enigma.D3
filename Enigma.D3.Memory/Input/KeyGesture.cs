@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.Memory.Input
 {
-	public class KeyGesture
+	public struct KeyGesture
 	{
 		public Key Key;
 		public ModifierKeys Modifiers;
