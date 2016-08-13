@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.Memory.Input
 {
-	public class Hotkey
+	public struct Hotkey
 	{
 		public KeyGesture PrimaryGesture;
 		public KeyGesture SecondaryGesture;
