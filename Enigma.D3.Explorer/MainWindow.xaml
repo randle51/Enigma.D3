@@ -1,0 +1,30 @@
+﻿<Window x:Class="Enigma.D3.Explorer.MainWindow" x:ClassModifier="internal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Enigma.D3.Explorer"
+        mc:Ignorable="d"
+        Title="Enigma.D3.Explorer" Height="480" Width="860">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="_Create MiniDump" Click="OnCreateMiniDumpClicked" />
+                <MenuItem Header="Attach to _MiniDump" Click="OnAttachToMiniDumpClicked" />
+                <MenuItem Header="Attach to _Process" Click="OnAttachToProcessClicked" />
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="100" Width="200" />
+                <ColumnDefinition Width="3" />
+                <ColumnDefinition MinWidth="100" Width="*" />
+            </Grid.ColumnDefinitions>
+            <TreeView x:Name="ViewSelector" />
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" />
+            <Border Grid.Column="2" BorderBrush="Gray" BorderThickness="1">
+                <ContentPresenter Name="ViewPresenter" />
+            </Border>
+        </Grid>
+    </DockPanel>
+</Window>

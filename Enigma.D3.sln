@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Application
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.ObjectDiffer", "Enigma.D3.ObjectDiffer\Enigma.D3.ObjectDiffer.csproj", "{D8E88297-9683-4201-A0E4-21E8A7CF26B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.Explorer", "Enigma.D3.Explorer\Enigma.D3.Explorer.csproj", "{47A32F20-6F01-454C-A301-B8403F8D6575}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Enigma.D3.Memory.Generated\Enigma.D3.Memory.Generated.projitems*{23848103-7dc0-4ab0-958f-b8793ffd1f2d}*SharedItemsImports = 4
@@ -155,6 +157,18 @@ Global
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x64.Build.0 = Release|Any CPU
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x86.ActiveCfg = Release|Any CPU
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x86.Build.0 = Release|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x64.Build.0 = Debug|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x86.Build.0 = Debug|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Release|x64.ActiveCfg = Release|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Release|x64.Build.0 = Release|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Release|x86.ActiveCfg = Release|Any CPU
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -162,5 +176,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{75F91ECC-DF5A-4650-878E-4411BCC97D94} = {476EFEB8-6EAE-40C7-9BD5-F10CB82B9B0B}
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0} = {476EFEB8-6EAE-40C7-9BD5-F10CB82B9B0B}
+		{47A32F20-6F01-454C-A301-B8403F8D6575} = {476EFEB8-6EAE-40C7-9BD5-F10CB82B9B0B}
 	EndGlobalSection
 EndGlobal
