@@ -46,6 +46,8 @@ namespace Enigma.D3.CodeGen.Memory
 			objPtrs.Add("SocialPreferences", symbols.BestMatch("SocialPreferences"));
 			objPtrs.Add("ChatPreferences", symbols.BestMatch("ChatPreferences"));
 			objPtrs.Add("HotkeyPreferences", objPtrs["SoundPreferences"] == 0 ? 0 : objPtrs["SoundPreferences"] + 0x50);
+			objPtrs.Add("LevelArea", GetStatic_LevelArea(data, symbols));
+			objPtrs.Add("LevelAreaName", GetStatic_LevelAreaName(data, symbols));
 			WriteObjectPtrFile(Path.Combine(dir.FullName, "ObjectPtr.cs"), objPtrs);
 
 			var methodPtrs = new Dictionary<string, uint>();
@@ -60,6 +62,7 @@ namespace Enigma.D3.CodeGen.Memory
 			globals.Add("const int SizeOf_PlayerData", symbols.BestMatch("sizeof(PlayerData)").ToHex());
 			globals.Add("const int Offset_PlayerData_HeroName", GetOffset_PlayerData_HeroName(symbols.BestMatch("sizeof(PlayerData)")).ToHex());
 			globals.Add("const int Offset_PlayerData_LifePercentage", GetOffset_PlayerData_LifePercentage(symbols.BestMatch("sizeof(PlayerData)")).ToHex());
+			// TODO: globals.Add("const int SizeOf_LevelArea", symbols.BestMatch("sizeof(LevelArea)").ToHex());
 			WriteGlobalsFile(Path.Combine(dir.FullName, "Globals.cs"), globals);
 
 			var project = new SharedProject("862a67ee-9ceb-42fe-9406-d7feafc55b00", "Enigma.D3.Memory");
@@ -74,6 +77,64 @@ namespace Enigma.D3.CodeGen.Memory
 					dir,
 					Program.SolutionDirectory.CreateSubdirectory(project.RootNamespace + ".Generated"));
 			}
+		}
+
+		private static uint GetStatic_LevelArea(byte[] data, SymbolMap symbols)
+		{
+			const string key = "LevelArea";
+
+			var match = symbols.BestMatch(key);
+			if (match != 0)
+				return match;
+
+			if (Engine.Current == null)
+				return 0;
+
+			try
+			{
+				// TODO: Calculate offset from PE info.
+				const uint offset = 0x801600;
+
+				// TODO: Search in .rdata segment only.
+				var pName = (uint)(offset + new BinaryPattern(Encoding.ASCII.GetBytes("UIMinimapToggle")).NextMatch(data, 0));
+
+				// TODO: Search in .text segment only
+				var pMethod = BitConverter.ToUInt32(data, BinaryPattern.Parse(
+					$"68{pName.ToPattern()}" +
+					"A3........" +
+					"C705................" +
+					"C705................" +
+					"E8........" +
+					"68........" +
+					"A3........" +
+					"C705........|........|").NextMatch(data, 0) + 51);
+
+				if (Engine.Current.Memory.Reader.Read<byte>(pMethod + 0x00) == 0x8B &&
+					Engine.Current.Memory.Reader.Read<byte>(pMethod + 0x01) == 0x0D)
+				{
+					var address = Engine.Current.Memory.Reader.Read<uint>(pMethod + 0x02);
+					symbols.Override(key, address);
+					return address;
+				}
+			}
+			catch { }
+
+			return 0;
+		}
+
+		private static uint GetStatic_LevelAreaName(byte[] data, SymbolMap symbols)
+		{
+			const string key = "LevelAreaName";
+
+			var match = symbols.BestMatch(key);
+			if (match != 0)
+				return match;
+
+			var levelarea = symbols.BestMatch("LevelArea");
+			if (levelarea != 0)
+				return levelarea + 0x30;
+
+			return 0;
 		}
 
 		private static uint GetOffset_PlayerData_LifePercentage(uint sizeof_playerdata)
@@ -133,7 +194,7 @@ namespace Enigma.D3.CodeGen.Memory
 			return PE.OptionalHeader32.ImageBase + va;
 		}
 
-		private static int GetAttributeDescriptorsCount(Dictionary<string, List<uint>> symbols)
+		private static int GetAttributeDescriptorsCount(SymbolMap symbols)
 		{
 			const int SizeOfAttributeDescriptor = 40;
 			var maxPlus1 = symbols.BestMatch("AttributeDescriptors.MaxName++");
@@ -196,5 +257,7 @@ namespace Enigma.D3.CodeGen.Memory
 		}
 
 		private static string ToHex(this uint value) => "0x" + value.ToString("X");
+
+		private static string ToPattern(this uint value) => string.Concat(BitConverter.GetBytes(value).Select(b => b.ToString("X2")));
 	}
 }

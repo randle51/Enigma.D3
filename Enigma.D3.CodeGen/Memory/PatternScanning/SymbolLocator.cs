@@ -9,30 +9,15 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 {
 	internal static class SymbolLocator
 	{
-		public static Dictionary<string, List<uint>> FindAll(byte[] data, BufferMemoryReader mem)
+		public static SymbolMap FindAll(byte[] data, BufferMemoryReader mem)
 		{
-			var symbols = new Dictionary<string, List<uint>>();
+			var symbols = new SymbolMap();
 			foreach (var pattern in PatternProvider.GetPatterns().Select(a => FlairPattern.Parse(a)))
 			{
 				foreach (var pair in FindSymbols(pattern, data, mem))
-				{
-					if (symbols.ContainsKey(pair.Key) == false)
-						symbols[pair.Key] = new List<uint>();
-					symbols[pair.Key].AddRange(pair.Value);
-				}
+					symbols.AddRange(pair.Key, pair.Value);
 			}
 			return symbols;
-		}
-
-		public static uint BestMatch(this Dictionary<string, List<uint>> dic, string key)
-		{
-			if (!dic.ContainsKey(key))
-				return 0;
-
-			if (dic[key].Distinct().Count() > 1)
-				return 0;
-
-			return dic[key][0];
 		}
 
 		private static Dictionary<string, List<uint>> FindSymbols(FlairPattern pattern, byte[] data, MemoryReader memory)

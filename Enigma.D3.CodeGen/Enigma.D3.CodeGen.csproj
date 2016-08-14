@@ -58,6 +58,7 @@
     <Compile Include="Memory\PatternScanning\PatternProvider.cs" />
     <Compile Include="Memory\PatternScanning\PEHeaderReader.cs" />
     <Compile Include="Memory\PatternScanning\SymbolLocator.cs" />
+    <Compile Include="Memory\PatternScanning\SymbolMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedProject.cs" />

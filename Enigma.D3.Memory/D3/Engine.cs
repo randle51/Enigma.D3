@@ -29,8 +29,8 @@ namespace Enigma.D3
 			public const int MessageDescriptor = ObjectPtr.MessageDescriptor;
 			public const int MapActId = ObjectPtr.MapActId;
 			public const int LocalData = ObjectPtr.LocalData;
-			public const int LevelArea = 0x01D27778; // Not updated. 0x01E206B0 or 0x01E241F8
-			public const int LevelAreaName = 0x01D277A8; // Not updated.
+			public const int LevelArea = ObjectPtr.LevelArea;
+			public const int LevelAreaName = ObjectPtr.LevelAreaName;
 			public const int ContainerManager = ObjectPtr.ContainerManager;
 			public const int BuffManager = 0x01DB4990; // Not updated.
 			public const int ApplicationLoopCount = ObjectPtr.ApplicationLoopCount;
