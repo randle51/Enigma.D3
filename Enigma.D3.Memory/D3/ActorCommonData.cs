@@ -6,6 +6,7 @@ using System.Text;
 using Enigma.D3.Collections;
 using Enigma.D3.Enums;
 using Enigma.D3.Memory;
+using Enigma.D3.DataTypes;
 
 namespace Enigma.D3
 {
@@ -95,7 +96,7 @@ namespace Enigma.D3
 		public ListB x1D4_ListB_NodeSize52Bytes { get { return Read<ListB>(0x1D4); } }
 		public ListB x1E8_ListB { get { return Read<ListB>(0x1E8); } }
 		public ListB x1FC_ListB { get { return Read<ListB>(0x1FC); } }
-		public int x210_Ptr_220Bytes_Animation { get { return Read<int>(0x210); } }
+		public Ptr<Animation> x210_Ptr_220Bytes_Animation { get { return ReadPointer<Animation>(0x210); } }
 		public int x214_Ptr_12Bytes_Portals { get { return Read<int>(0x214); } }
 		public int x218 { get { return Read<int>(0x218); } }
 		public int x21C_Neg1 { get { return Read<int>(0x21C); } }
@@ -128,6 +129,67 @@ namespace Enigma.D3
 		public int _x2F4 { get { return Read<int>(0x2F4); } }
 	}
 
+	public class Animation : MemoryObject
+	{
+		public const int SizeOf = 220;
+
+		public int _x00 { get { return Read<int>(0x00); } }
+		public SNO x04_AnimSNO { get { return Read<SNO>(0x04); } }
+		public int x08_AnimTag { get { return Read<int>(0x08); } }
+		public int _x0C { get { return Read<int>(0x0C); } }			
+		public float x10_Speed { get { return Read<float>(0x10); } }
+		public int _x14 { get { return Read<int>(0x14); } }
+		public int _x18 { get { return Read<int>(0x18); } }
+		public int _x1C { get { return Read<int>(0x1C); } }
+		public int _x20 { get { return Read<int>(0x20); } }
+		public int _x24 { get { return Read<int>(0x24); } }
+		public int _x28 { get { return Read<int>(0x28); } }
+		public int _x2C { get { return Read<int>(0x2C); } }
+		public int _x30 { get { return Read<int>(0x30); } }
+		public int _x34 { get { return Read<int>(0x34); } }
+		public int _x38 { get { return Read<int>(0x38); } }
+		public int _x3C { get { return Read<int>(0x3C); } }
+		public int _x40 { get { return Read<int>(0x40); } }
+		public int _x44 { get { return Read<int>(0x44); } }
+		public int _x48 { get { return Read<int>(0x48); } }
+		public int _x4C { get { return Read<int>(0x4C); } }
+		public int _x50 { get { return Read<int>(0x50); } }
+		public int _x54 { get { return Read<int>(0x54); } }
+		public int _x58 { get { return Read<int>(0x58); } }
+		public int _x5C { get { return Read<int>(0x5C); } }
+		public int _x60 { get { return Read<int>(0x60); } }
+		public int _x64 { get { return Read<int>(0x64); } }
+		public int _x68 { get { return Read<int>(0x68); } }
+		public int _x6C { get { return Read<int>(0x6C); } }
+		public int _x70 { get { return Read<int>(0x70); } }
+		public int _x74 { get { return Read<int>(0x74); } }
+		public int _x78 { get { return Read<int>(0x78); } }
+		public int _x7C { get { return Read<int>(0x7C); } }
+		public int _x80 { get { return Read<int>(0x80); } }
+		public int _x84 { get { return Read<int>(0x84); } }
+		public int _x88 { get { return Read<int>(0x88); } }
+		public int _x8C { get { return Read<int>(0x8C); } }
+		public int _x90 { get { return Read<int>(0x90); } }
+		public int _x94 { get { return Read<int>(0x94); } }
+		public int _x98 { get { return Read<int>(0x98); } }
+		public int _x9C { get { return Read<int>(0x9C); } }
+		public int _xA0 { get { return Read<int>(0xA0); } }
+		public int _xA4 { get { return Read<int>(0xA4); } }
+		public int _xA8 { get { return Read<int>(0xA8); } }
+		public int _xAC { get { return Read<int>(0xAC); } }
+		public int _xB0 { get { return Read<int>(0xB0); } }
+		public int _xB4 { get { return Read<int>(0xB4); } }
+		public int _xB8 { get { return Read<int>(0xB8); } }
+		public int _xBC { get { return Read<int>(0xBC); } }
+		public int _xC0 { get { return Read<int>(0xC0); } }
+		public int _xC4 { get { return Read<int>(0xC4); } }
+		public int _xC8 { get { return Read<int>(0xC8); } }
+		public int _xCC { get { return Read<int>(0xCC); } }
+		public int _xD0 { get { return Read<int>(0xD0); } }
+		public int _xD4 { get { return Read<int>(0xD4); } }
+		public int _xD8 { get { return Read<int>(0xD8); } }			
+	}
+	
 	public partial class ActorCommonData
 	{
 		public static ActorCommonData Local { get { return Enigma.D3.Helpers.ActorCommonDataHelper.GetLocalAcd(); } }
@@ -135,5 +197,21 @@ namespace Enigma.D3
 		public static ActorCommonData Gold { get { return Enigma.D3.Helpers.ActorCommonDataHelper.GetGoldAcd(); } }
 
 		public static ExpandableContainer<ActorCommonData> Container { get { return ActorCommonDataManager.Instance.IfNotNull(a => a.x00_ActorCommonData); } }
+
+		public SNO GetAnimSNO()
+		{
+			var ptr = x210_Ptr_220Bytes_Animation;
+			if (ptr.IsInvalid)
+				return SNO.NONE;
+			return ptr.Dereference().x04_AnimSNO;
+		}
+
+		public int GetAnimTag()
+		{
+			var ptr = x210_Ptr_220Bytes_Animation;
+			if (ptr.IsInvalid)
+				return -1;
+			return ptr.Dereference().x08_AnimTag;
+		}
 	}
 }
