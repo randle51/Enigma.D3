@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Enigma.D3.Collections;
 using Enigma.D3.Memory;
+using Enigma.D3.Enums;
 
 namespace Enigma.D3
 {
@@ -1766,7 +1767,7 @@ namespace Enigma.D3
 	public partial class PlayerData
 	{
 		public static PlayerData Local { get { return Engine.TryGet(engine => PlayerDataManager.Instance.x0038_Items[Player.Instance.x00000_LocalDataIndex]); } }
-		
+
 		public static PlayerData GetByIndex(int index)
 		{
 			if (index < 0 || index >= 8)
@@ -1820,6 +1821,11 @@ namespace Enigma.D3
 			return Read<float>(Globals.Offset_PlayerData_LifePercentage);
 		}
 
+		public HeroClass GetHeroClass()
+		{
+			return Read<HeroClass>(Globals.Offset_PlayerData_LifePercentage + 0x0C);
+		}
+
 		public int GetLevel()
 		{
 			return Read<int>(Globals.Offset_PlayerData_LifePercentage + 0x10);
@@ -1828,6 +1834,16 @@ namespace Enigma.D3
 		public int GetAltLevel()
 		{
 			return Read<int>(Globals.Offset_PlayerData_LifePercentage + 0x14);
+		}
+
+		public int GetPowerUse()
+		{
+			return Read<int>(0xB048);
+		}
+
+		public int GetPowerCast()
+		{
+			return Read<int>(0xB054);
 		}
 	}
 
