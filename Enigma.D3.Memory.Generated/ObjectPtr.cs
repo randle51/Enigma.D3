@@ -8,6 +8,8 @@ namespace Enigma.D3.Memory
 		public const int GameplayPreferences = 0x01C64A74;
 		public const int SocialPreferences = 0x01C64AD8;
 		public const int ChatPreferences = 0x01C64B08;
+		public const int LevelArea = 0x01E30B40;
+		public const int LevelAreaName = 0x01E30B70;
 		public const int MapActId = 0x01E30EE0;
 		public const int SNOGroups = 0x01EA3FE4;
 		public const int ObjectManager = 0x01EA60D4;
