@@ -82,7 +82,7 @@ namespace Enigma.D3.MapHack.Markers
 
 		private bool IsTreasureGoblin()
 		{
-			switch (Acd.x098_MonsterSnoId)
+			switch (Acd.x090_ActorSnoId)
 			{
 				case 0x00001760: // treasureGoblin_A
 				case 0x00001761: // treasureGoblin_B

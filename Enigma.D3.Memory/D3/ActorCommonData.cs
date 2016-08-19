@@ -22,7 +22,7 @@ namespace Enigma.D3
 		public int x08C_ActorId { get { return Read<int>(0x08C); } }
 		public int x090_ActorSnoId { get { return Read<int>(0x090); } }
 		public int x094_StructStart_Min8Bytes { get { return Read<int>(0x094); } }
-		public int x098_MonsterSnoId { get { return Read<int>(0x098); } }
+		public int x098_NonPlayerNonItemActorSnoId { get { return Read<int>(0x098); } } // -1 in case x184_ActorType is Item or Player, otherwise same as x08C_ActorId.
 		public int x09C { get { return Read<int>(0x09C); } }
 		public int x0A0 { get { return Read<int>(0x0A0); } }
 		public int x0A4_GameTick { get { return Read<int>(0x0A4); } }
