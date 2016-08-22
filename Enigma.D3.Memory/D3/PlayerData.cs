@@ -1799,11 +1799,12 @@ namespace Enigma.D3
 		{
 			return x88A4_VendorTokens.Take(x90A4_VendorTokenCount);
 		}
-
-		[Obsolete]
+		
 		public long GetCurrency(CurrencyType type)
 		{
-			return Read<long>((24 * (int)type) + 0x8520);
+			const int size = 24; // { int index, int 0, long value, int 0, int 0 }
+			const int offset = 8;
+			return Read<long>(0x8D18 + size * (int)type + offset);
 		}
 
 		public long GetHeroId()
