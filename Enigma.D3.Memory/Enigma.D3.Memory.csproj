@@ -113,6 +113,7 @@
     <Compile Include="D3\Collections\SinglyLinkedList.cs" />
     <Compile Include="D3\ContainerManager.cs" />
     <Compile Include="D3\CutsceneManager.cs" />
+    <Compile Include="D3\EngineOptions.cs" />
     <Compile Include="D3\FastAttrib.cs" />
     <Compile Include="D3\FastAttribGroup.cs" />
     <Compile Include="D3\FloatingNumber.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="D3\UI\UIMap.cs" />
     <Compile Include="D3\UI\UIReference.cs" />
     <Compile Include="D3\Graphics\WindowMode.cs" />
+    <Compile Include="D3\VersionMatching.cs" />
     <Compile Include="D3\Win32\Handle.cs" />
     <Compile Include="D3\Wind.cs" />
     <Compile Include="D3\World.cs" />
