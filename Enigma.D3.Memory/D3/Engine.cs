@@ -64,17 +64,27 @@ namespace Enigma.D3
 
 		public static readonly Version SupportedVersion = Globals.SupportedVersion;
 
-		public static Engine Create()
+		public static Engine Create() => Create(EngineOptions.Default);
+
+		public static Engine Create(EngineOptions options)
 		{
+			if (options == null)
+				throw new ArgumentNullException(nameof(options));
+
 			var process = Process.GetProcessesByName("Diablo III")
 				.FirstOrDefault();
 			return process == null ? null : new Engine(process);
 		}
 
-		public static Engine Create(MiniDumpMemoryReader miniDumpMemory)
+		public static Engine Create(MiniDumpMemoryReader miniDumpMemory) => Create(miniDumpMemory, EngineOptions.Default);
+
+		public static Engine Create(MiniDumpMemoryReader miniDumpMemory, EngineOptions options)
 		{
 			if (miniDumpMemory == null)
-				throw new ArgumentNullException("miniDumpMemory");
+				throw new ArgumentNullException(nameof(miniDumpMemory));
+			if (options == null)
+				throw new ArgumentNullException(nameof(options));
+
 			return new Engine(new ReadOnlyMemory(miniDumpMemory));
 		}
 
@@ -111,10 +121,22 @@ namespace Enigma.D3
 		}
 
 		public Engine(Process process)
-			: this(new ReadOnlyMemory(new ProcessMemoryReader(process))) { }
+			: this(process, EngineOptions.Default) { }
+
+		public Engine(Process process, EngineOptions options)
+			: this(new ReadOnlyMemory(new ProcessMemoryReader(process)), options) { }
 
 		public Engine(IMemory memory)
+			: this(memory, EngineOptions.Default) { }
+
+		public Engine(IMemory memory, EngineOptions options)
 		{
+			if (memory == null)
+				throw new ArgumentNullException(nameof(memory));
+			if (options == null)
+				throw new ArgumentNullException(nameof(options));
+
+			Options = options;
 			base.Initialize(memory, 0);
 			if (memory.Reader is IHasMainModuleVersion)
 				EnsureSupportedProcessVersion();
@@ -123,16 +145,24 @@ namespace Enigma.D3
 
 		private void EnsureSupportedProcessVersion()
 		{
-			if (ProcessVersion != SupportedVersion)
+			if (Options.VersionMatching.Check(SupportedVersion, ProcessVersion) == false)
 			{
-				// TODO: We don't have Process instance if reading a minidump.
-				throw new NotSupportedException(string.Format(
-					"The process ({0}) is running a different version ({1}) that what is supported ({2}).",
-					Process.ProcessName,
-					Process.GetFileVersion(),
-					SupportedVersion));
+				if (Process == null) // For minidumps there is no Process instance.
+				{
+					throw new NotSupportedException($"The process version {ProcessVersion} does not match the supported version ({SupportedVersion}).");
+				}
+				else
+				{
+					throw new NotSupportedException(string.Format(
+						"The process ({0}) is running a different version ({1}) that what is supported ({2}).",
+						Process.ProcessName,
+						Process.GetFileVersion(),
+						SupportedVersion));
+				}
 			}
 		}
+
+		public EngineOptions Options { get; private set; }
 
 		public Version ProcessVersion
 		{
