@@ -73,7 +73,7 @@ namespace Enigma.D3
 
 			var process = Process.GetProcessesByName("Diablo III")
 				.FirstOrDefault();
-			return process == null ? null : new Engine(process);
+			return process == null ? null : new Engine(process, options);
 		}
 
 		public static Engine Create(MiniDumpMemoryReader miniDumpMemory) => Create(miniDumpMemory, EngineOptions.Default);
@@ -85,7 +85,7 @@ namespace Enigma.D3
 			if (options == null)
 				throw new ArgumentNullException(nameof(options));
 
-			return new Engine(new ReadOnlyMemory(miniDumpMemory));
+			return new Engine(new ReadOnlyMemory(miniDumpMemory), options);
 		}
 
 		public static Engine Current
