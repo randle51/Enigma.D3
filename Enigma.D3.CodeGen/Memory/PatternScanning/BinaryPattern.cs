@@ -91,5 +91,17 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 				position++;
 			return position;
 		}
+
+		public int NextMatch(byte[] data, int offset, int count)
+		{
+			int position = offset;
+			int last = position + count - Bytes.Length;
+			while (!IsMatch(data, position) && position <= last)
+				position++;
+			return position;
+		}
+
+		public int NextMatch(byte[] data, PEHeaderReader.IMAGE_SECTION_HEADER section)
+			=> NextMatch(data, (int)section.PointerToRawData, (int)section.SizeOfRawData);
 	}
 }
