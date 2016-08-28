@@ -92,13 +92,14 @@ namespace Enigma.D3.CodeGen.Memory
 
 			try
 			{
-				// TODO: Calculate offset from PE info.
-				const uint offset = 0x801600;
+				var pe = new PEHeaderReader(data);
+				var rdata = pe.ImageSectionHeaders.FirstOrDefault(h => h.Section.TrimEnd('\0') == ".rdata");
+				var text = pe.ImageSectionHeaders.FirstOrDefault(h => h.Section.TrimEnd('\0') == ".text");
 
-				// TODO: Search in .rdata segment only.
-				var pName = (uint)(offset + new BinaryPattern(Encoding.ASCII.GetBytes("UIMinimapToggle")).NextMatch(data, 0));
+				uint offset = rdata.VirtualAddress - rdata.PointerToRawData + pe.OptionalHeader32.ImageBase;
 
-				// TODO: Search in .text segment only
+				var pName = (uint)(offset + new BinaryPattern(Encoding.ASCII.GetBytes("UIMinimapToggle")).NextMatch(data, rdata));
+				
 				var pMethod = BitConverter.ToUInt32(data, BinaryPattern.Parse(
 					$"68{pName.ToPattern()}" +
 					"A3........" +
@@ -107,7 +108,7 @@ namespace Enigma.D3.CodeGen.Memory
 					"E8........" +
 					"68........" +
 					"A3........" +
-					"C705........|........|").NextMatch(data, 0) + 51);
+					"C705........|........|").NextMatch(data, text) + 51);
 
 				if (Engine.Current.Memory.Reader.Read<byte>(pMethod + 0x00) == 0x8B &&
 					Engine.Current.Memory.Reader.Read<byte>(pMethod + 0x01) == 0x0D)
