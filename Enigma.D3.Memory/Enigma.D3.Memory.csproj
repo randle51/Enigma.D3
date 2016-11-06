@@ -278,9 +278,6 @@
       <Name>Enigma.Memory</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scan.html" />
-  </ItemGroup>
   <Import Project="..\Enigma.D3.Memory.Generated\Enigma.D3.Memory.Generated.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
