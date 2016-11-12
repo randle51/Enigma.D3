@@ -215,7 +215,7 @@ namespace Enigma.D3.CodeGen.Memory
 			foreach (var pair in objPtrs.OrderBy(a => a.Value))
 			{
 				if (pair.Value == 0)
-					sb.AppendLine($"\t\t#error Could not find {pair.Key} :(");
+					sb.AppendLine($"\t\t#error Could not find {pair.Key} :(" + (Engine.Current == null ? " Running generator again with a minidump present might help" : ""));
 				sb.AppendLine($"\t\tpublic const int {pair.Key} = 0x{pair.Value:X8};");
 			}
 			sb.AppendLine("\t}");
