@@ -4,7 +4,8 @@ For a new patch, begin by running:
 
 This will update version information and search for some core pointers and constants in the exe file.
 The -deploy switch updates the shared project Enigma.D3.Core.Generated in the solution. If the switch
-is omitted, copy-paste the files manually (output created next to generator).
+is omitted, copy-paste the files manually (output created next to generator). Some offsets might not
+be found unless there is a minidump present (see below).
 
 In order to update  Enigma.D3.Core and Enigma.D3.Assets we need a minidump of a D3 process. The game
 needs to be fully initialized, getting to the login screen is enough. The minidump needs to be located
