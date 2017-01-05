@@ -59,9 +59,10 @@ namespace Enigma.D3.CodeGen.Memory
 			globals.Add("static readonly Version SupportedVersion", $"new Version({version})");
 			globals.Add("const int SNOGroupsCount", "60"); // TODO: Don't hardcode.
 			globals.Add("const int AttributeDescriptorsCount", GetAttributeDescriptorsCount(symbols).ToString());
-			globals.Add("const int SizeOf_PlayerData", symbols.BestMatch("sizeof(PlayerData)").ToHex());
-			globals.Add("const int Offset_PlayerData_HeroName", GetOffset_PlayerData_HeroName(symbols.BestMatch("sizeof(PlayerData)")).ToHex());
-			globals.Add("const int Offset_PlayerData_LifePercentage", GetOffset_PlayerData_LifePercentage(symbols.BestMatch("sizeof(PlayerData)")).ToHex());
+			var sizeof_playerdata = symbols.BestMatch("sizeof(PlayerData)");// ((symbols.BestMatch("sizeof(PlayerDataManager)") - 0x038) / 8);
+			globals.Add("const int SizeOf_PlayerData", sizeof_playerdata.ToHex());
+			globals.Add("const int Offset_PlayerData_HeroName", GetOffset_PlayerData_HeroName(sizeof_playerdata).ToHex());
+			globals.Add("const int Offset_PlayerData_LifePercentage", GetOffset_PlayerData_LifePercentage(sizeof_playerdata).ToHex());
 			// TODO: globals.Add("const int SizeOf_LevelArea", symbols.BestMatch("sizeof(LevelArea)").ToHex());
 			WriteGlobalsFile(Path.Combine(dir.FullName, "Globals.cs"), globals);
 
@@ -189,6 +190,9 @@ namespace Enigma.D3.CodeGen.Memory
 
 		private static uint TranslateToVA(uint index)
 		{
+			if (index == 0)
+				return 0;
+
 			var section = PE.ImageSectionHeaders.First(a => index >= a.PointerToRawData && index <= a.PointerToRawData + a.SizeOfRawData);
 			var rva = index - section.PointerToRawData;
 			var va = section.VirtualAddress + rva;

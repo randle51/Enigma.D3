@@ -1,4 +1,5 @@
 ﻿using Enigma.D3;
+using Enigma.D3.Memory;
 using Enigma.Memory;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Enigma.D3.CodeGen
 			if (args.Contains("-memory"))
 			{
 				if (GetMiniDumpFile().Exists)
-					Engine.Create(new MiniDumpMemoryReader(GetMiniDumpFile().FullName));
+					Engine.Create(new MiniDumpMemoryReader(GetMiniDumpFile().FullName), new EngineOptions { VersionMatching = VersionMatching.Disabled });
 				Memory.Generator.Run();
 			}
 			if (args.Contains("-core"))

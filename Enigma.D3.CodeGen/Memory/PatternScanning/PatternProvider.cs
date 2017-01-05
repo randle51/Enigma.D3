@@ -12,6 +12,7 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 		{
 			// PlayerDataManager
 			yield return PlayerDataManager_InitializeThroughStorage;
+			//yield return PlayerDataManager_InitializeThroughStorage_v242; // Do not use. No .data: address to validate result with.
 
 			// PlayerData.SizeOf
 			yield return PlayerData_GetByAcdId;
@@ -28,11 +29,13 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 			yield return "55|8BEC|6AFF|68........|64A100000000|50|64892500000000|81ECA8000000|6A..| 00 0000 0000 :0000 CScreenManager::Initialize ^001F:1 sizeof(ScreenManager) ^003C .data:ScreenManager ^0041 .text:CScreenManager::InitializeFields ^0049 .text:CRefString::SetEmpty ^0058 .text:CRefString::SetEmpty ^0064 .text:CRefString::SetEmpty";
 
 			// AttributeSystem
-			yield return "55|8BEC|6AFF|68........|64A100000000|50|83EC1C535657A1........33C5508D 00 0000 0000 :0000 CAttributeSystem::Initialize ^0116 .data:AttributeDescriptors";
-			yield return "55|8BEC|51|53|8B5D08|8BCB|56|57|8D5101|90|8A01|41|84C0|75F9|2BCA|7454 00 0000 0000 :0000 StringToAttrib ^001E .data:AttributeDescriptors.FirstName ^0055 .data:AttributeDescriptors.MaxName++ ^007F .data:AttributeDescriptors";
+			yield return AttributeSystem_Initialize;
+			yield return StringToAttrib;
+			yield return StringToAttrib_v242;
 
 			// LocalData, ApplicationLoopCount
 			yield return Application_Do;
+			yield return Application_Do_v242;
 
 			// BuffManager
 			yield return "53|6A01|33DB|53|6A04|6A..|E8........|83C410|A3........|C740040A000000|C700 00 0000 00A0 :0000 CBuffManager::Initialize ^0009:1 sizeof(BuffManager) ^0013 .data:BuffManager ^0042 .data:BuffManager";
@@ -51,7 +54,8 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 			yield return "55|8BEC|83EC0C|56|57|E8........|8BF8|897DF4|C745FC00000000|33F6|EB03|8D4900 00 0000 0000 :0000 CUIManager::BindHandlers ^0022 .data:UIHandlers ^0091:1 sizeof(UIHandler) ^0094 UIHandlersSize";
 
 			// SnoGroups, SnoGroupsByCode
-			yield return "56|57|6A00|6A00|6A04|68F4000000|E8........|6818010000|68........|A3...... 00 0000 0074 :0000 CSnoGroups::Initialize ^0018 .data:SnoGroupsByCode ^001D .data:SnoGroups ^002C .data:SnoGroupInitializers+4 ^003F .data:SnoGroups ^0048 .data:SnoGroups ^005B .data:SnoGroupsByCode";
+			yield return SNOGroups_Initialize;
+			yield return SNOGroups_Initialize_v242;
 
 			// SnoFiles
 			yield return "55|8BEC|6AFF|68........|64A100000000|50|83EC08|53|56|57|A1........|33C5|50|8D 0D 90FE 0356 :0000 CSnoFiles::Initialize ^0031 .data:SnoFiles ^008E .data:SnoFiles ^0105 .data:SnoFiles ^0124 .data:SnoFiles ^013B .data:SnoFiles ^0153 .data:SnoFiles ^0183 .data:SnoFiles ^01A7 .data:SnoFiles ^0276 .data:SnoFiles ^02DD .data:SnoFiles ^0304 .data:SnoFiles ^032B .data:SnoFiles";
@@ -66,7 +70,8 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 			yield return "558BEC6AFF68........64A1000000005051A1........33C5508D45F464A300 04 9013 008D :0000 CSnoFilesAsync::Initialize ^0072 .data:SnoFilesAsync";
 
 			// WorldMap
-			yield return "55|8BEC|64A100000000|6AFF|68........|50|64892500000000|83EC24|68........ 01 3E9B 0125 :0000 UI::ShowWorldMap ^004F .data:MapActId";
+			yield return UI_ShowWorldMap;
+			yield return UI_ShowWorldMap_v242;
 
 			// UIReferences
 			yield return "55|8BEC|B8........|E8........|8D855806FCFF|68........|50|E8........|83C4 00 0000 BB91 :0000 CUIElement::InitializeReferences_Batch1 ^0004 UIReferences.Batch1Alloc ^0022 .data:UIReferences ^0034 .data:UIReferences";
@@ -76,6 +81,7 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 
 			// MessageHandlers
 			yield return GameMessage_GetHandlerInfo;
+			yield return GameMessage_GetHandlerInfo_v242;
 
 			// PrimaryAttributes
 			yield return "55|8BEC|83EC10|53|56|57|33F6|56|8D45F8|68........|50|E8........|8B38|68...... 00 0000 0000 :0000 InitPrimaryAttributes ^003A .data:PrimaryAttributes";
@@ -92,8 +98,18 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 
 		public static string LevelArea_Initialize
 			=> "55|8BEC|6AFF|68........|64A100000000|50|64892500000000|51|68........|E8........ 00 0000 0000 :0000 LevelArea::Initialize ^001A sizeof(LevelArea) ^004A .data:LevelArea";
+		
+		public static string AttributeSystem_Initialize
+			=> "55|8BEC|6AFF|68........|64A100000000|50|83EC1C535657A1........33C5508D 00 0000 0000 :0000 CAttributeSystem::Initialize ^0116 .data:AttributeDescriptors";
+
+		public static string StringToAttrib
+			=> "55|8BEC|51|53|8B5D08|8BCB|56|57|8D5101|90|8A01|41|84C0|75F9|2BCA|7466 00 0000 0000 :0000 StringToAttrib ^001E .data:AttributeDescriptors.FirstName ^0055 .data:AttributeDescriptors.MaxName++ ^0090 .data:AttributeDescriptors";
+		public static string StringToAttrib_v242
+			=> "55|8BEC|51|53|8B5D08|8BCB|56|57|8D5101|90|8A01|41|84C0|75F9|2BCA|7454 00 0000 0000 :0000 StringToAttrib ^001E .data:AttributeDescriptors.FirstName ^0055 .data:AttributeDescriptors.MaxName++ ^007F .data:AttributeDescriptors";
 
 		public static string Application_Do
+			=> "56|68........|E8........|A1........|83C4..|8B0D........|40|A3........|A3........ 00 0000 0188 :0000 Application::Do ^0002 .data:LocalData ^000C .data:ApplicationLoopCount ^001B .data:ApplicationLoopCount";
+		public static string Application_Do_v242
 			=> "68........|E8........|A1........|8B0D........|40|83C404|A3........|A3.. 00 0000 0188 :0000 Application::Do ^0001 .data:LocalData ^000B .data:ApplicationLoopCount ^001A .data:ApplicationLoopCount";
 
 		public static string ObjectManager_Initialize
@@ -106,9 +122,23 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 			=> "55|8BEC|56|8B7508|83FEFF|742B|A1........|50|FF15........|8B08|8B11|8B82........|33C9 00 0000 003C :0000 CPlayerData::GetByAcdId ^002E sizeof(PlayerData)";
 
 		public static string PlayerDataManager_InitializeThroughStorage
-			=> "558BEC6AFF68........64A1000000005051535657A1........33C5508D45F4 0C 2B37 01FE :0000 PlayerDataManager::InitializeThroughStorage ^0034 sizeof(PlayerDataManager) ^019D sizeof(PlayerData)";
+			=> "55|8BEC|6AFF|68........|64A100000000|50|51|53|56|57|A1........|33C5|50|8D45F4 0C 2B37 01FE :0000 PlayerDataManager::InitializeThroughStorage ^0034 sizeof(PlayerDataManager) ^019C sizeof(PlayerData)";
+		public static string PlayerDataManager_InitializeThroughStorage_v242
+			=> "55|8BEC|6AFF|68........|64A100000000|50|51|53|56|57|A1........|33C5|50|8D45F4 0C 2B37 01FE :0000 PlayerDataManager::InitializeThroughStorage ^0034 sizeof(PlayerDataManager) ^019D sizeof(PlayerData)";
+
+		public static string SNOGroups_Initialize
+			=> "56|57|6A00|6A00|6A04|68F4000000|E8........|6818010000|68........|A3...... 00 0000 0074 :0000 CSnoGroups::Initialize ^0018 .data:SnoGroupsByCode ^001D .data:SnoGroups ^002A .data:SnoGroupInitializers+4 ^0044 .data:SnoGroups ^004D .data:SnoGroups ^005C .data:SnoGroupsByCode";
+		public static string SNOGroups_Initialize_v242
+			=> "56|57|6A00|6A00|6A04|68F4000000|E8........|6818010000|68........|A3...... 00 0000 0074 :0000 CSnoGroups::Initialize ^0018 .data:SnoGroupsByCode ^001D .data:SnoGroups ^002C .data:SnoGroupInitializers+4 ^003F .data:SnoGroups ^0048 .data:SnoGroups ^005B .data:SnoGroupsByCode";
+
+		public static string UI_ShowWorldMap
+			=> "55|8BEC|64A100000000|6AFF|68........|50|64892500000000|83EC24|68........ 01 3E9B 0125 :0000 UI::ShowWorldMap ^0049 .data:MapActId";
+		public static string UI_ShowWorldMap_v242
+			=> "55|8BEC|64A100000000|6AFF|68........|50|64892500000000|83EC24|68........ 01 3E9B 0125 :0000 UI::ShowWorldMap ^004F .data:MapActId";
 
 		public static string GameMessage_GetHandlerInfo
+			=> "55|8BEC|8B4D0C|8B5510|8B4508|48|C70100000000|C70200000000|3D....0000|0F87........| 00 0000 0000 :0000 CGameMessage::GetHandlerInfo";
+		public static string GameMessage_GetHandlerInfo_v242
 			=> "55|8BEC|8B4508|8B4D0C|8B5510|48|C70100000000|C70200000000|3D....0000|0F87........| 00 0000 0000 :0000 CGameMessage::GetHandlerInfo";
 	}
 }
