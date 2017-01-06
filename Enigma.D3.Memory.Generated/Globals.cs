@@ -4,7 +4,7 @@ namespace Enigma.D3.Memory
 {
 	public static class Globals
 	{
-		public static readonly Version SupportedVersion = new Version(2, 4, 2, 41394);
+		public static readonly Version SupportedVersion = new Version(2, 4, 3, 42655);
 		public const int SNOGroupsCount = 60;
 		public const int AttributeDescriptorsCount = 1442;
 		public const int SizeOf_PlayerData = 0xB370;
