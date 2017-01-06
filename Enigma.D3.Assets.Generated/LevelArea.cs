@@ -70,7 +70,7 @@ namespace Enigma.D3.Assets
 		{
 			public const int SizeOf = 0x38; // 56
 			
-			public int x00_Enum { get { return Read<int>(0x00); } } // Count per 100 sq ft = 0, Exactly = 1
+			public int x00_Enum { get { return Read<int>(0x00); } } // Count per 100 sq ft = 0, Exactly = 1, XP Density Weight = 2
 			public float x04 { get { return Read<float>(0x04); } }
 			public float x08 { get { return Read<float>(0x08); } }
 			public int x0C { get { return Read<int>(0x0C); } }

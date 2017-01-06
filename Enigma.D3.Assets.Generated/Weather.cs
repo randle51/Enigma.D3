@@ -7,7 +7,7 @@ namespace Enigma.D3.Assets
 	[CompilerGenerated]
 	public partial class Weather : SerializeMemoryObject
 	{
-		public const int SizeOf = 0x198; // 408
+		public const int SizeOf = 0x1A0; // 416
 		
 		public SNOHeader x000_Header { get { return Read<SNOHeader>(0x000); } }
 		public int x00C { get { return Read<int>(0x00C); } }
@@ -34,10 +34,10 @@ namespace Enigma.D3.Assets
 		public WeatherStateParams x12C_WeatherStateParams { get { return Read<WeatherStateParams>(0x12C); } }
 		public float x170 { get { return Read<float>(0x170); } }
 		public ColorCorrectionParams x174_ColorCorrectionParams { get { return Read<ColorCorrectionParams>(0x174); } }
-		public SNO[] x180_SNOs { get { return Deserialize<SNO>(x188_SerializeData); } }
-		public SerializeData x188_SerializeData { get { return Read<SerializeData>(0x188); } }
-		public int x190 { get { return Read<int>(0x190); } }
-		public int x194 { get { return Read<int>(0x194); } }
+		public SNO[] x188_SNOs { get { return Deserialize<SNO>(x190_SerializeData); } }
+		public SerializeData x190_SerializeData { get { return Read<SerializeData>(0x190); } }
+		public int x198 { get { return Read<int>(0x198); } }
+		public int x19C { get { return Read<int>(0x19C); } }
 		
 		[CompilerGenerated]
 		public partial class VelocityVectorPath : SerializeMemoryObject
@@ -86,11 +86,12 @@ namespace Enigma.D3.Assets
 		[CompilerGenerated]
 		public partial class ColorCorrectionParams : MemoryObject
 		{
-			public const int SizeOf = 0x0C; // 12
+			public const int SizeOf = 0x10; // 16
 			
 			public SNO x00_TexturesSNO { get { return Read<SNO>(0x00); } }
 			public SNO x04_TexturesSNO { get { return Read<SNO>(0x04); } }
 			public SNO x08_TexturesSNO { get { return Read<SNO>(0x08); } }
+			public int x0C { get { return Read<int>(0x0C); } }
 		}
 		
 		[CompilerGenerated]

@@ -7,7 +7,7 @@ namespace Enigma.D3.Assets
 	[CompilerGenerated]
 	public partial class Scene : SerializeMemoryObject
 	{
-		public const int SizeOf = 0x210; // 528
+		public const int SizeOf = 0x218; // 536
 		
 		public SNOHeader x000_Header { get { return Read<SNOHeader>(0x000); } }
 		public int x00C { get { return Read<int>(0x00C); } }
@@ -25,8 +25,9 @@ namespace Enigma.D3.Assets
 		public int x170 { get { return Read<int>(0x170); } }
 		public MsgTriggeredEvent[] x178_MsgTriggeredEvents { get { return Deserialize<MsgTriggeredEvent>(x168_SerializeData); } }
 		public NavZoneDefinition x180_NavZoneDefinition { get { return Read<NavZoneDefinition>(0x180); } }
-		public SNO x208_AppearanceSNO { get { return Read<SNO>(0x208); } }
-		public SNO x20C_PhysMeshSNO { get { return Read<SNO>(0x20C); } }
+		public float x208 { get { return Read<float>(0x208); } }
+		public SNO x20C_AppearanceSNO { get { return Read<SNO>(0x20C); } }
+		public SNO x210_PhysMeshSNO { get { return Read<SNO>(0x210); } }
 		
 		[CompilerGenerated]
 		public partial class NavMeshDef : SerializeMemoryObject

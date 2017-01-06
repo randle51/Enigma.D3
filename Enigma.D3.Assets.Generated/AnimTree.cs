@@ -47,7 +47,7 @@ namespace Enigma.D3.Assets
 			public int x000_Enum { get { return Read<int>(0x000); } } // Animation = 0, PiecewiseLinearBlend = 1, BoneWeightedBlend = 2, SwitchBlend = 3, Pose = 4, AdditiveBlend = 5, BoneWeightsLinearBlend = 6, BoneWeightsMultiplyBlend = 7
 			public int x004 { get { return Read<int>(0x004); } }
 			public int[] x008_int { get { return Read<int>(0x008, 16); } }
-			public int x048_Enum { get { return Read<int>(0x048); } } // ForwardSpeed = 0, TurnSpeed = 1, IsIdle = 2, WeaponClass = 3, WalkSlowSpeed = 4, WalkSpeed = 5, RunSpeed = 6, SprintSpeed = 7, InTown = 8, IsSpecialMove = 9, AbsTurnSpeed = 10, AimYaw = 11, AimBlend = 12, IsAlive = 13, IsTurning = 14, None = 16
+			public int x048_Enum { get { return Read<int>(0x048); } } // ForwardSpeed = 0, TurnSpeed = 1, IsIdle = 2, WeaponClass = 3, WalkSlowSpeed = 4, WalkSpeed = 5, RunSpeed = 6, SprintSpeed = 7, InTown = 8, IsSpecialMove = 9, AbsTurnSpeed = 10, AimYaw = 11, AimBlend = 12, IsAlive = 13, IsTurning = 14, ForceWalk = 15, None = 17
 			public AnimTreeBlendCase[] x04C_AnimTreeBlendCases { get { return Read<AnimTreeBlendCase>(0x04C, 16); } }
 			public AnimTreeBlendRamp x10C_AnimTreeBlendRamp { get { return Read<AnimTreeBlendRamp>(0x10C); } }
 			public int x124 { get { return Read<int>(0x124); } }
@@ -67,7 +67,7 @@ namespace Enigma.D3.Assets
 		{
 			public const int SizeOf = 0x0C; // 12
 			
-			public int x00_Enum { get { return Read<int>(0x00); } } // ForwardSpeed = 0, TurnSpeed = 1, IsIdle = 2, WeaponClass = 3, WalkSlowSpeed = 4, WalkSpeed = 5, RunSpeed = 6, SprintSpeed = 7, InTown = 8, IsSpecialMove = 9, AbsTurnSpeed = 10, AimYaw = 11, AimBlend = 12, IsAlive = 13, IsTurning = 14, None = 16
+			public int x00_Enum { get { return Read<int>(0x00); } } // ForwardSpeed = 0, TurnSpeed = 1, IsIdle = 2, WeaponClass = 3, WalkSlowSpeed = 4, WalkSpeed = 5, RunSpeed = 6, SprintSpeed = 7, InTown = 8, IsSpecialMove = 9, AbsTurnSpeed = 10, AimYaw = 11, AimBlend = 12, IsAlive = 13, IsTurning = 14, ForceWalk = 15, None = 17
 			public int x04 { get { return Read<int>(0x04); } }
 			public float x08 { get { return Read<float>(0x08); } }
 		}
