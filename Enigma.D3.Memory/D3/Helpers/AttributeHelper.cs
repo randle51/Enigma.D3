@@ -548,7 +548,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> ItemQualityLevelIdentified = new SimpleAttribute<int>(AttributeId.ItemQualityLevelIdentified, -1);
 		public static Attribute<float> ItemCostPercentBonus = new SimpleAttribute<float>(AttributeId.ItemCostPercentBonus, 0);
 		public static Attribute<int> ItemEquipped = new SimpleAttribute<int>(AttributeId.ItemEquipped, 0);
-		public static Attribute<int> ItemPing = new SimpleAttribute<int>(AttributeId.ItemPing, -1);
+		public static Attribute<int> Ping = new SimpleAttribute<int>(AttributeId.Ping, -1);
 		public static Attribute<float> Requirement = new SimpleAttribute<float>(AttributeId.Requirement, 0);
 		public static Attribute<float> RequirementsEasePercent = new SimpleAttribute<float>(AttributeId.RequirementsEasePercent, 0);
 		public static Attribute<float> RequirementWhenEquipped = new SimpleAttribute<float>(AttributeId.RequirementWhenEquipped, 0);

@@ -382,7 +382,7 @@ namespace Enigma.D3.Enums
 		ItemQualityLevelIdentified = 377,
 		ItemCostPercentBonus = 378,
 		ItemEquipped = 379,
-		ItemPing = 380,
+		Ping = 380,
 		Requirement = 381,
 		RequirementsEasePercent = 382,
 		RequirementWhenEquipped = 383,
