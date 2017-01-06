@@ -81,6 +81,6 @@ namespace Enigma.D3.UI
 
 	public partial class UIManager
 	{
-		public static UIManager Instance { get { return ObjectManager.Instance.x9CC_Ptr_10000Bytes_UI.Dereference(); } }
+		public static UIManager Instance { get { return ObjectManager.Instance.x9FC_Ptr_10000Bytes_UI.Dereference(); } }
 	}
 }

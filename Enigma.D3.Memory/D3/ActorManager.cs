@@ -36,6 +36,6 @@ namespace Enigma.D3
 
 	public partial class ActorManager
 	{
-		public static ActorManager Instance { get { return ObjectManager.Instance.IfNotNull(a => a.x95C_Ptr_816Bytes_ActorManager.Dereference()); } }
+		public static ActorManager Instance { get { return ObjectManager.Instance.IfNotNull(a => a.x98C_Ptr_816Bytes_ActorManager.Dereference()); } }
 	}
 }

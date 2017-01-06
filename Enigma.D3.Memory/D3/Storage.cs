@@ -132,7 +132,7 @@ namespace Enigma.D3
 
 	public partial class Storage
 	{
-		public static Storage Instance { get { return ObjectManager.Instance.IfNotNull(a => a.x798_Storage); } }
+		public static Storage Instance { get { return ObjectManager.Instance.IfNotNull(a => a.x7C8_Storage); } }
 
 		public int GetGameTick()
 		{

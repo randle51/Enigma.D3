@@ -187,6 +187,6 @@ namespace Enigma.D3
 
 	public partial class Scene
 	{
-		public static Container<Scene> Container { get { return ObjectManager.Instance.IfNotNull(a => a.x998_Scenes.Dereference()); } }
+		public static Container<Scene> Container { get { return ObjectManager.Instance.IfNotNull(a => a.x9C8_Scenes.Dereference()); } }
 	}
 }
