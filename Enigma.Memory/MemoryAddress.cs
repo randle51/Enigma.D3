@@ -42,6 +42,13 @@ namespace Enigma.Memory
 			return unchecked((ulong)m1 < (ulong)m2);
 		}
 
+		public static MemoryAddress operator +(MemoryAddress m, int offset) => new MemoryAddress((void*)(m.Value + offset));
+		public static MemoryAddress operator -(MemoryAddress m, int offset) => new MemoryAddress((void*)(m.Value - offset));
+		public static MemoryAddress operator +(MemoryAddress m1, MemoryAddress m2) => new MemoryAddress((void*)(m1.Value.ToInt64() + m2.Value.ToInt64()));
+		public static MemoryAddress operator -(MemoryAddress m1, MemoryAddress m2) => new MemoryAddress((void*)(m1.Value.ToInt64() - m2.Value.ToInt64()));
+		public static MemoryAddress operator *(MemoryAddress m, int multiplier) => new MemoryAddress((void*)(m.Value.ToInt64() * multiplier));
+		public static MemoryAddress operator /(MemoryAddress m, int denominator) => new MemoryAddress((void*)(m.Value.ToInt64() / denominator));
+
 		private MemoryAddress(void* value)
 		{
 			Value = (IntPtr)value;

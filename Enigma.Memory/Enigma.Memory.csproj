@@ -98,6 +98,7 @@
     <Compile Include="Factories\MemoryObjectFactory.cs" />
     <Compile Include="MemoryReaderImplementations\MemoryReader.cs" />
     <Compile Include="MemoryReaderImplementations\MiniDumpMemoryReader.cs" />
+    <Compile Include="PE\PEHeaderReader.cs" />
     <Compile Include="PointerImplementations\Ptr.cs" />
     <Compile Include="Extensions\ProcessExtensions.cs" />
     <Compile Include="MemoryReaderImplementations\ProcessMemoryReader.cs" />

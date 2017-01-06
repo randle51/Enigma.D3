@@ -27,8 +27,18 @@ namespace Enigma.Memory
 
 			_process = process;
 			_minValidAddress = 0x00010000;
-			_maxValidAddress = process.IsLargeAddressAware() ? 0xBFFF0000 : 0x7FFEFFFF;
-			_pointerSize = process.Is64BitProcess() ? 8 : 4;
+			if (process.Is64BitProcess())
+			{
+				_maxValidAddress = process.IsLargeAddressAware() ?
+					((8UL << 40) - 1) : // 8TB - 1 byte
+					((2UL << 30) - 1);  // 2GB - 1 byte
+				_pointerSize = 8;
+			}
+			else
+			{
+				_maxValidAddress = process.IsLargeAddressAware() ? 0xBFFF0000 : 0x7FFEFFFF;
+				_pointerSize = 4;
+			}
 		}
 
 		public override MemoryAddress MinValidAddress { get { return _minValidAddress; } }
@@ -86,7 +96,7 @@ namespace Enigma.Memory
 			[DllImport(Kernel32, SetLastError = true)]
 			public unsafe static extern bool ReadProcessMemory(
 				IntPtr processHandle,
-				int baseAddress,
+				IntPtr baseAddress,
 				void* buffer,
 				int size,
 				IntPtr pNumberOfBytesRead);

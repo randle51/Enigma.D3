@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Enigma.Memory.PE;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -14,7 +16,7 @@ namespace Enigma.Memory
 		private readonly MemoryAddress _minValidAddress;
 		private readonly MemoryAddress _maxValidAddress;
 		private readonly List<Page> _pages;
-		private readonly List<uint> _pageStarts;
+		private readonly List<ulong> _pageStarts;
 		private readonly int _pointerSize;
 
 		public MiniDumpMemoryReader(string path)
@@ -49,9 +51,9 @@ namespace Enigma.Memory
 			{
 				pages.Add(new Page
 				{
-					StartOfMemoryRange = (uint)ranges[i].StartOfMemoryRange,
-					DataSize = (uint)ranges[i].DataSize,
-					Rva = (uint)rva
+					StartOfMemoryRange = ranges[i].StartOfMemoryRange,
+					DataSize = ranges[i].DataSize,
+					Rva = rva
 				});
 				rva += ranges[i].DataSize;
 			}
@@ -60,7 +62,9 @@ namespace Enigma.Memory
 			_pageStarts = _pages.Select(a => a.StartOfMemoryRange).ToList();
 			_minValidAddress = _pages[0].StartOfMemoryRange;
 			_maxValidAddress = _pages[_pages.Count - 1].StartOfMemoryRange + _pages[_pages.Count - 1].DataSize;
-			_pointerSize = 4; // TODO: Get 32-bit vs 64-bit info from the minidump somewhere..
+
+			var pe = new PEHeaderReader(ReadBytes(ImageBase, 2048));
+			_pointerSize = pe.Is32BitHeader ? 4 : 8;
 		}
 
 		public override MemoryAddress MinValidAddress { get { return _minValidAddress; } }
@@ -84,18 +88,27 @@ namespace Enigma.Memory
 		public override void UnsafeReadBytes(MemoryAddress address, byte[] buffer, int offset, int count)
 		{
 			var pageFrom = GetPageIndex(address);
-			var pageTo = GetPageIndex(address + count);
+			var pageTo = GetPageIndex(address + (ulong)count);
 
 			if (pageFrom == pageTo)
 			{
-				_fileStream.Position = _pages[pageFrom].TranslateToRva(address);
+				_fileStream.Position = (long)_pages[pageFrom].TranslateToRva(address);
 				_fileStream.Read(buffer, offset, count);
 			}
 			else
 			{
-				// Have never found data contained in multiple pages, so not implemented yet.
-				// TODO: Determine if this would be an error or not, implement if not.
-				throw new NotImplementedException();
+				var read = 0;
+				var remaining = count - read;
+
+				for (int i = pageFrom; i <= pageTo; i++)
+				{
+					_fileStream.Position = (long)_pages[i].TranslateToRva(address);
+					read += _fileStream.Read(buffer, read, Math.Min(remaining, (int)_pages[i].DataSize));
+					remaining = count - read;
+				}
+
+				if (remaining != 0)
+					throw new InvalidDataException("Pages did not contain all bytes.");
 			}
 		}
 
@@ -104,7 +117,7 @@ namespace Enigma.Memory
 			int page;
 			if (TryGetPageIndex(address, out page))
 			{
-				_fileStream.Position = _pages[page].TranslateToRva(address);
+				_fileStream.Position = (long)_pages[page].TranslateToRva(address);
 				b = (byte)_fileStream.ReadByte();
 				return true;
 			}
@@ -112,9 +125,9 @@ namespace Enigma.Memory
 			return false;
 		}
 
-		private bool TryGetPageIndex(int address, out int index)
+		private bool TryGetPageIndex(MemoryAddress address, out int index)
 		{
-			index = _pageStarts.BinarySearch((uint)address);
+			index = _pageStarts.BinarySearch(address);
 			if (index < 0)
 			{
 				int closest = ~index - 1;
@@ -140,9 +153,9 @@ namespace Enigma.Memory
 			return true;
 		}
 
-		private int GetPageIndex(int address)
+		private int GetPageIndex(MemoryAddress address)
 		{
-			int index = _pageStarts.BinarySearch((uint)address);
+			int index = _pageStarts.BinarySearch(address);
 			if (index < 0)
 			{
 				int closest = ~index - 1;
@@ -173,18 +186,18 @@ namespace Enigma.Memory
 
 		private struct Page
 		{
-			public uint StartOfMemoryRange;
-			public uint DataSize;
-			public uint Rva;
+			public ulong StartOfMemoryRange;
+			public ulong DataSize;
+			public ulong Rva;
 
-			public bool Contains(int address)
+			public bool Contains(MemoryAddress address)
 			{
-				return unchecked((uint)address >= StartOfMemoryRange && (uint)address < StartOfMemoryRange + DataSize);
+				return unchecked((ulong)address >= StartOfMemoryRange && (ulong)address < StartOfMemoryRange + DataSize);
 			}
 
-			public int TranslateToRva(int address)
+			public ulong TranslateToRva(MemoryAddress address)
 			{
-				return unchecked((int)(Rva + address - StartOfMemoryRange));
+				return unchecked(Rva + address - StartOfMemoryRange);
 			}
 		}
 
@@ -206,6 +219,7 @@ namespace Enigma.Memory
 				public DateTime TimeDateStamp { get { return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(_TimeDateStamp); } }
 			}
 
+			[DebuggerDisplay("{StreamType} RVA {Location.Rva}, Size: {Location.DataSize}")]
 			internal struct Directory
 			{
 				public StreamType StreamType;

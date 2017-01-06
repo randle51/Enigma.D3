@@ -11,6 +11,8 @@ namespace Enigma.Memory
 {
 	public static class TypeHelper
 	{
+		public static int PointerSize = IntPtr.Size;
+
 		private static readonly ConcurrentDictionary<Type, int> _cachedSizeOf = new ConcurrentDictionary<Type, int>();
 		private static readonly ConcurrentDictionary<Type, bool> _cachedIsMemoryObject = new ConcurrentDictionary<Type, bool>();
 
@@ -19,7 +21,7 @@ namespace Enigma.Memory
 			return _cachedSizeOf.GetOrAdd(type, (t) =>
 			{
 				if (t.IsMemoryPointerType())
-					return 0;
+					return PointerSize;
 				if (t.Equals(typeof(MemoryObject)))
 					return 0;
 
@@ -74,7 +76,7 @@ namespace Enigma.Memory
 		static TypeHelper()
 		{
 			IsMemoryPointerType = typeof(T).IsMemoryPointerType();
-			SizeOf = IsMemoryPointerType ? 0 : typeof(T).SizeOf(); // Cannot be fully sure of a pointer size, depends on the context.
+			SizeOf = IsMemoryPointerType ? TypeHelper.PointerSize : typeof(T).SizeOf();
 			IsMemoryObjectType = typeof(T).IsMemoryObjectType();
 			IsValueType = typeof(T).IsValueType;
 			IsMemoryAddressType = typeof(T).Equals(typeof(MemoryAddress));
