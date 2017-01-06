@@ -67,7 +67,7 @@ namespace Enigma.D3.CodeGen.Assets
 				var knownTypes = new List<KnownType>();
 				knownTypes.AddRange(PrimitiveType.GetRawNames().Select(a => (KnownType)a));
 				knownTypes.AddRange(NativeTypes.GetRawNames().Select(a => (KnownType)a));
-				knownTypes.Add(group.x74_Ptr_DataType);
+				knownTypes.Add(group.x6C_Ptr_DataType);
 				knownTypes.Add("DT_VARIABLEARRAY");
 				knownTypes.Add("DT_CHARARRAY");
 				knownTypes.Add("DT_TAGMAP");
@@ -75,10 +75,10 @@ namespace Enigma.D3.CodeGen.Assets
 				knownTypes.Add("DT_FORMULA");
 				knownTypes.Add("SerializeData");
 
-				string filePath = Path.Combine(outDir.FullName, group.x74_Ptr_DataType.GetName() + ".cs");
+				string filePath = Path.Combine(outDir.FullName, group.x6C_Ptr_DataType.GetName() + ".cs");
 				using (var output = File.CreateText(filePath))
 				{
-					var baseType = group.x74_Ptr_DataType.ContainsSerializedData() ? "SerializeMemoryObject" : "MemoryObject";
+					var baseType = group.x6C_Ptr_DataType.ContainsSerializedData() ? "SerializeMemoryObject" : "MemoryObject";
 					AttachPrinterStream(output);
 					PrintLine("using System.Runtime.CompilerServices;");
 					PrintLine("using Enigma.D3.DataTypes;");
@@ -92,10 +92,10 @@ namespace Enigma.D3.CodeGen.Assets
 						DeclarePartial ? "partial " : "");
 					PrintLine("{");
 					IndentLevel++;
-					PrintLine("public const int SizeOf = 0x{0:X}; // {0}", group.x74_Ptr_DataType.GetSizeOf());
+					PrintLine("public const int SizeOf = 0x{0:X}; // {0}", group.x6C_Ptr_DataType.GetSizeOf());
 					PrintLine();
-					PrintLine("public SNOHeader x{0}_Header {{ get {{ return Read<SNOHeader>(0x{0}); }} }}", 0.ToString("X" + Math.Max(2, group.x74_Ptr_DataType.GetSizeOf().ToString("X").Length)));
-					Examine(knownTypes.Select(a => (KnownType)a).ToList(), group.x74_Ptr_DataType);
+					PrintLine("public SNOHeader x{0}_Header {{ get {{ return Read<SNOHeader>(0x{0}); }} }}", 0.ToString("X" + Math.Max(2, group.x6C_Ptr_DataType.GetSizeOf().ToString("X").Length)));
+					Examine(knownTypes.Select(a => (KnownType)a).ToList(), group.x6C_Ptr_DataType);
 					IndentLevel--;
 					PrintLine("}");
 					IndentLevel--;

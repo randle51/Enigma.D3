@@ -14,8 +14,8 @@ namespace Enigma.D3.Assets
 
 	public class SnoGroupManager<T> : MemoryObject
 	{
-		// 2.0.3.22427
-		public const int SizeOf = 0x84;
+		// 2.4.3.42655
+		public const int SizeOf = 0x7C;
 
 		public int x00_VTable { get { return Read<int>(0x00); } }
 		public int x04 { get { return Read<int>(0x04); } }
@@ -33,19 +33,17 @@ namespace Enigma.D3.Assets
 		public int x50 { get { return Read<int>(0x50); } }
 		public int x54 { get { return Read<int>(0x54); } }
 		public int x58 { get { return Read<int>(0x58); } }
-		public int x5C { get { return Read<int>(0x5C); } }
-		public int x60 { get { return Read<int>(0x60); } }
-		public int x64_Limit { get { return Read<int>(0x64); } }
-		public int x68_ItemSize { get { return Read<int>(0x68); } }
-		public int x6C_MaxCacheSize { get { return Read<int>(0x6C); } }
-		public int x70_EstCacheSize { get { return Read<int>(0x70); } }
-		public ValueTypeDescriptor x74_Ptr_DataType { get { return ReadPointer<ValueTypeDescriptor>(0x74).Dereference(); } }
-		public int x78_Counter { get { return Read<int>(0x78); } }
-		public Struct_X7C x7C { get { return ReadPointer<Struct_X7C>(0x7C).Dereference(); } }
-		public int x80_Neg1_InvalidSnoId { get { return Read<int>(0x80); } } // -1 or a group specific Axe_Bad_Data ID
+		public int x5C_Limit { get { return Read<int>(0x5C); } }
+		public int x60_ItemSize { get { return Read<int>(0x60); } }
+		public int x64_MaxCacheSize { get { return Read<int>(0x64); } }
+		public int x68_EstCacheSize { get { return Read<int>(0x68); } }
+		public ValueTypeDescriptor x6C_Ptr_DataType { get { return ReadPointer<ValueTypeDescriptor>(0x6C).Dereference(); } }
+		public int x70_Counter { get { return Read<int>(0x70); } }
+		public Struct_X74 x74 { get { return ReadPointer<Struct_X74>(0x74).Dereference(); } }
+		public int x78_Neg1_InvalidSnoId { get { return Read<int>(0x78); } } // -1 or a group specific Axe_Bad_Data ID
 
 
-		public class Struct_X7C : MemoryObject
+		public class Struct_X74 : MemoryObject
 		{
 			public const int SizeOf = 0;
 
