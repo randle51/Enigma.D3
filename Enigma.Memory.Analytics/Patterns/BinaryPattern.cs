@@ -93,17 +93,7 @@ namespace Enigma.Memory.Analytics.Patterns
 		}
 
 		public int NextMatch(byte[] data, int offset)
-		{
-			if (data == null)
-				throw new ArgumentNullException(nameof(data));
-			if (offset < 0 || offset >= data.Length)
-				throw new ArgumentOutOfRangeException(nameof(offset));
-
-			int position = offset;
-			while (!IsMatch(data, position))
-				position++;
-			return position;
-		}
+			=> NextMatch(data, offset, data.Length - offset);
 
 		public int NextMatch(byte[] data, int offset, int count)
 		{
@@ -118,9 +108,9 @@ namespace Enigma.Memory.Analytics.Patterns
 
 			int position = offset;
 			int last = position + count - Bytes.Length;
-			while (!IsMatch(data, position) && position <= last)
+			while (position <= last && !IsMatch(data, position))
 				position++;
-			return position;
+			return position > last ? -1 : position;
 		}
 	}
 }
