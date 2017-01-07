@@ -1,5 +1,7 @@
 ﻿using Enigma.D3.CodeGen.Memory.PatternScanning;
 using Enigma.Memory;
+using Enigma.Memory.Analytics.Patterns;
+using Enigma.Memory.PE;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -99,7 +101,7 @@ namespace Enigma.D3.CodeGen.Memory
 
 				uint offset = rdata.VirtualAddress - rdata.PointerToRawData + pe.OptionalHeader32.ImageBase;
 
-				var pName = (uint)(offset + new BinaryPattern(Encoding.ASCII.GetBytes("UIMinimapToggle")).NextMatch(data, rdata));
+				var pName = (uint)(offset + new BinaryPattern(Encoding.ASCII.GetBytes("UIMinimapToggle")).NextMatch(data, (int)rdata.PointerToRawData, (int)rdata.SizeOfRawData));
 				
 				var pMethod = BitConverter.ToUInt32(data, BinaryPattern.Parse(
 					$"68{pName.ToPattern()}" +
@@ -109,7 +111,7 @@ namespace Enigma.D3.CodeGen.Memory
 					"E8........" +
 					"68........" +
 					"A3........" +
-					"C705........|........|").NextMatch(data, text) + 51);
+					"C705........|........|").NextMatch(data, (int)text.PointerToRawData, (int)text.SizeOfRawData) + 51);
 
 				if (Engine.Current.Memory.Reader.Read<byte>(pMethod + 0x00) == 0x8B &&
 					Engine.Current.Memory.Reader.Read<byte>(pMethod + 0x01) == 0x0D)

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Enigma.Memory.PE
 {
-	internal class PEHeaderReader
+	public class PEHeaderReader
 	{
 		#region File Header Structures
 

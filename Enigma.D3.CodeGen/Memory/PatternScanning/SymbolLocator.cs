@@ -1,4 +1,6 @@
 ﻿using Enigma.Memory;
+using Enigma.Memory.Analytics.Patterns;
+using Enigma.Memory.PE;
 using System;
 using System.Collections.Generic;
 using System.Linq;
