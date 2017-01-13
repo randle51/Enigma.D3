@@ -105,6 +105,7 @@ namespace Enigma.Memory
 					_fileStream.Position = (long)_pages[i].TranslateToRva(address);
 					read += _fileStream.Read(buffer, read, Math.Min(remaining, (int)_pages[i].DataSize));
 					remaining = count - read;
+					address += _pages[i].DataSize;
 				}
 
 				if (remaining != 0)
