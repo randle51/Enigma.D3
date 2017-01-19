@@ -63,8 +63,16 @@ namespace Enigma.D3.CodeGen.Memory
 			globals.Add("const int AttributeDescriptorsCount", GetAttributeDescriptorsCount(symbols).ToString());
 			var sizeof_playerdata = symbols.BestMatch("sizeof(PlayerData)");// ((symbols.BestMatch("sizeof(PlayerDataManager)") - 0x038) / 8);
 			globals.Add("const int SizeOf_PlayerData", sizeof_playerdata.ToHex());
-			globals.Add("const int Offset_PlayerData_HeroName", GetOffset_PlayerData_HeroName(sizeof_playerdata).ToHex());
-			globals.Add("const int Offset_PlayerData_LifePercentage", GetOffset_PlayerData_LifePercentage(sizeof_playerdata).ToHex());
+			if (Engine.Current?.ProcessVersion == Engine.SupportedVersion)
+			{
+				globals.Add("const int Offset_PlayerData_HeroName", GetOffset_PlayerData_HeroName(sizeof_playerdata).ToHex());
+				globals.Add("const int Offset_PlayerData_LifePercentage", GetOffset_PlayerData_LifePercentage(sizeof_playerdata).ToHex());
+			}
+			else
+			{
+				globals.Add("const int Offset_PlayerData_HeroName", "0; // Run [CodeGen -memory -deploy] again");
+				globals.Add("const int Offset_PlayerData_LifePercentage", "0; // Run [CodeGen -memory -deploy] again");
+			}
 			// TODO: globals.Add("const int SizeOf_LevelArea", symbols.BestMatch("sizeof(LevelArea)").ToHex());
 			WriteGlobalsFile(Path.Combine(dir.FullName, "Globals.cs"), globals);
 
@@ -102,7 +110,7 @@ namespace Enigma.D3.CodeGen.Memory
 				uint offset = rdata.VirtualAddress - rdata.PointerToRawData + pe.OptionalHeader32.ImageBase;
 
 				var pName = (uint)(offset + new BinaryPattern(Encoding.ASCII.GetBytes("UIMinimapToggle")).NextMatch(data, (int)rdata.PointerToRawData, (int)rdata.SizeOfRawData));
-				
+
 				var pMethod = BitConverter.ToUInt32(data, BinaryPattern.Parse(
 					$"68{pName.ToPattern()}" +
 					"A3........" +
