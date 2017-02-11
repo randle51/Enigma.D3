@@ -69,7 +69,7 @@ namespace Enigma.Memory.Analytics.Patterns
 				throw new ArgumentNullException(nameof(data));
 			if (offset < 0 || offset >= data.Length)
 				throw new ArgumentOutOfRangeException(nameof(offset));
-			if (count < 0 || count >= (data.Length + offset))
+			if (count < 0 || count > (data.Length + offset))
 				throw new ArgumentOutOfRangeException(nameof(count));
 
 			var last = offset + count - Bytes.Length;
