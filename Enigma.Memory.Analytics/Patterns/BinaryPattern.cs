@@ -61,11 +61,19 @@ namespace Enigma.Memory.Analytics.Patterns
 		}
 
 		public IEnumerable<int> Matches(byte[] data)
+			=> Matches(data, 0, data.Length);
+
+		public IEnumerable<int> Matches(byte[] data, int offset, int count)
 		{
 			if (data == null)
 				throw new ArgumentNullException(nameof(data));
+			if (offset < 0 || offset >= data.Length)
+				throw new ArgumentOutOfRangeException(nameof(offset));
+			if (count < 0 || count >= (data.Length + offset))
+				throw new ArgumentOutOfRangeException(nameof(count));
 
-			for (int i = 0; i < data.Length - Bytes.Length; i++)
+			var last = offset + count - Bytes.Length;
+			for (int i = offset; i <= last; i++)
 			{
 				if (IsMatch(data, i))
 				{
