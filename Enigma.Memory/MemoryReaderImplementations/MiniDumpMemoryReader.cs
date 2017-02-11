@@ -18,6 +18,7 @@ namespace Enigma.Memory
 		private readonly List<Page> _pages;
 		private readonly List<ulong> _pageStarts;
 		private readonly int _pointerSize;
+		private readonly MiniDump.Thread[] _threads;
 
 		public MiniDumpMemoryReader(string path)
 		{
@@ -34,6 +35,10 @@ namespace Enigma.Memory
 			if (moduleList.StreamType != MiniDump.StreamType.ModuleListStream)
 				throw new InvalidOperationException("The minidump file does not contain a module list.");
 			var modules = mem.Read<MiniDump.List<MiniDump.Module>>(moduleList.Location.Rva).Items;
+
+			var threadList = dirs.SingleOrDefault(x => x.StreamType == MiniDump.StreamType.ThreadListStream);
+			if (threadList.StreamType == MiniDump.StreamType.ThreadListStream)
+				_threads = mem.Read<MiniDump.List<MiniDump.Thread>>(threadList.Location.Rva).Items;
 
 			var mainModule = modules.FirstOrDefault(a => a.VersionInfo.FileType == 1);
 			MainModuleVersion = mainModule.VersionInfo.FileVersion;
@@ -84,6 +89,8 @@ namespace Enigma.Memory
 		public Version MainModuleVersion { get; private set; }
 
 		public string Path { get { return _fileStream.Name; } }
+
+		public MiniDump.Thread[] Threads => _threads;
 
 		public override void UnsafeReadBytes(MemoryAddress address, byte[] buffer, int offset, int count)
 		{
@@ -204,9 +211,9 @@ namespace Enigma.Memory
 
 #pragma warning disable 0649 // Disable compiler warnings about unassigned fields (they're marshalled).
 		#region MiniDump
-		private static class MiniDump
+		public static class MiniDump
 		{
-			internal struct Header
+			public struct Header
 			{
 				private uint _Signature;
 				public uint Version;
@@ -221,26 +228,26 @@ namespace Enigma.Memory
 			}
 
 			[DebuggerDisplay("{StreamType} RVA {Location.Rva}, Size: {Location.DataSize}")]
-			internal struct Directory
+			public struct Directory
 			{
 				public StreamType StreamType;
 				public LocationDescriptor Location;
 			}
 
-			internal struct LocationDescriptor
+			public struct LocationDescriptor
 			{
 				public uint DataSize;
 				public uint Rva; // RelativeVirtualAddress, begins at file start
 			}
 
-			internal class List<T> : MemoryObject
+			public class List<T> : MemoryObject
 			{
 				public uint NumberOfItems { get { return Read<uint>(0x00); } }
 				public T[] Items { get { return Read<T>(0x04, (int)NumberOfItems); } }
 			}
 
 			[StructLayout(LayoutKind.Sequential, Pack = 4)]
-			internal struct Module
+			public struct Module
 			{
 				public ulong BaseOfImage;
 				public uint SizeOfImage;
@@ -256,7 +263,7 @@ namespace Enigma.Memory
 				public DateTime TimeDateStamp { get { return new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(_TimeDateStamp); } }
 			}
 
-			internal struct FixedFileInfo
+			public struct FixedFileInfo
 			{
 				public int Signature;
 				public int StrucVersion;
@@ -275,20 +282,37 @@ namespace Enigma.Memory
 				public Version FileVersion { get { return new Version(FileVersionMS >> 16, FileVersionMS & 0xFFFF, FileVersionLS >> 16, FileVersionLS & 0xFFFF); } }
 			}
 
-			internal class Memory64List : MemoryObject
+			public struct Thread
+			{
+				public uint ThreadId;
+				public uint SuspendCount;
+				public uint PriorityClass;
+				public uint Priority;
+				public ulong Teb;
+				public MemoryDescriptor Stack;
+				public LocationDescriptor ThreadContext;
+			}
+
+			public class Memory64List : MemoryObject
 			{
 				public ulong NumberOfMemoryRanges { get { return Read<ulong>(0x00); } }
 				public ulong BaseRva { get { return Read<ulong>(0x08); } }
 				public MemoryDescriptor64[] MemoryRanges { get { return Read<MemoryDescriptor64>(0x10, (int)NumberOfMemoryRanges); } }
 			}
 
-			internal struct MemoryDescriptor64
+			public struct MemoryDescriptor
+			{
+				public ulong StartOfMemoryRange;
+				public LocationDescriptor Memory;
+			}
+
+			public struct MemoryDescriptor64
 			{
 				public ulong StartOfMemoryRange;
 				public ulong DataSize;
 			}
 
-			internal enum StreamType : uint
+			public enum StreamType : uint
 			{
 				UnusedStream = 0,
 				ReservedStream0 = 1,
@@ -313,7 +337,7 @@ namespace Enigma.Memory
 			}
 
 			[Flags]
-			internal enum Type : ulong
+			public enum Type : ulong
 			{
 				MiniDumpNormal = 0x00000000,
 				MiniDumpWithDataSegs = 0x00000001,
