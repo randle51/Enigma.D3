@@ -33,5 +33,10 @@ namespace Enigma.D3.MemoryModel32
 			public const int HeaderSize = 0x10;
 			public const int SizeAndFlag = 0x0C;
 		}
+
+		public static class ObjectManager
+		{
+			public const int SizeOf = 0xA30;
+		}
 	}
 }

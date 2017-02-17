@@ -11,6 +11,8 @@ namespace Enigma.D3.MemoryModel32.Core
 {
 	public class ObjectManager : MemoryObject, IObjectManager
 	{
+		public const int SizeOf = Constants.ObjectManager.SizeOf;
+
 		public IACDManager ACDManager
 		{
 			get

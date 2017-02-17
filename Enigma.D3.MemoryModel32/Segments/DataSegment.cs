@@ -10,6 +10,7 @@ using Enigma.D3.MemoryModel.Preferences;
 using Enigma.D3.MemoryModel.TypeSystem;
 using Enigma.D3.MemoryModel.MemoryManagement;
 using Enigma.D3.MemoryModel32.MemoryManagement;
+using Enigma.D3.MemoryModel32.Core;
 
 namespace Enigma.D3.MemoryModel32.Segments
 {
@@ -97,14 +98,9 @@ namespace Enigma.D3.MemoryModel32.Segments
 
 		public IMemoryManager MemoryManager
 			=> Memory.Reader.Read<Ptr<MemoryManager>>(Constants.DataSegment.MemoryManager).Dereference();
-		
+
 		public IObjectManager ObjectManager
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
+			=> Memory.Reader.Read<Ptr<ObjectManager>>(Constants.DataSegment.ObjectManager).Dereference();
 
 		public ISocialPreferences SocialPreferences
 		{
