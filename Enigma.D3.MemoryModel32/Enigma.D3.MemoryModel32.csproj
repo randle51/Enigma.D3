@@ -41,9 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Core\ObjectManager.cs" />
+    <Compile Include="MemoryContext.cs" />
+    <Compile Include="MemoryManagement\HeapNode.cs" />
+    <Compile Include="MemoryManagement\LocalHeap.cs" />
+    <Compile Include="MemoryManagement\MemoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Segments\DataSegment.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Enigma.D3.MemoryModel\Enigma.D3.MemoryModel.csproj">
+      <Project>{92E7130D-9363-458C-ABE5-A71F240A9B78}</Project>
+      <Name>Enigma.D3.MemoryModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Enigma.Memory\Enigma.Memory.csproj">
       <Project>{3a385f29-42e2-4caf-b1f2-2a1a7b90a971}</Project>
       <Name>Enigma.Memory</Name>

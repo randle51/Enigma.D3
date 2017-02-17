@@ -11,6 +11,7 @@ using Enigma.D3.MemoryModel.Preferences;
 using Enigma.D3.MemoryModel64.Preferences;
 using Enigma.D3.MemoryModel.TypeSystem;
 using Enigma.D3.MemoryModel64.TypeSystem;
+using Enigma.D3.MemoryModel.MemoryManagement;
 
 namespace Enigma.D3.MemoryModel64.Segments
 {
@@ -73,5 +74,13 @@ namespace Enigma.D3.MemoryModel64.Segments
 
 		public IAttributeDescriptor[] AttributeDescriptors
 			=> Memory.Reader.Read<AttributeDescriptor>(Constants.DataSegment.AttributeDescriptors, Constants.DataSegment.AttributeDescriptorsCount);
+
+		public IMemoryManager MemoryManager
+		{
+			get
+			{
+				throw new NotImplementedException();
+			}
+		}
 	}
 }

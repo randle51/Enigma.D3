@@ -1,4 +1,5 @@
 ﻿using Enigma.D3.MemoryModel.Segments;
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace Enigma.D3.MemoryModel
 	public interface IMemoryContext
 	{
 		IDataSegment DataSegment { get; }
+		IMemory Memory { get; }
 	}
 }

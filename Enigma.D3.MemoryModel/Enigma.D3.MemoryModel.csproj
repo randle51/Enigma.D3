@@ -65,6 +65,9 @@
     <Compile Include="IMemoryContext.cs" />
     <Compile Include="ISegment.cs" />
     <Compile Include="Core\IObjectManager.cs" />
+    <Compile Include="MemoryManagement\IHeapNode.cs" />
+    <Compile Include="MemoryManagement\ILocalHeap.cs" />
+    <Compile Include="MemoryManagement\IMemoryManager.cs" />
     <Compile Include="Preferences\IChatPreferences.cs" />
     <Compile Include="Preferences\IGameplayPreferences.cs" />
     <Compile Include="Preferences\IHotkeyPreferences.cs" />
@@ -89,7 +92,9 @@
       <Name>Enigma.Memory</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="GameServices\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

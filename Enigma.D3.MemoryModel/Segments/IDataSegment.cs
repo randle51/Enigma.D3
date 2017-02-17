@@ -1,4 +1,5 @@
 ﻿using Enigma.D3.MemoryModel.Core;
+using Enigma.D3.MemoryModel.MemoryManagement;
 using Enigma.D3.MemoryModel.Preferences;
 using Enigma.D3.MemoryModel.TypeSystem;
 using Enigma.Memory;
@@ -26,5 +27,6 @@ namespace Enigma.D3.MemoryModel.Segments
 		IObjectManager ObjectManager { get; }
 		int ApplicationLoopCount { get; }
 		IAttributeDescriptor[] AttributeDescriptors { get; }
+		IMemoryManager MemoryManager { get; }
 	}
 }
