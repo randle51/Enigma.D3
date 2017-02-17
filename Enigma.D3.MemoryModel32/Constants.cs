@@ -8,6 +8,8 @@ namespace Enigma.D3.MemoryModel32
 {
 	internal static class Constants
 	{
+		public static readonly Version Version = new Version(2, 5, 0, 43687);
+
 		public static class DataSegment
 		{
 			public const uint ObjectManager = 0x0203D2C8;
