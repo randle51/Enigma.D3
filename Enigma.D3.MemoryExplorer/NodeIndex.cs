@@ -10,17 +10,17 @@ namespace Enigma.D3.MemoryExplorer
 {
 	internal class NodeIndex
 	{
-		private IHeapNode[] _nodes;
+		private HeapNode[] _nodes;
 		private List<ulong> _starts;
 
-		public NodeIndex(ICollection<IHeapNode> nodes)
+		public NodeIndex(ICollection<HeapNode> nodes)
 		{
 			var q = nodes.AsEnumerable();
 			_nodes = q.OrderBy(x => (ulong)x.Address).ToArray();
 			_starts = _nodes.Select(x => (ulong)x.Address).ToList();
 		}
 
-		public IHeapNode FindNode(MemoryAddress address)
+		public HeapNode FindNode(MemoryAddress address)
 		{
 			var index = _starts.BinarySearch(address);
 			if (index == -1)

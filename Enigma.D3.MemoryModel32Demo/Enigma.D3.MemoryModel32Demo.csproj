@@ -51,9 +51,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Enigma.D3.MemoryModel32\Enigma.D3.MemoryModel32.csproj">
-      <Project>{8c485128-85b8-4596-927a-0156f8009748}</Project>
-      <Name>Enigma.D3.MemoryModel32</Name>
+    <ProjectReference Include="..\Enigma.D3.Assets\Enigma.D3.Assets.csproj">
+      <Project>{4B2BF057-3425-4520-8535-3372D330C653}</Project>
+      <Name>Enigma.D3.Assets</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enigma.D3.MemoryModel\Enigma.D3.MemoryModel.csproj">
       <Project>{92E7130D-9363-458C-ABE5-A71F240A9B78}</Project>

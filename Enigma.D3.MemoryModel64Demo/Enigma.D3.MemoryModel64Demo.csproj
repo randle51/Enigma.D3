@@ -51,10 +51,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Enigma.D3.MemoryModel64\Enigma.D3.MemoryModel64.csproj">
-      <Project>{8C24A1C0-5129-4F9C-A2D4-8C21E9C450B4}</Project>
-      <Name>Enigma.D3.MemoryModel64</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Enigma.D3.MemoryModel\Enigma.D3.MemoryModel.csproj">
       <Project>{92E7130D-9363-458C-ABE5-A71F240A9B78}</Project>
       <Name>Enigma.D3.MemoryModel</Name>

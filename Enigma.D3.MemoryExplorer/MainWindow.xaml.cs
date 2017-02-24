@@ -1,7 +1,5 @@
 ﻿using Enigma.D3.MemoryModel;
 using Enigma.D3.MemoryModel.MemoryManagement;
-using Enigma.D3.MemoryModel32;
-using Enigma.D3.MemoryModel32.MemoryManagement;
 using Enigma.Memory;
 using System;
 using System.Collections.Generic;
@@ -27,7 +25,7 @@ namespace Enigma.D3.MemoryExplorer
 	public partial class MainWindow : Window
 	{
 		private Stack<Segment> _history = new Stack<Segment>();
-		private IMemoryContext _ctx;
+		private MemoryContext _ctx;
 		private NodeIndex _idx;
 
 		public MainWindow()
@@ -92,7 +90,7 @@ namespace Enigma.D3.MemoryExplorer
 			var panel = new VirtualizingStackPanel();
 			viewer.Content = panel;
 			UXHeader.Text = $"{"Address",20} {"Offset",10} {(full ? $"{"Value",10}" : "")}{"Blk",26} {"Blk.Ofs",10} {"Blk.Size",10}";
-			IHeapNode blk = null;
+			HeapNode blk = null;
 			for (int i = 0; i < (int)state.Size; i += (full && blk == null) ? 4 : _ctx.Memory.Reader.PointerSize)
 			{
 				var ptr = _ctx.Memory.Reader.Read<Ptr>(state.Start + i);
