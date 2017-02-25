@@ -687,7 +687,8 @@ namespace Enigma.D3.MemoryModel
 			}
 			else if (platform == Platform.X64)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x68;
+				LocalHeap = 0x58;
 			}
 			else throw new PlatformNotSupportedException();
 		}
@@ -709,7 +710,10 @@ namespace Enigma.D3.MemoryModel
 			}
 			else if (platform == Platform.X64)
 			{
-				throw new NotImplementedException();
+				FirstNode = 0x08;
+				TotalSize = 0x10;
+				NodeCount = 0x20;
+				LastNode = 0x68;
 			}
 			else throw new PlatformNotSupportedException();
 		}
@@ -731,7 +735,8 @@ namespace Enigma.D3.MemoryModel
 			}
 			else if (platform == Platform.X64)
 			{
-				throw new NotImplementedException();
+				HeaderSize = 0x20;
+				SizeAndFlag = 0x18;
 			}
 			else throw new PlatformNotSupportedException();
 		}
