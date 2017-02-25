@@ -46,35 +46,35 @@ namespace Enigma.D3.MemoryModel
 			HeapNode = new HeapNodeSymbols(platform);
 		}
 
-		public readonly Version Version;
+		public Version Version;
 
-		public readonly DataSegmentSymbols DataSegment;
-		public readonly ObjectManagerSymbols ObjectManager;
-		public readonly ActorSymbols Actor;
-		public readonly ACDManagerSymbols ACDManager;
-		public readonly ACDSymbols ACD;
-		public readonly LocalDataSymbols LocalData;
-		public readonly FastAttribSymbols FastAttrib;
-		public readonly FastAttribGroupSymbols FastAttribGroup;
-		public readonly PlayerDataManagerSymbols PlayerDataManager;
-		public readonly PlayerDataSymbols PlayerData;
-		public readonly SceneSymbols Scene;
-		public readonly WorldSymbols World;
-		public readonly QuestManagerSymbols QuestManager;
-		public readonly QuestSymbols Quest;
-		public readonly WaypointManagerSymbols WaypointManager;
-		public readonly WaypointSymbols Waypoint;
-		public readonly TrickleManagerSymbols TrickleManager;
-		public readonly TrickleSymbols Trickle;
-		public readonly UIManagerSymbols UIManager;
-		public readonly LevelAreaSymbols LevelArea;
-		public readonly PlayerSymbols Player;
-		public readonly AttributeDescriptorSymbols AttributeDescriptor;
-		public readonly FloatingNumberSymbols FloatingNumber;
-		public readonly TimedEventSymbols TimedEvent;
-		public readonly MemoryManagerSymbols MemoryManager;
-		public readonly LocalHeapSymbols LocalHeap;
-		public readonly HeapNodeSymbols HeapNode;
+		public DataSegmentSymbols DataSegment;
+		public ObjectManagerSymbols ObjectManager;
+		public ActorSymbols Actor;
+		public ACDManagerSymbols ACDManager;
+		public ACDSymbols ACD;
+		public LocalDataSymbols LocalData;
+		public FastAttribSymbols FastAttrib;
+		public FastAttribGroupSymbols FastAttribGroup;
+		public PlayerDataManagerSymbols PlayerDataManager;
+		public PlayerDataSymbols PlayerData;
+		public SceneSymbols Scene;
+		public WorldSymbols World;
+		public QuestManagerSymbols QuestManager;
+		public QuestSymbols Quest;
+		public WaypointManagerSymbols WaypointManager;
+		public WaypointSymbols Waypoint;
+		public TrickleManagerSymbols TrickleManager;
+		public TrickleSymbols Trickle;
+		public UIManagerSymbols UIManager;
+		public LevelAreaSymbols LevelArea;
+		public PlayerSymbols Player;
+		public AttributeDescriptorSymbols AttributeDescriptor;
+		public FloatingNumberSymbols FloatingNumber;
+		public TimedEventSymbols TimedEvent;
+		public MemoryManagerSymbols MemoryManager;
+		public LocalHeapSymbols LocalHeap;
+		public HeapNodeSymbols HeapNode;
 	}
 
 	public struct DataSegmentSymbols
@@ -111,25 +111,25 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly ulong Address;
-		public readonly ulong VideoPreferences;
-		public readonly ulong SoundPreferences;
-		public readonly ulong HotkeyPreferences;
-		public readonly ulong GameplayPreferences;
-		public readonly ulong SocialPreferences;
-		public readonly ulong ChatPreferences;
-		public readonly ulong LevelArea;
-		public readonly ulong LevelAreaName;
-		public readonly int LevelAreaNameLength;
-		public readonly ulong MapActID;
-		public readonly ulong ScreenManagerRoot;
-		public readonly ulong TrickleManager;
-		public readonly ulong LocalData;
-		public readonly ulong ObjectManager;
-		public readonly ulong ApplicationLoopCount;
-		public readonly ulong AttributeDescriptors;
-		public readonly int AttributeDescriptorsCount;
-		public readonly ulong MemoryManager;
+		public ulong Address;
+		public ulong VideoPreferences;
+		public ulong SoundPreferences;
+		public ulong HotkeyPreferences;
+		public ulong GameplayPreferences;
+		public ulong SocialPreferences;
+		public ulong ChatPreferences;
+		public ulong LevelArea;
+		public ulong LevelAreaName;
+		public int LevelAreaNameLength;
+		public ulong MapActID;
+		public ulong ScreenManagerRoot;
+		public ulong TrickleManager;
+		public ulong LocalData;
+		public ulong ObjectManager;
+		public ulong ApplicationLoopCount;
+		public ulong AttributeDescriptors;
+		public int AttributeDescriptorsCount;
+		public ulong MemoryManager;
 	}
 
 	public struct ObjectManagerSymbols
@@ -167,27 +167,27 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int RenderTick;
-		public readonly int GameState;
-		public readonly int GameServerAddress;
-		public readonly int GameServerAddressLength;
-		public readonly int Storage;
-		public readonly int GameHandicap;
-		public readonly int GameStartingAct;
-		public readonly int GameBountyBonus;
-		public readonly int GameTick;
-		public readonly int PlayerDataManager;
-		public readonly int FastAttrib;
-		public readonly int ACDManager;
-		public readonly int QuestManager;
-		public readonly int WaypointManager;
-		public readonly int Actors;
-		public readonly int Scenes;
-		public readonly int UIManager;
-		public readonly int Worlds;
-		public readonly int Player;
-		public readonly int TimedEvents;
+		public int SizeOf;
+		public int RenderTick;
+		public int GameState;
+		public int GameServerAddress;
+		public int GameServerAddressLength;
+		public int Storage;
+		public int GameHandicap;
+		public int GameStartingAct;
+		public int GameBountyBonus;
+		public int GameTick;
+		public int PlayerDataManager;
+		public int FastAttrib;
+		public int ACDManager;
+		public int QuestManager;
+		public int WaypointManager;
+		public int Actors;
+		public int Scenes;
+		public int UIManager;
+		public int Worlds;
+		public int Player;
+		public int TimedEvents;
 	}
 
 	public struct ActorSymbols
@@ -209,11 +209,11 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int ID;
-		public readonly int Name;
-		public readonly int NameLength;
-		public readonly int Position;
+		public int SizeOf;
+		public int ID;
+		public int Name;
+		public int NameLength;
+		public int Position;
 	}
 
 	public struct ACDManagerSymbols
@@ -231,7 +231,7 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int ActorCommonData;
+		public int ActorCommonData;
 	}
 
 	public struct ACDSymbols
@@ -252,10 +252,10 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int ID;
-		public readonly int Name;
-		public readonly int NameLength;
+		public int SizeOf;
+		public int ID;
+		public int Name;
+		public int NameLength;
 	}
 
 	public struct LocalDataSymbols
@@ -285,19 +285,19 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int IsPlayerValid;
-		public readonly int IsStartUpGame;
-		public readonly int SceneSNO;
-		public readonly int WorldSNO;
-		public readonly int ActorSNO;
-		public readonly int ActID;
-		public readonly int WorldSeed;
-		public readonly int QuestSNO;
-		public readonly int QuestStepUID;
-		public readonly int WorldPos;
-		public readonly int PlayerCount;
-		public readonly int LocalPlayerCount;
+		public int SizeOf;
+		public int IsPlayerValid;
+		public int IsStartUpGame;
+		public int SceneSNO;
+		public int WorldSNO;
+		public int ActorSNO;
+		public int ActID;
+		public int WorldSeed;
+		public int QuestSNO;
+		public int QuestStepUID;
+		public int WorldPos;
+		public int PlayerCount;
+		public int LocalPlayerCount;
 	}
 
 	public struct FastAttribSymbols
@@ -316,8 +316,8 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int FastAttribGroups;
+		public int SizeOf;
+		public int FastAttribGroups;
 	}
 
 	public struct FastAttribGroupSymbols
@@ -336,8 +336,8 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int ID;
+		public int SizeOf;
+		public int ID;
 	}
 
 	public struct PlayerDataManagerSymbols
@@ -356,8 +356,8 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int Items;
+		public int SizeOf;
+		public int Items;
 	}
 
 	public struct PlayerDataSymbols
@@ -378,10 +378,10 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int Index;
-		public readonly int ACDID;
-		public readonly int ActorID;
+		public int SizeOf;
+		public int Index;
+		public int ACDID;
+		public int ActorID;
 	}
 
 	public struct SceneSymbols
@@ -399,7 +399,7 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
+		public int SizeOf;
 	}
 
 	public struct WorldSymbols
@@ -417,7 +417,7 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
+		public int SizeOf;
 	}
 
 	public struct QuestManagerSymbols
@@ -436,8 +436,8 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int Quests;
+		public int SizeOf;
+		public int Quests;
 	}
 
 	public struct QuestSymbols
@@ -455,7 +455,7 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
+		public int SizeOf;
 	}
 
 	public struct WaypointManagerSymbols
@@ -475,9 +475,9 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int Array;
-		public readonly int Count;
+		public int SizeOf;
+		public int Array;
+		public int Count;
 	}
 
 	public struct WaypointSymbols
@@ -499,11 +499,11 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int ActID;
-		public readonly int LevelAreaSNO;
-		public readonly int X;
-		public readonly int Y;
+		public int SizeOf;
+		public int ActID;
+		public int LevelAreaSNO;
+		public int X;
+		public int Y;
 	}
 
 	public struct TrickleManagerSymbols
@@ -523,9 +523,9 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int Allocator;
-		public readonly int Items;
+		public int SizeOf;
+		public int Allocator;
+		public int Items;
 	}
 
 	public struct TrickleSymbols
@@ -543,7 +543,7 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
+		public int SizeOf;
 	}
 
 	public struct UIManagerSymbols
@@ -561,7 +561,7 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
+		public int SizeOf;
 	}
 
 	public struct LevelAreaSymbols
@@ -579,7 +579,7 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
+		public int SizeOf;
 	}
 
 	public struct PlayerSymbols
@@ -600,10 +600,10 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int LocalPlayerIndex;
-		public readonly int LatencySamples;
-		public readonly int FloatingNumbers;
+		public int SizeOf;
+		public int LocalPlayerIndex;
+		public int LatencySamples;
+		public int FloatingNumbers;
 	}
 
 	public struct AttributeDescriptorSymbols
@@ -625,11 +625,11 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int ID;
-		public readonly int DataType;
-		public readonly int Name;
-		public readonly int NameLength;
+		public int SizeOf;
+		public int ID;
+		public int DataType;
+		public int Name;
+		public int NameLength;
 	}
 
 	public struct FloatingNumberSymbols
@@ -651,11 +651,11 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int WorldPos;
-		public readonly int WorldSNO;
-		public readonly int Type;
-		public readonly int Value;
+		public int SizeOf;
+		public int WorldPos;
+		public int WorldSNO;
+		public int Type;
+		public int Value;
 	}
 
 	public struct TimedEventSymbols
@@ -673,7 +673,7 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
+		public int SizeOf;
 	}
 
 	public struct MemoryManagerSymbols
@@ -693,8 +693,8 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int SizeOf;
-		public readonly int LocalHeap;
+		public int SizeOf;
+		public int LocalHeap;
 	}
 
 	public struct LocalHeapSymbols
@@ -718,10 +718,10 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int FirstNode;
-		public readonly int TotalSize;
-		public readonly int NodeCount;
-		public readonly int LastNode;
+		public int FirstNode;
+		public int TotalSize;
+		public int NodeCount;
+		public int LastNode;
 	}
 
 	public struct HeapNodeSymbols
@@ -741,7 +741,7 @@ namespace Enigma.D3.MemoryModel
 			else throw new PlatformNotSupportedException();
 		}
 
-		public readonly int HeaderSize;
-		public readonly int SizeAndFlag;
+		public int HeaderSize;
+		public int SizeAndFlag;
 	}
 }
