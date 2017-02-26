@@ -42,9 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Patterns\BinaryPattern.cs" />
+    <Compile Include="PE\CodePattern.cs" />
     <Compile Include="Patterns\Crc16.cs" />
     <Compile Include="Patterns\FlairPattern.cs" />
+    <Compile Include="PE\CodePatternContext.cs" />
+    <Compile Include="PE\CodePatternMarker.cs" />
+    <Compile Include="PE\CodePatternMatch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PE\Range.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Enigma.Memory\Enigma.Memory.csproj">
@@ -52,6 +57,7 @@
       <Name>Enigma.Memory</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
