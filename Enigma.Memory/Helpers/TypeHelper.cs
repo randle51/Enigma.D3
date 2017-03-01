@@ -18,7 +18,7 @@ namespace Enigma.Memory
 
 		public static int SizeOf(this Type type)
 		{
-			return _cachedSizeOf.GetOrAdd(type, (t) =>
+			var size = _cachedSizeOf.GetOrAdd(type, (t) =>
 			{
 				if (t.IsMemoryPointerType())
 					return PointerSize;
@@ -32,7 +32,7 @@ namespace Enigma.Memory
 						BindingFlags.Static |
 						BindingFlags.Public);
 					if (field == null)
-						return 0;
+						return -1;
 					var value = field.IsLiteral ? (int)field.GetRawConstantValue() : (int)field.GetValue(null);
 					if (value < 0)
 						throw new ArgumentOutOfRangeException("Negative value for the static 'SizeOf' field is not allowed.");
@@ -41,6 +41,17 @@ namespace Enigma.Memory
 
 				return Marshal.SizeOf(t.IsEnum ? t.GetEnumUnderlyingType() : t);
 			});
+			
+			if (size == -1) // If no field found, try with a property. Do NOT cache property values.
+			{
+				var property = type.GetProperty("SizeOf",
+					BindingFlags.FlattenHierarchy |
+					BindingFlags.Static |
+					BindingFlags.Public);
+				if (property != null)
+					size =(int)property.GetValue(null);
+			}
+			return size;
 		}
 
 		public static bool IsMemoryPointerType(this Type type)
@@ -84,7 +95,7 @@ namespace Enigma.Memory
 			IsVoidMemoryPointerType = typeof(T).Equals(typeof(Ptr));
 			IsGenericType = typeof(T).IsGenericType;
 			IsArrayType = typeof(T).IsArray;
-			
+
 			var structLayoutAttribute = typeof(T).GetCustomAttribute<StructLayoutAttribute>();
 			var hasExplicitStructLayout = structLayoutAttribute != null && structLayoutAttribute.Value != LayoutKind.Auto;
 			HasKnownStructLayout = IsMemoryAddressType == false && IsValueType | hasExplicitStructLayout;
