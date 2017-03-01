@@ -165,8 +165,8 @@ namespace Enigma.D3.MemoryModel
 				GameStartingAct = Storage + 0x04C; // TODO
 				GameBountyBonus = Storage + 0x050; // TODO
 				GameTick = Storage + 0x120; // TODO
-				PlayerDataManager = Storage + 0x140; // TODO
-				FastAttrib = Storage + 0x180; // TODO
+				PlayerDataManager = Storage + 0x134;
+				FastAttrib = Storage + 0x154;
 				ACDManager = Storage + 0x160;
 				QuestManager = Storage + 0x170;
 				WaypointManager = Storage + 0x19C;
@@ -175,7 +175,7 @@ namespace Enigma.D3.MemoryModel
 				UIManager = 0x9FC;
 				Worlds = 0xA04;
 				Player = 0xA0C;
-				TimedEvents = 0xB80; // TODO
+				TimedEvents = 0xA34;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -233,10 +233,10 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
 				ID = 0x000;
 				Name = 0x004;
 				NameLength = 0x080;
+				throw new NotImplementedException();
 			}
 			else if (platform == Platform.X64)
 			{
@@ -349,7 +349,8 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x5C;
+				FastAttribGroups = 0x54;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -369,7 +370,8 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x9C8;
+				ID = 0x000;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -715,7 +717,7 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x0C;
 			}
 			else if (platform == Platform.X64)
 			{
