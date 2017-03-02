@@ -48,6 +48,23 @@ namespace Enigma.D3.MemoryModel.Collections
 			}
 		}
 
+		public override void GetAllocatedBytes(ref byte[] buffer)
+		{
+			var blockSize = 1 << Bits;
+			var blockCount = (MaxIndex / blockSize) + 1;
+			var size = blockSize * blockCount;
+			if (buffer.Length != size)
+				Array.Resize(ref buffer, size);
+
+			var blocks = (Allocator as _Allocator).Items.ToArray(blockCount);
+			var offset = 0;
+			for (int i = 0; i < blockCount; i++)
+			{
+				Memory.Reader.ReadBytes(blocks[i].ValueAddress, buffer, offset, blockSize);
+				offset += blockSize;
+			}
+		}
+
 		public override IEnumerator<T> GetEnumerator()
 		{
 			short maxIndex = (short)MaxIndex;

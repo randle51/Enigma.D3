@@ -46,7 +46,7 @@ namespace Enigma.D3.MemoryModel.Core
 		public WaypointManager WaypointManager
 			=> Read<Ptr<WaypointManager>>(SymbolTable.Current.ObjectManager.WaypointManager).Dereference();
 
-		public IContainer<Actor> Actors
+		public ExpandableContainer<Actor> Actors
 			=> Read<Ptr<ExpandableContainer<Actor>>>(SymbolTable.Current.ObjectManager.Actors).Dereference();
 
 		public IContainer<Scene> Scenes

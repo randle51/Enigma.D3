@@ -37,6 +37,14 @@ namespace Enigma.D3.MemoryModel.Collections
 			public Ptr VT => Read<Ptr>(0x08); // 0 (NULL).
 		}
 
+		public virtual void GetAllocatedBytes(ref byte[] buffer)
+		{
+			var size = Capacity * ItemSize;
+			if (buffer.Length != size)
+				Array.Resize(ref buffer, size);
+			Memory.Reader.ReadBytes((Allocator as _Allocator).Items.ValueAddress, buffer);
+		}
+
 		public virtual IEnumerator<T> GetEnumerator()
 		{
 			short maxIndex = (short)MaxIndex;
