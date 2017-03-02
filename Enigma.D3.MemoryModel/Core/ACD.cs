@@ -1,4 +1,5 @@
-﻿using Enigma.Memory;
+﻿using Enigma.D3.DataTypes;
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,11 @@ namespace Enigma.D3.MemoryModel.Core
 
 		public string Name
 			=> ReadString(SymbolTable.Current.ACD.Name, SymbolTable.Current.ACD.NameLength);
+
+		public Vector3 Position
+			=> Read<Vector3>(SymbolTable.Current.ACD.Position);
+
+		public SNO WorldSNO
+			=> Read<SNO>(SymbolTable.Current.ACD.WorldSNO);
 	}
 }

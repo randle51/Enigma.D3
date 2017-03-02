@@ -84,23 +84,23 @@ namespace Enigma.D3.MemoryModel
 			if (platform == Platform.X86)
 			{
 				Address = 0x0199B000;
-				VideoPreferences = 0; // TODO
-				SoundPreferences = 0; // TODO
-				HotkeyPreferences = 0; // TODO
-				GameplayPreferences = 0; // TODO
-				SocialPreferences = 0; // TODO
-				ChatPreferences = 0; // TODO
-				LevelArea = 0; // TODO
-				LevelAreaName = 0; // TODO
+				VideoPreferences = 0x019CD0A0;
+				SoundPreferences = 0x019CD140;
+				HotkeyPreferences = 0x019CD190;
+				GameplayPreferences = 0x019CD610;
+				SocialPreferences = 0x019CD674;
+				ChatPreferences = 0x019CD6A4;
+				LevelArea = 0x01B9D68C;
+				LevelAreaName = 0x01B9D6BC;
 				LevelAreaNameLength = 0x80;
-				MapActID = 0; // TODO
+				MapActID = 0x01B9DA00;
 				ScreenManagerRoot = 0x01B9DC5C;
 				TrickleManager = 0x01BEFA08;
 				LocalData = 0x01C14148;
 				ObjectManager = 0x01C12E98;
 				ApplicationLoopCount = 0x01C12F14;
-				AttributeDescriptors = 0; // TODO
-				AttributeDescriptorsCount = -1; // TODO
+				AttributeDescriptors = 0x01C65660;
+				AttributeDescriptorsCount = 1442;
 				MemoryManager = 0x01CD2ED0;
 			}
 			else if (platform == Platform.X64)
@@ -165,8 +165,8 @@ namespace Enigma.D3.MemoryModel
 				GameStartingAct = Storage + 0x04C; // TODO
 				GameBountyBonus = Storage + 0x050; // TODO
 				GameTick = Storage + 0x120; // TODO
-				PlayerDataManager = Storage + 0x140; // TODO
-				FastAttrib = Storage + 0x180; // TODO
+				PlayerDataManager = Storage + 0x134;
+				FastAttrib = Storage + 0x154;
 				ACDManager = Storage + 0x160;
 				QuestManager = Storage + 0x170;
 				WaypointManager = Storage + 0x19C;
@@ -175,7 +175,7 @@ namespace Enigma.D3.MemoryModel
 				UIManager = 0x9FC;
 				Worlds = 0xA04;
 				Player = 0xA0C;
-				TimedEvents = 0xB80; // TODO
+				TimedEvents = 0xA34;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -233,7 +233,7 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x454;
 				ID = 0x000;
 				Name = 0x004;
 				NameLength = 0x080;
@@ -244,7 +244,6 @@ namespace Enigma.D3.MemoryModel
 				ID = 0x000;
 				Name = 0x004;
 				NameLength = 0x080;
-				Position = 0x0B0;
 			}
 			else throw new PlatformNotSupportedException();
 		}
@@ -253,7 +252,6 @@ namespace Enigma.D3.MemoryModel
 		public int ID;
 		public int Name;
 		public int NameLength;
-		public int Position;
 	}
 
 	public struct ACDManagerSymbols
@@ -287,6 +285,8 @@ namespace Enigma.D3.MemoryModel
 				ID = 0x000;
 				Name = 0x004;
 				NameLength = 0x080;
+				Position = 0x0D0;
+				WorldSNO = 0x108;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -294,6 +294,8 @@ namespace Enigma.D3.MemoryModel
 				ID = 0x000;
 				Name = 0x004;
 				NameLength = 0x080;
+				Position = 0x0D8;
+				WorldSNO = 0x118;
 			}
 			else throw new PlatformNotSupportedException();
 		}
@@ -302,6 +304,8 @@ namespace Enigma.D3.MemoryModel
 		public int ID;
 		public int Name;
 		public int NameLength;
+		public int Position;
+		public int WorldSNO;
 	}
 
 	public struct LocalDataSymbols
@@ -349,7 +353,8 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x5C;
+				FastAttribGroups = 0x54;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -369,7 +374,8 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x9C8;
+				ID = 0x000;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -409,7 +415,10 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0xB370;
+				Index = 0x0000;
+				ACDID = 0x0004;
+				ActorID = 0x0008;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -433,7 +442,7 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x6C8;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -451,7 +460,7 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x68;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -715,7 +724,7 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x0C;
 			}
 			else if (platform == Platform.X64)
 			{
