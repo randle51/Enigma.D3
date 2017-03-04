@@ -47,7 +47,12 @@ namespace Enigma.D3.MemoryModel
 
 			while (_stopSignal.WaitOne(10) == false)
 			{
-				actors.Update();
+				try
+				{
+					actors.Update();
+				}
+				catch { }
+				// TODO: Re-bind on exception, container could be at a new address
 			}
 		}
 

@@ -16,6 +16,7 @@ namespace Enigma.D3.MemoryModel
 		public SymbolTable(Platform platform)
 		{
 			Version = new Version(2, 4, 3, 43048);
+			Platform = platform;
 
 			DataSegment = new DataSegmentSymbols(platform);
 			ObjectManager = new ObjectManagerSymbols(platform);
@@ -47,6 +48,7 @@ namespace Enigma.D3.MemoryModel
 		}
 
 		public Version Version;
+		public Platform Platform;
 
 		public DataSegmentSymbols DataSegment;
 		public ObjectManagerSymbols ObjectManager;
@@ -395,7 +397,8 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x59BB8;
+				Items = 0x00000;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -541,7 +544,11 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x2C;
+				ActID = 0x00;
+				LevelAreaSNO = 0x0C;
+				X = 0x24;
+				Y = 0x28;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -627,7 +634,7 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x938;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -672,7 +679,11 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x28;
+				ID = 0x00;
+				DataType = 0x10;
+				Name = 0x1C;
+				NameLength = 256;
 			}
 			else if (platform == Platform.X64)
 			{
@@ -698,7 +709,11 @@ namespace Enigma.D3.MemoryModel
 		{
 			if (platform == Platform.X86)
 			{
-				throw new NotImplementedException();
+				SizeOf = 0x50;
+				WorldPos = 0x04;
+				WorldSNO = 0x10;
+				Type = 0x48;
+				Value = 0x4C;
 			}
 			else if (platform == Platform.X64)
 			{

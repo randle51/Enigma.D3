@@ -72,6 +72,6 @@ namespace Enigma.D3.MemoryModel.Segments
 			=> Memory.Reader.Read<AttributeDescriptor>(SymbolTable.Current.DataSegment.AttributeDescriptors, SymbolTable.Current.DataSegment.AttributeDescriptorsCount);
 
 		public MemoryManager MemoryManager
-			=> Memory.Reader.Read<MemoryManager>(SymbolTable.Current.DataSegment.MemoryManager);
+			=> Memory.Reader.Read<Ptr<MemoryManager>>(SymbolTable.Current.DataSegment.MemoryManager).Dereference();
 	}
 }

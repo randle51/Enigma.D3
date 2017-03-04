@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Collections
 {
-	// TODO: Other offsets for 32-bit?
 	public class ExpandableContainer<T> : Container<T>
 	{
-		public new const int SizeOf = 0x170;
+		public new const int SizeOf = 0x170; // 0x168 for 32-bit
 
 		public override IAllocator Allocator => Read<_Allocator>(0x120);
 		private class _Allocator : MemoryObject, IAllocator
@@ -32,10 +31,12 @@ namespace Enigma.D3.MemoryModel.Collections
 		public int x150 => Read<int>(0x150);
 		public int x154 => Read<int>(0x154);
 		public Ptr x158 => Read<Ptr>(0x158); // 0 (NULL).
-		public int Limit => Read<int>(0x160);
-		public int MaxLimit => Read<int>(0x164);
-		public int Bits => Read<int>(0x168);
-		public int x16C => Read<int>(0x16C); // Padding?
+		public int Limit => Read<int>(_32or64(0x15C, 0x160));
+		public int MaxLimit => Read<int>(_32or64(0x160, 0x164));
+		public int Bits => Read<int>(_32or64(0x164, 0x168));
+		public int x16C => Read<int>(0x16C); // X64 Padding
+
+		private int _32or64(int x86, int x64) => SymbolTable.Current.Platform == Platform.X86 ? x86 : x64;
 
 		public override T this[int index]
 		{
@@ -52,7 +53,7 @@ namespace Enigma.D3.MemoryModel.Collections
 		{
 			var blockSize = 1 << Bits;
 			var blockCount = (MaxIndex / blockSize) + 1;
-			var size = blockSize * blockCount;
+			var size = blockSize * blockCount * ItemSize;
 			if (buffer.Length != size)
 				Array.Resize(ref buffer, size);
 
@@ -60,8 +61,8 @@ namespace Enigma.D3.MemoryModel.Collections
 			var offset = 0;
 			for (int i = 0; i < blockCount; i++)
 			{
-				Memory.Reader.ReadBytes(blocks[i].ValueAddress, buffer, offset, blockSize);
-				offset += blockSize;
+				Memory.Reader.ReadBytes(blocks[i].ValueAddress, buffer, offset, blockSize * ItemSize);
+				offset += blockSize * ItemSize;
 			}
 		}
 
