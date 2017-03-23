@@ -7,15 +7,17 @@ namespace Enigma.D3.Assets
 	[CompilerGenerated]
 	public partial class TreasureClass : SerializeMemoryObject
 	{
-		public const int SizeOf = 0x30; // 48
+		public const int SizeOf = 0x38; // 56
 		
 		public SNOHeader x00_Header { get { return Read<SNOHeader>(0x00); } }
 		public HighPrecisionPercent x0C_HighPrecisionPercent { get { return Read<HighPrecisionPercent>(0x0C); } }
 		public int x10 { get { return Read<int>(0x10); } }
 		public int x14 { get { return Read<int>(0x14); } }
 		public int x18 { get { return Read<int>(0x18); } }
+		public int x1C { get { return Read<int>(0x1C); } }
 		public LootDropModifier[] x20_LootDropModifiers { get { return Deserialize<LootDropModifier>(x28_SerializeData); } }
 		public SerializeData x28_SerializeData { get { return Read<SerializeData>(0x28); } }
+		public int x30 { get { return Read<int>(0x30); } }
 		
 		[CompilerGenerated]
 		public partial class LootDropModifier : MemoryObject

@@ -7,7 +7,7 @@ namespace Enigma.D3.Assets
 	[CompilerGenerated]
 	public partial class Quest : SerializeMemoryObject
 	{
-		public const int SizeOf = 0x118; // 280
+		public const int SizeOf = 0x120; // 288
 		
 		public SNOHeader x000_Header { get { return Read<SNOHeader>(0x000); } }
 		public int x00C_Enum { get { return Read<int>(0x00C); } } // Main Quest = 0, Event = 2, Challenge = 4, Bounty = 5, Horadric Quest = 6, Set Dungeon = 7, Set Dungeon Bonus = 8, Set Dungeon Mastery = 9, Set Dungeon Tracker = 10
@@ -83,7 +83,7 @@ namespace Enigma.D3.Assets
 		[CompilerGenerated]
 		public partial class BountyData : MemoryObject
 		{
-			public const int SizeOf = 0x58; // 88
+			public const int SizeOf = 0x5C; // 92
 			
 			public int x00_Enum { get { return Read<int>(0x00); } } // Invalid = -1, A1 = 0, A2 = 100, A3 = 200, A4 = 300, A5 = 400, OpenWorld = 3000, Test = 1000
 			public int x04_Enum { get { return Read<int>(0x04); } } // - None - = -1, Kill Unique = 0, Kill Boss = 1, Complete Event = 2, Clear Dungeon = 3, Camps = 4, HQ - Color Orbs = 5, HQ - Hot Cold = 6
@@ -106,7 +106,8 @@ namespace Enigma.D3.Assets
 			public SNO x48_WorldsSNO { get { return Read<SNO>(0x48); } }
 			public GBID x4C_LabelsGBID { get { return Read<GBID>(0x4C); } }
 			public SNO x50_54SNO { get { return Read<SNO>(0x50); } }
-			public float x54 { get { return Read<float>(0x54); } }
+			public SNO x54_BossEncounterSNO { get { return Read<SNO>(0x54); } }
+			public float x58 { get { return Read<float>(0x58); } }
 		}
 		
 		[CompilerGenerated]
