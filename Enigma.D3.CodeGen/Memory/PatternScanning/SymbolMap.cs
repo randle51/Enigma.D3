@@ -33,6 +33,8 @@ namespace Enigma.D3.CodeGen.Memory.PatternScanning
 			return _map[key][0];
 		}
 
+		public IEnumerable<uint> Matches(string key) => _map.ContainsKey(key) ? _map[key] : Enumerable.Empty<uint>();
+
 		private void CreateKey(string key)
 		{
 			if (_map.ContainsKey(key) == false)

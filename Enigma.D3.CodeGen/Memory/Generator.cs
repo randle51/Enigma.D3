@@ -34,7 +34,9 @@ namespace Enigma.D3.CodeGen.Memory
 			var objPtrs = new Dictionary<string, uint>();
 			objPtrs.Add("SNOGroups", symbols.BestMatch("SnoGroups"));
 			objPtrs.Add("SNOGroupsByCode", symbols.BestMatch("SnoGroupsByCode"));
-			objPtrs.Add("AttributeDescriptors", symbols.BestMatch("AttributeDescriptors"));
+			if (symbols.Matches("AttributeDescriptors").Count() > 1)
+				objPtrs.Add("AttributeDescriptors", symbols.Matches("AttributeDescriptors").OrderBy(x => Math.Abs(x - (long)symbols.BestMatch("AttributeDescriptors.FirstName"))).First());
+			else objPtrs.Add("AttributeDescriptors", symbols.BestMatch("AttributeDescriptors"));
 			objPtrs.Add("MessageDescriptor", symbols.BestMatch("MessageDescriptor"));
 			objPtrs.Add("LocalData", symbols.BestMatch("LocalData"));
 			objPtrs.Add("ContainerManager", containerManager = symbols.BestMatch("ContainerManager"));
@@ -154,14 +156,14 @@ namespace Enigma.D3.CodeGen.Memory
 			if (sizeof_playerdata == 0 || Engine.Current == null)
 				return 0;
 
-			var actor = Actor.Local;
-			var player = PlayerData.Local;
-			var data = PlayerData.Local.GetPointer().Cast<byte>().ToArray((int)sizeof_playerdata);
-
-			var signature = BitConverter.GetBytes(actor.x08C_ActorSnoId);
-			var pattern = new BinaryPattern(signature);
 			try
 			{
+				var actor = Actor.Local;
+				var player = PlayerData.Local;
+				var data = PlayerData.Local.GetPointer().Cast<byte>().ToArray((int)sizeof_playerdata);
+
+				var signature = BitConverter.GetBytes(actor.x08C_ActorSnoId);
+				var pattern = new BinaryPattern(signature);
 				var match = pattern.NextMatch(data, 0);
 				return (uint)match + 4;
 			}
@@ -176,12 +178,11 @@ namespace Enigma.D3.CodeGen.Memory
 			if (sizeof_playerdata == 0 || Engine.Current == null)
 				return 0;
 
-			var data = PlayerData.Local.GetPointer().Cast<byte>().ToArray((int)sizeof_playerdata);
-			var pattern = new BinaryPattern(Encoding.ASCII.GetBytes("Default"));
-			//new byte[] { (byte)'D', (byte)'e', (byte)'f', (byte)'a', (byte)'u', (byte)'l', (byte)'t' });
-
 			try
 			{
+				var data = PlayerData.Local.GetPointer().Cast<byte>().ToArray((int)sizeof_playerdata);
+				var pattern = new BinaryPattern(Encoding.ASCII.GetBytes("Default"));
+
 				var match = pattern.NextMatch(data, 0);
 				return (uint)(match - 49);
 			}
@@ -229,7 +230,7 @@ namespace Enigma.D3.CodeGen.Memory
 			foreach (var pair in objPtrs.OrderBy(a => a.Value))
 			{
 				if (pair.Value == 0)
-					sb.AppendLine($"\t\t#error Could not find {pair.Key} :(" + (Engine.Current == null ? " Running generator again with a minidump present might help" : ""));
+					sb.AppendLine($"\t\t#warning Could not find {pair.Key} :(" + (Engine.Current == null ? " Running generator again with a minidump present might help" : ""));
 				sb.AppendLine($"\t\tpublic const int {pair.Key} = 0x{pair.Value:X8};");
 			}
 			sb.AppendLine("\t}");
@@ -247,7 +248,7 @@ namespace Enigma.D3.CodeGen.Memory
 			foreach (var pair in methodPtrs)
 			{
 				if (pair.Value == 0)
-					sb.AppendLine($"\t\t#error Could not find {pair.Key} :(");
+					sb.AppendLine($"\t\t#warning Could not find {pair.Key} :(");
 				sb.AppendLine($"\t\tpublic const int {pair.Key} = 0x{pair.Value:X8};");
 			}
 			sb.AppendLine("\t}");
