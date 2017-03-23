@@ -19,6 +19,6 @@ namespace Enigma.D3
 		public ExpandableContainer<FastAttribGroup> x54_Groups { get { return Dereference<ExpandableContainer<FastAttribGroup>>(0x54); } }
 		public int x58 { get { return Read<int>(0x58); } }
 
-		public static FastAttrib Instance { get { return Storage.Instance.IfNotNull(storage => storage.x14C_Ptr_92Bytes_FastAttrib.Dereference()); } }
+		public static FastAttrib Instance { get { return Storage.Instance.IfNotNull(storage => storage.x154_Ptr_92Bytes_FastAttrib.Dereference()); } }
 	}
 }

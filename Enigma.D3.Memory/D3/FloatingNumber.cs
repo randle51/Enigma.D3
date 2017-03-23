@@ -31,7 +31,7 @@ namespace Enigma.D3
 	{
 		public static IEnumerable<FloatingNumber> EnumerateAll(Engine engine = null)
 		{
-			return (engine ?? Engine.Current).ObjectManager.xA0C_Player.Dereference().xA018_FloatingNumbers;
+			return (engine ?? Engine.Current).ObjectManager.x9FC_Player.Dereference().xA018_FloatingNumbers;
 		}
 
 		public static IList<FloatingNumber> GetList(Engine engine = null)

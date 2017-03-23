@@ -234,6 +234,6 @@ namespace Enigma.D3
 
 	public partial class Player
 	{
-		public static Player Instance { get { return Engine.TryGet(engine => engine.ObjectManager.xA0C_Player.Dereference()); } }
+		public static Player Instance { get { return Engine.TryGet(engine => engine.ObjectManager.x9FC_Player.Dereference()); } }
 	}
 }

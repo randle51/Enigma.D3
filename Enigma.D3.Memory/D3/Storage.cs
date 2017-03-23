@@ -87,22 +87,25 @@ namespace Enigma.D3
 		public int x120 { get { return Read<int>(0x120); } }
 		public Ptr<MarkerManager> x124_Ptr_12Bytes_Markers { get { return ReadPointer<MarkerManager>(0x124); } }
 		public Ptr<InactiveMarkerManager> x128_Ptr_368Bytes_InactiveMarkers { get { return ReadPointer<InactiveMarkerManager>(0x128); } }
-		public Ptr<PlayerDataManager> x12C_Ptr_PlayerDataManager { get { return ReadPointer<PlayerDataManager>(0x12C); } }
-		public Ptr<SceneAllocators> x130_Ptr_116Bytes_SceneAllocators { get { return ReadPointer<SceneAllocators>(0x130); } }
-		public Ptr<Map> x134_Ptr_112Bytes_Items { get { return ReadPointer<Map>(0x134); } }
-		public Ptr<X138> x138_Ptr_88Bytes_WorldRelated { get { return ReadPointer<X138>(0x138); } }
-		public Ptr<Allocator> x13C_Ptr_Allocator_20x28Bytes_WorldRelated { get { return ReadPointer<Allocator>(0x13C); } }
-		public int _x140 { get { return Read<int>(0x140); } }
-		public int _x144 { get { return Read<int>(0x144); } }
+
+		// Updated for 2.5.0
+		public Ptr<PlayerDataManager> x134_Ptr_PlayerDataManager { get { return ReadPointer<PlayerDataManager>(0x134); } }
+		public Ptr<SceneAllocators> x138_Ptr_116Bytes_SceneAllocators { get { return ReadPointer<SceneAllocators>(0x138); } }
+		public Ptr<Map> x13C_Ptr_112Bytes_Items { get { return ReadPointer<Map>(0x13C); } }
+		public Ptr<X138> x140_Ptr_88Bytes_WorldRelated { get { return ReadPointer<X138>(0x140); } }
+		public Ptr<Allocator> x144_Ptr_Allocator_20x28Bytes_WorldRelated { get { return ReadPointer<Allocator>(0x144); } }
 		public int _x148 { get { return Read<int>(0x148); } }
-		public Ptr<FastAttrib> x14C_Ptr_92Bytes_FastAttrib { get { return ReadPointer<FastAttrib>(0x14C); } }
-		public Ptr<Teams> x150_Ptr_368Bytes_Teams { get { return ReadPointer<Teams>(0x150); } }
-		public int _x154 { get { return Read<int>(0x154); } }
-		public Ptr<ActorCommonDataManager> x158_Ptr_232Bytes_ActorCommonDataManager { get { return ReadPointer<ActorCommonDataManager>(0x158); } }
-		public Ptr<Allocator> x15C_Ptr_Allocator_1000x64Bytes_WorldRelated { get { return ReadPointer<Allocator>(0x15C); } }
-		public Ptr<Allocator> x160_Ptr_Allocator_8x64Bytes_WorldRelated { get { return ReadPointer<Allocator>(0x160); } }
-		public Ptr<Allocator> x164_Ptr_Allocator_1024x16Bytes_GameBalance { get { return ReadPointer<Allocator>(0x164); } }
-		public Ptr<QuestManager> x168_Ptr_1104Bytes_Quests { get { return ReadPointer<QuestManager>(0x168); } }
+		public int _x14C { get { return Read<int>(0x14C); } }
+		public int _x150 { get { return Read<int>(0x150); } }
+		public Ptr<FastAttrib> x154_Ptr_92Bytes_FastAttrib { get { return ReadPointer<FastAttrib>(0x154); } }
+		public Ptr<Teams> x158_Ptr_368Bytes_Teams { get { return ReadPointer<Teams>(0x158); } }
+		public int _x15C { get { return Read<int>(0x15C); } }
+		public Ptr<ActorCommonDataManager> x160_Ptr_232Bytes_ActorCommonDataManager { get { return ReadPointer<ActorCommonDataManager>(0x160); } }
+		public Ptr<Allocator> x164_Ptr_Allocator_1000x64Bytes_WorldRelated { get { return ReadPointer<Allocator>(0x164); } }
+		public Ptr<Allocator> x168_Ptr_Allocator_8x64Bytes_WorldRelated { get { return ReadPointer<Allocator>(0x168); } }
+		public Ptr<Allocator> x16C_Ptr_Allocator_1024x16Bytes_GameBalance { get { return ReadPointer<Allocator>(0x16C); } }
+		public Ptr<QuestManager> x170_Ptr_1104Bytes_Quests { get { return ReadPointer<QuestManager>(0x170); } }
+
 		public Ptr<Allocator> x16C_Ptr_Allocator_256x220Bytes_AcdAnimation { get { return ReadPointer<Allocator>(0x16C); } }
 		public int _x170 { get { return Read<int>(0x170); } }
 		public Ptr<NavCellPath> x174_Ptr_16Bytes_NavCellPath { get { return ReadPointer<NavCellPath>(0x174); } }
@@ -132,7 +135,7 @@ namespace Enigma.D3
 
 	public partial class Storage
 	{
-		public static Storage Instance { get { return ObjectManager.Instance.IfNotNull(a => a.x7C8_Storage); } }
+		public static Storage Instance { get { return ObjectManager.Instance.IfNotNull(a => a.x7B0_Storage); } }
 
 		public int GetGameTick()
 		{
