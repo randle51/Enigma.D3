@@ -68,7 +68,7 @@ namespace Enigma.D3.Helpers
 
 		public static IEnumerable<ActorCommonData> EnumerateMonsters()
 		{
-			return Enumerate(a => a.x184_ActorType == Enums.ActorType.Monster);
+			return Enumerate(a => a.x17C_ActorType == Enums.ActorType.Monster);
 		}
 
 		public static IEnumerable<ActorCommonData> Enumerate()

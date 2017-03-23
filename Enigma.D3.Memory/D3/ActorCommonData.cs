@@ -12,8 +12,7 @@ namespace Enigma.D3
 {
 	public partial class ActorCommonData : MemoryObject
 	{
-		// 2.0.0.20874
-		public const int SizeOf = 0x2F8; // = 760
+		public const int SizeOf = 0x2F0;
 
 		public int x000_Id { get { return Read<int>(0x000); } }
 		public string x004_Name { get { return ReadString(0x004, 128); } }
@@ -62,6 +61,8 @@ namespace Enigma.D3
 		public int x12C_Id_FastAttribGroupContainerId { get { return Read<int>(0x12C); } }
 		public int x130_Ptr_184Bytes_ActorInventory { get { return Read<int>(0x130); } }
 		public int x134_Ptr_256Bytes_VisualInventory { get { return Read<int>(0x134); } }
+
+		// -8 bytes somewhere in this block
 		public long x138_RelatedTo_ItemAssignedHero { get { return Read<long>(0x138); } }
 		public long x140_RelatedTo_ItemAssignedHeroId { get { return Read<long>(0x140); } }
 		public ListB<int> x148_ListB_ItemRelated_Affixes_NodeSize12Bytes { get { return Read<ListB<int>>(0x148); } } // AffixList GBIDs
@@ -70,18 +71,19 @@ namespace Enigma.D3
 		public int x174_Neg1_RareItemStringList_ { get { return Read<int>(0x174); } }
 		public int x178_Neg1_RareItemStringListIndex_ { get { return Read<int>(0x178); } }
 		public int x17C_Neg1_RareItemOtherListIndex_ { get { return Read<int>(0x17C); } }
-		public GizmoType x180_GizmoType { get { return (GizmoType)Read<int>(0x180); } }
-		public ActorType x184_ActorType { get { return (ActorType)Read<int>(0x184); } }
-		public float x188_Hitpoints { get { return Read<float>(0x188); } }
-		public int x18C_TeamIdOverride { get { return Read<int>(0x18C); } }
-		public int x190_TeamId { get { return Read<int>(0x190); } }
-		public int _x194 { get { return Read<int>(0x194); } }
-		public int x198_Flags_Is_Trail_Proxy_Etc { get { return Read<int>(0x198); } }
-		public int x19C_FollowPlayerIndex { get { return Read<int>(0x19C); } } // 7 = None
-		public int x1A0_Flags_1IsFollower_4HasHP { get { return Read<int>(0x1A0); } }
-		//public int x1A4 { get { return Read<int>(0x1A4); } }
-		//public int x1A8_Flags { get { return Read<int>(0x1A8); } }
-		public int x1A4_Neg1_MonsterAffixId_StructStart_Min8Bytes { get { return Read<int>(0x1A4); } }
+
+		public GizmoType x178_GizmoType { get { return (GizmoType)Read<int>(0x178); } }
+		public ActorType x17C_ActorType { get { return (ActorType)Read<int>(0x17C); } }
+		public float x180_Hitpoints { get { return Read<float>(0x180); } }
+		public int x184_TeamIdOverride { get { return Read<int>(0x184); } }
+		public int x188_TeamId { get { return Read<int>(0x188); } }
+		public int _x18C { get { return Read<int>(0x18C); } }
+		public int x190_Flags_Is_Trail_Proxy_Etc { get { return Read<int>(0x190); } }
+		public int x194_FollowPlayerIndex { get { return Read<int>(0x194); } } // 7 = None
+		public int x198_Flags_1IsFollower_4HasHP { get { return Read<int>(0x198); } }
+		public int x19C_Neg1_MonsterAffixId_StructStart_Min8Bytes { get { return Read<int>(0x19C); } }
+		public int x1A0_Neg1_MonsterAffixId { get { return Read<int>(0x1A0); } }
+		public int x1A4_Neg1_MonsterAffixId { get { return Read<int>(0x1A4); } }
 		public int x1A8_Neg1_MonsterAffixId { get { return Read<int>(0x1A8); } }
 		public int x1AC_Neg1_MonsterAffixId { get { return Read<int>(0x1AC); } }
 		public int x1B0_Neg1_MonsterAffixId { get { return Read<int>(0x1B0); } }
@@ -89,44 +91,42 @@ namespace Enigma.D3
 		public int x1B8_Neg1_MonsterAffixId { get { return Read<int>(0x1B8); } }
 		public int x1BC_Neg1_MonsterAffixId { get { return Read<int>(0x1BC); } }
 		public int x1C0_Neg1_MonsterAffixId { get { return Read<int>(0x1C0); } }
-		public int x1C4_Neg1_MonsterAffixId { get { return Read<int>(0x1C4); } }
-		public int x1C8_Neg1_MonsterAffixId { get { return Read<int>(0x1C8); } }
-		public int _x1CC { get { return Read<int>(0x1CC); } }
-		public int x1D0 { get { return Read<int>(0x1D0); } }
-		public ListB x1D4_ListB_NodeSize52Bytes { get { return Read<ListB>(0x1D4); } }
-		public ListB x1E8_ListB { get { return Read<ListB>(0x1E8); } }
-		public ListB x1FC_ListB { get { return Read<ListB>(0x1FC); } }
-		public Ptr<Animation> x210_Ptr_220Bytes_Animation { get { return ReadPointer<Animation>(0x210); } }
-		public int x214_Ptr_12Bytes_Portals { get { return Read<int>(0x214); } }
+		public int _x1C4 { get { return Read<int>(0x1C4); } }
+		public int x1C8 { get { return Read<int>(0x1C8); } }
+		public ListB x1CC_ListB_NodeSize52Bytes { get { return Read<ListB>(0x1CC); } }
+		public ListB x1E0_ListB { get { return Read<ListB>(0x1E0); } }
+		public ListB x1F4_ListB { get { return Read<ListB>(0x1F0); } }
+		public Ptr<Animation> x208_Ptr_220Bytes_Animation { get { return ReadPointer<Animation>(0x208); } }
+		public int x20C_Ptr_12Bytes_Portals { get { return Read<int>(0x20C); } }
+		public int x210 { get { return Read<int>(0x210); } }
+		public int x214_Neg1 { get { return Read<int>(0x214); } }
 		public int x218 { get { return Read<int>(0x218); } }
-		public int x21C_Neg1 { get { return Read<int>(0x21C); } }
+		public int x21C { get { return Read<int>(0x21C); } }
 		public int x220 { get { return Read<int>(0x220); } }
-		public int x224 { get { return Read<int>(0x224); } }
-		public int x228 { get { return Read<int>(0x228); } }
+		public int x224_Neg1 { get { return Read<int>(0x224); } }
+		public int x228 { get { return Read<int>(0x20); } }
 		public int x22C_Neg1 { get { return Read<int>(0x22C); } }
 		public int x230 { get { return Read<int>(0x230); } }
-		public int x234_Neg1 { get { return Read<int>(0x234); } }
-		public int x238 { get { return Read<int>(0x238); } }
-		public int x23C_StructStart_Min16Bytes { get { return Read<int>(0x23C); } }
-		public int x240_EffectiveTeamId { get { return Read<int>(0x240); } }
-		public int _x244 { get { return Read<int>(0x244); } }
-		public int x248_CollisionFlags { get { return Read<int>(0x248); } }
+		public int x234_StructStart_Min16Bytes { get { return Read<int>(0x234); } }
+		public int x238_EffectiveTeamId { get { return Read<int>(0x238); } }
+		public int _x23C { get { return Read<int>(0x23C); } }
+		public int x240_CollisionFlags { get { return Read<int>(0x240); } }
+		public float x244 { get { return Read<float>(0x244); } }
+		public float x248 { get { return Read<float>(0x248); } }
 		public float x24C { get { return Read<float>(0x24C); } }
 		public float x250 { get { return Read<float>(0x250); } }
 		public float x254 { get { return Read<float>(0x254); } }
 		public float x258 { get { return Read<float>(0x258); } }
 		public float x25C { get { return Read<float>(0x25C); } }
 		public float x260 { get { return Read<float>(0x260); } }
-		public float x264 { get { return Read<float>(0x264); } }
-		public float x268 { get { return Read<float>(0x268); } }
-		public int x26C { get { return Read<int>(0x26C); } }
-		public int x270 { get { return Read<int>(0x270); } }
-		public int x274_WorldRelated_SphereNode { get { return Read<int>(0x274); } }
-		public int x278_WorldRelated { get { return Read<int>(0x278); } }
-		public int x27C_WorldId { get { return Read<int>(0x27C); } }
-		public int _x280 { get { return Read<int>(0x280); } }
-		public Map x284_Map { get { return Read<Map>(0x284); } }
-		public int _x2F4 { get { return Read<int>(0x2F4); } }
+		public int x264 { get { return Read<int>(0x264); } }
+		public int x268 { get { return Read<int>(0x268); } }
+		public int x26C_WorldRelated_SphereNode { get { return Read<int>(0x26C); } }
+		public int x270_WorldRelated { get { return Read<int>(0x270); } }
+		public int x274_WorldId { get { return Read<int>(0x274); } }
+		public int _x278 { get { return Read<int>(0x278); } }
+		public Map x27C_Map { get { return Read<Map>(0x27C); } }
+		public int _x2EC { get { return Read<int>(0x2EC); } }
 	}
 
 	public class Animation : MemoryObject
@@ -200,7 +200,7 @@ namespace Enigma.D3
 
 		public SNO GetAnimSNO()
 		{
-			var ptr = x210_Ptr_220Bytes_Animation;
+			var ptr = x208_Ptr_220Bytes_Animation;
 			if (ptr.IsInvalid)
 				return SNO.NONE;
 			return ptr.Dereference().x04_AnimSNO;
@@ -208,7 +208,7 @@ namespace Enigma.D3
 
 		public int GetAnimTag()
 		{
-			var ptr = x210_Ptr_220Bytes_Animation;
+			var ptr = x208_Ptr_220Bytes_Animation;
 			if (ptr.IsInvalid)
 				return -1;
 			return ptr.Dereference().x08_AnimTag;

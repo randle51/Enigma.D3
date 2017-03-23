@@ -30,7 +30,7 @@ namespace Enigma.D3.MapHack.Markers
 		private static bool TryCreateMonster(ActorCommonData acd, out IMapMarker item, ref bool interested)
 		{
 			item = null;
-			if (acd.x184_ActorType == ActorType.Monster)
+			if (acd.x17C_ActorType == ActorType.Monster)
 			{
 				interested = true;
 				if (IsValidMonster(acd))
@@ -45,7 +45,7 @@ namespace Enigma.D3.MapHack.Markers
 		private static bool TryCreateChest(ActorCommonData acd, out IMapMarker item, ref bool interested)
 		{
 			item = null;
-			if (acd.x180_GizmoType == GizmoType.Chest)
+			if (acd.x178_GizmoType == GizmoType.Chest)
 			{
 				interested = true;
 				if (IsValidGizmoChest(acd))
@@ -54,7 +54,7 @@ namespace Enigma.D3.MapHack.Markers
 					return true;
 				}
 			}
-			else if (acd.x180_GizmoType == GizmoType.LoreChest)
+			else if (acd.x178_GizmoType == GizmoType.LoreChest)
 			{
 				interested = true;
 				if (IsValidGizmoLoreChest(acd))
@@ -63,7 +63,7 @@ namespace Enigma.D3.MapHack.Markers
 					return true;
 				}
 			}
-			else if (acd.x180_GizmoType== GizmoType.Switch)
+			else if (acd.x178_GizmoType== GizmoType.Switch)
 			{
 				interested = true;
 				switch (acd.x090_ActorSnoId)
@@ -80,9 +80,9 @@ namespace Enigma.D3.MapHack.Markers
 		private static bool TryCreateWreckable(ActorCommonData acd, out IMapMarker item, ref bool interested)
 		{
 			item = null;
-			if (acd.x180_GizmoType == GizmoType.BreakableChest ||
-				acd.x180_GizmoType == GizmoType.BreakableDoor ||
-				acd.x180_GizmoType == GizmoType.DestroyableObject)
+			if (acd.x178_GizmoType == GizmoType.BreakableChest ||
+				acd.x178_GizmoType == GizmoType.BreakableDoor ||
+				acd.x178_GizmoType == GizmoType.DestroyableObject)
 			{
 				interested = true;
 				if (IsValidGizmoWreckableObject(acd))
@@ -96,14 +96,14 @@ namespace Enigma.D3.MapHack.Markers
 
 		private static bool IsValidMonster(ActorCommonData acd)
 		{
-			return acd.x188_Hitpoints > 0.00001 &&
-				(acd.x198_Flags_Is_Trail_Proxy_Etc & 1) == 0 &&
-				acd.x190_TeamId == 10;
+			return acd.x180_Hitpoints > 0.00001 &&
+				(acd.x190_Flags_Is_Trail_Proxy_Etc & 1) == 0 &&
+				acd.x188_TeamId == 10;
 		}
 
 		private static bool IsValidGizmoChest(ActorCommonData acd)
 		{
-			return (acd.x248_CollisionFlags & 0x400) == 0 &&
+			return (acd.x240_CollisionFlags & 0x400) == 0 &&
 				Attributes.ChestOpen.GetValue(acd) != 1;
 		}
 
@@ -114,7 +114,7 @@ namespace Enigma.D3.MapHack.Markers
 
 		private static bool IsValidGizmoWreckableObject(ActorCommonData acd)
 		{
-			return acd.x188_Hitpoints == 0.001f;
+			return acd.x180_Hitpoints == 0.001f;
 		}
 
 		private static bool IsValidSwitchCursedChest(ActorCommonData acd)

@@ -15,7 +15,7 @@ namespace Enigma.D3.MapHack.Markers
 
 		public override object CreateControl()
 		{
-			var brush = Acd.x180_GizmoType == Enums.GizmoType.LoreChest ?
+			var brush = Acd.x178_GizmoType == Enums.GizmoType.LoreChest ?
 				Brushes.Purple : Brushes.DarkGreen;
 
 			return ControlHelper.CreateCross(8, brush, 2)
