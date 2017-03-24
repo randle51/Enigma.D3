@@ -10,10 +10,13 @@ namespace Enigma.D3
 {
 	public partial class Storage : MemoryObject
 	{
-		public const int SizeOf = 0x1A4; // 420 // Unsure about full size
+		public const int SizeOf = 0x1AC; // 428 // Unsure about full size
 
+		// Updated for 2.5.0
 		public int x000 { get { return Read<int>(0x000); } }
 		public int x004_GameDifficulty_Handicap { get { return Read<int>(0x004); } }
+
+		// +8 bytes somewhere in here
 		public int x008 { get { return Read<int>(0x008); } }
 		public int x00C { get { return Read<int>(0x00C); } }
 		public int x010 { get { return Read<int>(0x010); } }
@@ -23,10 +26,10 @@ namespace Enigma.D3
 		public int _x020 { get { return Read<int>(0x020); } }
 		public int x024 { get { return Read<int>(0x024); } }
 		public int x028_Flags_StructStart_144Bytes { get { return Read<int>(0x028); } }
-		public int x02C_ActId_400Lobby_0InGame { get { return Read<int>(0x02C); } }
-		public int x030_GameLevel { get { return Read<int>(0x030); } }
-		public int _x034 { get { return Read<int>(0x034); } }
-		public int _x038 { get { return Read<int>(0x038); } }
+
+		// Updated for 2.5.0
+		public int x034_ActId_400Lobby_0InGame { get { return Read<int>(0x034); } }
+		public int x038_GameLevel { get { return Read<int>(0x038); } }
 		public int _x03C { get { return Read<int>(0x03C); } }
 		public int _x040 { get { return Read<int>(0x040); } }
 		public int _x044 { get { return Read<int>(0x044); } }
@@ -82,13 +85,13 @@ namespace Enigma.D3
 		public int _x10C { get { return Read<int>(0x10C); } }
 		public int _x110 { get { return Read<int>(0x110); } }
 		public int _x114 { get { return Read<int>(0x114); } }
-		public int x118_GameTick { get { return Read<int>(0x118); } }
-		public int x11C { get { return Read<int>(0x11C); } }
-		public int x120 { get { return Read<int>(0x120); } }
-		public Ptr<MarkerManager> x124_Ptr_12Bytes_Markers { get { return ReadPointer<MarkerManager>(0x124); } }
-		public Ptr<InactiveMarkerManager> x128_Ptr_368Bytes_InactiveMarkers { get { return ReadPointer<InactiveMarkerManager>(0x128); } }
-
-		// Updated for 2.5.0
+		public int _x118 { get { return Read<int>(0x118); } }
+		public int _x11C { get { return Read<int>(0x11C); } }
+		public int x120_GameTick { get { return Read<int>(0x120); } }
+		public int x124 { get { return Read<int>(0x124); } }
+		public int x128 { get { return Read<int>(0x128); } }
+		public Ptr<MarkerManager> x12C_Ptr_12Bytes_Markers { get { return ReadPointer<MarkerManager>(0x12C); } }
+		public Ptr<InactiveMarkerManager> x130_Ptr_368Bytes_InactiveMarkers { get { return ReadPointer<InactiveMarkerManager>(0x130); } }
 		public Ptr<PlayerDataManager> x134_Ptr_PlayerDataManager { get { return ReadPointer<PlayerDataManager>(0x134); } }
 		public Ptr<SceneAllocators> x138_Ptr_116Bytes_SceneAllocators { get { return ReadPointer<SceneAllocators>(0x138); } }
 		public Ptr<Map> x13C_Ptr_112Bytes_Items { get { return ReadPointer<Map>(0x13C); } }
@@ -105,21 +108,20 @@ namespace Enigma.D3
 		public Ptr<Allocator> x168_Ptr_Allocator_8x64Bytes_WorldRelated { get { return ReadPointer<Allocator>(0x168); } }
 		public Ptr<Allocator> x16C_Ptr_Allocator_1024x16Bytes_GameBalance { get { return ReadPointer<Allocator>(0x16C); } }
 		public Ptr<QuestManager> x170_Ptr_1104Bytes_Quests { get { return ReadPointer<QuestManager>(0x170); } }
-
-		public Ptr<Allocator> x16C_Ptr_Allocator_256x220Bytes_AcdAnimation { get { return ReadPointer<Allocator>(0x16C); } }
-		public int _x170 { get { return Read<int>(0x170); } }
-		public Ptr<NavCellPath> x174_Ptr_16Bytes_NavCellPath { get { return ReadPointer<NavCellPath>(0x174); } }
-		public Ptr<Allocator> x178_Ptr_Allocator_96Bytes_ActorInventory { get { return ReadPointer<Allocator>(0x178); } }
-		public Ptr<Allocator> x17C_Ptr_Allocator_16x256Bytes_VisualInventory { get { return ReadPointer<Allocator>(0x17C); } }
-		public Ptr<Allocator> x180_Ptr_Allocator_64x12Bytes_Portals { get { return ReadPointer<Allocator>(0x180); } }
-		public int x184 { get { return Read<int>(0x184); } }
-		public int x188_Ptr_320Bytes { get { return Read<int>(0x188); } }
-		public int x18C_Ptr_288Bytes { get { return Read<int>(0x18C); } }
-		public int _x190 { get { return Read<int>(0x190); } }
-		public Ptr<ActManager> x194_Ptr_56Bytes_Acts { get { return ReadPointer<ActManager>(0x194); } }
-		public int x198 { get { return Read<int>(0x198); } }
-		public int _x19C { get { return Read<int>(0x19C); } }
-		public int x1A0_GameType { get { return Read<int>(0x1A0); } }
+		public Ptr<Allocator> x174_Ptr_Allocator_256x220Bytes_AcdAnimation { get { return ReadPointer<Allocator>(0x174); } }
+		public int _x178 { get { return Read<int>(0x178); } }
+		public Ptr<NavCellPath> x17C_Ptr_16Bytes_NavCellPath { get { return ReadPointer<NavCellPath>(0x17C); } }
+		public Ptr<Allocator> x180_Ptr_Allocator_96Bytes_ActorInventory { get { return ReadPointer<Allocator>(0x180); } }
+		public Ptr<Allocator> x184_Ptr_Allocator_16x256Bytes_VisualInventory { get { return ReadPointer<Allocator>(0x184); } }
+		public Ptr<Allocator> x188_Ptr_Allocator_64x12Bytes_Portals { get { return ReadPointer<Allocator>(0x188); } }
+		public int x18C { get { return Read<int>(0x18C); } }
+		public int x190_Ptr_320Bytes { get { return Read<int>(0x190); } }
+		public int x194_Ptr_288Bytes { get { return Read<int>(0x194); } }
+		public int _x198 { get { return Read<int>(0x198); } }
+		public Ptr<ActManager> x19C_Ptr_56Bytes_Acts { get { return ReadPointer<ActManager>(0x19C); } }
+		public int x1A0 { get { return Read<int>(0x1A0); } }
+		public int _x1A4 { get { return Read<int>(0x1A4); } }
+		public int x1A8_GameType { get { return Read<int>(0x1A8); } }
 
 
 		public class X138 : MemoryObject
@@ -139,7 +141,7 @@ namespace Enigma.D3
 
 		public int GetGameTick()
 		{
-			return Instance.x118_GameTick;
+			return Instance.x120_GameTick;
 		}
 	}
 }
