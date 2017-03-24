@@ -25,31 +25,26 @@ namespace Enigma.D3
 		public int _x034 { get { return Read<int>(0x034); } }
 		public int x038_Counter_CurrentFrame { get { return Read<int>(0x038); } }
 		public int x03C { get { return Read<int>(0x03C); } }
-		public GameGlobals x040_GameGlobals { get { return Read<GameGlobals>(0x040); } }
-		public GameGlobals x3E0_GameGlobals { get { return Read<GameGlobals>(0x3E0); } }
-		public int _x780 { get { return Read<int>(0x780); } }
-		public int _x784 { get { return Read<int>(0x784); } }
-		public int x788_Bool_GameGfxRelated { get { return Read<int>(0x788); } }
 		// ...
-		public Ptr<Allocator> x7B4_Ptr_Allocator_20x256Bytes { get { return ReadPointer<Allocator>(0x7B4); } }
-		public Ptr<X790> x7B8_Ptr_292Bytes { get { return ReadPointer<X790>(0x7B8); } }
-		public int _x7BC_int { get { return Read<int>(0x7BC); } }
-		public int _x7C0 { get { return Read<int>(0x7C0); } }
-		public int _x7C4 { get { return Read<int>(0x7C4); } }
-		
 		// Updated for 2.5.0
+		public GameGlobals x068_GameGlobals { get { return Read<GameGlobals>(0x040); } }
+		public GameGlobals x400_GameGlobals { get { return Read<GameGlobals>(0x3E0); } }
+		public int _x798 { get { return Read<int>(0x798); } }
+		public int _x79C { get { return Read<int>(0x79C); } }
+		public int _x7A0 { get { return Read<int>(0x7A0); } }
+		public int _x7A4 { get { return Read<int>(0x7A4); } }
+		public Ptr<X790> x7A8_Ptr_292Bytes { get { return ReadPointer<X790>(0x7A8); } }
+		public int _x7AC_int { get { return Read<int>(0x7AC); } }
+		public int _x7B0 { get { return Read<int>(0x7B0); } }
+		public int _x7B4 { get { return Read<int>(0x7B4); } }
 		public Storage x7B0_Storage { get { return Read<Storage>(0x7B0); } }
-		// ??? No idea how large Storage is.
-
-		public int _x96C { get { return Read<int>(0x96C); } }
-		public int _x970 { get { return Read<int>(0x970); } }
-		public Ptr<Physics> x974_Ptr_908Bytes_Physics { get { return ReadPointer<Physics>(0x974); } }
-		public int _x978 { get { return Read<int>(0x978); } }
-		public Ptr<ExpandableContainer> x97C_Ptr_Lights { get { return ReadPointer<ExpandableContainer>(0x97C); } }
-		public Ptr<Container> x980_Ptr_Cutscenes { get { return ReadPointer<Container>(0x980); } }
-		public Ptr<LightManager> x984_Ptr_92Bytes_LightManager { get { return ReadPointer<LightManager>(0x984); } }
-
-		// Updated for 2.5.0
+		public int _x95C { get { return Read<int>(0x95C); } }
+		public int _x960 { get { return Read<int>(0x960); } }
+		public Ptr<Physics> x964_Ptr_908Bytes_Physics { get { return ReadPointer<Physics>(0x964); } }
+		public int _x968 { get { return Read<int>(0x968); } }
+		public Ptr<ExpandableContainer> x96C_Ptr_Lights { get { return ReadPointer<ExpandableContainer>(0x96C); } }
+		public Ptr<Container> x970_Ptr_Cutscenes { get { return ReadPointer<Container>(0x970); } }
+		public Ptr<LightManager> x974_Ptr_92Bytes_LightManager { get { return ReadPointer<LightManager>(0x974); } }
 		public Ptr<ExpandableContainer<Actor>> x978_Ptr_RActors { get { return ReadPointer<ExpandableContainer<Actor>>(0x978); } }
 		public Ptr<ActorManager> x97C_Ptr_816Bytes_ActorManager { get { return ReadPointer<ActorManager>(0x97C); } }
 		public Ptr<ClothManager> x980_Ptr_24Bytes_ClothManager { get { return ReadPointer<ClothManager>(0x980); } }

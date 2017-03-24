@@ -7,10 +7,10 @@ using System.Text;
 
 namespace Enigma.D3
 {
+	[Obsolete]
 	public partial class GameGlobals : MemoryObject
 	{
-		// 2.0.0.21962
-		public const int SizeOf = 0x3A8; // 936
+		public const int SizeOf = 0x398; // 920
 
 		public int x000 { get { return Read<int>(0x000); } }
 		public int x004_Neg1_WorldSnoId { get { return Read<int>(0x004); } }
@@ -183,8 +183,8 @@ namespace Enigma.D3
 
 	public partial class GameGlobals
 	{
-		public static GameGlobals Instance { get { return Engine.TryGet(engine => engine.ObjectManager.x040_GameGlobals); } }
+		public static GameGlobals Instance { get { return Engine.TryGet(engine => engine.ObjectManager.x068_GameGlobals); } }
 
-		public static GameGlobals BuilderInstance { get { return Engine.TryGet(engine => engine.ObjectManager.x3E0_GameGlobals); } }
+		public static GameGlobals BuilderInstance { get { return Engine.TryGet(engine => engine.ObjectManager.x400_GameGlobals); } }
 	}
 }
