@@ -83,6 +83,11 @@ namespace Enigma.D3.MemoryModel
 	{
 		public DataSegmentSymbols(Platform platform)
 		{
+			SNOGroups = 0;
+			SNOGroupsByCode = 0;
+			ObjectManagerPristine = 0;
+			ContainerManager = 0;
+			MessageDescriptor = 0;
 			if (platform == Platform.X86)
 			{
 				Address = 0x0199B000;
@@ -149,6 +154,12 @@ namespace Enigma.D3.MemoryModel
 		public ulong AttributeDescriptors;
 		public int AttributeDescriptorsCount;
 		public ulong MemoryManager;
+
+		public ulong SNOGroups;
+		public ulong SNOGroupsByCode;
+		public ulong ObjectManagerPristine;
+		public ulong ContainerManager;
+		public ulong MessageDescriptor;
 	}
 
 	public struct ObjectManagerSymbols
@@ -416,6 +427,8 @@ namespace Enigma.D3.MemoryModel
 	{
 		public PlayerDataSymbols(Platform platform)
 		{
+			HeroName = 0;
+			LifePercentage = 0;
 			if (platform == Platform.X86)
 			{
 				SizeOf = 0xB370;
@@ -437,6 +450,8 @@ namespace Enigma.D3.MemoryModel
 		public int Index;
 		public int ACDID;
 		public int ActorID;
+		public int HeroName;
+		public int LifePercentage;
 	}
 
 	public struct SceneSymbols
