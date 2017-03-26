@@ -575,7 +575,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> DyeType = new SimpleAttribute<int>(AttributeId.DyeType, 0);
 		public static Attribute<int> Loot20Drop = new SimpleAttribute<int>(AttributeId.Loot20Drop, 0);
 		public static Attribute<int> Post212Drop = new SimpleAttribute<int>(AttributeId.Post212Drop, 0);
-		public static Attribute<int> Post212Drop = new SimpleAttribute<int>(AttributeId.Post212Drop_Flag8, 0);
+		public static Attribute<int> Post212Drop_Flag8 = new SimpleAttribute<int>(AttributeId.Post212Drop_Flag8, 0);
 		public static Attribute<int> Post250Drop = new SimpleAttribute<int>(AttributeId.Post250Drop, 0);
 		public static Attribute<int> AncientRank = new SimpleAttribute<int>(AttributeId.AncientRank, 0);
 		public static Attribute<int> Unidentified = new SimpleAttribute<int>(AttributeId.Unidentified, 0);
