@@ -53,9 +53,6 @@
     <Compile Include="Assets\TypeSystem\ValueTypeDescriptorExtensions.cs" />
     <Compile Include="Core\Generator.cs" />
     <Compile Include="Memory\Generator.cs" />
-    <Compile Include="Memory\PatternScanning\PatternProvider.cs" />
-    <Compile Include="Memory\PatternScanning\SymbolLocator.cs" />
-    <Compile Include="Memory\PatternScanning\SymbolMap.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedProject.cs" />
@@ -68,6 +65,10 @@
     <ProjectReference Include="..\Enigma.D3.Core\Enigma.D3.Core.csproj">
       <Project>{E01F9C34-F404-48DC-92E2-991DA7ADF9EB}</Project>
       <Name>Enigma.D3.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enigma.D3.MemoryModel\Enigma.D3.MemoryModel.csproj">
+      <Project>{92E7130D-9363-458C-ABE5-A71F240A9B78}</Project>
+      <Name>Enigma.D3.MemoryModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enigma.D3.Memory\Enigma.D3.Memory.csproj">
       <Project>{23848103-7DC0-4AB0-958F-B8793FFD1F2D}</Project>

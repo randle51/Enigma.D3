@@ -1,10 +1,10 @@
-﻿using Enigma.D3.CodeGen.Memory.PatternScanning;
+﻿using Enigma.D3.MemoryModel;
 using Enigma.Memory;
 using Enigma.Memory.Analytics.Patterns;
+using Enigma.Memory.Analytics.PE;
 using Enigma.Memory.PE;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -14,73 +14,47 @@ namespace Enigma.D3.CodeGen.Memory
 {
 	internal static class Generator
 	{
-		private static PEHeaderReader PE;
+		private static CodePatternContext _ctx;
+		private static SymbolTable _symbols;
+		private static MethodTable _methods = new MethodTable();
 
-		internal static void Run()
+		private class MethodTable
 		{
-			var exe = Program.GetExeFile();
-			var data = File.ReadAllBytes(exe.FullName);
-			var mem = new BufferMemoryReader(data);
-			var version = FileVersionInfo.GetVersionInfo(exe.FullName).FileVersion;
+			public uint Allocate;
+		}
 
-			PE = new PEHeaderReader(data);
+		public static void Run()
+		{
+			var path = Environment.ExpandEnvironmentVariables(@"%TEMP%\Diablo III.DMP");
+			var dump = new MiniDumpMemoryReader(path);
+			var pe = new PEHeaderReader(dump.ReadBytes(dump.ImageBase, 1024));
+			_ctx = new CodePatternContext(dump, pe);
 
-			var symbols = SymbolLocator.FindAll(data, mem);
-			uint containerManager;
+			_symbols = new SymbolTable();
+			_symbols.Version = dump.MainModuleVersion;
+			_symbols.DataSegment.Address = _ctx.Data.Start;
 
-			var dir = new DirectoryInfo("enigma-d3-memory-" + new Version(version.Replace(", ", ".")));
+			FindObjectManager();
+			FindActors();
+			FindACDs();
+			FindSNOs();
+			FindAttributeDescriptors();
+			FindApplicationCore();
+			FindLevelArea();
+			FindPreferences();
+			FindMapActId();
+			FindContainerManager();
+			FindMessageDescriptors();
+			FindPlayerData();
+
+			var dir = new DirectoryInfo("enigma-d3-memory-" + new Version(_symbols.Version.ToString()));
 			dir.Create();
-
-			var objPtrs = new Dictionary<string, uint>();
-			objPtrs.Add("SNOGroups", symbols.BestMatch("SnoGroups"));
-			objPtrs.Add("SNOGroupsByCode", symbols.BestMatch("SnoGroupsByCode"));
-			if (symbols.Matches("AttributeDescriptors").Count() > 1)
-				objPtrs.Add("AttributeDescriptors", symbols.Matches("AttributeDescriptors").OrderBy(x => Math.Abs(x - (long)symbols.BestMatch("AttributeDescriptors.FirstName"))).First());
-			else objPtrs.Add("AttributeDescriptors", symbols.BestMatch("AttributeDescriptors"));
-			objPtrs.Add("MessageDescriptor", symbols.BestMatch("MessageDescriptor"));
-			objPtrs.Add("LocalData", symbols.BestMatch("LocalData"));
-			objPtrs.Add("ContainerManager", containerManager = symbols.BestMatch("ContainerManager"));
-			objPtrs.Add("ApplicationLoopCount", symbols.BestMatch("ApplicationLoopCount"));
-			objPtrs.Add("ObjectManager", symbols.BestMatch("ObjectManager"));
-			objPtrs.Add("ObjectManagerPristine", symbols.BestMatch("ObjectManagerPristine"));
-			objPtrs.Add("MapActId", symbols.BestMatch("MapActId"));
-			objPtrs.Add("VideoPreferences", symbols.BestMatch("VideoPreferences"));
-			objPtrs.Add("SoundPreferences", symbols.BestMatch("SoundPreferences"));
-			objPtrs.Add("GameplayPreferences", symbols.BestMatch("GameplayPreferences"));
-			objPtrs.Add("SocialPreferences", symbols.BestMatch("SocialPreferences"));
-			objPtrs.Add("ChatPreferences", symbols.BestMatch("ChatPreferences"));
-			objPtrs.Add("HotkeyPreferences", objPtrs["SoundPreferences"] == 0 ? 0 : objPtrs["SoundPreferences"] + 0x50);
-			objPtrs.Add("LevelArea", GetStatic_LevelArea(data, symbols));
-			objPtrs.Add("LevelAreaName", GetStatic_LevelAreaName(data, symbols));
-			WriteObjectPtrFile(Path.Combine(dir.FullName, "ObjectPtr.cs"), objPtrs);
-
-			var methodPtrs = new Dictionary<string, uint>();
-			methodPtrs.Add("SNOGroups_Initialize", TranslateToVA(symbols.BestMatch("CSnoGroups::Initialize")));
-			methodPtrs.Add("GameMessage_GetHandlerInfo", TranslateToVA(symbols.BestMatch("CGameMessage::GetHandlerInfo")));
-			WriteMethodPtrFile(Path.Combine(dir.FullName, "MethodPtr.cs"), methodPtrs);
-
-			var globals = new Dictionary<string, string>();
-			globals.Add("static readonly Version SupportedVersion", $"new Version({version})");
-			globals.Add("const int SNOGroupsCount", "60"); // TODO: Don't hardcode.
-			globals.Add("const int AttributeDescriptorsCount", GetAttributeDescriptorsCount(symbols).ToString());
-			var sizeof_playerdata = symbols.BestMatch("sizeof(PlayerData)");// ((symbols.BestMatch("sizeof(PlayerDataManager)") - 0x038) / 8);
-			globals.Add("const int SizeOf_PlayerData", sizeof_playerdata.ToHex());
-			if (Engine.Current?.ProcessVersion == Engine.SupportedVersion)
-			{
-				globals.Add("const int Offset_PlayerData_HeroName", GetOffset_PlayerData_HeroName(sizeof_playerdata).ToHex());
-				globals.Add("const int Offset_PlayerData_LifePercentage", GetOffset_PlayerData_LifePercentage(sizeof_playerdata).ToHex());
-			}
-			else
-			{
-				globals.Add("const int Offset_PlayerData_HeroName", "0; // Run [CodeGen -memory -deploy] again");
-				globals.Add("const int Offset_PlayerData_LifePercentage", "0; // Run [CodeGen -memory -deploy] again");
-			}
-			// TODO: globals.Add("const int SizeOf_LevelArea", symbols.BestMatch("sizeof(LevelArea)").ToHex());
-			WriteGlobalsFile(Path.Combine(dir.FullName, "Globals.cs"), globals);
+			WriteObjectPtrFile(dir);
+			WriteGlobalsFile(dir);
 
 			var project = new SharedProject("862a67ee-9ceb-42fe-9406-d7feafc55b00", "Enigma.D3.Memory");
 			project.AddCompileFile(Path.Combine(dir.FullName, "Globals.cs"));
-			project.AddCompileFile(Path.Combine(dir.FullName, "MethodPtr.cs"));
+			//project.AddCompileFile(Path.Combine(dir.FullName, "MethodPtr.cs"));
 			project.AddCompileFile(Path.Combine(dir.FullName, "ObjectPtr.cs"));
 			project.Save(Path.Combine(dir.FullName, "Enigma.D3.Memory.Generated.*"));
 
@@ -92,188 +66,366 @@ namespace Enigma.D3.CodeGen.Memory
 			}
 		}
 
-		private static uint GetStatic_LevelArea(byte[] data, SymbolMap symbols)
+		private static void WriteObjectPtrFile(DirectoryInfo dir)
 		{
-			const string key = "LevelArea";
-
-			var match = symbols.BestMatch(key);
-			if (match != 0)
-				return match;
-
-			if (Engine.Current == null)
-				return 0;
-
-			try
+			var content = GenerateObjectPtrContent(new
 			{
-				var pe = new PEHeaderReader(data);
-				var rdata = pe.ImageSectionHeaders.FirstOrDefault(h => h.Section.TrimEnd('\0') == ".rdata");
-				var text = pe.ImageSectionHeaders.FirstOrDefault(h => h.Section.TrimEnd('\0') == ".text");
-
-				uint offset = rdata.VirtualAddress - rdata.PointerToRawData + pe.OptionalHeader32.ImageBase;
-
-				var pName = (uint)(offset + new BinaryPattern(Encoding.ASCII.GetBytes("UIMinimapToggle")).NextMatch(data, (int)rdata.PointerToRawData, (int)rdata.SizeOfRawData));
-
-				var pMethod = BitConverter.ToUInt32(data, BinaryPattern.Parse(
-					$"68{pName.ToPattern()}" +
-					"A3........" +
-					"C705................" +
-					"C705................" +
-					"E8........" +
-					"68........" +
-					"A3........" +
-					"C705........|........|").NextMatch(data, (int)text.PointerToRawData, (int)text.SizeOfRawData) + 51);
-
-				if (Engine.Current.Memory.Reader.Read<byte>(pMethod + 0x00) == 0x8B &&
-					Engine.Current.Memory.Reader.Read<byte>(pMethod + 0x01) == 0x0D)
-				{
-					var address = Engine.Current.Memory.Reader.Read<uint>(pMethod + 0x02);
-					symbols.Override(key, address);
-					return address;
-				}
-			}
-			catch { }
-
-			return 0;
+				VideoPreferences = _symbols.DataSegment.VideoPreferences,
+				SoundPreferences = _symbols.DataSegment.SoundPreferences,
+				HotkeyPreferences = _symbols.DataSegment.HotkeyPreferences,
+				GameplayPreferences = _symbols.DataSegment.GameplayPreferences,
+				SocialPreferences = _symbols.DataSegment.SocialPreferences,
+				ChatPreferences = _symbols.DataSegment.ChatPreferences,
+				LevelArea = _symbols.DataSegment.LevelArea,
+				LevelAreaName = _symbols.DataSegment.LevelAreaName,
+				MapActId = _symbols.DataSegment.MapActID,
+				SNOGroupsByCode = _symbols.DataSegment.SNOGroupsByCode,
+				SNOGroups = _symbols.DataSegment.SNOGroups,
+				ObjectManager = _symbols.DataSegment.ObjectManager,
+				ObjectManagerPristine = _symbols.DataSegment.ObjectManagerPristine,
+				ApplicationLoopCount = _symbols.DataSegment.ApplicationLoopCount,
+				LocalData = _symbols.DataSegment.LocalData,
+				AttributeDescriptors = _symbols.DataSegment.AttributeDescriptors,
+				ContainerManager = _symbols.DataSegment.ContainerManager,
+				MessageDescriptor = _symbols.DataSegment.MessageDescriptor,
+			});
+			File.WriteAllText(Path.Combine(dir.FullName, "ObjectPtr.cs"), content);
 		}
 
-		private static uint GetStatic_LevelAreaName(byte[] data, SymbolMap symbols)
+		private static void WriteGlobalsFile(DirectoryInfo dir)
 		{
-			const string key = "LevelAreaName";
+			var globals = Template(
+@"using System;
 
-			var match = symbols.BestMatch(key);
-			if (match != 0)
-				return match;
-
-			var levelarea = symbols.BestMatch("LevelArea");
-			if (levelarea != 0)
-				return levelarea + 0x30;
-
-			return 0;
+namespace Enigma.D3.Memory
+{
+	public static class Globals
+	{
+		public static readonly Version SupportedVersion = new Version({version});
+		public const int SNOGroupsCount = {sno_group_count};
+		public const int AttributeDescriptorsCount = {attribute_count};
+		public const int SizeOf_PlayerData = {sizeof_playerdata};
+		public const int Offset_PlayerData_HeroName = {offset_playerdata_heroname};
+		public const int Offset_PlayerData_LifePercentage = {offset_playerdata_lifepercentage};
+	}
+}", new
+{
+	version = _symbols.Version.ToString().Replace(".", ", "),
+	sno_group_count = 60,
+	attribute_count = _symbols.DataSegment.AttributeDescriptorsCount,
+	sizeof_playerdata = "0x" + _symbols.PlayerData.SizeOf.ToString("X"),
+	offset_playerdata_heroname = "0x" + _symbols.PlayerData.HeroName.ToString("X"),
+	offset_playerdata_lifepercentage = "0x" + _symbols.PlayerData.LifePercentage.ToString("X")
+});
+			File.WriteAllText(Path.Combine(dir.FullName, "Globals.cs"), globals);
 		}
 
-		private static uint GetOffset_PlayerData_LifePercentage(uint sizeof_playerdata)
+		private static string Template(string format, object data)
 		{
-			if (sizeof_playerdata == 0 || Engine.Current == null)
-				return 0;
-
-			try
+			var result = format;
+			foreach (var prop in data.GetType().GetProperties())
 			{
-				var actor = Actor.Local;
-				var player = PlayerData.Local;
-				var data = PlayerData.Local.GetPointer().Cast<byte>().ToArray((int)sizeof_playerdata);
-
-				var signature = BitConverter.GetBytes(actor.x08C_ActorSnoId);
-				var pattern = new BinaryPattern(signature);
-				var match = pattern.NextMatch(data, 0);
-				return (uint)match + 4;
+				result = result.Replace("{" + prop.Name + "}", prop.GetValue(data).ToString());
 			}
-			catch
-			{
-				return 0;
-			}
+			return result;
 		}
 
-		private static uint GetOffset_PlayerData_HeroName(uint sizeof_playerdata)
-		{
-			if (sizeof_playerdata == 0 || Engine.Current == null)
-				return 0;
-
-			try
-			{
-				var data = PlayerData.Local.GetPointer().Cast<byte>().ToArray((int)sizeof_playerdata);
-				var pattern = new BinaryPattern(Encoding.ASCII.GetBytes("Default"));
-
-				var match = pattern.NextMatch(data, 0);
-				return (uint)(match - 49);
-			}
-			catch
-			{
-				return 0;
-			}
-		}
-
-		private static int TranslateToIndex(uint va)
-		{
-			var rva = va - PE.OptionalHeader32.ImageBase;
-			var section = PE.ImageSectionHeaders.First(a => rva >= a.VirtualAddress && rva <= a.VirtualAddress + a.VirtualSize);
-			return (int)(section.PointerToRawData + rva - section.VirtualAddress);
-		}
-
-		private static uint TranslateToVA(uint index)
-		{
-			if (index == 0)
-				return 0;
-
-			var section = PE.ImageSectionHeaders.First(a => index >= a.PointerToRawData && index <= a.PointerToRawData + a.SizeOfRawData);
-			var rva = index - section.PointerToRawData;
-			var va = section.VirtualAddress + rva;
-			return PE.OptionalHeader32.ImageBase + va;
-		}
-
-		private static int GetAttributeDescriptorsCount(SymbolMap symbols)
-		{
-			const int SizeOfAttributeDescriptor = 40;
-			var maxPlus1 = symbols.BestMatch("AttributeDescriptors.MaxName++");
-			var first = symbols.BestMatch("AttributeDescriptors.FirstName");
-			if (first == 0 || maxPlus1 == 0)
-				return 0;
-			return (int)(maxPlus1 - first) / SizeOfAttributeDescriptor;
-		}
-
-		private static void WriteObjectPtrFile(string path, Dictionary<string, uint> objPtrs)
+		private static string GenerateObjectPtrContent(object obj)
 		{
 			var sb = new StringBuilder();
 			sb.AppendLine("namespace Enigma.D3.Memory");
 			sb.AppendLine("{");
-			sb.AppendLine("\tpublic static class ObjectPtr");
-			sb.AppendLine("\t{");
-			foreach (var pair in objPtrs.OrderBy(a => a.Value))
+			sb.AppendLine("    public static class ObjectPtr");
+			sb.AppendLine("    {");
+			foreach (var property in obj.GetType().GetProperties())
 			{
-				if (pair.Value == 0)
-					sb.AppendLine($"\t\t#warning Could not find {pair.Key} :(" + (Engine.Current == null ? " Running generator again with a minidump present might help" : ""));
-				sb.AppendLine($"\t\tpublic const int {pair.Key} = 0x{pair.Value:X8};");
+				sb.AppendLine($"        public const int {property.Name} = 0x{Convert.ToInt64(property.GetValue(obj)):X8};");
 			}
-			sb.AppendLine("\t}");
+			sb.AppendLine("    }");
 			sb.AppendLine("}");
-			File.WriteAllText(path, sb.ToString());
+			return sb.ToString();
 		}
 
-		private static void WriteMethodPtrFile(string path, Dictionary<string, uint> methodPtrs)
+		private static void FindObjectManager()
 		{
-			var sb = new StringBuilder();
-			sb.AppendLine("namespace Enigma.D3.Memory");
-			sb.AppendLine("{");
-			sb.AppendLine("\tpublic static class MethodPtr");
-			sb.AppendLine("\t{");
-			foreach (var pair in methodPtrs)
+			foreach (var match in TextSegmentMatches("6A01|6A00|6A04|68{sizeof}........|E8{allocate}........|50|A3{pristine}........|E8{init}........|A1{pristine2}........|83C414|A3{mgr}........|C3"))
 			{
-				if (pair.Value == 0)
-					sb.AppendLine($"\t\t#warning Could not find {pair.Key} :(");
-				sb.AppendLine($"\t\tpublic const int {pair.Key} = 0x{pair.Value:X8};");
+				if (match.Read<int>(_ctx.Dump, "pristine") !=
+					match.Read<int>(_ctx.Dump, "pristine2"))
+					continue;
+
+				var mgr = match.Read<uint>(_ctx.Dump, "mgr");
+				if (_ctx.Data.Contains(mgr) == false)
+					continue;
+
+				_methods.Allocate = match.DecodeDisp32(_ctx.Dump, "allocate");
+				_symbols.DataSegment.ObjectManager = mgr;
+				_symbols.DataSegment.ObjectManagerPristine = match.Read<uint>(_ctx.Dump, "pristine");
+				_symbols.ObjectManager.SizeOf = match.Read<int>(_ctx.Dump, "sizeof");
+
+				var init = match.DecodeDisp32(_ctx.Dump, "init");
+				_symbols.ObjectManager.Storage = _ctx.FirstMatchInTextSegment<int>(
+					init, 512, "8D8F{storage}........", "storage");
+
+				return;
 			}
-			sb.AppendLine("\t}");
-			sb.AppendLine("}");
-			File.WriteAllText(path, sb.ToString());
 		}
 
-		private static void WriteGlobalsFile(string path, Dictionary<string, string> globals)
+		private static void FindActors()
 		{
-			var sb = new StringBuilder();
-			sb.AppendLine("using System;");
-			sb.AppendLine();
-			sb.AppendLine("namespace Enigma.D3.Memory");
-			sb.AppendLine("{");
-			sb.AppendLine("\tpublic static class Globals");
-			sb.AppendLine("\t{");
-			foreach (var pair in globals)
-				sb.AppendLine($"\t\tpublic {pair.Key} = {pair.Value};");
-			sb.AppendLine("\t}");
-			sb.AppendLine("}");
-			File.WriteAllText(path, sb.ToString());
+			var ctor = GetSystemConstructor("RActors");
+
+			var actor_mgr_size = _ctx.FirstMatchInTextSegment<int>(ctor, 512, "68{size}....0000", "size");
+			var offsets = TextSegmentMatches("8986{offset}....0000", ctor, 2048)
+				.Select(x => x.Read<int>(_ctx.Dump, "offset")).ToArray();
+			var actor_mgr_offset = offsets[0];
+
+			_symbols.ObjectManager.Actors = offsets[1];
 		}
 
-		private static string ToHex(this uint value) => "0x" + value.ToString("X");
+		private static void FindACDs()
+		{
+			var ctor = GetSystemConstructor("ACD");
+			var init = FirstTextSegmentMatch("E8{init}........", ctor, 64)
+				.DecodeDisp32(_ctx.Dump, "init");
 
-		private static string ToPattern(this uint value) => string.Concat(BitConverter.GetBytes(value).Select(b => b.ToString("X2")));
+			_symbols.ACDManager.SizeOf = FirstTextSegmentMatch<int>("68{size}........|E8",
+				init, 512, "size");
+
+			_symbols.ObjectManager.ACDManager = FirstTextSegmentMatch<int>("8986{offset}........",
+				init, 512, "offset");
+		}
+
+		private static void FindSNOs()
+		{
+			var init = FirstTextSegmentMatch(
+				"56|57|6A00|6A00|6A04|68F4000000|E8........|6818010000|68........|A3......")
+				.Position;
+
+			_symbols.DataSegment.SNOGroups = FirstTextSegmentMatch<uint>(
+				"A3{groups}........|E8........", init, 512, "groups");
+			_symbols.DataSegment.SNOGroupsByCode = FirstTextSegmentMatch<uint>(
+				"890C85{bycode}........", init, 512, "bycode");
+		}
+
+		private static void FindAttributeDescriptors()
+		{
+			var pText = FindString("StringToAttrib:");
+			var xref = FirstTextSegmentMatch("68" + PatternFormat(pText)).Position;
+
+			_symbols.DataSegment.AttributeDescriptors = FirstTextSegmentMatch<uint>(
+				"8B04C5{descriptors}........", xref, 512, "descriptors");
+
+			var first = _symbols.DataSegment.AttributeDescriptors + 0x1C;
+			var limit = FirstTextSegmentMatch<uint>("81FE{limit}........", xref - 64, 64, "limit");
+			var sizeof_descriptor = 40;
+			_symbols.DataSegment.AttributeDescriptorsCount = (int)(limit - first) / sizeof_descriptor;
+		}
+
+		private static void FindApplicationCore()
+		{
+			var aCommandLine = FindString("CommandLine\0");
+
+			var xref = FirstTextSegmentMatch("68" + PatternFormat(aCommandLine)).Position;
+
+			var app_do = FirstTextSegmentMatch("83E802|74..|E8........|E8{do}........")
+				.DecodeDisp32(_ctx.Dump, "do");
+
+			_symbols.DataSegment.LocalData = FirstTextSegmentMatch<uint>(
+				"68{localdata}........|E8{localdata_update}........", app_do, 512, "localdata");
+
+			_symbols.DataSegment.ApplicationLoopCount =
+				_ctx.FirstMatchInTextSegment<uint>(
+					app_do, 512, "40|A3{count}........", "count");
+		}
+
+		private static void FindLevelArea()
+		{
+			var xref = FirstTextSegmentMatch(
+				"68" + PatternFormat(FindString("GameDifficultyChanged")))
+				.Position;
+
+			_symbols.DataSegment.LevelArea = FirstTextSegmentMatch<uint>(
+				"A1{levelarea}........|FF", xref, 512, "levelarea");
+
+			_symbols.DataSegment.LevelAreaName = FirstTextSegmentMatch<uint>(
+				"68{name}........|E8........|85C0", xref - 512, 512, "name");
+		}
+
+		private static void FindPreferences()
+		{
+			var m = FirstTextSegmentMatch("55|8BEC|56|8B7508|6A06|68........|68........|56|E8........|83C410|85C0|0F84");
+			var groups = TextSegmentMatches("6A{count}..|68{descriptors}........|68{values}........|56", m.Position, 512).ToArray();
+
+			_symbols.DataSegment.VideoPreferences = groups[1].Read<uint>(_ctx.Dump, "values");
+			_symbols.DataSegment.SoundPreferences = groups[2].Read<uint>(_ctx.Dump, "values");
+			_symbols.DataSegment.GameplayPreferences = groups[3].Read<uint>(_ctx.Dump, "values");
+			_symbols.DataSegment.HotkeyPreferences = groups[7].Read<uint>(_ctx.Dump, "values");
+			_symbols.DataSegment.SocialPreferences = groups[5].Read<uint>(_ctx.Dump, "values");
+			_symbols.DataSegment.ChatPreferences = groups[6].Read<uint>(_ctx.Dump, "values");
+		}
+
+		private static void FindMapActId()
+		{
+			var a = FindString("WaypointMap:WorldMapInstructions");
+			_symbols.DataSegment.MapActID = FirstTextSegmentMatch<uint>(
+				"C705{map_act_id}........|FFFFFFFF|68" + PatternFormat(a), "map_act_id");
+		}
+
+		private static void FindContainerManager()
+		{
+			var init = FirstTextSegmentMatch(
+				"68" + PatternFormat(FindString("RActors")) + "|E8{init}........")
+				.DecodeDisp32(_ctx.Dump, "init");
+
+			_symbols.DataSegment.ContainerManager = FirstTextSegmentMatch<uint>(
+				"8B1D{mgr}........", init, 512, "mgr");
+		}
+
+		private static void FindMessageDescriptors()
+		{
+			var a = FindString("GameSetupMessage");
+			var b = FirstDataSegmentMatch(PatternFormat(a)).Position;
+			var vt = b - 4;
+			var c = FirstTextSegmentMatch(PatternFormat(vt)).Position;
+
+			_symbols.DataSegment.MessageDescriptor = FirstTextSegmentMatch<uint>(
+				"C705{descriptor}........" + PatternFormat(vt), c, 512, "descriptor");
+		}
+
+		private static void FindPlayerData()
+		{
+			var a = FirstTextSegmentMatch(
+				"68" + PatternFormat(FindString("CGameGlobalsInit()\n\0")));
+
+			var m1 = FirstTextSegmentMatch(
+				"8D89........|E8{method}........", a.Position, 512)
+				.DecodeDisp32(_ctx.Dump, "method");
+
+			var m2 = FirstTextSegmentMatch(
+				"E8{method}........|83", m1, 512)
+				.DecodeDisp32(_ctx.Dump, "method");
+
+			_symbols.PlayerDataManager.SizeOf = FirstTextSegmentMatch<int>(
+				"68{size}........|E8{allocate}........", m2, 512, "size");
+
+			_symbols.ObjectManager.PlayerDataManager = _symbols.ObjectManager.Storage + FirstTextSegmentMatch<int>(
+				"8987{offset}........", m2, 512, "offset");
+
+			var sum = FirstTextSegmentMatch<uint>("81FB{sum}........", m2, 512, "sum");
+			_symbols.PlayerDataManager.Items = _symbols.PlayerDataManager.SizeOf - (int)sum;
+			_symbols.PlayerData.SizeOf = (int)sum / 8;
+
+			var m3 = FirstTextSegmentMatch("E8{method}........|8B4D08", m2, 512)
+				.DecodeDisp32(_ctx.Dump, "method");
+
+			var aDefault = FindString("Default\0");
+
+			var offset = FirstTextSegmentMatch<int>(
+				"A1" + PatternFormat(aDefault) + "|8987{offset}........",
+				m3, 512, "offset");
+			_symbols.PlayerData.HeroName = offset - 49;
+
+
+			_symbols.LocalData = new LocalDataSymbols(Platform.X86);
+			var memory = new MemoryContext(_ctx.Dump.Memory);
+			SymbolTable.Current = _symbols;
+			var p = memory.DataSegment.ObjectManager.PlayerDataManager[0];
+			var buffer = p.GetPointer().Cast<byte>().ToArray(_symbols.PlayerData.SizeOf);
+			var actorSNO = memory.DataSegment.LocalData.PlayerActorSNO;
+			var idx = new BinaryPattern(BitConverter.GetBytes(actorSNO)).NextMatch(buffer, 0);
+			_symbols.PlayerData.LifePercentage = idx + 4;
+		}
+
+
+
+		private static IEnumerable<CodePatternMatch> TextSegmentMatches(string pattern)
+		{
+			return CodePattern.Parse(pattern)
+				.Matches(_ctx.Text.Start, _ctx.TextBuffer);
+		}
+
+		private static IEnumerable<CodePatternMatch> TextSegmentMatches(string pattern, MemoryAddress start, int count)
+		{
+			return CodePattern.Parse(pattern)
+				.Matches(_ctx.Text.Start, _ctx.TextBuffer, start, count);
+		}
+
+		private static CodePatternMatch FirstTextSegmentMatch(string pattern)
+		{
+			return CodePattern.Parse(pattern)
+				.Matches(_ctx.Text.Start, _ctx.TextBuffer)
+				.First();
+		}
+
+		private static CodePatternMatch FirstTextSegmentMatch(string pattern, MemoryAddress start, int count)
+		{
+			return CodePattern.Parse(pattern)
+				.Matches(_ctx.Text.Start, _ctx.TextBuffer, start, count)
+				.First();
+		}
+
+		private static T FirstTextSegmentMatch<T>(string pattern, string label)
+		{
+			return CodePattern.Parse(pattern)
+				.Matches(_ctx.Text.Start, _ctx.TextBuffer)
+				.First()
+				.Read<T>(_ctx.Dump, label);
+		}
+
+		private static T FirstTextSegmentMatch<T>(string pattern, MemoryAddress start, int count, string label)
+		{
+			return CodePattern.Parse(pattern)
+				.Matches(_ctx.Text.Start, _ctx.TextBuffer, start, count)
+				.First()
+				.Read<T>(_ctx.Dump, label);
+		}
+
+		private static MemoryAddress GetSystemConstructor(string name)
+		{
+			var pName = new BinaryPattern(Encoding.ASCII.GetBytes("\0" + name + "\0"))
+				.NextMatch(_ctx.ResourcesBuffer, 0) + _ctx.Resources.Start + 1;
+
+			var cls = new BinaryPattern(BitConverter.GetBytes((uint)pName))
+				.NextMatch(_ctx.DataBuffer, 0) + _ctx.Data.Start;
+			var ctor = _ctx.Dump.Read<Ptr>(cls + 0x04);
+			var dtor = _ctx.Dump.Read<Ptr>(cls + 0x08);
+
+			return ctor.ValueAddress;
+		}
+
+		private static MemoryAddress GetSystemDestructor(string name)
+		{
+			var pName = new BinaryPattern(Encoding.ASCII.GetBytes("\0" + name + "\0"))
+				.NextMatch(_ctx.ResourcesBuffer, 0) + _ctx.Resources.Start + 1;
+
+			var cls = new BinaryPattern(BitConverter.GetBytes((uint)pName))
+				.NextMatch(_ctx.DataBuffer, 0) + _ctx.Data.Start;
+			var ctor = _ctx.Dump.Read<Ptr>(cls + 0x04);
+			var dtor = _ctx.Dump.Read<Ptr>(cls + 0x08);
+
+			return dtor.ValueAddress;
+		}
+
+		private static MemoryAddress FindString(string value)
+		{
+			var pText = new BinaryPattern(Encoding.ASCII.GetBytes(value))
+				.NextMatch(_ctx.ResourcesBuffer, 0) + _ctx.Resources.Start;
+			return pText;
+		}
+
+		private static string PatternFormat(int value)
+		{
+			return string.Concat(
+				BitConverter.GetBytes(value)
+				.Select(x => x.ToString("X2")));
+		}
+
+		private static CodePatternMatch FirstDataSegmentMatch(string pattern)
+		{
+			return CodePattern.Parse(pattern)
+				.Matches(_ctx.Data.Start, _ctx.DataBuffer)
+				.First();
+		}
 	}
 }
