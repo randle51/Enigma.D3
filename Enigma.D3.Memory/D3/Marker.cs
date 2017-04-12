@@ -31,8 +31,8 @@ namespace Enigma.D3
 
 	public partial class Marker
 	{
-		public static Map<int, Marker> NonQuestMarkers { get { return LevelArea.Instance.IfNotNull(a => a.x004_PtrEtcMarkersMap).IfNotNull(a => a.Dereference()); } }
+		public static Map<int, Marker> NonQuestMarkers { get { return LevelArea.Instance?.x004_PtrEtcMarkersMap?.Dereference(); } }
 
-		public static Map<int, Marker> QuestMarkers { get { return LevelArea.Instance.IfNotNull(a => a.x008_PtrQuestMarkersMap).IfNotNull(a => a.Dereference()); } }
+		public static Map<int, Marker> QuestMarkers { get { return LevelArea.Instance?.x008_PtrQuestMarkersMap?.Dereference(); } }
 	}
 }

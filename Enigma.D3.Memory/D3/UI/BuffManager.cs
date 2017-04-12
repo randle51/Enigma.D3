@@ -29,12 +29,12 @@ namespace Enigma.D3.UI
 
 		public static bool IsBuffActive(int powerSnoId)
 		{
-			return Instance.IfNotNull(a => a.x1C_Buffs.Any(buff => buff.x000_PowerSnoId == powerSnoId));
+			return Instance?.x1C_Buffs.Any(buff => buff.x000_PowerSnoId == powerSnoId) ?? false;
 		}
 
 		public static bool IsDebuffActive(int powerSnoId)
 		{
-			return Instance.IfNotNull(a => a.x30_Debuffs.Any(debuff => debuff.x000_PowerSnoId == powerSnoId));
+			return Instance?.x30_Debuffs.Any(debuff => debuff.x000_PowerSnoId == powerSnoId) ?? false;
 		}
 	}
 }

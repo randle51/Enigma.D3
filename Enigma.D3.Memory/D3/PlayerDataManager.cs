@@ -20,6 +20,6 @@ namespace Enigma.D3
 
 	public partial class PlayerDataManager
 	{
-		public static PlayerDataManager Instance { get { return Storage.Instance.IfNotNull(a => a.x134_Ptr_PlayerDataManager.Dereference()); } }
+		public static PlayerDataManager Instance { get { return Storage.Instance?.x134_Ptr_PlayerDataManager.Dereference(); } }
 	}
 }

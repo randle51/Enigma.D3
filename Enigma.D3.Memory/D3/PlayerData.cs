@@ -1773,7 +1773,7 @@ namespace Enigma.D3
 			if (index < 0 || index >= 8)
 				throw new ArgumentOutOfRangeException();
 
-			return PlayerDataManager.Instance.IfNotNull(a => a.x0038_Items[index]);
+			return PlayerDataManager.Instance?.x0038_Items[index];
 		}
 
 		[Obsolete]

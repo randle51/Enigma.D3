@@ -618,7 +618,7 @@ namespace Enigma.D3
 
 		public static FastAttribGroup Get(int groupId)
 		{
-			return FastAttrib.Instance.IfNotNull(fastAttrib => fastAttrib.x54_Groups[(short)groupId]);
+			return FastAttrib.Instance?.x54_Groups[(short)groupId];
 		}
 	}
 }

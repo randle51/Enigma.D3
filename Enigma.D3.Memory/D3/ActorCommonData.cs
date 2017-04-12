@@ -196,7 +196,7 @@ namespace Enigma.D3
 
 		public static ActorCommonData Gold { get { return Enigma.D3.Helpers.ActorCommonDataHelper.GetGoldAcd(); } }
 
-		public static ExpandableContainer<ActorCommonData> Container { get { return ActorCommonDataManager.Instance.IfNotNull(a => a.x00_ActorCommonData); } }
+		public static ExpandableContainer<ActorCommonData> Container { get { return ActorCommonDataManager.Instance?.x00_ActorCommonData; } }
 
 		public SNO GetAnimSNO()
 		{
