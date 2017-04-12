@@ -107,7 +107,6 @@
     <Compile Include="D3\LocalData.cs" />
     <Compile Include="D3\Player.cs" />
     <Compile Include="D3\PlayerInput.cs" />
-    <Compile Include="D3\PetPortraitInfo.cs" />
     <Compile Include="D3\Quest.cs" />
     <Compile Include="D3\QuestManager.cs" />
     <Compile Include="D3\RefString.cs" />
@@ -188,7 +187,6 @@
     <Compile Include="D3\Memory\Allocator.cs" />
     <Compile Include="D3\Memory\AllocatorBlock.cs" />
     <Compile Include="D3\Memory\BasicAllocator.cs" />
-    <Compile Include="D3\NamedCriticalSection.cs" />
     <Compile Include="D3\ObjectManager.cs" />
     <Compile Include="D3\PlayerDataManager.cs" />
     <Compile Include="D3\Preferences\ChatPreferences.cs" />
