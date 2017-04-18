@@ -13,7 +13,7 @@ namespace Enigma.D3.UI
 		public const int SizeOf = 0x210; // 528
 
 		public UIReference x000_UIReference { get { return Read<UIReference>(0x000); } }
-		public UXControl x208_UIControl { get { return Dereference<UXControl>(0x208); } }
-		public UXControl x20C_UIControl { get { return Dereference<UXControl>(0x20C); } }
+		public UXControl x208_UIControl { get { return ReadPointer<UXControl>(0x208).Dereference(); } }
+		public UXControl x20C_UIControl { get { return ReadPointer<UXControl>(0x20C).Dereference(); } }
 	}
 }

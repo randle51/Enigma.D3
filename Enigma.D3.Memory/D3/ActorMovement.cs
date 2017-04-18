@@ -11,7 +11,7 @@ namespace Enigma.D3
 		// 2.0.3.22427
 		public const int SizeOf = 0x290;
 
-		public int x000_VTable { get { return Dereference<int>(0x000); } }
+		public int x000_VTable { get { return ReadPointer<int>(0x000).Dereference(); } }
 		public int x004_12 { get { return Read<int>(0x004); } }
 		public int x008 { get { return Read<int>(0x008); } }
 		public int x00C { get { return Read<int>(0x00C); } }

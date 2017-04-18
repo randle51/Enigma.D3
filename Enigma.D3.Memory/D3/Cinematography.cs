@@ -30,7 +30,7 @@ namespace Enigma.D3
 		public int x3C { get { return Read<int>(0x3C); } }
 		public int x40 { get { return Read<int>(0x40); } }
 		public int x44 { get { return Read<int>(0x44); } }
-		public Struct_X48 x48_Ptr_Struct { get { return Dereference<Struct_X48>(0x48); } }
+		public Struct_X48 x48_Ptr_Struct { get { return ReadPointer<Struct_X48>(0x48).Dereference(); } }
 		public int x4C_StructStart_Min68Bytes { get { return Read<int>(0x4C); } }
 		public int _x50 { get { return Read<int>(0x50); } }
 		public int _x54 { get { return Read<int>(0x54); } }
@@ -74,7 +74,7 @@ namespace Enigma.D3
 		public int _xEC { get { return Read<int>(0xEC); } }
 		public int _xF0 { get { return Read<int>(0xF0); } }
 		public int xF4 { get { return Read<int>(0xF4); } }
-		public ListPack xF8_Ptr_ListPack_ItemSize128 { get { return Dereference<ListPack>(0xF8); } }
+		public ListPack xF8_Ptr_ListPack_ItemSize128 { get { return ReadPointer<ListPack>(0xF8).Dereference(); } }
 
 
 

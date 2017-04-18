@@ -12,7 +12,7 @@ namespace Enigma.D3
 		// 2.0.4.23119
 		public const int SizeOf = 0x38; // 56
 
-		public Waypoint[] x00_Array { get { return Dereference<Waypoint>(0x00, x08_Count); } }
+		public Waypoint[] x00_Array { get { return ReadPointer<Waypoint>(0x00).ToArray(x08_Count); } }
 		public int x04 { get { return Read<int>(0x04); } }
 		public int x08_Count { get { return Read<int>(0x08); } }
 		public int _x0C { get { return Read<int>(0x0C); } }

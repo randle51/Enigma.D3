@@ -12,8 +12,8 @@ namespace Enigma.D3
 	{
 		public const int SizeOf = 0xE8; // 232
 		
-		public ExpandableContainer<ActorCommonData> x00_ActorCommonData { get { return Dereference<ExpandableContainer<ActorCommonData>>(0x00); } }
-		public int[] x04_Ptr_35056Bytes_AnnToAcd { get { return Dereference<int>(0x04, 8764); } }
+		public ExpandableContainer<ActorCommonData> x00_ActorCommonData { get { return ReadPointer<ExpandableContainer<ActorCommonData>>(0x00).Dereference(); } }
+		public int[] x04_Ptr_35056Bytes_AnnToAcd { get { return ReadPointer<int>(0x04).ToArray(8764); } }
 		public Allocator x08_Allocator_1000x52Bytes { get { return Read<Allocator>(0x08); } }
 		public Allocator x24_Allocator_2048x12Bytes { get { return Read<Allocator>(0x24); } }
 		public int _x40 { get { return Read<int>(0x40); } }

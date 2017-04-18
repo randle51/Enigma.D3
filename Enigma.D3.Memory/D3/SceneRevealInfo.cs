@@ -20,7 +20,7 @@ namespace Enigma.D3
 		public float x18_MaxX { get { return Read<float>(0x18); } }
 		public float x1C_MaxY { get { return Read<float>(0x1C); } }
 		public int x20_TextureSnoId_ { get { return Read<int>(0x20); } }
-		public byte[] x24_OpacityMask { get { return Dereference<byte>(0x24, x28_OpacityMaskWidth * x2C_OpacityMaskHeight); } } // 8 bits-per-channel grayscale channel
+		public byte[] x24_OpacityMask { get { return ReadPointer<byte>(0x24).ToArray(x28_OpacityMaskWidth * x2C_OpacityMaskHeight); } } // 8 bits-per-channel grayscale channel
 		public int x28_OpacityMaskWidth { get { return Read<int>(0x28); } }
 		public int x2C_OpacityMaskHeight { get { return Read<int>(0x2C); } }
 		public int x30_FrameCounter { get { return Read<int>(0x30); } }

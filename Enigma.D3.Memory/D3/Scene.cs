@@ -119,7 +119,7 @@ namespace Enigma.D3
 		public int _x1A0 { get { return Read<int>(0x1A0); } }
 		public int x1A4 { get { return Read<int>(0x1A4); } }
 		public int _x1A8 { get { return Read<int>(0x1A8); } }
-		public LinkedList.Node x1AC_Ptr_ListNode_ { get { return Dereference<LinkedList.Node>(0x1AC); } }
+		public LinkedList.Node x1AC_Ptr_ListNode_ { get { return ReadPointer<LinkedList.Node>(0x1AC).Dereference(); } }
 		public int _x1B0 { get { return Read<int>(0x1B0); } }
 		public int _x1B4 { get { return Read<int>(0x1B4); } }
 		public int _x1B8 { get { return Read<int>(0x1B8); } }

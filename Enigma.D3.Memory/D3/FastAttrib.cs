@@ -16,7 +16,7 @@ namespace Enigma.D3
 		public Allocator<Map<int, Ptr>.Entry> x00_Allocator_10x12Bytes { get { return Read<Allocator<Map<int, Ptr>.Entry>>(0x00); } }
 		public Allocator x1C_Allocator_10x12Bytes { get { return Read<Allocator>(0x1C); } }
 		public Allocator x38_Allocator_10x12Bytes { get { return Read<Allocator>(0x38); } }
-		public ExpandableContainer<FastAttribGroup> x54_Groups { get { return Dereference<ExpandableContainer<FastAttribGroup>>(0x54); } }
+		public ExpandableContainer<FastAttribGroup> x54_Groups { get { return ReadPointer<ExpandableContainer<FastAttribGroup>>(0x54).Dereference(); } }
 		public int x58 { get { return Read<int>(0x58); } }
 
 		public static FastAttrib Instance { get { return Storage.Instance?.x154_Ptr_92Bytes_FastAttrib.Dereference(); } }

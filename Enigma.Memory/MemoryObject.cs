@@ -125,18 +125,6 @@ namespace Enigma.Memory
 			return new StringPointer(Memory, ReadMemoryAddress(offset), maxLength, encoding);
 		}
 
-		[Obsolete("Use ReadPointer<T> instead and dereference that.")]
-		public T Dereference<T>(int offset)
-		{
-			return ReadPointer<T>(offset).Dereference();
-		}
-
-		[Obsolete("Use ReadPointer<T> instead and make that into an array or use the indexer.")]
-		public T[] Dereference<T>(int offset, int count)
-		{
-			return ReadPointer<T>(offset).ToArray(count);
-		}
-
 		protected MemoryAddress ReadMemoryAddress(int offset)
 		{
 			var snapshot = Snapshot;

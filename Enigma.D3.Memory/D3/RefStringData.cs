@@ -14,7 +14,7 @@ namespace Enigma.D3
 		public short x02_SizeCategory { get { return Read<short>(0x02); } }
 		public int x04_Length { get { return Read<int>(0x04); } }
 		public int x08_MaxLength { get { return Read<int>(0x08); } }
-		public int x0C_PtrRefStringDataAllocators { get { return Dereference<int>(0x0C); } }
+		public int x0C_PtrRefStringDataAllocators { get { return ReadPointer<int>(0x0C).Dereference(); } }
 		public int x10_CreationTime { get { return Read<int>(0x10); } }
 		public string x14_Text { get { return ReadString(0x14, x04_Length); } }
 	}

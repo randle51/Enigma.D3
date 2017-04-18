@@ -22,7 +22,7 @@ namespace Enigma.D3.Collections
 		public int _x14C { get { return Read<int>(0x14C); } }
 		public int _x150 { get { return Read<int>(0x150); } }
 		public int _x154 { get { return Read<int>(0x154); } }
-		public Ptr x158_MemoryVTable { get { return Dereference<Ptr>(0x158); } }
+		public Ptr x158_MemoryVTable { get { return ReadPointer<Ptr>(0x158).Dereference(); } }
 		public int x15C_Limit { get { return Read<int>(0x15C); } }
 		public int x160_MaxLimit_ { get { return Read<int>(0x160); } }
 		public int x164_Bits { get { return Read<int>(0x164); } }

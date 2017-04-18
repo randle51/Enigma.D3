@@ -115,7 +115,7 @@ namespace Enigma.D3.Collections
 				return sizeOf;
 			}
 
-			public Entry x00_Next { get { return Dereference<Entry>(0x00); } }
+			public Entry x00_Next { get { return ReadPointer<Entry>(0x00).Dereference(); } }
 			public TKey x04_Key { get { return Read<TKey>(0x04); } }
 			public TValue x08_Value { get { return Read<TValue>(0x08); } }
 		}

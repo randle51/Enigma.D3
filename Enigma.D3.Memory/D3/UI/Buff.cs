@@ -12,7 +12,7 @@ namespace Enigma.D3.UI
 
 		public int x000_PowerSnoId { get { return Read<int>(0x000); } }
 		public int x004_Neg1 { get { return Read<int>(0x004); } }
-		public PlayerData x008_PlayerData { get { return Dereference<PlayerData>(0x008); } }
+		public PlayerData x008_PlayerData { get { return ReadPointer<PlayerData>(0x008).Dereference(); } }
 		public int x00C_AnnId { get { return Read<int>(0x00C); } }
 		public int x010_DurationInTicks { get { return Read<int>(0x010); } }
 		public int x014_StackCount { get { return Read<int>(0x014); } }

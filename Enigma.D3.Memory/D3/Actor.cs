@@ -89,7 +89,7 @@ namespace Enigma.D3
 		public int _x1A0 { get { return Read<int>(0x1A0); } }
 		public int _x1A4 { get { return Read<int>(0x1A4); } }
 		public int _x1A8 { get { return Read<int>(0x1A8); } }
-		public ActorMovement x1AC_ActorMovement { get { return Dereference<ActorMovement>(0x1AC); } }
+		public ActorMovement x1AC_ActorMovement { get { return ReadPointer<ActorMovement>(0x1AC).Dereference(); } }
 		public int _x1B0 { get { return Read<int>(0x1B0); } }
 		public int _x1B4 { get { return Read<int>(0x1B4); } }
 		public int _x1B8 { get { return Read<int>(0x1B8); } }
@@ -220,9 +220,9 @@ namespace Enigma.D3
 		public float x3AC { get { return Read<float>(0x3AC); } }
 		public float x3B0 { get { return Read<float>(0x3B0); } }
 		public int x3B4 { get { return Read<int>(0x3B4); } }
-		public Map x3B8_Ptr112Bytes_Map { get { return Dereference<Map>(0x3B8); } }
+		public Map x3B8_Ptr112Bytes_Map { get { return ReadPointer<Map>(0x3B8).Dereference(); } }
 		public int _x3BC { get { return Read<int>(0x3BC); } }
-		public int x3C0_Ptr_24Bytes { get { return Dereference<int>(0x3C0); } }
+		public int x3C0_Ptr_24Bytes { get { return ReadPointer<int>(0x3C0).Dereference(); } }
 		public int x3C4_StructStart_28Bytes { get { return Read<int>(0x3C4); } }
 		public int x3E0 { get { return Read<int>(0x3E0); } }
 		public int x3E4 { get { return Read<int>(0x3E4); } }
