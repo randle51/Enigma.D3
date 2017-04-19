@@ -4,7 +4,7 @@ namespace Enigma.D3.Memory
     {
         public const int VideoPreferences = 0x01E0F438;
         public const int SoundPreferences = 0x01E0F4D8;
-        public const int HotkeyPreferences = 0x01E0F524;
+        public const int HotkeyPreferences = 0x01E0F528;
         public const int GameplayPreferences = 0x01E0F9A8;
         public const int SocialPreferences = 0x01E0FA10;
         public const int ChatPreferences = 0x01E0FA40;

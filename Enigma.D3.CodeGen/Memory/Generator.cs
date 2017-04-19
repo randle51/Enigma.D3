@@ -260,8 +260,8 @@ namespace Enigma.D3.Memory
 			_symbols.DataSegment.VideoPreferences = groups[1].Read<uint>(_ctx.Dump, "values");
 			_symbols.DataSegment.SoundPreferences = groups[2].Read<uint>(_ctx.Dump, "values");
 			_symbols.DataSegment.GameplayPreferences = groups[3].Read<uint>(_ctx.Dump, "values");
-			_symbols.DataSegment.HotkeyPreferences = groups[7].Read<uint>(_ctx.Dump, "values");
-			_symbols.DataSegment.SocialPreferences = groups[5].Read<uint>(_ctx.Dump, "values");
+			_symbols.DataSegment.HotkeyPreferences = groups[7].Read<uint>(_ctx.Dump, "values") + 4; // KeybindingVersion is followed by hotkeys
+            _symbols.DataSegment.SocialPreferences = groups[5].Read<uint>(_ctx.Dump, "values");
 			_symbols.DataSegment.ChatPreferences = groups[6].Read<uint>(_ctx.Dump, "values");
 		}
 
