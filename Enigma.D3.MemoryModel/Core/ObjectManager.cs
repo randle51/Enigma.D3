@@ -20,31 +20,31 @@ namespace Enigma.D3.MemoryModel.Core
 			=> ReadString(SymbolTable.Current.ObjectManager.GameServerAddress, SymbolTable.Current.ObjectManager.GameServerAddressLength);
 
 		public int GameHandicap
-			=> Read<int>(SymbolTable.Current.ObjectManager.GameHandicap);
+			=> Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameHandicap);
 
 		public int GameStartingAct
-			=> Read<int>(SymbolTable.Current.ObjectManager.GameStartingAct);
+			=> Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameStartingAct);
 
 		public int GameBountyBonus
-			=> Read<int>(SymbolTable.Current.ObjectManager.GameBountyBonus);
+			=> Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameBountyBonus);
 
 		public int GameTick
-			=> Read<int>(SymbolTable.Current.ObjectManager.GameTick);
+			=> Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameTick);
 
 		public PlayerDataManager PlayerDataManager
-			=> Read<Ptr<PlayerDataManager>>(SymbolTable.Current.ObjectManager.PlayerDataManager).Dereference();
+			=> Read<Ptr<PlayerDataManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.PlayerDataManager).Dereference();
 
 		public FastAttrib FastAttrib
-			=> Read<Ptr<FastAttrib>>(SymbolTable.Current.ObjectManager.FastAttrib).Dereference();
+			=> Read<Ptr<FastAttrib>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.FastAttrib).Dereference();
 
 		public ACDManager ACDManager
-			=> Read<Ptr<ACDManager>>(SymbolTable.Current.ObjectManager.ACDManager).Dereference();
+			=> Read<Ptr<ACDManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.ACDManager).Dereference();
 
 		public QuestManager QuestManager
-			=> Read<Ptr<QuestManager>>(SymbolTable.Current.ObjectManager.QuestManager).Dereference();
+			=> Read<Ptr<QuestManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.QuestManager).Dereference();
 
 		public WaypointManager WaypointManager
-			=> Read<Ptr<WaypointManager>>(SymbolTable.Current.ObjectManager.WaypointManager).Dereference();
+			=> Read<Ptr<WaypointManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.WaypointManager).Dereference();
 
 		public ExpandableContainer<Actor> Actors
 			=> Read<Ptr<ExpandableContainer<Actor>>>(SymbolTable.Current.ObjectManager.Actors).Dereference();
