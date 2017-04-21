@@ -27,8 +27,8 @@ namespace Enigma.D3
 		public int x03C { get { return Read<int>(0x03C); } }
 		// ...
 		// Updated for 2.5.0
-		public GameGlobals x068_GameGlobals { get { return Read<GameGlobals>(0x040); } }
-		public GameGlobals x400_GameGlobals { get { return Read<GameGlobals>(0x3E0); } }
+		public GameGlobals x068_GameGlobals { get { return Read<GameGlobals>(0x068); } }
+		public GameGlobals x400_GameGlobals { get { return Read<GameGlobals>(0x400); } }
 		public int _x798 { get { return Read<int>(0x798); } }
 		public int _x79C { get { return Read<int>(0x79C); } }
 		public int _x7A0 { get { return Read<int>(0x7A0); } }
