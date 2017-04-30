@@ -17,17 +17,11 @@ namespace Enigma.D3.MemoryModel.Core
 			=> Read<int>(SymbolTable.Current.ObjectManager.GameState);
 
 		public string GameServerAddress
-			=> ReadString(SymbolTable.Current.ObjectManager.GameServerAddress, SymbolTable.Current.ObjectManager.GameServerAddressLength);
+			=> ReadString(SymbolTable.Current.ObjectManager.GameGlobals + SymbolTable.Current.GameGlobals.GameServerAddress, SymbolTable.Current.GameGlobals.GameServerAddressLength);
 
 		public int GameHandicap
 			=> Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameHandicap);
-
-		public int GameStartingAct
-			=> Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameStartingAct);
-
-		public int GameBountyBonus
-			=> Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameBountyBonus);
-
+        
 		public int GameTick
 			=> Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameTick);
 

@@ -1,4 +1,6 @@
-﻿using Enigma.Memory;
+﻿using Enigma.D3.DataTypes;
+using Enigma.D3.Enums;
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +9,17 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Core
 {
-	public class PlayerData : MemoryObject
-	{
-		public static int SizeOf => SymbolTable.Current.PlayerData.SizeOf;
+    public class PlayerData : MemoryObject
+    {
+        public static int SizeOf => SymbolTable.Current.PlayerData.SizeOf;
 
-		public int Index => Read<int>(SymbolTable.Current.PlayerData.Index);
-		public int ACDID => Read<int>(SymbolTable.Current.PlayerData.ACDID);
-		public int ActorID => Read<int>(SymbolTable.Current.PlayerData.ActorID);
-	}
+        public int Index => Read<int>(SymbolTable.Current.PlayerData.Index);
+        public int ACDID => Read<int>(SymbolTable.Current.PlayerData.ACDID);
+        public int ActorID => Read<int>(SymbolTable.Current.PlayerData.ActorID);
+        public SNO ActorSNO => Read<SNO>(SymbolTable.Current.PlayerData.ActorSNO);
+        public float LifePercentage => Read<float>(SymbolTable.Current.PlayerData.LifePercentage);
+        public HeroClass HeroClass => Read<HeroClass>(SymbolTable.Current.PlayerData.HeroClass);
+        public int Level => Read<int>(SymbolTable.Current.PlayerData.Level);
+        public int AltLevel => Read<int>(SymbolTable.Current.PlayerData.AltLevel);
+    }
 }

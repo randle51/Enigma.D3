@@ -29,6 +29,7 @@ namespace Enigma.D3.MemoryModel
 
         public DataSegmentSymbols DataSegment;
         public ObjectManagerSymbols ObjectManager;
+        public GameGlobalsSymbols GameGlobals;
         public StorageSymbols Storage;
         public ActorSymbols Actor;
         public ACDManagerSymbols ACDManager;
@@ -84,7 +85,6 @@ namespace Enigma.D3.MemoryModel
 
         public ulong SNOGroups;
         public ulong SNOGroupsByCode;
-        public ulong ObjectManagerPristine;
         public ulong ContainerManager;
         public ulong MessageDescriptor;
     }
@@ -93,9 +93,8 @@ namespace Enigma.D3.MemoryModel
     {
         public int SizeOf;
         public int RenderTick;
+        public int GameGlobals;
         public int GameState;
-        public int GameServerAddress;
-        public int GameServerAddressLength;
         public int Storage;
         public int Actors;
         public int Scenes;
@@ -108,11 +107,16 @@ namespace Enigma.D3.MemoryModel
         public int TimedEvents;
     }
 
+    public struct GameGlobalsSymbols
+    {
+        public int SizeOf;
+        public int GameServerAddress;
+        public int GameServerAddressLength;
+    }
+
     public struct StorageSymbols
     {
         public int GameHandicap;
-        public int GameStartingAct;
-        public int GameBountyBonus;
         public int GameTick;
         public int PlayerDataManager;
         public int FastAttrib;
@@ -187,7 +191,11 @@ namespace Enigma.D3.MemoryModel
         public int ACDID;
         public int ActorID;
         public int HeroName;
+        public int ActorSNO;
         public int LifePercentage;
+        public int HeroClass;
+        public int Level;
+        public int AltLevel;
     }
 
     public struct SceneSymbols

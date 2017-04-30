@@ -36,12 +36,10 @@ namespace Enigma.D3.MemoryModel
             ObjectManager.SizeOf = 0xB98;
             ObjectManager.RenderTick = 0x060;
             ObjectManager.GameState = 0x084;
-            ObjectManager.GameServerAddress = 0x0C0;
-            ObjectManager.GameServerAddressLength = 128;
+            //ObjectManager.GameServerAddress = 0x0C0;
+            //ObjectManager.GameServerAddressLength = 128;
             ObjectManager.Storage = 0x7C8;
             Storage.GameHandicap = 0x004;
-            Storage.GameStartingAct = 0x04C;
-            Storage.GameBountyBonus = 0x050;
             Storage.GameTick = 0x120;
             Storage.PlayerDataManager = 0x140;
             Storage.FastAttrib = 0x180;

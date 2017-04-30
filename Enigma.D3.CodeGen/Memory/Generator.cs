@@ -82,7 +82,6 @@ namespace Enigma.D3.CodeGen.Memory
 				SNOGroupsByCode = _symbols.DataSegment.SNOGroupsByCode,
 				SNOGroups = _symbols.DataSegment.SNOGroups,
 				ObjectManager = _symbols.DataSegment.ObjectManager,
-				ObjectManagerPristine = _symbols.DataSegment.ObjectManagerPristine,
 				ApplicationLoopCount = _symbols.DataSegment.ApplicationLoopCount,
 				LocalData = _symbols.DataSegment.LocalData,
 				AttributeDescriptors = _symbols.DataSegment.AttributeDescriptors,
@@ -160,7 +159,6 @@ namespace Enigma.D3.Memory
 
 				_methods.Allocate = match.DecodeDisp32(_ctx.Dump, "allocate");
 				_symbols.DataSegment.ObjectManager = mgr;
-				_symbols.DataSegment.ObjectManagerPristine = match.Read<uint>(_ctx.Dump, "pristine");
 				_symbols.ObjectManager.SizeOf = match.Read<int>(_ctx.Dump, "sizeof");
 
 				var init = match.DecodeDisp32(_ctx.Dump, "init");
@@ -192,7 +190,7 @@ namespace Enigma.D3.Memory
 			_symbols.ACDManager.SizeOf = FirstTextSegmentMatch<int>("68{size}........|E8",
 				init, 512, "size");
 
-			_symbols.ObjectManager.ACDManager = FirstTextSegmentMatch<int>("8986{offset}........",
+			_symbols.Storage.ACDManager = FirstTextSegmentMatch<int>("8986{offset}........",
 				init, 512, "offset");
 		}
 
@@ -309,7 +307,7 @@ namespace Enigma.D3.Memory
 			_symbols.PlayerDataManager.SizeOf = FirstTextSegmentMatch<int>(
 				"68{size}........|E8{allocate}........", m2, 512, "size");
 
-			_symbols.ObjectManager.PlayerDataManager = _symbols.ObjectManager.Storage + FirstTextSegmentMatch<int>(
+			_symbols.Storage.PlayerDataManager = _symbols.ObjectManager.Storage + FirstTextSegmentMatch<int>(
 				"8987{offset}........", m2, 512, "offset");
 
 			var sum = FirstTextSegmentMatch<uint>("81FB{sum}........", m2, 512, "sum");
@@ -327,7 +325,7 @@ namespace Enigma.D3.Memory
 			_symbols.PlayerData.HeroName = offset - 49;
 
 
-			_symbols.LocalData = new LocalDataSymbols(Platform.X86);
+			//_symbols.LocalData = new LocalDataSymbols(Platform.X86);
 			var memory = new MemoryContext(_ctx.Dump.Memory);
 			SymbolTable.Current = _symbols;
 			var p = memory.DataSegment.ObjectManager.PlayerDataManager[0];
