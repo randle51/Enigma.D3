@@ -69,7 +69,6 @@
     <Compile Include="Core\Waypoint.cs" />
     <Compile Include="Core\WaypointManager.cs" />
     <Compile Include="Core\World.cs" />
-    <Compile Include="Engine.cs" />
     <Compile Include="ISegment.cs" />
     <Compile Include="MemoryContext.cs" />
     <Compile Include="MemoryManagement\Allocator.cs" />

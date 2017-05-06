@@ -14,20 +14,10 @@ namespace Enigma.D3.MemoryModel.Segments
 	public class DataSegment : MemoryObject
 	{
 		public MemoryAddress End
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
+            => throw new NotImplementedException();
 
-		public MemoryAddress Start
-		{
-			get
-			{
-				throw new NotImplementedException();
-			}
-		}
+        public MemoryAddress Start
+            => SymbolTable.Current.DataSegment.Address;
 
 		public VideoPreferences VideoPreferences
 			=> Memory.Reader.Read<VideoPreferences>(SymbolTable.Current.DataSegment.VideoPreferences);
