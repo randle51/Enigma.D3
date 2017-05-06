@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Enigma</RootNamespace>
     <AssemblyName>Enigma.D3.MapHack</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -95,6 +95,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -112,13 +113,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Enigma.D3.ApplicationModel\Enigma.D3.ApplicationModel.csproj">
+      <Project>{176ae261-7d74-4959-966e-d1963cfefd66}</Project>
+      <Name>Enigma.D3.ApplicationModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Enigma.D3.Core\Enigma.D3.Core.csproj">
       <Project>{e01f9c34-f404-48dc-92e2-991da7adf9eb}</Project>
       <Name>Enigma.D3.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Enigma.D3.Memory\Enigma.D3.Memory.csproj">
-      <Project>{23848103-7dc0-4ab0-958f-b8793ffd1f2d}</Project>
-      <Name>Enigma.D3.Memory</Name>
+    <ProjectReference Include="..\Enigma.D3.MemoryModel\Enigma.D3.MemoryModel.csproj">
+      <Project>{92e7130d-9363-458c-abe5-a71f240a9b78}</Project>
+      <Name>Enigma.D3.MemoryModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enigma.Memory\Enigma.Memory.csproj">
       <Project>{3A385F29-42E2-4CAF-B1F2-2A1A7B90A971}</Project>
