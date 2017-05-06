@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.ApplicationModel
 {
-    public class ContainerObserver<T>
+    public class ContainerObserver<T> where T : MemoryObject
     {
         public int State = 0;
         public Container<T> Container;
@@ -16,8 +16,8 @@ namespace Enigma.D3.ApplicationModel
         public byte[] PreviousData = new byte[0];
         public int[] PreviousMapping = new int[0];
         public int[] CurrentMapping = new int[0];
-        public T[] PreviousItems;
-        public T[] CurrentItems;
+        public readonly List<T> NewItems = new List<T>();
+        public readonly List<T> OldItems = new List<T>();
 
         public ContainerObserver(Container<T> container)
         {
@@ -49,7 +49,8 @@ namespace Enigma.D3.ApplicationModel
             for (int i = 0; i < count; i++)
                 CurrentMapping[i] = mr.Read<int>(i * Container.ItemSize);
 
-
+            NewItems.Clear();
+            OldItems.Clear();
             if (PreviousMapping.Length == CurrentMapping.Length)
             {
                 for (int i = 0; i < CurrentMapping.Length; i++)
@@ -57,9 +58,37 @@ namespace Enigma.D3.ApplicationModel
                     if (CurrentMapping[i] != PreviousMapping[i])
                     {
                         if (PreviousMapping[i] != -1)
+                        {
                             OnItemRemoved(i);
+                            OldItems.Add(MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(PreviousData), i * Container.ItemSize));
+                        }
                         if (CurrentMapping[i] != -1)
+                        {
                             OnItemAdded(i);
+                            NewItems.Add(MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(CurrentData), i * Container.ItemSize));
+                        }
+                    }
+                }
+            }
+            if (PreviousMapping.Length < CurrentMapping.Length)
+            {
+                for (int i = PreviousMapping.Length; i < CurrentMapping.Length; i++)
+                {
+                    if (CurrentMapping[i] != -1)
+                    {
+                        OnItemAdded(i);
+                        NewItems.Add(MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(CurrentData), i * Container.ItemSize));
+                    }
+                }
+            }
+            if (PreviousMapping.Length > CurrentMapping.Length)
+            {
+                for (int i = CurrentMapping.Length; i < PreviousMapping.Length; i++)
+                {
+                    if (PreviousMapping[i] != -1)
+                    {
+                        OnItemRemoved(i);
+                        OldItems.Add(MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(PreviousData), i * Container.ItemSize));
                     }
                 }
             }

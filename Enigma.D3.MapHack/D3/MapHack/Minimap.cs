@@ -10,254 +10,229 @@ using Enigma.Wpf;
 using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows;
-using Enigma.D3.Helpers;
 using Enigma.D3.Enums;
 using System.Windows.Media.Media3D;
 using Enigma.D3.MapHack.Markers;
+using Enigma.D3.MemoryModel;
+using Enigma.D3.MemoryModel.Core;
+using Enigma.D3.ApplicationModel;
+using Enigma.Memory;
 
 namespace Enigma.D3.MapHack
 {
-	internal class Minimap : NotifyingObject
-	{
-		private Canvas _window;
-		private Canvas _root;
-		private MinimapControl _minimapControl;
-		private ObservableCollection<IMapMarker> _minimapItems;
+    internal class Minimap : NotifyingObject
+    {
+        private Canvas _window;
+        private Canvas _root;
+        private MinimapControl _minimapControl;
+        private ObservableCollection<IMapMarker> _minimapItems;
 
-		public Minimap(Canvas overlay)
-		{
-			_minimapItems = new ObservableCollection<IMapMarker>();
+        public Minimap(Canvas overlay)
+        {
+            _minimapItems = new ObservableCollection<IMapMarker>();
 
-			_root = new Canvas() { Height = 1200.5d };
-			_window = overlay;
-			_window.Children.Add(_root);
-			_window.SizeChanged += (s, e) => UpdateSizeAndPosition();
+            _root = new Canvas() { Height = 1200.5d };
+            _window = overlay;
+            _window.Children.Add(_root);
+            _window.SizeChanged += (s, e) => UpdateSizeAndPosition();
 
-			_root.Children.Add(_minimapControl = new MinimapControl { DataContext = this });
+            _root.Children.Add(_minimapControl = new MinimapControl { DataContext = this });
 
-			UpdateSizeAndPosition();
-		}
+            UpdateSizeAndPosition();
+        }
 
-		public ObservableCollection<IMapMarker> MinimapMarkers { get { return _minimapItems; } }
+        public ObservableCollection<IMapMarker> MinimapMarkers { get { return _minimapItems; } }
 
-		private void UpdateSizeAndPosition()
-		{
-			var uiScale = _window.ActualHeight / 1200d;
-			_root.Width = _window.ActualWidth / uiScale;
-			_root.RenderTransform = new ScaleTransform(uiScale, uiScale, 0, 0);
-		}
+        private void UpdateSizeAndPosition()
+        {
+            var uiScale = _window.ActualHeight / 1200d;
+            _root.Width = _window.ActualWidth / uiScale;
+            _root.RenderTransform = new ScaleTransform(uiScale, uiScale, 0, 0);
+        }
 
-		private Dictionary<int, IMapMarker> _minimapItemsDic = new Dictionary<int, IMapMarker>();
-		private int _lastFrame;
-		private HashSet<int> _ignoredSnoIds = new HashSet<int>();
-		private int _firstFreeAcd;
-		private ActorCommonData _playerAcd;
+        private Dictionary<int, IMapMarker> _minimapItemsDic = new Dictionary<int, IMapMarker>();
+        private int _lastFrame;
+        private HashSet<int> _ignoredSnoIds = new HashSet<int>();
+        private ACD _playerAcd;
 
-		private LocalData _localData;
-		private ObjectManager _objectManager;
-		private byte[] _acdsBuffer = new byte[0];
+        private LocalData _localData;
+        private ObjectManager _objectManager;
+        private ContainerObserver<ACD> _acdsObserver;
 
-		private bool _isLocalActorReady;
+        private bool _isLocalActorReady;
 
-		public void Update(Engine engine)
-		{
-			try
-			{
-				if (!IsLocalActorValid(engine))
-					return;
+        public void Update(MemoryContext ctx)
+        {
+            try
+            {
+                if (!IsLocalActorValid(ctx))
+                    return;
 
-				if (!IsObjectManagerOnNewFrame(engine))
-					return;
+                if (!IsObjectManagerOnNewFrame(ctx))
+                    return;
 
-				var itemsToAdd = new List<IMapMarker>();
+                var itemsToAdd = new List<IMapMarker>();
 
-				var acds = ActorCommonData.Container;
-				if (acds == null)
-				{
-					Trace.TraceError("ACDs == null");
-				}
-				else
-				{
-					var bufferSizePreDump = _acdsBuffer.Length;
+                _acdsObserver = _acdsObserver ?? new ContainerObserver<ACD>(ctx.DataSegment.ObjectManager.ACDManager.ActorCommonData);
+                _acdsObserver.Update();
 
-					acds.TakeSnapshot();
-					var dump = acds.GetBufferDump(ref _acdsBuffer);
+                var monsters = _acdsObserver.NewItems.Where(x => x.ActorType == ActorType.Monster).ToArray();
 
-					var bufferSizePostDump = _acdsBuffer.Length;
-					if (bufferSizePostDump < bufferSizePreDump)
-					{
-						_minimapItems.Clear();
-						_minimapItemsDic.Clear();
-						_playerAcd = null;
-						return;
-					}
+                // TODO
+                //if (isNewgame)
+                //{
+                //    _minimapItems.Clear();
+                //    _minimapItemsDic.Clear();
+                //    _playerAcd = null;
+                //    return;
+                //}
 
-					// Must have a local ACD to base coords on.
-					if (_playerAcd == null)
-					{
-						var playerAcdId = ActorCommonDataHelper.GetLocalAcd().x000_Id;
+                // Must have a local ACD to base coords on.
+                if (_playerAcd == null)
+                {
+                    var playerAcdId = ctx.DataSegment.ObjectManager.PlayerDataManager[
+                        ctx.DataSegment.ObjectManager.Player.LocalPlayerIndex].ACDID;
 
-						foreach (var item in dump)
-						{
-							var acdId = BitConverter.ToInt32(_acdsBuffer, item.BufferOffset + 0x00);
-							if (acdId == playerAcdId)
-							{
-								_playerAcd = item.Create();
-							}
-						}
+                    var index = Array.IndexOf(_acdsObserver.CurrentMapping, playerAcdId);
+                    if (index != -1)
+                        _playerAcd = MemoryObjectFactory.UnsafeCreate<ACD>(new BufferMemoryReader(_acdsObserver.CurrentData), index * _acdsObserver.Container.ItemSize);
+                    
+                    if (_playerAcd == null)
+                        return;
+                }
 
-						if (_playerAcd == null)
-							return;
-					}
+                foreach (var acd in _acdsObserver.NewItems)
+                {
+                    var actorSnoId = acd.ActorSNO;
+                    if (_ignoredSnoIds.Contains(actorSnoId))
+                        continue;
 
-					var firstFreeAcd = acds.x114_Free;
-					if (firstFreeAcd != _firstFreeAcd)
-					{
-						foreach (var item in dump)
-						{
-							if (_minimapItemsDic.ContainsKey(item.Address))
-								continue;
-							var acd = item.Create();
+                    if (!_minimapItemsDic.ContainsKey(acd.Address))
+                    {
+                        bool ignore;
+                        var minimapItem = MapMarkerFactory.Create(acd, out ignore);
+                        if (ignore)
+                        {
+                            _ignoredSnoIds.Add(actorSnoId);
+                        }
+                        else if (minimapItem != null)
+                        {
+                            _minimapItemsDic.Add(acd.Address, minimapItem);
+                            itemsToAdd.Add(minimapItem);
+                        }
+                    }
+                }
 
-							int acdId = acd.x000_Id;
-							if (acdId == -1)
-								continue;
+                UpdateUI(itemsToAdd);
+            }
+            catch (Exception exception)
+            {
+                OnUpdateException(exception);
+            }
+        }
 
-							var actorSnoId = acd.x090_ActorSnoId;
-							if (_ignoredSnoIds.Contains(actorSnoId))
-								continue;
+        private bool IsLocalActorValid(MemoryContext ctx)
+        {
+            _localData = _localData ?? ctx.DataSegment.LocalData;
+            _localData.TakeSnapshot();
 
-							if (!_minimapItemsDic.ContainsKey(acd.Address))
-							{
-								bool ignore;
-								var minimapItem = MapMarkerFactory.Create(acd, out ignore);
-								if (ignore)
-								{
-									_ignoredSnoIds.Add(actorSnoId);
-								}
-								else if (minimapItem != null)
-								{
-									_minimapItemsDic.Add(acd.Address, minimapItem);
-									itemsToAdd.Add(minimapItem);
-								}
-							}
-						}
-					}
+            if (_localData.Read<byte>(0) == 0xCD) // structure is being updated, everything is cleared with 0xCD ('-')
+            {
+                if (!_isLocalActorReady)
+                    return false;
+            }
+            else
+            {
+                if (!_localData.IsStartUpGame)
+                {
+                    if (!_isLocalActorReady)
+                    {
+                        _isLocalActorReady = true;
+                        OnLocalActorCreated();
+                    }
+                }
+                else
+                {
+                    if (_isLocalActorReady)
+                    {
+                        _isLocalActorReady = false;
+                        OnLocalActorDisposed();
+                    }
+                    return false;
+                }
+            }
+            return true;
+        }
 
-					_firstFreeAcd = firstFreeAcd;
-					acds.FreeSnapshot();
-				}
+        private bool IsObjectManagerOnNewFrame(MemoryContext ctx)
+        {
+            _objectManager = _objectManager ?? ctx.DataSegment.ObjectManager;
 
-				UpdateUI(itemsToAdd);
-			}
-			catch (Exception exception)
-			{
-				OnUpdateException(exception);
-			}
-		}
+            // Don't do anything unless game updated frame.
+            int currentFrame = _objectManager.RenderTick;
+            if (currentFrame == _lastFrame)
+                return false;
+            if (currentFrame < _lastFrame)
+            {
+                // Lesser frame than before = left game probably.
+                _playerAcd = null;
+                _lastFrame = currentFrame;
+                return false;
+            }
+            _lastFrame = currentFrame;
+            return true;
+        }
 
-		private bool IsLocalActorValid(Engine engine)
-		{
-			_localData = _localData ?? engine.LocalData;
+        private void OnUpdateException(Exception exception)
+        {
+            Trace.WriteLine(exception.Message);
+        }
 
-			byte isNotInGame = (byte)_localData.x04_IsNotInGame;
-			//byte isActorCreated = (byte)_localData.x00_IsActorCreated;
-			if (isNotInGame == 0xCD) // structure is being updated, everything is cleared with 0xCD ('-')
-			{
-				if (!_isLocalActorReady)
-					return false;
-			}
-			else
-			{
-				if (isNotInGame == 0)
-				{
-					if (!_isLocalActorReady)
-					{
-						_isLocalActorReady = true;
-						OnLocalActorCreated();
-					}
-				}
-				else
-				{
-					if (_isLocalActorReady)
-					{
-						_isLocalActorReady = false;
-						OnLocalActorDisposed();
-					}
-					return false;
-				}
-			}
-			return true;
-		}
+        private void UpdateUI(List<IMapMarker> itemsToAdd)
+        {
+            var itemsToRemove = new List<IMapMarker>();
+            foreach (var mapItem in _minimapItems.Concat(itemsToAdd))
+            {
+                if (!mapItem.Update(_playerAcd.WorldSNO, new Point3D
+                {
+                    X = _playerAcd.Position.X,
+                    Y = _playerAcd.Position.Y,
+                    Z = _playerAcd.Position.Z
+                }))
+                {
+                    itemsToRemove.Add(mapItem);
+                    _minimapItemsDic.Remove(mapItem.Id);
+                }
+            }
 
-		private bool IsObjectManagerOnNewFrame(Engine engine)
-		{
-			_objectManager = _objectManager ?? engine.ObjectManager;
+            if (itemsToAdd.Count > 0 || itemsToRemove.Count > 0)
+            {
+                if (itemsToAdd.Count > 0)
+                    Trace.WriteLine("Adding " + itemsToAdd.Count + " items...");
+                if (itemsToRemove.Count > 0)
+                    Trace.WriteLine("Removing " + itemsToRemove.Count + " items...");
 
-			// Don't do anything unless game updated frame.
-			int currentFrame = _objectManager.x038_Counter_CurrentFrame;
-			if (currentFrame == _lastFrame)
-				return false;
-			if (currentFrame < _lastFrame)
-			{
-				// Lesser frame than before = left game probably.
-				_playerAcd = null;
-				_lastFrame = currentFrame;
-				return false;
-			}
-			_lastFrame = currentFrame;
-			return true;
-		}
+                Execute.OnUIThread(() =>
+                {
+                    itemsToAdd.ForEach(a => _minimapItems.Add(a));
+                    itemsToRemove.ForEach(a => _minimapItems.Remove(a));
+                });
+            }
+        }
 
-		private void OnUpdateException(Exception exception)
-		{
-			Trace.WriteLine(exception.Message);
-		}
+        private void OnLocalActorCreated()
+        {
+            Trace.WriteLine("Local Actor Ready");
+        }
 
-		private void UpdateUI(List<IMapMarker> itemsToAdd)
-		{
-			var itemsToRemove = new List<IMapMarker>();
-			foreach (var mapItem in _minimapItems.Concat(itemsToAdd))
-			{
-				if (!mapItem.Update(_playerAcd.x108_WorldId, new Point3D
-				{
-					X = _playerAcd.x0D0_WorldPosX,
-					Y = _playerAcd.x0D4_WorldPosY,
-					Z = _playerAcd.x0D8_WorldPosZ
-				}))
-				{
-					itemsToRemove.Add(mapItem);
-					_minimapItemsDic.Remove(mapItem.Id);
-				}
-			}
-
-			if (itemsToAdd.Count > 0 || itemsToRemove.Count > 0)
-			{
-				if (itemsToAdd.Count > 0)
-					Trace.WriteLine("Adding " + itemsToAdd.Count + " items...");
-				if (itemsToRemove.Count > 0)
-					Trace.WriteLine("Removing " + itemsToRemove.Count + " items...");
-
-				Execute.OnUIThread(() =>
-				{
-					itemsToAdd.ForEach(a => _minimapItems.Add(a));
-					itemsToRemove.ForEach(a => _minimapItems.Remove(a));
-				});
-			}
-		}
-
-		private void OnLocalActorCreated()
-		{
-			Trace.WriteLine("Local Actor Ready");
-		}
-
-		private void OnLocalActorDisposed()
-		{
-			Trace.WriteLine("Local Actor Not Ready");
-			if (_minimapItemsDic.Count > 0)
-				_minimapItemsDic.Clear();
-			if (_minimapItems.Count > 0)
-				Execute.OnUIThread(() => _minimapItems.Clear());
-		}
-	}
+        private void OnLocalActorDisposed()
+        {
+            Trace.WriteLine("Local Actor Not Ready");
+            if (_minimapItemsDic.Count > 0)
+                _minimapItemsDic.Clear();
+            if (_minimapItems.Count > 0)
+                Execute.OnUIThread(() => _minimapItems.Clear());
+            _acdsObserver = null;
+        }
+    }
 }

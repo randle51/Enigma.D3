@@ -68,7 +68,8 @@ namespace Enigma.Wpf
 		private void SetParentHandle(IntPtr parentHandle)
 		{
 			_parentHandle = parentHandle;
-			new WindowInteropHelper(this).Owner = parentHandle;
+            //new WindowInteropHelper(this).Owner = parentHandle;
+            Topmost = true;
 		}
 
 		private void OnRefreshTick(object sender, EventArgs e)

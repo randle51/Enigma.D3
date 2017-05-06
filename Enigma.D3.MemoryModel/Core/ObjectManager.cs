@@ -43,13 +43,13 @@ namespace Enigma.D3.MemoryModel.Core
 		public ExpandableContainer<Actor> Actors
 			=> Read<Ptr<ExpandableContainer<Actor>>>(SymbolTable.Current.ObjectManager.Actors).Dereference();
 
-		public IContainer<Scene> Scenes
+		public Container<Scene> Scenes
 			=> Read<Ptr<Container<Scene>>>(SymbolTable.Current.ObjectManager.Scenes).Dereference();
 
 		public UIManager UIManager
 			=> Read<Ptr<UIManager>>(SymbolTable.Current.ObjectManager.UIManager).Dereference();
 
-		public IContainer<World> Worlds
+		public Container<World> Worlds
 			=> Read<Ptr<Container<World>>>(SymbolTable.Current.ObjectManager.Worlds).Dereference();
 
 		public Player Player

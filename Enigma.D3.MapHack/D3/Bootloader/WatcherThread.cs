@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enigma.D3.MemoryModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,19 +10,19 @@ namespace Enigma.D3.Bootloader
 {
 	internal class WatcherThread : IDisposable
 	{
-		private Engine _engine;
+		private MemoryContext _ctx;
 		private Timer _timer;
 		private readonly object _timerLock = new object();
 		private const int _defaultUpdateInterval = 10;
-		private List<Action<Engine>> _tasks = new List<Action<Engine>>();
+		private List<Action<MemoryContext>> _tasks = new List<Action<MemoryContext>>();
 		private readonly object _tasksLock = new object();
 
-		public WatcherThread(Engine engine)
-			: this(engine, _defaultUpdateInterval) { }
+		public WatcherThread(MemoryContext ctx)
+			: this(ctx, _defaultUpdateInterval) { }
 
-		public WatcherThread(Engine engine, int updateInterval)
+		public WatcherThread(MemoryContext ctx, int updateInterval)
 		{
-			_engine = engine;
+			_ctx = ctx;
 			_timer = new Timer(OnTick, null, Timeout.Infinite, updateInterval);
 		}
 
@@ -63,12 +64,12 @@ namespace Enigma.D3.Bootloader
 			{
 				foreach (var task in _tasks)
 				{
-					task.Invoke(_engine);
+					task.Invoke(_ctx);
 				}
 			}
 		}
 
-		public void AddTask(Action<Engine> task)
+		public void AddTask(Action<MemoryContext> task)
 		{
 			lock (_tasksLock)
 			{

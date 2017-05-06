@@ -14,6 +14,9 @@ namespace Enigma.D3.MemoryModel.TypeSystem
 		public int ID
 			=> Read<int>(SymbolTable.Current.AttributeDescriptor.ID);
 
+        public int DefaultValue
+            => Read<int>(SymbolTable.Current.AttributeDescriptor.DefaultValue);
+
 		public Type DataType
 			=> Read<int>(SymbolTable.Current.AttributeDescriptor.DataType) == 0 ? typeof(float) : typeof(int);
 

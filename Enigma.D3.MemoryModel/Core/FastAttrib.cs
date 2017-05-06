@@ -12,7 +12,7 @@ namespace Enigma.D3.MemoryModel.Core
 	{
 		public static int SizeOf => SymbolTable.Current.FastAttrib.SizeOf;
 
-		public IContainer<FastAttribGroup> FastAttribGroups
+		public ExpandableContainer<FastAttribGroup> FastAttribGroups
 			=> Read<Ptr<ExpandableContainer<FastAttribGroup>>>(SymbolTable.Current.FastAttrib.FastAttribGroups).Dereference();
 	}
 }

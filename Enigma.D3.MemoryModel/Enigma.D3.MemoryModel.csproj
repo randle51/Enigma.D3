@@ -45,8 +45,9 @@
     <Compile Include="Collections\CircularBuffer.cs" />
     <Compile Include="Collections\Container.cs" />
     <Compile Include="Collections\ExpandableContainer.cs" />
-    <Compile Include="Collections\IContainer.cs" />
     <Compile Include="Collections\LinkedList.cs" />
+    <Compile Include="Collections\Map.cs" />
+    <Compile Include="Collections\Vector.cs" />
     <Compile Include="Core\ACD.cs" />
     <Compile Include="Core\ACDManager.cs" />
     <Compile Include="Core\Actor.cs" />

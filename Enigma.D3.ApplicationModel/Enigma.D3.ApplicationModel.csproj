@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes.cs" />
+    <Compile Include="AttributeValue.cs" />
     <Compile Include="ContainerObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

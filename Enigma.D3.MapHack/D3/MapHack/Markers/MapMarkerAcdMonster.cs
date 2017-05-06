@@ -8,15 +8,16 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Enigma.D3.Enums;
+using Enigma.D3.MemoryModel.Core;
 
 namespace Enigma.D3.MapHack.Markers
 {
 	public class MapMarkerAcdMonster : MapMarkerAcd
 	{
-		public MapMarkerAcdMonster(ActorCommonData monster, Func<ActorCommonData, bool> isValid)
+		public MapMarkerAcdMonster(ACD monster, Func<ACD, bool> isValid)
 			: base(monster, isValid)
 		{
-			ZIndex = (int)Acd.x0B8_MonsterQuality;
+			ZIndex = (int)Acd.MonsterQuality;
 		}
 
 		public override object CreateControl()
@@ -25,9 +26,9 @@ namespace Enigma.D3.MapHack.Markers
 				return null;
 
 			var strokeThickness = 1;
-			var diameter = Acd.x0DC_Radius * 10;
+			var diameter = Acd.Radius * 10;
 
-			switch (Acd.x0B8_MonsterQuality)
+			switch (Acd.MonsterQuality)
 			{
 				default:
 				case MonsterQuality.Normal:
@@ -82,7 +83,7 @@ namespace Enigma.D3.MapHack.Markers
 
 		private bool IsTreasureGoblin()
 		{
-			switch (Acd.x090_ActorSnoId)
+			switch ((int)Acd.ActorSNO)
 			{
 				case 0x00001760: // treasureGoblin_A
 				case 0x00001761: // treasureGoblin_B

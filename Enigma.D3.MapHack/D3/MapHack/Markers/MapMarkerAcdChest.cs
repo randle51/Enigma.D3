@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enigma.D3.MemoryModel.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,12 @@ namespace Enigma.D3.MapHack.Markers
 {
 	public class MapMarkerAcdChest : MapMarkerAcd
 	{
-		public MapMarkerAcdChest(ActorCommonData item, Func<ActorCommonData, bool> isValid)
+		public MapMarkerAcdChest(ACD item, Func<ACD, bool> isValid)
 			: base(item, isValid) { }
 
 		public override object CreateControl()
 		{
-			var brush = Acd.x178_GizmoType == Enums.GizmoType.LoreChest ?
+			var brush = Acd.GizmoType == Enums.GizmoType.LoreChest ?
 				Brushes.Purple : Brushes.DarkGreen;
 
 			return ControlHelper.CreateCross(8, brush, 2)

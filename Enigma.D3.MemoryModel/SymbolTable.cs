@@ -145,8 +145,18 @@ namespace Enigma.D3.MemoryModel
         public int ID;
         public int Name;
         public int NameLength;
+        public int ActorSNO;
+        public int MonsterQuality;
         public int Position;
+        public int Radius;
         public int WorldSNO;
+        public int FastAttribGroupID;
+        public int ActorType;
+        public int GizmoType;
+        public int Hitpoints;
+        public int TeamID;
+        public int ObjectFlags;
+        public int CollisionFlags;
     }
 
     public struct LocalDataSymbols
@@ -176,6 +186,9 @@ namespace Enigma.D3.MemoryModel
     {
         public int SizeOf;
         public int ID;
+        public int Flags;
+        public int PtrMap;
+        public int Map;
     }
 
     public struct PlayerDataManagerSymbols
@@ -269,6 +282,7 @@ namespace Enigma.D3.MemoryModel
     {
         public int SizeOf;
         public int ID;
+        public int DefaultValue;
         public int DataType;
         public int Name;
         public int NameLength;

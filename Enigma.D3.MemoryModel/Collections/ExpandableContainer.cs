@@ -42,6 +42,7 @@ namespace Enigma.D3.MemoryModel.Collections
 		{
 			get
 			{
+                index = (short)index;
 				var blockSize = 1 << Bits;
 				var blockNumber = index / blockSize;
 				var blockOffset = index % blockSize;

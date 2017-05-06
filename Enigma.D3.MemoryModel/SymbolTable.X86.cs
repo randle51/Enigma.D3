@@ -76,8 +76,18 @@ namespace Enigma.D3.MemoryModel
             ACD.ID = 0x0;
             ACD.Name = 0x4;
             ACD.NameLength = 0x80;
+            ACD.ActorSNO = 0x90;
+            ACD.MonsterQuality = 0xB8;
             ACD.Position = 0xD0;
+            ACD.Radius = 0xDC;
             ACD.WorldSNO = 0x108;
+            ACD.FastAttribGroupID = 0x120;
+            ACD.ActorType = 0x17C;
+            ACD.GizmoType = 0x178;
+            ACD.Hitpoints = 0x180;
+            ACD.TeamID = 0x188;
+            ACD.ObjectFlags = 0x190;
+            ACD.CollisionFlags = 0x240;
 
             LocalData.SizeOf = 0x38;
             LocalData.IsPlayerValid = 0x0;
@@ -98,6 +108,9 @@ namespace Enigma.D3.MemoryModel
 
             FastAttribGroup.SizeOf = 0x9C8;
             FastAttribGroup.ID = 0x0;
+            FastAttribGroup.Flags = 0x4;
+            FastAttribGroup.PtrMap = 0xC;
+            FastAttribGroup.Map = 0x10;
 
             PlayerDataManager.SizeOf = 0x60738;
             PlayerDataManager.Items = 0x38;
@@ -149,6 +162,7 @@ namespace Enigma.D3.MemoryModel
 
             AttributeDescriptor.SizeOf = 0x28;
             AttributeDescriptor.ID = 0x0;
+            AttributeDescriptor.DefaultValue = 0x4;
             AttributeDescriptor.DataType = 0x10;
             AttributeDescriptor.Name = 0x1C;
             AttributeDescriptor.NameLength = 0x80;
