@@ -12,40 +12,34 @@ namespace Enigma.D3.MapHack.Markers
 		private static int Validate(ACD acd)
 		{
 			if (acd == null)
-				throw new ArgumentNullException("acd");
+				throw new ArgumentNullException(nameof(acd));
 			return acd.Address;
 		}
 
 		private readonly ACD _acd;
 		private readonly int _acdId;
-		private readonly Func<ACD, bool> _isValid;
+		private readonly Func<ACD, bool> _isVisible;
 
-		public MapMarkerAcd(ACD acd, Func<ACD, bool> isValid)
+		public MapMarkerAcd(ACD acd, Func<ACD, bool> isVisible)
 			: base(Validate(acd))
 		{
-			if (isValid == null)
-				throw new ArgumentNullException("isValid");
+			if (isVisible == null)
+				throw new ArgumentNullException(nameof(isVisible));
 
 			_acd = acd;
 			_acdId = _acd.ID;
-			_isValid = isValid;
+			_isVisible = isVisible;
 		}
 
 		protected ACD Acd { get { return _acd; } }
 
-		public override bool Update(int worldId, Point3D origo)
+		public override void Update(int worldId, Point3D origo)
 		{
-			if (_acd.ID == -1 || _acd.ID != _acdId)
-				return false;
-			if (!_isValid(Acd))
-				return false;
-			if (_acd.WorldSNO != worldId)
-				return false;
-
-			base.X = _acd.Position.X - origo.X;
-			base.Y = _acd.Position.Y - origo.Y;
-
-			return true;
-		}
+            if (IsVisible = _isVisible(Acd) && _acd.WorldSNO == worldId)
+            {
+                X = _acd.Position.X - origo.X;
+                Y = _acd.Position.Y - origo.Y;
+            }
+        }
 	}
 }

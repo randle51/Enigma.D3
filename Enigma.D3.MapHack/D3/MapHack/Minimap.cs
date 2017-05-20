@@ -96,7 +96,7 @@ namespace Enigma.D3.MapHack
                     var index = Array.IndexOf(_acdsObserver.CurrentMapping, playerAcdId);
                     if (index != -1)
                         _playerAcd = MemoryObjectFactory.UnsafeCreate<ACD>(new BufferMemoryReader(_acdsObserver.CurrentData), index * _acdsObserver.Container.ItemSize);
-                    
+
                     if (_playerAcd == null)
                         return;
                 }
@@ -122,8 +122,9 @@ namespace Enigma.D3.MapHack
                         }
                     }
                 }
+                var itemsToRemove = _acdsObserver.OldItems.Where(x => _minimapItemsDic.ContainsKey(x.Address)).Select(x => _minimapItemsDic[x.Address]).ToList();
 
-                UpdateUI(itemsToAdd);
+                UpdateUI(itemsToAdd, itemsToRemove);
             }
             catch (Exception exception)
             {
@@ -188,35 +189,23 @@ namespace Enigma.D3.MapHack
             Trace.WriteLine(exception.Message);
         }
 
-        private void UpdateUI(List<IMapMarker> itemsToAdd)
+        private void UpdateUI(List<IMapMarker> itemsToAdd, List<IMapMarker> itemsToRemove)
         {
-            var itemsToRemove = new List<IMapMarker>();
-            foreach (var mapItem in _minimapItems.Concat(itemsToAdd))
+            if (itemsToRemove.Count > 0)
             {
-                if (!mapItem.Update(_playerAcd.WorldSNO, new Point3D
-                {
-                    X = _playerAcd.Position.X,
-                    Y = _playerAcd.Position.Y,
-                    Z = _playerAcd.Position.Z
-                }))
-                {
-                    itemsToRemove.Add(mapItem);
-                    _minimapItemsDic.Remove(mapItem.Id);
-                }
+                Trace.WriteLine("Removing " + itemsToRemove.Count + " items...");
+                Execute.OnUIThread(() => itemsToRemove.ForEach(x => _minimapItems.Remove(x)));
+                itemsToRemove.ForEach(a => _minimapItems.Remove(a));
             }
 
-            if (itemsToAdd.Count > 0 || itemsToRemove.Count > 0)
-            {
-                if (itemsToAdd.Count > 0)
-                    Trace.WriteLine("Adding " + itemsToAdd.Count + " items...");
-                if (itemsToRemove.Count > 0)
-                    Trace.WriteLine("Removing " + itemsToRemove.Count + " items...");
+            var origo = new Point3D(_playerAcd.Position.X, _playerAcd.Position.Y, _playerAcd.Position.Z);
+            foreach (var mapItem in _minimapItems.Concat(itemsToAdd))
+                mapItem.Update(_playerAcd.WorldSNO, origo);
 
-                Execute.OnUIThread(() =>
-                {
-                    itemsToAdd.ForEach(a => _minimapItems.Add(a));
-                    itemsToRemove.ForEach(a => _minimapItems.Remove(a));
-                });
+            if (itemsToAdd.Count > 0)
+            {
+                Trace.WriteLine("Adding " + itemsToAdd.Count + " items...");
+                Execute.OnUIThread(() => itemsToAdd.ForEach(a => _minimapItems.Add(a)));
             }
         }
 
@@ -233,6 +222,7 @@ namespace Enigma.D3.MapHack
             if (_minimapItems.Count > 0)
                 Execute.OnUIThread(() => _minimapItems.Clear());
             _acdsObserver = null;
+            _playerAcd = null;
         }
     }
 }

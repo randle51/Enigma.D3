@@ -6,6 +6,9 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300" Width="350" Height="350" Canvas.Right="27.5" Canvas.Top="55"
              ClipToBounds="False">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
     <Grid>
         <ItemsControl ItemsSource="{Binding MinimapMarkers}">
             <ItemsControl.ItemsPanel>
@@ -27,6 +30,7 @@
                     <Setter Property="Canvas.Left" Value="{Binding X}" />
                     <Setter Property="Canvas.Top" Value="{Binding Y}" />
                     <Setter Property="Canvas.ZIndex" Value="{Binding ZIndex, Mode=OneTime}" />
+                    <Setter Property="Visibility" Value="{Binding IsVisible, Converter={StaticResource BooleanToVisibilityConverter}}" />
                     <!--<Setter Property="CacheMode">
                         <Setter.Value>
                             <BitmapCache RenderOptions.BitmapScalingMode="HighQuality" />

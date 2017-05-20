@@ -12,6 +12,7 @@ namespace Enigma.D3.MapHack.Markers
 		private double _x;
 		private double _y;
 		private object _control;
+        private bool _isVisible = true;
 
 		public MapMarkerBase(int id)
 		{
@@ -28,7 +29,7 @@ namespace Enigma.D3.MapHack.Markers
 				if (_x != value)
 				{
 					_x = value;
-					Refresh("X");
+					Refresh(nameof(X));
 				}
 			}
 		}
@@ -41,12 +42,25 @@ namespace Enigma.D3.MapHack.Markers
 				if (_y != value)
 				{
 					_y = value;
-					Refresh("Y");
+					Refresh(nameof(Y));
 				}
 			}
 		}
 
 		public int ZIndex { get; protected set; }
+
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set
+            {
+                if (_isVisible != value)
+                {
+                    _isVisible = value;
+                    Refresh(nameof(IsVisible));
+                }
+            }
+        }
 
 		public abstract object CreateControl();
 
@@ -58,6 +72,6 @@ namespace Enigma.D3.MapHack.Markers
 			}
 		}
 
-		public abstract bool Update(int worldId, Point3D origo);
+		public abstract void Update(int worldId, Point3D origo);
 	}
 }

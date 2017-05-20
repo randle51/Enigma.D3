@@ -18,7 +18,7 @@ namespace Enigma.D3.MapHack.Markers
 
 		object CreateControl();
 
-		bool Update(int worldId, Point3D origo);
+		void Update(int worldId, Point3D origo);
 
 		int Id { get; }
 	}
