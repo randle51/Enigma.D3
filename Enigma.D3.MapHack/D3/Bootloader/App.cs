@@ -17,11 +17,7 @@ namespace Enigma.D3.Bootloader
     internal class App : Application
     {
         [STAThread]
-        public static void Main()
-        {
-            var app = new App();
-            app.Run();
-        }
+        public static void Main() => new App().Run();
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -52,7 +48,6 @@ namespace Enigma.D3.Bootloader
                         Execute.OnUIThread(() => overlay.Close());
                     }
                     Shell.Instance.IsAttached = false;
-                    //Execute.OnUIThread(() => MainWindow.Close());
                 }
             }, TaskCreationOptions.LongRunning);
         }

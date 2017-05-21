@@ -10,7 +10,6 @@ using Enigma.Wpf;
 using System.Windows.Data;
 using System.Windows.Markup;
 using System.Windows;
-using Enigma.D3.Enums;
 using System.Windows.Media.Media3D;
 using Enigma.D3.MapHack.Markers;
 using Enigma.D3.MemoryModel;
@@ -20,15 +19,26 @@ using Enigma.Memory;
 
 namespace Enigma.D3.MapHack
 {
-    internal class Minimap : NotifyingObject
+    internal class Minimap
     {
-        private Canvas _window;
-        private Canvas _root;
-        private MinimapControl _minimapControl;
-        private ObservableCollection<IMapMarker> _minimapItems;
+        private readonly Canvas _window;
+        private readonly Canvas _root;
+        private readonly MinimapControl _minimapControl;
+        private readonly ObservableCollection<IMapMarker> _minimapItems;
+        private readonly Dictionary<int, IMapMarker> _minimapItemsDic = new Dictionary<int, IMapMarker>();
+        private int _previousFrame;
+        private readonly HashSet<int> _ignoredSnoIds = new HashSet<int>();
+        private ACD _playerAcd;
+        private LocalData _localData;
+        private ObjectManager _objectManager;
+        private ContainerObserver<ACD> _acdsObserver;
+        private bool _isLocalActorReady;
 
         public Minimap(Canvas overlay)
         {
+            if (overlay == null)
+                throw new ArgumentNullException(nameof(overlay));
+
             _minimapItems = new ObservableCollection<IMapMarker>();
 
             _root = new Canvas() { Height = 1200.5d };
@@ -41,7 +51,7 @@ namespace Enigma.D3.MapHack
             UpdateSizeAndPosition();
         }
 
-        public ObservableCollection<IMapMarker> MinimapMarkers { get { return _minimapItems; } }
+        public ObservableCollection<IMapMarker> MinimapMarkers => _minimapItems;
 
         private void UpdateSizeAndPosition()
         {
@@ -50,19 +60,11 @@ namespace Enigma.D3.MapHack
             _root.RenderTransform = new ScaleTransform(uiScale, uiScale, 0, 0);
         }
 
-        private Dictionary<int, IMapMarker> _minimapItemsDic = new Dictionary<int, IMapMarker>();
-        private int _lastFrame;
-        private HashSet<int> _ignoredSnoIds = new HashSet<int>();
-        private ACD _playerAcd;
-
-        private LocalData _localData;
-        private ObjectManager _objectManager;
-        private ContainerObserver<ACD> _acdsObserver;
-
-        private bool _isLocalActorReady;
-
         public void Update(MemoryContext ctx)
         {
+            if (ctx == null)
+                throw new ArgumentNullException(nameof(ctx));
+
             try
             {
                 if (!IsLocalActorValid(ctx))
@@ -76,17 +78,6 @@ namespace Enigma.D3.MapHack
 
                 _acdsObserver = _acdsObserver ?? new ContainerObserver<ACD>(ctx.DataSegment.ObjectManager.ACDManager.ActorCommonData);
                 _acdsObserver.Update();
-
-                var monsters = _acdsObserver.NewItems.Where(x => x.ActorType == ActorType.Monster).ToArray();
-
-                // TODO
-                //if (isNewgame)
-                //{
-                //    _minimapItems.Clear();
-                //    _minimapItemsDic.Clear();
-                //    _playerAcd = null;
-                //    return;
-                //}
 
                 // Must have a local ACD to base coords on.
                 if (_playerAcd == null)
@@ -179,16 +170,16 @@ namespace Enigma.D3.MapHack
 
             // Don't do anything unless game updated frame.
             int currentFrame = _objectManager.RenderTick;
-            if (currentFrame == _lastFrame)
+            if (currentFrame == _previousFrame)
                 return false;
-            if (currentFrame < _lastFrame)
+
+            if (currentFrame < _previousFrame)
             {
                 // Lesser frame than before = left game probably.
-                _playerAcd = null;
-                _lastFrame = currentFrame;
+                Reset();
                 return false;
             }
-            _lastFrame = currentFrame;
+            _previousFrame = currentFrame;
             return true;
         }
 
@@ -234,8 +225,7 @@ namespace Enigma.D3.MapHack
 
         private void Reset()
         {
-            if (_minimapItemsDic.Count > 0)
-                _minimapItemsDic.Clear();
+            _minimapItemsDic.Clear();
             if (_minimapItems.Count > 0)
                 Execute.OnUIThread(() => _minimapItems.Clear());
             _acdsObserver = null;
@@ -244,6 +234,7 @@ namespace Enigma.D3.MapHack
             _localData = null;
             _objectManager = null;
             _isLocalActorReady = false;
+            _previousFrame = 0;
         }
     }
 }
