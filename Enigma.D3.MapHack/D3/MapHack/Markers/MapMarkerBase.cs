@@ -12,7 +12,7 @@ namespace Enigma.D3.MapHack.Markers
 		private double _x;
 		private double _y;
 		private object _control;
-        private bool _isVisible = true;
+        private bool _isVisible;
 
 		public MapMarkerBase(int id)
 		{

@@ -72,6 +72,7 @@ namespace Enigma.D3.MapHack
                     return;
 
                 var itemsToAdd = new List<IMapMarker>();
+                var itemsToRemove = new List<IMapMarker>();
 
                 _acdsObserver = _acdsObserver ?? new ContainerObserver<ACD>(ctx.DataSegment.ObjectManager.ACDManager.ActorCommonData);
                 _acdsObserver.Update();
@@ -96,9 +97,17 @@ namespace Enigma.D3.MapHack
                     var index = Array.IndexOf(_acdsObserver.CurrentMapping, playerAcdId);
                     if (index != -1)
                         _playerAcd = MemoryObjectFactory.UnsafeCreate<ACD>(new BufferMemoryReader(_acdsObserver.CurrentData), index * _acdsObserver.Container.ItemSize);
+                }
 
-                    if (_playerAcd == null)
-                        return;
+                foreach (var acd in _acdsObserver.OldItems)
+                {
+                    var marker = default(IMapMarker);
+                    if (_minimapItemsDic.TryGetValue(acd.Address, out marker))
+                    {
+                        Trace.WriteLine("Removing " + acd.Name);
+                        itemsToRemove.Add(marker);
+                        _minimapItemsDic.Remove(acd.Address);
+                    }
                 }
 
                 foreach (var acd in _acdsObserver.NewItems)
@@ -122,7 +131,6 @@ namespace Enigma.D3.MapHack
                         }
                     }
                 }
-                var itemsToRemove = _acdsObserver.OldItems.Where(x => _minimapItemsDic.ContainsKey(x.Address)).Select(x => _minimapItemsDic[x.Address]).ToList();
 
                 UpdateUI(itemsToAdd, itemsToRemove);
             }
@@ -187,6 +195,7 @@ namespace Enigma.D3.MapHack
         private void OnUpdateException(Exception exception)
         {
             Trace.WriteLine(exception.Message);
+            Reset();
         }
 
         private void UpdateUI(List<IMapMarker> itemsToAdd, List<IMapMarker> itemsToRemove)
@@ -195,12 +204,15 @@ namespace Enigma.D3.MapHack
             {
                 Trace.WriteLine("Removing " + itemsToRemove.Count + " items...");
                 Execute.OnUIThread(() => itemsToRemove.ForEach(x => _minimapItems.Remove(x)));
-                itemsToRemove.ForEach(a => _minimapItems.Remove(a));
+                itemsToRemove.ForEach(a => _minimapItemsDic.Remove(a.Id));
             }
 
-            var origo = new Point3D(_playerAcd.Position.X, _playerAcd.Position.Y, _playerAcd.Position.Z);
-            foreach (var mapItem in _minimapItems.Concat(itemsToAdd))
-                mapItem.Update(_playerAcd.WorldSNO, origo);
+            if (_playerAcd != null)
+            {
+                var origo = new Point3D(_playerAcd.Position.X, _playerAcd.Position.Y, _playerAcd.Position.Z);
+                foreach (var mapItem in _minimapItems.Concat(itemsToAdd))
+                    mapItem.Update(_playerAcd.WorldSNO, origo);
+            }
 
             if (itemsToAdd.Count > 0)
             {
@@ -217,12 +229,21 @@ namespace Enigma.D3.MapHack
         private void OnLocalActorDisposed()
         {
             Trace.WriteLine("Local Actor Not Ready");
+            Reset();
+        }
+
+        private void Reset()
+        {
             if (_minimapItemsDic.Count > 0)
                 _minimapItemsDic.Clear();
             if (_minimapItems.Count > 0)
                 Execute.OnUIThread(() => _minimapItems.Clear());
             _acdsObserver = null;
             _playerAcd = null;
+            _ignoredSnoIds.Clear();
+            _localData = null;
+            _objectManager = null;
+            _isLocalActorReady = false;
         }
     }
 }
