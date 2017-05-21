@@ -37,8 +37,10 @@ namespace Enigma.D3.MemoryModel.Collections
 
         public class Entry : MemoryObject
         {
-            public int Key => Read<int>(0x04);
-            public TValue Value => Read<TValue>(0x08);
+            private static bool X86 => SymbolTable.Current.Platform == Platform.X86;
+            
+            public int Key => Read<int>(X86 ? 0x04 : 0x08);
+            public TValue Value => Read<TValue>(X86 ? 0x08 : 0x0C);
 
             public Entry GetNext() => ReadPointer<Entry>(0x00).Dereference();
         }

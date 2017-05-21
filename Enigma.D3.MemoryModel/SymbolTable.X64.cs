@@ -89,7 +89,10 @@ namespace Enigma.D3.MemoryModel
             FastAttrib.FastAttribGroups = 0x90;
 
             FastAttribGroup.SizeOf = 0x12E8;
-            FastAttribGroup.ID = 0x0000;
+            FastAttribGroup.ID = 0x0;
+            FastAttribGroup.Flags = 0x4;
+            FastAttribGroup.PtrMap = 0x10;
+            FastAttribGroup.Map = 0x28;
 
             PlayerDataManager.SizeOf = 0x5AB60;
             PlayerDataManager.Items = 0x00000;
