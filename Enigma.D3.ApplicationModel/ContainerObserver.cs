@@ -51,29 +51,17 @@ namespace Enigma.D3.ApplicationModel
 
             NewItems.Clear();
             OldItems.Clear();
-            if (PreviousMapping.Length == CurrentMapping.Length)
+
+            // Compare against previous where there is a value.
+            for (int i = 0; i < Math.Min(PreviousMapping.Length, CurrentMapping.Length); i++)
             {
-                for (int i = 0; i < CurrentMapping.Length; i++)
+                if (CurrentMapping[i] != PreviousMapping[i])
                 {
-                    if (CurrentMapping[i] != PreviousMapping[i])
+                    if (PreviousMapping[i] != -1)
                     {
-                        if (PreviousMapping[i] != -1)
-                        {
-                            OnItemRemoved(i);
-                            OldItems.Add(MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(PreviousData), i * Container.ItemSize));
-                        }
-                        if (CurrentMapping[i] != -1)
-                        {
-                            OnItemAdded(i);
-                            NewItems.Add(MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(CurrentData), i * Container.ItemSize));
-                        }
+                        OnItemRemoved(i);
+                        OldItems.Add(MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(PreviousData), i * Container.ItemSize));
                     }
-                }
-            }
-            if (PreviousMapping.Length < CurrentMapping.Length)
-            {
-                for (int i = PreviousMapping.Length; i < CurrentMapping.Length; i++)
-                {
                     if (CurrentMapping[i] != -1)
                     {
                         OnItemAdded(i);
@@ -81,23 +69,26 @@ namespace Enigma.D3.ApplicationModel
                     }
                 }
             }
-            if (PreviousMapping.Length > CurrentMapping.Length)
+
+            // Check expanded area.
+            for (int i = PreviousMapping.Length; i < CurrentMapping.Length; i++)
             {
-                for (int i = CurrentMapping.Length; i < PreviousMapping.Length; i++)
+                if (CurrentMapping[i] != -1)
                 {
-                    if (PreviousMapping[i] != -1)
-                    {
-                        OnItemRemoved(i);
-                        OldItems.Add(MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(PreviousData), i * Container.ItemSize));
-                    }
+                    OnItemAdded(i);
+                    NewItems.Add(MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(CurrentData), i * Container.ItemSize));
                 }
             }
 
-
-            //var state = (Container.NextHash << 16) + Container.NextIndex;
-            //if (state != State)
-            //	OnCollectionModified();
-            //State = state;
+            // Check reduced area.
+            for (int i = CurrentMapping.Length; i < PreviousMapping.Length; i++)
+            {
+                if (PreviousMapping[i] != -1)
+                {
+                    OnItemRemoved(i);
+                    OldItems.Add(MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(PreviousData), i * Container.ItemSize));
+                }
+            }
         }
 
         private void OnItemRemoved(int index)
@@ -108,11 +99,6 @@ namespace Enigma.D3.ApplicationModel
         private void OnItemAdded(int index)
         {
             ItemAdded?.Invoke(index, default(T));
-        }
-
-        private void OnCollectionModified()
-        {
-            Console.WriteLine(Container.Name + " modified");
         }
     }
 }
