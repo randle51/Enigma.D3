@@ -10,72 +10,90 @@ namespace Enigma.D3.MemoryModel
     {
         private void InitX64()
         {
-            Version = new Version(2, 4, 3, 43048);
+            Version = new Version(2, 5, 0, 44247);
             Platform = Platform.X64;
 
-            DataSegment.Address = 0x00000001415CD000;
-            DataSegment.VideoPreferences = 0x0000000141616DF0;
-            DataSegment.SoundPreferences = 0x0000000141616E90;
-            DataSegment.HotkeyPreferences = 0x0000000141616EE0;
-            DataSegment.GameplayPreferences = 0x0000000141617360;
-            DataSegment.SocialPreferences = 0x00000001416173C4;
-            DataSegment.ChatPreferences = 0x00000001416173F4;
-            DataSegment.LevelArea = 0x00000001417F8698;
-            DataSegment.LevelAreaName = 0x00000001417F86A0;
+            DataSegment.Address = 0x141A69000;
+            DataSegment.VideoPreferences = 0x141AEBC40;
+            DataSegment.SoundPreferences = 0x141AEBCE0;
+            DataSegment.HotkeyPreferences = 0x141AEBD30;
+            DataSegment.GameplayPreferences = 0x141AEC1B0;
+            DataSegment.SocialPreferences = 0x141AEC218;
+            DataSegment.ChatPreferences = 0x141AEC248;
+            DataSegment.LevelArea = 0x141CD8818;
+            DataSegment.LevelAreaName = 0x141CD8820;
             DataSegment.LevelAreaNameLength = 0x80;
-            DataSegment.MapActID = 0x00000001417F8A38;
-            DataSegment.ScreenManagerRoot = 0x00000001417F8C98;
-            DataSegment.TrickleManager = 0x000000000141850888;
-            DataSegment.LocalData = 0x000000014187D758;
-            DataSegment.ObjectManager = 0x000000014187D7A0;
-            DataSegment.ApplicationLoopCount = 0x000000014187D824;
-            DataSegment.AttributeDescriptors = 0x00000001418E9770;
-            DataSegment.AttributeDescriptorsCount = 0x000005A2;
-            DataSegment.MemoryManager = 0x0000000141981288;
+            DataSegment.MapActID = 0x141CD8B28;
+            DataSegment.ScreenManagerRoot = 0x141CD8D50;
+            DataSegment.TrickleManager = 0x141D2BC20;
+            DataSegment.LocalData = 0x141D586A8;
+            DataSegment.ObjectManager = 0x141D586F0;
+            DataSegment.ApplicationLoopCount = 0x141D58774;
+            DataSegment.AttributeDescriptors = 0x141DCB4B0;
+            DataSegment.AttributeDescriptorsCount = 0x5A5;
+            DataSegment.MemoryManager = 0x141E63C00;
+            DataSegment.SNOGroups = 0x141D584F0;
+            DataSegment.SNOGroupsByCode = 0x141D582C0;
+            DataSegment.ContainerManager = 0x141E67520;
+            DataSegment.MessageDescriptor = 0x141315B28;
 
-            ObjectManager.SizeOf = 0xB98;
-            ObjectManager.RenderTick = 0x060;
-            ObjectManager.GameState = 0x084;
-            //ObjectManager.GameServerAddress = 0x0C0;
-            //ObjectManager.GameServerAddressLength = 128;
-            ObjectManager.Storage = 0x7C8;
-            Storage.GameHandicap = 0x004;
+            ObjectManager.SizeOf = 0xB88;
+            ObjectManager.RenderTick = 0x4;
+            ObjectManager.GameGlobals = 0x68;
+            ObjectManager.GameState = 0x84;
+            ObjectManager.Storage = 0x7B8;
+            ObjectManager.Actors = 0xA18;
+            ObjectManager.Scenes = 0xA98;
+            ObjectManager.SubObjectGfx = 0xAF0;
+            ObjectManager.RWindowMgr = 0xAF8;
+            ObjectManager.UIManager = 0xB00;
+            ObjectManager.Worlds = 0xB10;
+            ObjectManager.Player = 0xB20;
+            ObjectManager.TexAnim = 0xB68;
+            ObjectManager.TimedEvents = 0xB70;
+
+            GameGlobals.SizeOf = 0x3A0;
+            GameGlobals.GameServerAddress = 0x5C;
+            GameGlobals.GameServerAddressLength = 0x80;
+
+            Storage.GameHandicap = 0x4;
             Storage.GameTick = 0x120;
             Storage.PlayerDataManager = 0x140;
             Storage.FastAttrib = 0x180;
             Storage.ACDManager = 0x198;
             Storage.QuestManager = 0x1B8;
             Storage.WaypointManager = 0x210;
-            ObjectManager.Actors = 0xA28;
-            ObjectManager.Scenes = 0xAA8;
-            ObjectManager.SubObjectGfx = 0; // TODO
-            ObjectManager.RWindowMgr = 0; //TODO
-            ObjectManager.UIManager = 0xB10;
-            ObjectManager.Worlds = 0xB20;
-            ObjectManager.Player = 0xB30;
-            ObjectManager.TexAnim = 0; // TODO
-            ObjectManager.TimedEvents = 0xB80;
 
             Actor.SizeOf = 0x4F8;
-            Actor.ID = 0x000;
-            Actor.Name = 0x004;
-            Actor.NameLength = 0x080;
+            Actor.ID = 0x0;
+            Actor.Name = 0x4;
+            Actor.NameLength = 0x80;
 
-            ACDManager.SizeOf = -1; // TODO
-            ACDManager.ActorCommonData = 0x00;
+            ACDManager.SizeOf = 0x150;
+            ACDManager.ActorCommonData = 0x0;
 
-            ACD.SizeOf = 0x3A8;
-            ACD.ID = 0x000;
-            ACD.Name = 0x004;
-            ACD.NameLength = 0x080;
-            ACD.Position = 0x0D8;
+            ACD.SizeOf = 0x3A0;
+            ACD.ID = 0x0;
+            ACD.Name = 0x4;
+            ACD.NameLength = 0x80;
+            ACD.ActorSNO = 0x90;
+            ACD.MonsterQuality = 0xB8;
+            ACD.Position = 0xD8;
+            ACD.Radius = 0xE4;
             ACD.WorldSNO = 0x118;
+            ACD.FastAttribGroupID = 0x130;
+            ACD.ActorType = 0x1BC;
+            ACD.GizmoType = 0x1B8;
+            ACD.Hitpoints = 0x1C0;
+            ACD.TeamID = 0x1C8;
+            ACD.ObjectFlags = 0x1CC;
+            ACD.CollisionFlags = 0x2D8;
 
             LocalData.SizeOf = 0x38;
-            LocalData.IsPlayerValid = 0x00;
-            LocalData.IsStartUpGame = 0x04;
-            LocalData.SceneSNO = 0x08;
-            LocalData.WorldSNO = 0x0C;
+            LocalData.IsPlayerValid = 0x0;
+            LocalData.IsStartUpGame = 0x4;
+            LocalData.SceneSNO = 0x8;
+            LocalData.WorldSNO = 0xC;
             LocalData.ActorSNO = 0x10;
             LocalData.ActID = 0x14;
             LocalData.WorldSeed = 0x18;
@@ -92,68 +110,75 @@ namespace Enigma.D3.MemoryModel
             FastAttribGroup.ID = 0x0;
             FastAttribGroup.Flags = 0x4;
             FastAttribGroup.PtrMap = 0x10;
-            FastAttribGroup.Map = 0x28;
+            FastAttribGroup.Map = 0x18;
 
-            PlayerDataManager.SizeOf = 0x5AB60;
-            PlayerDataManager.Items = 0x00000;
+            PlayerDataManager.SizeOf = 0x616A0;
+            PlayerDataManager.Items = 0x60;
 
-            PlayerData.SizeOf = 0xB560;
-            PlayerData.Index = 0x0000;
-            PlayerData.ACDID = 0x0004;
-            PlayerData.ActorID = 0x0008;
+            PlayerData.SizeOf = 0xC2C8;
+            PlayerData.Index = 0x0;
+            PlayerData.ACDID = 0x4;
+            PlayerData.ActorID = 0x8;
+            PlayerData.HeroName = 0xA201;
+            PlayerData.ActorSNO = 0xB190;
+            PlayerData.LifePercentage = 0xB194;
+            PlayerData.HeroClass = 0xB1A0;
+            PlayerData.Level = 0xB1A4;
+            PlayerData.AltLevel = 0xB1A8;
 
             Scene.SizeOf = 0x7B8;
 
             World.SizeOf = 0x98;
 
             QuestManager.SizeOf = 0x4A0;
-            QuestManager.Quests = 0x030;
+            QuestManager.Quests = 0x30;
 
-            Quest.SizeOf = 0x168;
+            Quest.SizeOf = 0x178;
 
             WaypointManager.SizeOf = 0x18;
-            WaypointManager.Array = 0x00;
-            WaypointManager.Count = 0x08;
+            WaypointManager.Array = 0x0;
+            WaypointManager.Count = 0x10;
 
             Waypoint.SizeOf = 0x2C;
-            Waypoint.ActID = 0x00;
-            Waypoint.LevelAreaSNO = 0x0C;
+            Waypoint.ActID = 0x0;
+            Waypoint.LevelAreaSNO = 0xC;
             Waypoint.X = 0x24;
             Waypoint.Y = 0x28;
 
             TrickleManager.SizeOf = 0x10;
-            TrickleManager.Allocator = 0x00;
-            TrickleManager.Items = 0x08;
+            TrickleManager.Allocator = 0x0;
+            TrickleManager.Items = 0x4;
 
-            Trickle.SizeOf = 0x68;
+            Trickle.SizeOf = 0x78;
 
             UIManager.SizeOf = 0x27B8;
 
             LevelArea.SizeOf = 0x980;
 
             Player.SizeOf = 0xA3C8;
-            Player.LocalPlayerIndex = 0x0000;
+            Player.LocalPlayerIndex = 0x0;
             Player.LatencySamples = 0xA348;
-            Player.FloatingNumbers = 0xA218;
+            Player.FloatingNumbers = 0xA238;
 
             AttributeDescriptor.SizeOf = 0x40;
-            AttributeDescriptor.ID = 0x00;
+            AttributeDescriptor.ID = 0x0;
+            AttributeDescriptor.DefaultValue = 0x4;
             AttributeDescriptor.DataType = 0x10;
             AttributeDescriptor.Name = 0x28;
-            AttributeDescriptor.NameLength = 256;
+            AttributeDescriptor.NameLength = 0x100;
 
             FloatingNumber.SizeOf = 0x64;
-            FloatingNumber.WorldPos = 0x04;
+            FloatingNumber.WorldPos = 0x4;
             FloatingNumber.WorldSNO = 0x10;
             FloatingNumber.Type = 0x5C;
             FloatingNumber.Value = 0x60;
 
-            TimedEvent.SizeOf = 0x0C;
+            TimedEvent.SizeOf = 0x58;
 
             MemoryManager.SizeOf = 0x68;
             MemoryManager.LocalHeap = 0x58;
 
-            LocalHeap.FirstNode = 0x08;
+            LocalHeap.FirstNode = 0x8;
             LocalHeap.TotalSize = 0x10;
             LocalHeap.NodeCount = 0x20;
             LocalHeap.LastNode = 0x68;
@@ -161,11 +186,11 @@ namespace Enigma.D3.MemoryModel
             HeapNode.HeaderSize = 0x20;
             HeapNode.SizeAndFlag = 0x18;
 
-            TexAnim.SizeOf = 0; // TODO
+            TexAnim.SizeOf = 0x30;
 
-            RWindowMgr.SizeOf = 0; // TODO
+            RWindowMgr.SizeOf = 0x28;
 
-            SubObjectGfx.SizeOf = 0; // TODO
+            SubObjectGfx.SizeOf = 0x128;
         }
     }
 }

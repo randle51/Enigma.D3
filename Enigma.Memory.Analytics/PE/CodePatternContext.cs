@@ -24,6 +24,8 @@ namespace Enigma.Memory.Analytics.PE
         public readonly MiniDumpMemoryReader Dump;
         private readonly PEHeaderReader _pe;
 
+        public PEHeaderReader PE => _pe;
+
         public CodePatternContext(MiniDumpMemoryReader dump, PEHeaderReader pe)
         {
             Dump = dump;

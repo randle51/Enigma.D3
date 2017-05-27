@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.CodeGen", "Enigma.D3.CodeGen\Enigma.D3.CodeGen.csproj", "{964EF49B-060C-4006-AF29-C2B94D71D892}"
 EndProject
@@ -100,7 +100,8 @@ Global
 		{E01F9C34-F404-48DC-92E2-991DA7ADF9EB}.Release|x86.ActiveCfg = Release|Any CPU
 		{E01F9C34-F404-48DC-92E2-991DA7ADF9EB}.Release|x86.Build.0 = Release|Any CPU
 		{75F91ECC-DF5A-4650-878E-4411BCC97D94}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{75F91ECC-DF5A-4650-878E-4411BCC97D94}.Debug|x64.ActiveCfg = Debug|x86
+		{75F91ECC-DF5A-4650-878E-4411BCC97D94}.Debug|x64.ActiveCfg = Debug|x64
+		{75F91ECC-DF5A-4650-878E-4411BCC97D94}.Debug|x64.Build.0 = Debug|x64
 		{75F91ECC-DF5A-4650-878E-4411BCC97D94}.Debug|x86.ActiveCfg = Debug|x86
 		{75F91ECC-DF5A-4650-878E-4411BCC97D94}.Debug|x86.Build.0 = Debug|x86
 		{75F91ECC-DF5A-4650-878E-4411BCC97D94}.Release|Any CPU.ActiveCfg = Release|x86
@@ -148,7 +149,8 @@ Global
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x86.ActiveCfg = Release|x86
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x86.Build.0 = Release|x86
 		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x64.ActiveCfg = Debug|x86
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x64.ActiveCfg = Debug|x64
+		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x64.Build.0 = Debug|x64
 		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x86.ActiveCfg = Debug|x86
 		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x86.Build.0 = Debug|x86
 		{47A32F20-6F01-454C-A301-B8403F8D6575}.Release|Any CPU.ActiveCfg = Release|x86

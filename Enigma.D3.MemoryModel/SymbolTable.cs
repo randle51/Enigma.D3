@@ -17,6 +17,7 @@ namespace Enigma.D3.MemoryModel
 
         public SymbolTable(Platform platform)
         {
+            Platform = platform;
             if (Platform == Platform.X86)
                 InitX86();
             else if (Platform == Platform.X64)
