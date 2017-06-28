@@ -62,6 +62,7 @@ namespace Enigma.D3.Bootloader
 
                 if (process != null)
                     ctx = new MemoryContext(new ProcessMemoryReader(process).Memory);
+                else Thread.Sleep(1000);
             }
             while (ctx.DataSegment.ApplicationLoopCount == 0)
             {
