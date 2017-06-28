@@ -305,6 +305,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<float> HitpointsRegenPerSecondTotal = new SimpleAttribute<float>(AttributeId.HitpointsRegenPerSecondTotal, 0);
 		public static Attribute<float> HitpointsMaxPercentBonus = new SimpleAttribute<float>(AttributeId.HitpointsMaxPercentBonus, 0);
 		public static Attribute<float> HitpointsMaxPercentBonusItem = new SimpleAttribute<float>(AttributeId.HitpointsMaxPercentBonusItem, 0);
+		public static Attribute<float> HitpointsMaxPercentBonusMultiplicative = new SimpleAttribute<float>(AttributeId.HitpointsMaxPercentBonusMultiplicative, 1);
 		public static Attribute<float> HitpointsHealedTarget = new SimpleAttribute<float>(AttributeId.HitpointsHealedTarget, 0);
 		public static Attribute<int> HitpointsFrozen = new SimpleAttribute<int>(AttributeId.HitpointsFrozen, 0);
 		public static Attribute<int> HealingSuppressed = new SimpleAttribute<int>(AttributeId.HealingSuppressed, 0);
@@ -730,7 +731,7 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> AttachedToACD = new SimpleAttribute<int>(AttributeId.AttachedToACD, -1);
 		public static Attribute<int> AttachmentACD = new SimpleAttribute<int>(AttributeId.AttachmentACD, -1);
 		public static Attribute<int> NormalAttackReplacementPowerSNO = new SimpleAttribute<int>(AttributeId.NormalAttackReplacementPowerSNO, -1);
-		public static Attribute<float> DamageTypeOverride = new SimpleAttribute<float>(AttributeId.DamageTypeOverride, 0);
+		public static Attribute<int> DamageTypeOverride = new SimpleAttribute<int>(AttributeId.DamageTypeOverride, -1);
 		public static Attribute<float> MinionCountBonusPercent = new SimpleAttribute<float>(AttributeId.MinionCountBonusPercent, 0);
 		public static Attribute<int> ExpensiveProcCount = new SimpleAttribute<int>(AttributeId.ExpensiveProcCount, 0);
 		public static Attribute<float> ChampionTeleportTimeMinInSeconds = new SimpleAttribute<float>(AttributeId.ChampionTeleportTimeMinInSeconds, 0);
@@ -915,6 +916,10 @@ namespace Enigma.D3.Helpers
 		public static Attribute<float> HealthPotionAffectsAlliesPercent = new SimpleAttribute<float>(AttributeId.HealthPotionAffectsAlliesPercent, 0);
 		public static Attribute<int> FreeCast = new SimpleAttribute<int>(AttributeId.FreeCast, 0);
 		public static Attribute<int> FreeCastAll = new SimpleAttribute<int>(AttributeId.FreeCastAll, 0);
+		public static Attribute<float> HealthCostDiscount = new SimpleAttribute<float>(AttributeId.HealthCostDiscount, 0);
+		public static Attribute<float> HealthCostScalar = new SimpleAttribute<float>(AttributeId.HealthCostScalar, 0);
+		public static Attribute<float> FrailtyHealthThreshold = new SimpleAttribute<float>(AttributeId.FrailtyHealthThreshold, 0);
+		public static Attribute<int> FrailtyNextApplicationTick = new SimpleAttribute<int>(AttributeId.FrailtyNextApplicationTick, 0);
 		public static Attribute<float> MovementScalarReductionPercent = new SimpleAttribute<float>(AttributeId.MovementScalarReductionPercent, 0);
 		public static Attribute<float> MovementScalarReductionResistance = new SimpleAttribute<float>(AttributeId.MovementScalarReductionResistance, 0);
 		public static Attribute<float> DamageAbsorbPercentAll = new SimpleAttribute<float>(AttributeId.DamageAbsorbPercentAll, 0);
@@ -1613,12 +1618,28 @@ namespace Enigma.D3.Helpers
 		public static Attribute<int> ParticipatingInSetDungeon = new SimpleAttribute<int>(AttributeId.ParticipatingInSetDungeon, 0);
 		public static Attribute<float> MultiplicativeDamagePercentBonus = new SimpleAttribute<float>(AttributeId.MultiplicativeDamagePercentBonus, 1);
 		public static Attribute<float> MultiplicativeDamagePercentBonusForSkill = new SimpleAttribute<float>(AttributeId.MultiplicativeDamagePercentBonusForSkill, 1);
+		public static Attribute<float> MultiplicativeDamagePercentBonusForPlayer = new SimpleAttribute<float>(AttributeId.MultiplicativeDamagePercentBonusForPlayer, 1);
 		public static Attribute<int> InSetDungeonWorld = new SimpleAttribute<int>(AttributeId.InSetDungeonWorld, 0);
 		public static Attribute<float> MultiplicativeDamagePercentBonusNoPets = new SimpleAttribute<float>(AttributeId.MultiplicativeDamagePercentBonusNoPets, 1);
-		public static Attribute<float> MultiplicativeDamagePercentBonusAgainstCCTargets = new SimpleAttribute<float>(AttributeId.MultiplicativeDamagePercentBonusAgainstCCTargets, 1);
+		public static Attribute<float> MultiplicativeDamagePercentBonusochallengeAgainstCCTargets = new SimpleAttribute<float>(AttributeId.MultiplicativeDamagePercentBonusochallengeAgainstCCTargets, 1);
 		public static Attribute<float> MultiplicativeDamagePercentBonusAgainstSlowedTargets = new SimpleAttribute<float>(AttributeId.MultiplicativeDamagePercentBonusAgainstSlowedTargets, 1);
 		public static Attribute<int> SummonedByAutocast = new SimpleAttribute<int>(AttributeId.SummonedByAutocast, 0);
+		public static Attribute<float> NecromancerCorpseSpawnChance = new SimpleAttribute<float>(AttributeId.NecromancerCorpseSpawnChance, 0);
+		public static Attribute<int> NecromancerLastCorpseSpawnCheckTick = new SimpleAttribute<int>(AttributeId.NecromancerLastCorpseSpawnCheckTick, 0);
+		public static Attribute<int> NecromancerCorpseOwnerPlayerHigh = new SimpleAttribute<int>(AttributeId.NecromancerCorpseOwnerPlayerHigh, 0);
+		public static Attribute<int> NecromancerCorpseOwnerPlayerLow = new SimpleAttribute<int>(AttributeId.NecromancerCorpseOwnerPlayerLow, 0);
+		public static Attribute<ulong> NecromancerCorpseOwnerPlayer = new ComplexAttribute(AttributeId.NecromancerCorpseOwnerPlayerHigh, 0, AttributeId.NecromancerCorpseOwnerPlayerLow, 0);
+		public static Attribute<int> NecromancerCorpseCharges = new SimpleAttribute<int>(AttributeId.NecromancerCorpseCharges, 0);
+		public static Attribute<int> NecromancerCorpseSourceMonsterSNO = new SimpleAttribute<int>(AttributeId.NecromancerCorpseSourceMonsterSNO, -1);
+		public static Attribute<int> NecromancerCorpseFreeCasting = new SimpleAttribute<int>(AttributeId.NecromancerCorpseFreeCasting, 0);
 		public static Attribute<int> CurrenciesDiscovered = new SimpleAttribute<int>(AttributeId.CurrenciesDiscovered, 0);
+		public static Attribute<int> InTieredChallengeRift = new SimpleAttribute<int>(AttributeId.InTieredChallengeRift, 0);
+		public static Attribute<int> NecromancerCursed = new SimpleAttribute<int>(AttributeId.NecromancerCursed, -1);
+		public static Attribute<int> NecromancerCurseCount = new SimpleAttribute<int>(AttributeId.NecromancerCurseCount, 0);
+		public static Attribute<int> NecromancerUniqueCurseCount = new SimpleAttribute<int>(AttributeId.NecromancerUniqueCurseCount, 0);
+		public static Attribute<int> EligibleForWeeklyChallengeReward = new SimpleAttribute<int>(AttributeId.EligibleForWeeklyChallengeReward, 0);
+		public static Attribute<int> ForceRemoteFX = new SimpleAttribute<int>(AttributeId.ForceRemoteFX, 0);
+		public static Attribute<int> WeeklyChallengeRewardIcon = new SimpleAttribute<int>(AttributeId.WeeklyChallengeRewardIcon, 0);
 	}
 	#endregion
 }
