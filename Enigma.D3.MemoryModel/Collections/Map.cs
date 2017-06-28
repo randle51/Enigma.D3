@@ -17,6 +17,12 @@ namespace Enigma.D3.MemoryModel.Collections
 
         public bool TryGetValue(int key, out TValue value, Func<int,uint> hasher)
         {
+            if (Count == 0)
+            {
+                value = default(TValue);
+                return false;
+            }
+
             var hash = hasher(key);
             var index = unchecked((int)(hash & Mask));
             var bucket = Buckets[index].Dereference();
