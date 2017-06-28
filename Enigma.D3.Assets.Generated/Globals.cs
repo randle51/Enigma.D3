@@ -103,7 +103,7 @@ namespace Enigma.D3.Assets
 		[CompilerGenerated]
 		public partial class GlobalServerData : SerializeMemoryObject
 		{
-			public const int SizeOf = 0x368; // 872
+			public const int SizeOf = 0x380; // 896
 			
 			public ActorGroup[] x000_ActorGroups { get { return Deserialize<ActorGroup>(x008_SerializeData); } }
 			public SerializeData x008_SerializeData { get { return Read<SerializeData>(0x008); } }
@@ -166,41 +166,41 @@ namespace Enigma.D3.Assets
 			public float x26C { get { return Read<float>(0x26C); } }
 			public float x270 { get { return Read<float>(0x270); } }
 			public float x274 { get { return Read<float>(0x274); } }
-			public float x278 { get { return Read<float>(0x278); } }
+			public int x278 { get { return Read<int>(0x278); } }
 			public float x27C { get { return Read<float>(0x27C); } }
 			public float x280 { get { return Read<float>(0x280); } }
 			public float x284 { get { return Read<float>(0x284); } }
-			public float[] x288_float { get { return Read<float>(0x288, 2); } }
+			public float x288 { get { return Read<float>(0x288); } }
+			public int x28C { get { return Read<int>(0x28C); } }
 			public float x290 { get { return Read<float>(0x290); } }
 			public float x294 { get { return Read<float>(0x294); } }
 			public float x298 { get { return Read<float>(0x298); } }
 			public float x29C { get { return Read<float>(0x29C); } }
 			public float x2A0 { get { return Read<float>(0x2A0); } }
-			public float x2A4 { get { return Read<float>(0x2A4); } }
-			public float x2A8 { get { return Read<float>(0x2A8); } }
+			public float[] x2A4_float { get { return Read<float>(0x2A4, 2); } }
 			public float x2AC { get { return Read<float>(0x2AC); } }
-			public int x2B0 { get { return Read<int>(0x2B0); } }
-			public int x2B4 { get { return Read<int>(0x2B4); } }
-			public int x2B8 { get { return Read<int>(0x2B8); } }
-			public int x2BC { get { return Read<int>(0x2BC); } }
-			public int x2C0 { get { return Read<int>(0x2C0); } }
-			public int x2C4 { get { return Read<int>(0x2C4); } }
+			public float x2B0 { get { return Read<float>(0x2B0); } }
+			public float x2B4 { get { return Read<float>(0x2B4); } }
+			public float x2B8 { get { return Read<float>(0x2B8); } }
+			public float x2BC { get { return Read<float>(0x2BC); } }
+			public float x2C0 { get { return Read<float>(0x2C0); } }
+			public float x2C4 { get { return Read<float>(0x2C4); } }
 			public float x2C8 { get { return Read<float>(0x2C8); } }
-			public float x2CC { get { return Read<float>(0x2CC); } }
-			public float x2D0 { get { return Read<float>(0x2D0); } }
-			public float x2D4 { get { return Read<float>(0x2D4); } }
-			public float x2D8 { get { return Read<float>(0x2D8); } }
-			public float x2DC { get { return Read<float>(0x2DC); } }
-			public float[] x2E0_float { get { return Read<float>(0x2E0, 13); } }
-			public float x314 { get { return Read<float>(0x314); } }
-			public float x318 { get { return Read<float>(0x318); } }
-			public int x31C { get { return Read<int>(0x31C); } }
-			public int x320 { get { return Read<int>(0x320); } }
-			public int x324 { get { return Read<int>(0x324); } }
-			public int x328 { get { return Read<int>(0x328); } }
-			public int x32C { get { return Read<int>(0x32C); } }
-			public int x330 { get { return Read<int>(0x330); } }
-			public int x334 { get { return Read<int>(0x334); } }
+			public int x2CC { get { return Read<int>(0x2CC); } }
+			public int x2D0 { get { return Read<int>(0x2D0); } }
+			public int x2D4 { get { return Read<int>(0x2D4); } }
+			public int x2D8 { get { return Read<int>(0x2D8); } }
+			public int x2DC { get { return Read<int>(0x2DC); } }
+			public int x2E0 { get { return Read<int>(0x2E0); } }
+			public float x2E4 { get { return Read<float>(0x2E4); } }
+			public float x2E8 { get { return Read<float>(0x2E8); } }
+			public float x2EC { get { return Read<float>(0x2EC); } }
+			public float x2F0 { get { return Read<float>(0x2F0); } }
+			public float x2F4 { get { return Read<float>(0x2F4); } }
+			public float x2F8 { get { return Read<float>(0x2F8); } }
+			public float[] x2FC_float { get { return Read<float>(0x2FC, 13); } }
+			public float x330 { get { return Read<float>(0x330); } }
+			public float x334 { get { return Read<float>(0x334); } }
 			public int x338 { get { return Read<int>(0x338); } }
 			public int x33C { get { return Read<int>(0x33C); } }
 			public int x340 { get { return Read<int>(0x340); } }
@@ -211,7 +211,14 @@ namespace Enigma.D3.Assets
 			public int x354 { get { return Read<int>(0x354); } }
 			public int x358 { get { return Read<int>(0x358); } }
 			public int x35C { get { return Read<int>(0x35C); } }
-			public float x360 { get { return Read<float>(0x360); } }
+			public int x360 { get { return Read<int>(0x360); } }
+			public int x364 { get { return Read<int>(0x364); } }
+			public int x368 { get { return Read<int>(0x368); } }
+			public int x36C { get { return Read<int>(0x36C); } }
+			public int x370 { get { return Read<int>(0x370); } }
+			public int x374 { get { return Read<int>(0x374); } }
+			public int x378 { get { return Read<int>(0x378); } }
+			public float x37C { get { return Read<float>(0x37C); } }
 		}
 		
 		[CompilerGenerated]

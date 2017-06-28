@@ -7,7 +7,7 @@ namespace Enigma.D3.Assets
 	[CompilerGenerated]
 	public partial class Actor : SerializeMemoryObject
 	{
-		public const int SizeOf = 0x368; // 872
+		public const int SizeOf = 0x370; // 880
 		
 		public SNOHeader x000_Header { get { return Read<SNOHeader>(0x000); } }
 		public int x00C { get { return Read<int>(0x00C); } }
@@ -33,12 +33,12 @@ namespace Enigma.D3.Assets
 		public float x2C4 { get { return Read<float>(0x2C4); } }
 		public float x2C8 { get { return Read<float>(0x2C8); } }
 		public ActorCollisionData x2CC_ActorCollisionData { get { return Read<ActorCollisionData>(0x2CC); } }
-		public InventoryImages[] x310_InventoryImages { get { return Read<InventoryImages>(0x310, 6); } }
-		public int x340 { get { return Read<int>(0x340); } }
-		public string x348_Text { get { return DeserializeString(x350_SerializeData); } }
-		public SerializeData x350_SerializeData { get { return Read<SerializeData>(0x350); } }
-		public string x358_Text { get { return DeserializeString(x360_SerializeData); } }
-		public SerializeData x360_SerializeData { get { return Read<SerializeData>(0x360); } }
+		public InventoryImages[] x310_InventoryImages { get { return Read<InventoryImages>(0x310, 7); } }
+		public int x348 { get { return Read<int>(0x348); } }
+		public string x350_Text { get { return DeserializeString(x358_SerializeData); } }
+		public SerializeData x358_SerializeData { get { return Read<SerializeData>(0x358); } }
+		public string x360_Text { get { return DeserializeString(x368_SerializeData); } }
+		public SerializeData x368_SerializeData { get { return Read<SerializeData>(0x368); } }
 		
 		[CompilerGenerated]
 		public partial class AxialCylinder : MemoryObject

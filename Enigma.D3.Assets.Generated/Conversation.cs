@@ -32,7 +32,7 @@ namespace Enigma.D3.Assets
 		[CompilerGenerated]
 		public partial class ConversationTreeNode : SerializeMemoryObject
 		{
-			public const int SizeOf = 0x408; // 1032
+			public const int SizeOf = 0x4A0; // 1184
 			
 			public int x000 { get { return Read<int>(0x000); } }
 			public int x004 { get { return Read<int>(0x004); } }
@@ -45,28 +45,28 @@ namespace Enigma.D3.Assets
 			public int x020 { get { return Read<int>(0x020); } }
 			public int x024 { get { return Read<int>(0x024); } }
 			public ConvLocaleDisplayTimes[] x028_ConvLocaleDisplayTimes { get { return Read<ConvLocaleDisplayTimes>(0x028, 19); } }
-			public int x3B8 { get { return Read<int>(0x3B8); } }
-			public int x3BC_Enum { get { return Read<int>(0x3BC); } } // - None - = -1, Equal To = 0, Less Than = 1, Greater Than = 2, Less Than Or Equal To = 3, Greater Than Or Equal To = 4, Not Equal To = 5
-			public int x3C0 { get { return Read<int>(0x3C0); } }
-			public int x3C4 { get { return Read<int>(0x3C4); } }
-			public int x3C8_Enum { get { return Read<int>(0x3C8); } } // - None - = -1, Incremented By = 0, Decremented By = 1, Set To = 2
-			public int x3CC { get { return Read<int>(0x3CC); } }
-			public int x3D0 { get { return Read<int>(0x3D0); } }
-			public int x3D4 { get { return Read<int>(0x3D4); } }
-			public ConversationTreeNode[] x3D8_ConversationTreeNodes { get { return Deserialize<ConversationTreeNode>(x3E0_SerializeData); } }
-			public SerializeData x3E0_SerializeData { get { return Read<SerializeData>(0x3E0); } }
-			public ConversationTreeNode[] x3E8_ConversationTreeNodes { get { return Deserialize<ConversationTreeNode>(x3F0_SerializeData); } }
-			public SerializeData x3F0_SerializeData { get { return Read<SerializeData>(0x3F0); } }
-			public ConversationTreeNode[] x3F8_ConversationTreeNodes { get { return Deserialize<ConversationTreeNode>(x400_SerializeData); } }
-			public SerializeData x400_SerializeData { get { return Read<SerializeData>(0x400); } }
+			public int x450 { get { return Read<int>(0x450); } }
+			public int x454_Enum { get { return Read<int>(0x454); } } // - None - = -1, Equal To = 0, Less Than = 1, Greater Than = 2, Less Than Or Equal To = 3, Greater Than Or Equal To = 4, Not Equal To = 5
+			public int x458 { get { return Read<int>(0x458); } }
+			public int x45C { get { return Read<int>(0x45C); } }
+			public int x460_Enum { get { return Read<int>(0x460); } } // - None - = -1, Incremented By = 0, Decremented By = 1, Set To = 2
+			public int x464 { get { return Read<int>(0x464); } }
+			public int x468 { get { return Read<int>(0x468); } }
+			public int x46C { get { return Read<int>(0x46C); } }
+			public ConversationTreeNode[] x470_ConversationTreeNodes { get { return Deserialize<ConversationTreeNode>(x478_SerializeData); } }
+			public SerializeData x478_SerializeData { get { return Read<SerializeData>(0x478); } }
+			public ConversationTreeNode[] x480_ConversationTreeNodes { get { return Deserialize<ConversationTreeNode>(x488_SerializeData); } }
+			public SerializeData x488_SerializeData { get { return Read<SerializeData>(0x488); } }
+			public ConversationTreeNode[] x490_ConversationTreeNodes { get { return Deserialize<ConversationTreeNode>(x498_SerializeData); } }
+			public SerializeData x498_SerializeData { get { return Read<SerializeData>(0x498); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class ConvLocaleDisplayTimes : MemoryObject
 		{
-			public const int SizeOf = 0x30; // 48
+			public const int SizeOf = 0x38; // 56
 			
-			public int[] x00_int { get { return Read<int>(0x00, 12); } }
+			public int[] x00_int { get { return Read<int>(0x00, 14); } }
 		}
 	}
 }

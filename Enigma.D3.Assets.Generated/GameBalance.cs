@@ -381,6 +381,7 @@ namespace Enigma.D3.Assets
 			public bool x118_Bit15 { get { return (Read<int>(0x118) & 0x00008000) != 0; } }
 			public bool x118_Bit16 { get { return (Read<int>(0x118) & 0x00010000) != 0; } }
 			public bool x118_Bit17 { get { return (Read<int>(0x118) & 0x00020000) != 0; } }
+			public bool x118_Bit20 { get { return (Read<int>(0x118) & 0x00100000) != 0; } }
 			public int x11C_Enum { get { return Read<int>(0x11C); } } // Player:Backpack = 0, Player:Head = 1, Player:Torso = 2, Player:RightHand = 3, Player:LeftHand = 4, Player:Hands = 5, Player:Waist = 6, Player:Feet = 7, Player:Shoulders = 8, Player:Legs = 9, Player:Bracers = 10, Player:LeftFinger = 12, Player:RightFinger = 11, Player:Neck = 13, Merchant = 18, Pet:RightHand = 20, Pet:LeftHand = 21, Pet:Special = 22, Pet:LeftFinger = 25, Pet:RightFinger = 24, Pet:Neck = 23
 			public int x120_Enum { get { return Read<int>(0x120); } } // Player:Backpack = 0, Player:Head = 1, Player:Torso = 2, Player:RightHand = 3, Player:LeftHand = 4, Player:Hands = 5, Player:Waist = 6, Player:Feet = 7, Player:Shoulders = 8, Player:Legs = 9, Player:Bracers = 10, Player:LeftFinger = 12, Player:RightFinger = 11, Player:Neck = 13, Merchant = 18, Pet:RightHand = 20, Pet:LeftHand = 21, Pet:Special = 22, Pet:LeftFinger = 25, Pet:RightFinger = 24, Pet:Neck = 23
 			public int x124_Enum { get { return Read<int>(0x124); } } // Player:Backpack = 0, Player:Head = 1, Player:Torso = 2, Player:RightHand = 3, Player:LeftHand = 4, Player:Hands = 5, Player:Waist = 6, Player:Feet = 7, Player:Shoulders = 8, Player:Legs = 9, Player:Bracers = 10, Player:LeftFinger = 12, Player:RightFinger = 11, Player:Neck = 13, Merchant = 18, Pet:RightHand = 20, Pet:LeftHand = 21, Pet:Special = 22, Pet:LeftFinger = 25, Pet:RightFinger = 24, Pet:Neck = 23
@@ -479,67 +480,67 @@ namespace Enigma.D3.Assets
 			public int x1EC { get { return Read<int>(0x1EC); } }
 			public SNO x1F0_PowerSNO { get { return Read<SNO>(0x1F0); } }
 			public int x1F4 { get { return Read<int>(0x1F4); } }
-			public Translateable x1F8_Translateable { get { return Read<Translateable>(0x1F8); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x1F8_Translateable { get { return Read<Translateable>(0x1F8); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x1FC_AttributeParameter { get { return Read<AttributeParameter>(0x1FC); } }
 			public string x200_Text { get { return DeserializeString(x208_SerializeData); } }
 			public SerializeData x208_SerializeData { get { return Read<SerializeData>(0x208); } }
-			public Translateable x210_Translateable { get { return Read<Translateable>(0x210); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x210_Translateable { get { return Read<Translateable>(0x210); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x214_AttributeParameter { get { return Read<AttributeParameter>(0x214); } }
 			public string x218_Text { get { return DeserializeString(x220_SerializeData); } }
 			public SerializeData x220_SerializeData { get { return Read<SerializeData>(0x220); } }
-			public Translateable x228_Translateable { get { return Read<Translateable>(0x228); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x228_Translateable { get { return Read<Translateable>(0x228); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x22C_AttributeParameter { get { return Read<AttributeParameter>(0x22C); } }
 			public string x230_Text { get { return DeserializeString(x238_SerializeData); } }
 			public SerializeData x238_SerializeData { get { return Read<SerializeData>(0x238); } }
-			public Translateable x240_Translateable { get { return Read<Translateable>(0x240); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x240_Translateable { get { return Read<Translateable>(0x240); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x244_AttributeParameter { get { return Read<AttributeParameter>(0x244); } }
 			public string x248_Text { get { return DeserializeString(x250_SerializeData); } }
 			public SerializeData x250_SerializeData { get { return Read<SerializeData>(0x250); } }
-			public Translateable x258_Translateable { get { return Read<Translateable>(0x258); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x258_Translateable { get { return Read<Translateable>(0x258); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x25C_AttributeParameter { get { return Read<AttributeParameter>(0x25C); } }
 			public string x260_Text { get { return DeserializeString(x268_SerializeData); } }
 			public SerializeData x268_SerializeData { get { return Read<SerializeData>(0x268); } }
-			public Translateable x270_Translateable { get { return Read<Translateable>(0x270); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x270_Translateable { get { return Read<Translateable>(0x270); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x274_AttributeParameter { get { return Read<AttributeParameter>(0x274); } }
 			public string x278_Text { get { return DeserializeString(x280_SerializeData); } }
 			public SerializeData x280_SerializeData { get { return Read<SerializeData>(0x280); } }
-			public Translateable x288_Translateable { get { return Read<Translateable>(0x288); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x288_Translateable { get { return Read<Translateable>(0x288); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x28C_AttributeParameter { get { return Read<AttributeParameter>(0x28C); } }
 			public string x290_Text { get { return DeserializeString(x298_SerializeData); } }
 			public SerializeData x298_SerializeData { get { return Read<SerializeData>(0x298); } }
-			public Translateable x2A0_Translateable { get { return Read<Translateable>(0x2A0); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x2A0_Translateable { get { return Read<Translateable>(0x2A0); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x2A4_AttributeParameter { get { return Read<AttributeParameter>(0x2A4); } }
 			public string x2A8_Text { get { return DeserializeString(x2B0_SerializeData); } }
 			public SerializeData x2B0_SerializeData { get { return Read<SerializeData>(0x2B0); } }
-			public Translateable x2B8_Translateable { get { return Read<Translateable>(0x2B8); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x2B8_Translateable { get { return Read<Translateable>(0x2B8); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x2BC_AttributeParameter { get { return Read<AttributeParameter>(0x2BC); } }
 			public string x2C0_Text { get { return DeserializeString(x2C8_SerializeData); } }
 			public SerializeData x2C8_SerializeData { get { return Read<SerializeData>(0x2C8); } }
-			public Translateable x2D0_Translateable { get { return Read<Translateable>(0x2D0); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x2D0_Translateable { get { return Read<Translateable>(0x2D0); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x2D4_AttributeParameter { get { return Read<AttributeParameter>(0x2D4); } }
 			public string x2D8_Text { get { return DeserializeString(x2E0_SerializeData); } }
 			public SerializeData x2E0_SerializeData { get { return Read<SerializeData>(0x2E0); } }
-			public Translateable x2E8_Translateable { get { return Read<Translateable>(0x2E8); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x2E8_Translateable { get { return Read<Translateable>(0x2E8); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x2EC_AttributeParameter { get { return Read<AttributeParameter>(0x2EC); } }
 			public string x2F0_Text { get { return DeserializeString(x2F8_SerializeData); } }
 			public SerializeData x2F8_SerializeData { get { return Read<SerializeData>(0x2F8); } }
-			public Translateable x300_Translateable { get { return Read<Translateable>(0x300); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x300_Translateable { get { return Read<Translateable>(0x300); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x304_AttributeParameter { get { return Read<AttributeParameter>(0x304); } }
 			public string x308_Text { get { return DeserializeString(x310_SerializeData); } }
 			public SerializeData x310_SerializeData { get { return Read<SerializeData>(0x310); } }
-			public Translateable x318_Translateable { get { return Read<Translateable>(0x318); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x318_Translateable { get { return Read<Translateable>(0x318); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x31C_AttributeParameter { get { return Read<AttributeParameter>(0x31C); } }
 			public string x320_Text { get { return DeserializeString(x328_SerializeData); } }
 			public SerializeData x328_SerializeData { get { return Read<SerializeData>(0x328); } }
-			public Translateable x330_Translateable { get { return Read<Translateable>(0x330); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x330_Translateable { get { return Read<Translateable>(0x330); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x334_AttributeParameter { get { return Read<AttributeParameter>(0x334); } }
 			public string x338_Text { get { return DeserializeString(x340_SerializeData); } }
 			public SerializeData x340_SerializeData { get { return Read<SerializeData>(0x340); } }
-			public Translateable x348_Translateable { get { return Read<Translateable>(0x348); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x348_Translateable { get { return Read<Translateable>(0x348); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x34C_AttributeParameter { get { return Read<AttributeParameter>(0x34C); } }
 			public string x350_Text { get { return DeserializeString(x358_SerializeData); } }
 			public SerializeData x358_SerializeData { get { return Read<SerializeData>(0x358); } }
-			public Translateable x360_Translateable { get { return Read<Translateable>(0x360); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x360_Translateable { get { return Read<Translateable>(0x360); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x364_AttributeParameter { get { return Read<AttributeParameter>(0x364); } }
 			public string x368_Text { get { return DeserializeString(x370_SerializeData); } }
 			public SerializeData x370_SerializeData { get { return Read<SerializeData>(0x370); } }
@@ -554,13 +555,13 @@ namespace Enigma.D3.Assets
 			public int x3D8 { get { return Read<int>(0x3D8); } }
 			public int x3DC { get { return Read<int>(0x3DC); } }
 			public int x3E0 { get { return Read<int>(0x3E0); } }
-			public GBID x3E4_AffixGroupGBID { get { return Read<GBID>(0x3E4); } }
+			public int x3E4 { get { return Read<int>(0x3E4); } }
 			public GBID x3E8_AffixGroupGBID { get { return Read<GBID>(0x3E8); } }
 			public GBID x3EC_AffixGroupGBID { get { return Read<GBID>(0x3EC); } }
 			public GBID x3F0_AffixGroupGBID { get { return Read<GBID>(0x3F0); } }
 			public GBID x3F4_AffixGroupGBID { get { return Read<GBID>(0x3F4); } }
 			public GBID x3F8_AffixGroupGBID { get { return Read<GBID>(0x3F8); } }
-			public int x3FC { get { return Read<int>(0x3FC); } }
+			public GBID x3FC_AffixGroupGBID { get { return Read<GBID>(0x3FC); } }
 			public int x400 { get { return Read<int>(0x400); } }
 			public int x404 { get { return Read<int>(0x404); } }
 			public int x408 { get { return Read<int>(0x408); } }
@@ -572,25 +573,26 @@ namespace Enigma.D3.Assets
 			public int x420 { get { return Read<int>(0x420); } }
 			public int x424 { get { return Read<int>(0x424); } }
 			public int x428 { get { return Read<int>(0x428); } }
-			public GBID x42C_GBID { get { return Read<GBID>(0x42C); } }
-			public int x430_Enum { get { return Read<int>(0x430); } } // Amethyst = 1, Emerald = 2, Ruby = 3, Topaz = 4, Diamond = 5
-			public int x434 { get { return Read<int>(0x434); } }
-			public int x438_Enum { get { return Read<int>(0x438); } } // A = 1, B = 2, C = 3, D = 4
-			public SNO x43C_ActorSNO { get { return Read<SNO>(0x43C); } }
-			public SNO x440_WorldsSNO { get { return Read<SNO>(0x440); } }
+			public int x42C { get { return Read<int>(0x42C); } }
+			public GBID x430_GBID { get { return Read<GBID>(0x430); } }
+			public int x434_Enum { get { return Read<int>(0x434); } } // Amethyst = 1, Emerald = 2, Ruby = 3, Topaz = 4, Diamond = 5
+			public int x438 { get { return Read<int>(0x438); } }
+			public int x43C_Enum { get { return Read<int>(0x43C); } } // A = 1, B = 2, C = 3, D = 4
+			public SNO x440_ActorSNO { get { return Read<SNO>(0x440); } }
 			public SNO x444_WorldsSNO { get { return Read<SNO>(0x444); } }
-			public SNO x448_LevelAreaSNO { get { return Read<SNO>(0x448); } }
-			public int x44C { get { return Read<int>(0x44C); } }
-			public RecipeIngredient[] x450_RecipeIngredients { get { return Read<RecipeIngredient>(0x450, 6); } }
-			public int x480 { get { return Read<int>(0x480); } }
-			public RecipeIngredient[] x484_RecipeIngredients { get { return Read<RecipeIngredient>(0x484, 6); } }
-			public int x4B4 { get { return Read<int>(0x4B4); } }
+			public SNO x448_WorldsSNO { get { return Read<SNO>(0x448); } }
+			public SNO x44C_LevelAreaSNO { get { return Read<SNO>(0x44C); } }
+			public int x450 { get { return Read<int>(0x450); } }
+			public RecipeIngredient[] x454_RecipeIngredients { get { return Read<RecipeIngredient>(0x454, 6); } }
+			public int x484 { get { return Read<int>(0x484); } }
+			public RecipeIngredient[] x488_RecipeIngredients { get { return Read<RecipeIngredient>(0x488, 6); } }
 			public int x4B8 { get { return Read<int>(0x4B8); } }
-			public Translateable x4C0_Translateable { get { return Read<Translateable>(0x4C0); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public int x4BC { get { return Read<int>(0x4BC); } }
+			public Translateable x4C0_Translateable { get { return Read<Translateable>(0x4C0); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x4C4_AttributeParameter { get { return Read<AttributeParameter>(0x4C4); } }
 			public string x4C8_Text { get { return DeserializeString(x4D0_SerializeData); } }
 			public SerializeData x4D0_SerializeData { get { return Read<SerializeData>(0x4D0); } }
-			public Translateable x4D8_Translateable { get { return Read<Translateable>(0x4D8); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x4D8_Translateable { get { return Read<Translateable>(0x4D8); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x4DC_AttributeParameter { get { return Read<AttributeParameter>(0x4DC); } }
 			public string x4E0_Text { get { return DeserializeString(x4E8_SerializeData); } }
 			public SerializeData x4E8_SerializeData { get { return Read<SerializeData>(0x4E8); } }
@@ -609,7 +611,7 @@ namespace Enigma.D3.Assets
 		[CompilerGenerated]
 		public partial class ExperienceLevel : MemoryObject
 		{
-			public const int SizeOf = 0x1E0; // 480
+			public const int SizeOf = 0x1F0; // 496
 			
 			public long x000 { get { return Read<long>(0x000); } }
 			public int x008 { get { return Read<int>(0x008); } }
@@ -681,10 +683,10 @@ namespace Enigma.D3.Assets
 			public int x110 { get { return Read<int>(0x110); } }
 			public int x114 { get { return Read<int>(0x114); } }
 			public int x118 { get { return Read<int>(0x118); } }
-			public int x12C { get { return Read<int>(0x12C); } }
-			public int x130 { get { return Read<int>(0x130); } }
-			public int x134 { get { return Read<int>(0x134); } }
-			public int x138 { get { return Read<int>(0x138); } }
+			public int x11C { get { return Read<int>(0x11C); } }
+			public int x120 { get { return Read<int>(0x120); } }
+			public int x124 { get { return Read<int>(0x124); } }
+			public int x128 { get { return Read<int>(0x128); } }
 			public int x13C { get { return Read<int>(0x13C); } }
 			public int x140 { get { return Read<int>(0x140); } }
 			public int x144 { get { return Read<int>(0x144); } }
@@ -693,14 +695,14 @@ namespace Enigma.D3.Assets
 			public int x150 { get { return Read<int>(0x150); } }
 			public int x154 { get { return Read<int>(0x154); } }
 			public int x158 { get { return Read<int>(0x158); } }
-			public float x160 { get { return Read<float>(0x160); } }
-			public float x164 { get { return Read<float>(0x164); } }
-			public float x168 { get { return Read<float>(0x168); } }
-			public long x170 { get { return Read<long>(0x170); } }
-			public int x178 { get { return Read<int>(0x178); } }
-			public int x17C { get { return Read<int>(0x17C); } }
-			public int x180 { get { return Read<int>(0x180); } }
-			public int x184 { get { return Read<int>(0x184); } }
+			public int x15C { get { return Read<int>(0x15C); } }
+			public int x160 { get { return Read<int>(0x160); } }
+			public int x164 { get { return Read<int>(0x164); } }
+			public int x168 { get { return Read<int>(0x168); } }
+			public float x170 { get { return Read<float>(0x170); } }
+			public float x174 { get { return Read<float>(0x174); } }
+			public float x178 { get { return Read<float>(0x178); } }
+			public long x180 { get { return Read<long>(0x180); } }
 			public int x188 { get { return Read<int>(0x188); } }
 			public int x18C { get { return Read<int>(0x18C); } }
 			public int x190 { get { return Read<int>(0x190); } }
@@ -715,20 +717,24 @@ namespace Enigma.D3.Assets
 			public int x1B4 { get { return Read<int>(0x1B4); } }
 			public int x1B8 { get { return Read<int>(0x1B8); } }
 			public int x1BC { get { return Read<int>(0x1BC); } }
-			public float x1C0 { get { return Read<float>(0x1C0); } }
+			public int x1C0 { get { return Read<int>(0x1C0); } }
 			public int x1C4 { get { return Read<int>(0x1C4); } }
 			public int x1C8 { get { return Read<int>(0x1C8); } }
 			public int x1CC { get { return Read<int>(0x1CC); } }
-			public int x1D0 { get { return Read<int>(0x1D0); } }
+			public float x1D0 { get { return Read<float>(0x1D0); } }
 			public int x1D4 { get { return Read<int>(0x1D4); } }
 			public int x1D8 { get { return Read<int>(0x1D8); } }
-			public float x1DC { get { return Read<float>(0x1DC); } }
+			public int x1DC { get { return Read<int>(0x1DC); } }
+			public int x1E0 { get { return Read<int>(0x1E0); } }
+			public int x1E4 { get { return Read<int>(0x1E4); } }
+			public int x1E8 { get { return Read<int>(0x1E8); } }
+			public float x1EC { get { return Read<float>(0x1EC); } }
 		}
 		
 		[CompilerGenerated]
 		public partial class ExperienceLevelAlt : MemoryObject
 		{
-			public const int SizeOf = 0x70; // 112
+			public const int SizeOf = 0x80; // 128
 			
 			public long x00 { get { return Read<long>(0x00); } }
 			public int x08 { get { return Read<int>(0x08); } }
@@ -757,6 +763,10 @@ namespace Enigma.D3.Assets
 			public int x64 { get { return Read<int>(0x64); } }
 			public int x68 { get { return Read<int>(0x68); } }
 			public int x6C { get { return Read<int>(0x6C); } }
+			public int x70 { get { return Read<int>(0x70); } }
+			public int x74 { get { return Read<int>(0x74); } }
+			public int x78 { get { return Read<int>(0x78); } }
+			public int x7C { get { return Read<int>(0x7C); } }
 		}
 		
 		[CompilerGenerated]
@@ -852,22 +862,23 @@ namespace Enigma.D3.Assets
 			public int x144 { get { return Read<int>(0x144); } }
 			public int x148 { get { return Read<int>(0x148); } }
 			public int x14C { get { return Read<int>(0x14C); } }
-			public int x150_Enum { get { return Read<int>(0x150); } } // - None - = 0, Lightning = 1, Cold = 2, Fire = 3, Poison = 4, Arcane = 5, WitchdoctorDamage = 6, LifeSteal = 7, ManaSteal = 8, MagicFind = 9, GoldFind = 10, AttackSpeedBonus = 11, CastSpeedBonus = 12, Holy = 13, WizardDamage = 14
-			public int x154 { get { return Read<int>(0x154); } }
-			public GBID x158_AffixListGBID { get { return Read<GBID>(0x158); } }
+			public int x150 { get { return Read<int>(0x150); } }
+			public int x154_Enum { get { return Read<int>(0x154); } } // - None - = 0, Lightning = 1, Cold = 2, Fire = 3, Poison = 4, Arcane = 5, WitchdoctorDamage = 6, LifeSteal = 7, ManaSteal = 8, MagicFind = 9, GoldFind = 10, AttackSpeedBonus = 11, CastSpeedBonus = 12, Holy = 13, WizardDamage = 14
+			public int x158 { get { return Read<int>(0x158); } }
 			public GBID x15C_AffixListGBID { get { return Read<GBID>(0x15C); } }
-			public SNO x160_StringListSNO { get { return Read<SNO>(0x160); } }
+			public GBID x160_AffixListGBID { get { return Read<GBID>(0x160); } }
 			public SNO x164_StringListSNO { get { return Read<SNO>(0x164); } }
-			public GBID x168_AffixGroupGBID { get { return Read<GBID>(0x168); } }
+			public SNO x168_StringListSNO { get { return Read<SNO>(0x168); } }
 			public GBID x16C_AffixGroupGBID { get { return Read<GBID>(0x16C); } }
-			public int x170_Enum { get { return Read<int>(0x170); } } // - None - = -1, DemonHunter = 0, Barbarian = 1, Wizard = 2, Witchdoctor = 3, Monk = 4, Crusader = 5
-			public GBID x174_AffixListGBID { get { return Read<GBID>(0x174); } }
-			public int[] x178_int { get { return Read<int>(0x178, 6); } }
-			public int[] x190_int { get { return Read<int>(0x190, 24); } }
-			public int[] x1F0_int { get { return Read<int>(0x1F0, 24); } }
-			public int x250 { get { return Read<int>(0x250); } }
-			public int x254_Enum { get { return Read<int>(0x254); } } // Prefix = 0, Suffix = 1, Inherent = 2, Title = 5, Quality = 6, Immunity = 7, Random = 9, Enchantment = 10, Socket Enhancement = 11
-			public GBID x258_AffixListGBID { get { return Read<GBID>(0x258); } }
+			public GBID x170_AffixGroupGBID { get { return Read<GBID>(0x170); } }
+			public int x174_Enum { get { return Read<int>(0x174); } } // - None - = -1, DemonHunter = 0, Barbarian = 1, Wizard = 2, Witchdoctor = 3, Monk = 4, Crusader = 5, Necromancer = 6
+			public GBID x178_AffixListGBID { get { return Read<GBID>(0x178); } }
+			public int[] x17C_int { get { return Read<int>(0x17C, 6); } }
+			public int[] x194_int { get { return Read<int>(0x194, 24); } }
+			public int[] x1F4_int { get { return Read<int>(0x1F4, 24); } }
+			public int x254 { get { return Read<int>(0x254); } }
+			public int x258_Enum { get { return Read<int>(0x258); } } // Prefix = 0, Suffix = 1, Inherent = 2, Title = 5, Quality = 6, Immunity = 7, Random = 9, Enchantment = 10, Socket Enhancement = 11
+			public GBID x25C_AffixListGBID { get { return Read<GBID>(0x25C); } }
 			public AttributeSpecifier[] x260_AttributeSpecifiers { get { return Read<AttributeSpecifier>(0x260, 4); } }
 			public int x308_Enum { get { return Read<int>(0x308); } } // Major = 0, Minor = 1
 		}
@@ -890,8 +901,8 @@ namespace Enigma.D3.Assets
 			public SNO x124_SkillKitSNO { get { return Read<SNO>(0x124); } }
 			public SNO x128_SkillKitSNO { get { return Read<SNO>(0x128); } }
 			public SNO x12C_SkillKitSNO { get { return Read<SNO>(0x12C); } }
-			public int x130_Enum { get { return Read<int>(0x130); } } // Mana = 0, Arcanum = 1, Fury = 2, Spirit = 3, Power = 4, Hatred = 5, Discipline = 6, Faith = 7
-			public int x134_Enum { get { return Read<int>(0x134); } } // Mana = 0, Arcanum = 1, Fury = 2, Spirit = 3, Power = 4, Hatred = 5, Discipline = 6, Faith = 7
+			public int x130_Enum { get { return Read<int>(0x130); } } // Mana = 0, Arcanum = 1, Fury = 2, Spirit = 3, Power = 4, Hatred = 5, Discipline = 6, Faith = 7, Essence = 8
+			public int x134_Enum { get { return Read<int>(0x134); } } // Mana = 0, Arcanum = 1, Fury = 2, Spirit = 3, Power = 4, Hatred = 5, Discipline = 6, Faith = 7, Essence = 8
 			public int x138_Enum { get { return Read<int>(0x138); } } // None = -1, Strength = 0, Dexterity = 1, Intelligence = 2
 			public float x13C { get { return Read<float>(0x13C); } }
 			public int x140 { get { return Read<int>(0x140); } }
@@ -1058,83 +1069,83 @@ namespace Enigma.D3.Assets
 			public int x124 { get { return Read<int>(0x124); } }
 			public int x128 { get { return Read<int>(0x128); } }
 			public int x12C { get { return Read<int>(0x12C); } }
-			public Translateable x130_Translateable { get { return Read<Translateable>(0x130); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x130_Translateable { get { return Read<Translateable>(0x130); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x134_AttributeParameter { get { return Read<AttributeParameter>(0x134); } }
 			public string x138_Text { get { return DeserializeString(x140_SerializeData); } }
 			public SerializeData x140_SerializeData { get { return Read<SerializeData>(0x140); } }
-			public Translateable x148_Translateable { get { return Read<Translateable>(0x148); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x148_Translateable { get { return Read<Translateable>(0x148); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x14C_AttributeParameter { get { return Read<AttributeParameter>(0x14C); } }
 			public string x150_Text { get { return DeserializeString(x158_SerializeData); } }
 			public SerializeData x158_SerializeData { get { return Read<SerializeData>(0x158); } }
-			public Translateable x160_Translateable { get { return Read<Translateable>(0x160); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x160_Translateable { get { return Read<Translateable>(0x160); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x164_AttributeParameter { get { return Read<AttributeParameter>(0x164); } }
 			public string x168_Text { get { return DeserializeString(x170_SerializeData); } }
 			public SerializeData x170_SerializeData { get { return Read<SerializeData>(0x170); } }
-			public Translateable x178_Translateable { get { return Read<Translateable>(0x178); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x178_Translateable { get { return Read<Translateable>(0x178); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x17C_AttributeParameter { get { return Read<AttributeParameter>(0x17C); } }
 			public string x180_Text { get { return DeserializeString(x188_SerializeData); } }
 			public SerializeData x188_SerializeData { get { return Read<SerializeData>(0x188); } }
-			public Translateable x190_Translateable { get { return Read<Translateable>(0x190); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x190_Translateable { get { return Read<Translateable>(0x190); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x194_AttributeParameter { get { return Read<AttributeParameter>(0x194); } }
 			public string x198_Text { get { return DeserializeString(x1A0_SerializeData); } }
 			public SerializeData x1A0_SerializeData { get { return Read<SerializeData>(0x1A0); } }
-			public Translateable x1A8_Translateable { get { return Read<Translateable>(0x1A8); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x1A8_Translateable { get { return Read<Translateable>(0x1A8); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x1AC_AttributeParameter { get { return Read<AttributeParameter>(0x1AC); } }
 			public string x1B0_Text { get { return DeserializeString(x1B8_SerializeData); } }
 			public SerializeData x1B8_SerializeData { get { return Read<SerializeData>(0x1B8); } }
-			public Translateable x1C0_Translateable { get { return Read<Translateable>(0x1C0); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x1C0_Translateable { get { return Read<Translateable>(0x1C0); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x1C4_AttributeParameter { get { return Read<AttributeParameter>(0x1C4); } }
 			public string x1C8_Text { get { return DeserializeString(x1D0_SerializeData); } }
 			public SerializeData x1D0_SerializeData { get { return Read<SerializeData>(0x1D0); } }
-			public Translateable x1D8_Translateable { get { return Read<Translateable>(0x1D8); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x1D8_Translateable { get { return Read<Translateable>(0x1D8); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x1DC_AttributeParameter { get { return Read<AttributeParameter>(0x1DC); } }
 			public string x1E0_Text { get { return DeserializeString(x1E8_SerializeData); } }
 			public SerializeData x1E8_SerializeData { get { return Read<SerializeData>(0x1E8); } }
-			public Translateable x1F0_Translateable { get { return Read<Translateable>(0x1F0); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x1F0_Translateable { get { return Read<Translateable>(0x1F0); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x1F4_AttributeParameter { get { return Read<AttributeParameter>(0x1F4); } }
 			public string x1F8_Text { get { return DeserializeString(x200_SerializeData); } }
 			public SerializeData x200_SerializeData { get { return Read<SerializeData>(0x200); } }
-			public Translateable x208_Translateable { get { return Read<Translateable>(0x208); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x208_Translateable { get { return Read<Translateable>(0x208); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x20C_AttributeParameter { get { return Read<AttributeParameter>(0x20C); } }
 			public string x210_Text { get { return DeserializeString(x218_SerializeData); } }
 			public SerializeData x218_SerializeData { get { return Read<SerializeData>(0x218); } }
-			public Translateable x220_Translateable { get { return Read<Translateable>(0x220); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x220_Translateable { get { return Read<Translateable>(0x220); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x224_AttributeParameter { get { return Read<AttributeParameter>(0x224); } }
 			public string x228_Text { get { return DeserializeString(x230_SerializeData); } }
 			public SerializeData x230_SerializeData { get { return Read<SerializeData>(0x230); } }
-			public Translateable x238_Translateable { get { return Read<Translateable>(0x238); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x238_Translateable { get { return Read<Translateable>(0x238); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x23C_AttributeParameter { get { return Read<AttributeParameter>(0x23C); } }
 			public string x240_Text { get { return DeserializeString(x248_SerializeData); } }
 			public SerializeData x248_SerializeData { get { return Read<SerializeData>(0x248); } }
-			public Translateable x250_Translateable { get { return Read<Translateable>(0x250); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x250_Translateable { get { return Read<Translateable>(0x250); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x254_AttributeParameter { get { return Read<AttributeParameter>(0x254); } }
 			public string x258_Text { get { return DeserializeString(x260_SerializeData); } }
 			public SerializeData x260_SerializeData { get { return Read<SerializeData>(0x260); } }
-			public Translateable x268_Translateable { get { return Read<Translateable>(0x268); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x268_Translateable { get { return Read<Translateable>(0x268); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x26C_AttributeParameter { get { return Read<AttributeParameter>(0x26C); } }
 			public string x270_Text { get { return DeserializeString(x278_SerializeData); } }
 			public SerializeData x278_SerializeData { get { return Read<SerializeData>(0x278); } }
-			public Translateable x280_Translateable { get { return Read<Translateable>(0x280); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x280_Translateable { get { return Read<Translateable>(0x280); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x284_AttributeParameter { get { return Read<AttributeParameter>(0x284); } }
 			public string x288_Text { get { return DeserializeString(x290_SerializeData); } }
 			public SerializeData x290_SerializeData { get { return Read<SerializeData>(0x290); } }
-			public Translateable x298_Translateable { get { return Read<Translateable>(0x298); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x298_Translateable { get { return Read<Translateable>(0x298); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x29C_AttributeParameter { get { return Read<AttributeParameter>(0x29C); } }
 			public string x2A0_Text { get { return DeserializeString(x2A8_SerializeData); } }
 			public SerializeData x2A8_SerializeData { get { return Read<SerializeData>(0x2A8); } }
-			public Translateable x2B0_Translateable { get { return Read<Translateable>(0x2B0); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x2B0_Translateable { get { return Read<Translateable>(0x2B0); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x2B4_AttributeParameter { get { return Read<AttributeParameter>(0x2B4); } }
 			public string x2B8_Text { get { return DeserializeString(x2C0_SerializeData); } }
 			public SerializeData x2C0_SerializeData { get { return Read<SerializeData>(0x2C0); } }
-			public Translateable x2C8_Translateable { get { return Read<Translateable>(0x2C8); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x2C8_Translateable { get { return Read<Translateable>(0x2C8); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x2CC_AttributeParameter { get { return Read<AttributeParameter>(0x2CC); } }
 			public string x2D0_Text { get { return DeserializeString(x2D8_SerializeData); } }
 			public SerializeData x2D8_SerializeData { get { return Read<SerializeData>(0x2D8); } }
-			public Translateable x2E0_Translateable { get { return Read<Translateable>(0x2E0); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x2E0_Translateable { get { return Read<Translateable>(0x2E0); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x2E4_AttributeParameter { get { return Read<AttributeParameter>(0x2E4); } }
 			public string x2E8_Text { get { return DeserializeString(x2F0_SerializeData); } }
 			public SerializeData x2F0_SerializeData { get { return Read<SerializeData>(0x2F0); } }
-			public Translateable x2F8_Translateable { get { return Read<Translateable>(0x2F8); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x2F8_Translateable { get { return Read<Translateable>(0x2F8); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x2FC_AttributeParameter { get { return Read<AttributeParameter>(0x2FC); } }
 			public string x300_Text { get { return DeserializeString(x308_SerializeData); } }
 			public SerializeData x308_SerializeData { get { return Read<SerializeData>(0x308); } }
@@ -1265,23 +1276,23 @@ namespace Enigma.D3.Assets
 			public int x104 { get { return Read<int>(0x104); } }
 			public GBID x108_ItemsGBID { get { return Read<GBID>(0x108); } }
 			public GBID x10C_ItemTypesGBID { get { return Read<GBID>(0x10C); } }
-			public Translateable x110_Translateable { get { return Read<Translateable>(0x110); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x110_Translateable { get { return Read<Translateable>(0x110); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x114_AttributeParameter { get { return Read<AttributeParameter>(0x114); } }
 			public string x118_Text { get { return DeserializeString(x120_SerializeData); } }
 			public SerializeData x120_SerializeData { get { return Read<SerializeData>(0x120); } }
-			public Translateable x128_Translateable { get { return Read<Translateable>(0x128); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x128_Translateable { get { return Read<Translateable>(0x128); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x12C_AttributeParameter { get { return Read<AttributeParameter>(0x12C); } }
 			public string x130_Text { get { return DeserializeString(x138_SerializeData); } }
 			public SerializeData x138_SerializeData { get { return Read<SerializeData>(0x138); } }
-			public Translateable x140_Translateable { get { return Read<Translateable>(0x140); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x140_Translateable { get { return Read<Translateable>(0x140); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x144_AttributeParameter { get { return Read<AttributeParameter>(0x144); } }
 			public string x148_Text { get { return DeserializeString(x150_SerializeData); } }
 			public SerializeData x150_SerializeData { get { return Read<SerializeData>(0x150); } }
-			public Translateable x158_Translateable { get { return Read<Translateable>(0x158); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x158_Translateable { get { return Read<Translateable>(0x158); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x15C_AttributeParameter { get { return Read<AttributeParameter>(0x15C); } }
 			public string x160_Text { get { return DeserializeString(x168_SerializeData); } }
 			public SerializeData x168_SerializeData { get { return Read<SerializeData>(0x168); } }
-			public Translateable x170_Translateable { get { return Read<Translateable>(0x170); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x170_Translateable { get { return Read<Translateable>(0x170); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x174_AttributeParameter { get { return Read<AttributeParameter>(0x174); } }
 			public string x178_Text { get { return DeserializeString(x180_SerializeData); } }
 			public SerializeData x180_SerializeData { get { return Read<SerializeData>(0x180); } }
@@ -1859,7 +1870,7 @@ namespace Enigma.D3.Assets
 			public AttributeSpecifier[] x110_AttributeSpecifiers { get { return Read<AttributeSpecifier>(0x110, 4); } }
 			public int x170 { get { return Read<int>(0x170); } }
 			public int x174 { get { return Read<int>(0x174); } }
-			public int x178_Enum { get { return Read<int>(0x178); } } // - None - = -1, DemonHunter = 0, Barbarian = 1, Wizard = 2, Witchdoctor = 3, Monk = 4, Crusader = 5
+			public int x178_Enum { get { return Read<int>(0x178); } } // - None - = -1, DemonHunter = 0, Barbarian = 1, Wizard = 2, Witchdoctor = 3, Monk = 4, Crusader = 5, Necromancer = 6
 			public string x17C_Text { get { return ReadString(0x17C, 256); } }
 		}
 		
@@ -1950,7 +1961,7 @@ namespace Enigma.D3.Assets
 		{
 			public const int SizeOf = 0x18; // 24
 			
-			public Translateable x00_Translateable { get { return Read<Translateable>(0x00); } } // TranslateFromString = 0x01310420, TranslateFromValue = 0x0130B0F0
+			public Translateable x00_Translateable { get { return Read<Translateable>(0x00); } } // TranslateFromString = 0x012FCB60, TranslateFromValue = 0x012F7800
 			public AttributeParameter x04_AttributeParameter { get { return Read<AttributeParameter>(0x04); } }
 			public string x08_Text { get { return DeserializeString(x10_SerializeData); } }
 			public SerializeData x10_SerializeData { get { return Read<SerializeData>(0x10); } }

@@ -7,7 +7,7 @@ namespace Enigma.D3.Assets
 	[CompilerGenerated]
 	public partial class Monster : SerializeMemoryObject
 	{
-		public const int SizeOf = 0x540; // 1344
+		public const int SizeOf = 0x548; // 1352
 		
 		public SNOHeader x000_Header { get { return Read<SNOHeader>(0x000); } }
 		public int x00C { get { return Read<int>(0x00C); } }
@@ -60,7 +60,7 @@ namespace Enigma.D3.Assets
 		public int x458 { get { return Read<int>(0x458); } }
 		public int x45C { get { return Read<int>(0x45C); } }
 		public int x460 { get { return Read<int>(0x460); } }
-		public int x464_Enum { get { return Read<int>(0x464); } } // Mana = 0, Arcanum = 1, Fury = 2, Spirit = 3, Power = 4, Hatred = 5, Discipline = 6, Faith = 7
+		public int x464_Enum { get { return Read<int>(0x464); } } // Mana = 0, Arcanum = 1, Fury = 2, Spirit = 3, Power = 4, Hatred = 5, Discipline = 6, Faith = 7, Essence = 8
 		public SerializeData x480_SerializeData { get { return Read<SerializeData>(0x480); } }
 		public int[] x488_TagMap { get { return Deserialize<int>(x480_SerializeData); } } // type: 0x00120000
 		public int x490 { get { return Read<int>(0x490); } }
@@ -70,6 +70,8 @@ namespace Enigma.D3.Assets
 		public MonsterChampionSpawnGroup[] x4B0_MonsterChampionSpawnGroups { get { return Deserialize<MonsterChampionSpawnGroup>(x4B8_SerializeData); } }
 		public SerializeData x4B8_SerializeData { get { return Read<SerializeData>(0x4B8); } }
 		public string x4C0_Text { get { return ReadString(0x4C0, 128); } }
+		public int x540 { get { return Read<int>(0x540); } }
+		public int x544 { get { return Read<int>(0x544); } }
 		
 		[CompilerGenerated]
 		public partial class MonsterData : MemoryObject

@@ -43,30 +43,30 @@ namespace Enigma.D3.Assets
 		[CompilerGenerated]
 		public partial class QuestStep : SerializeMemoryObject
 		{
-			public const int SizeOf = 0xA8; // 168
+			public const int SizeOf = 0xB0; // 176
 			
 			public string x00_Text { get { return DeserializeString(x08_SerializeData); } }
 			public SerializeData x08_SerializeData { get { return Read<SerializeData>(0x08); } }
 			public int x10 { get { return Read<int>(0x10); } }
 			public int x14 { get { return Read<int>(0x14); } }
 			public int x18_Enum { get { return Read<int>(0x18); } } // - No Item - = 0, Shared Recipe = 1, Class Recipe = 2, Treasure Class = 3
-			public SNO[] x1C_SNOs { get { return Read<SNO>(0x1C, 6); } }
-			public SNO x34_TreasureClassSNO { get { return Read<SNO>(0x34); } }
-			public int x38 { get { return Read<int>(0x38); } }
+			public SNO[] x1C_SNOs { get { return Read<SNO>(0x1C, 7); } }
+			public SNO x38_TreasureClassSNO { get { return Read<SNO>(0x38); } }
 			public int x3C { get { return Read<int>(0x3C); } }
-			public int x40_Enum { get { return Read<int>(0x40); } } // - No Item - = 0, Shared Recipe = 1, Class Recipe = 2, Treasure Class = 3
-			public SNO[] x44_SNOs { get { return Read<SNO>(0x44, 6); } }
-			public SNO x5C_TreasureClassSNO { get { return Read<SNO>(0x5C); } }
-			public int x60 { get { return Read<int>(0x60); } }
-			public int x64 { get { return Read<int>(0x64); } }
-			public SNO x68_PowerSNO { get { return Read<SNO>(0x68); } }
-			public SNO[] x6C_SNOs { get { return Read<SNO>(0x6C, 2); } }
-			public QuestStepObjectiveSet[] x78_QuestStepObjectiveSets { get { return Deserialize<QuestStepObjectiveSet>(x80_SerializeData); } }
-			public SerializeData x80_SerializeData { get { return Read<SerializeData>(0x80); } }
-			public QuestStepBonusObjectiveSet[] x88_QuestStepBonusObjectiveSets { get { return Deserialize<QuestStepBonusObjectiveSet>(x90_SerializeData); } }
-			public SerializeData x90_SerializeData { get { return Read<SerializeData>(0x90); } }
-			public QuestStepFailureConditionSet[] x98_QuestStepFailureConditionSets { get { return Deserialize<QuestStepFailureConditionSet>(xA0_SerializeData); } }
-			public SerializeData xA0_SerializeData { get { return Read<SerializeData>(0xA0); } }
+			public int x40 { get { return Read<int>(0x40); } }
+			public int x44_Enum { get { return Read<int>(0x44); } } // - No Item - = 0, Shared Recipe = 1, Class Recipe = 2, Treasure Class = 3
+			public SNO[] x48_SNOs { get { return Read<SNO>(0x48, 7); } }
+			public SNO x64_TreasureClassSNO { get { return Read<SNO>(0x64); } }
+			public int x68 { get { return Read<int>(0x68); } }
+			public int x6C { get { return Read<int>(0x6C); } }
+			public SNO x70_PowerSNO { get { return Read<SNO>(0x70); } }
+			public SNO[] x74_SNOs { get { return Read<SNO>(0x74, 2); } }
+			public QuestStepObjectiveSet[] x80_QuestStepObjectiveSets { get { return Deserialize<QuestStepObjectiveSet>(x88_SerializeData); } }
+			public SerializeData x88_SerializeData { get { return Read<SerializeData>(0x88); } }
+			public QuestStepBonusObjectiveSet[] x90_QuestStepBonusObjectiveSets { get { return Deserialize<QuestStepBonusObjectiveSet>(x98_SerializeData); } }
+			public SerializeData x98_SerializeData { get { return Read<SerializeData>(0x98); } }
+			public QuestStepFailureConditionSet[] xA0_QuestStepFailureConditionSets { get { return Deserialize<QuestStepFailureConditionSet>(xA8_SerializeData); } }
+			public SerializeData xA8_SerializeData { get { return Read<SerializeData>(0xA8); } }
 		}
 		
 		[CompilerGenerated]
