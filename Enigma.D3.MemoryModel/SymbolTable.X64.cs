@@ -10,187 +10,187 @@ namespace Enigma.D3.MemoryModel
     {
         private void InitX64()
         {
-            Version = new Version(2, 5, 0, 44247);
-            Platform = Platform.X64;
+			Version = new Version(2, 6, 0, 46006);
+			Platform = Platform.X64;
 
-            DataSegment.Address = 0x141A69000;
-            DataSegment.VideoPreferences = 0x141AEBC40;
-            DataSegment.SoundPreferences = 0x141AEBCE0;
-            DataSegment.HotkeyPreferences = 0x141AEBD30;
-            DataSegment.GameplayPreferences = 0x141AEC1B0;
-            DataSegment.SocialPreferences = 0x141AEC218;
-            DataSegment.ChatPreferences = 0x141AEC248;
-            DataSegment.LevelArea = 0x141CD8818;
-            DataSegment.LevelAreaName = 0x141CD8820;
-            DataSegment.LevelAreaNameLength = 0x80;
-            DataSegment.MapActID = 0x141CD8B28;
-            DataSegment.ScreenManagerRoot = 0x141CD8D50;
-            DataSegment.TrickleManager = 0x141D2BC20;
-            DataSegment.LocalData = 0x141D586A8;
-            DataSegment.ObjectManager = 0x141D586F0;
-            DataSegment.ApplicationLoopCount = 0x141D58774;
-            DataSegment.AttributeDescriptors = 0x141DCB4B0;
-            DataSegment.AttributeDescriptorsCount = 0x5A5;
-            DataSegment.MemoryManager = 0x141E63C00;
-            DataSegment.SNOGroups = 0x141D584F0;
-            DataSegment.SNOGroupsByCode = 0x141D582C0;
-            DataSegment.ContainerManager = 0x141E67520;
-            DataSegment.MessageDescriptor = 0x141315B28;
+			DataSegment.Address = 0x141B57000;
+			DataSegment.VideoPreferences = 0x141BE5C00;
+			DataSegment.SoundPreferences = 0x141BE5CA0;
+			DataSegment.HotkeyPreferences = 0x141BE5CF0;
+			DataSegment.GameplayPreferences = 0x141BE6170;
+			DataSegment.SocialPreferences = 0x141BE61D8;
+			DataSegment.ChatPreferences = 0x141BE6208;
+			DataSegment.LevelArea = 0x141DDF788;
+			DataSegment.LevelAreaName = 0x141DDF790;
+			DataSegment.LevelAreaNameLength = 0x80;
+			DataSegment.MapActID = 0x141DDFA98;
+			DataSegment.ScreenManagerRoot = 0x141DDFCC0;
+			DataSegment.TrickleManager = 0x141E32B90;
+			DataSegment.LocalData = 0x141E5FBD8;
+			DataSegment.ObjectManager = 0x141E5FCE0;
+			DataSegment.ApplicationLoopCount = 0x141E5FD64;
+			DataSegment.AttributeDescriptors = 0x141ED3820;
+			DataSegment.AttributeDescriptorsCount = 0x5B9;
+			DataSegment.MemoryManager = 0x141F6E460;
+			DataSegment.SNOGroups = 0x141E5FAE0;
+			DataSegment.SNOGroupsByCode = 0x141E5F8B0;
+			DataSegment.ContainerManager = 0x141F71D80;
+			DataSegment.MessageDescriptor = 0x1413B1C08;
 
-            ObjectManager.SizeOf = 0xB88;
-            ObjectManager.RenderTick = 0x4;
-            ObjectManager.GameGlobals = 0x68;
-            ObjectManager.GameState = 0x84;
-            ObjectManager.Storage = 0x7B8;
-            ObjectManager.Actors = 0xA18;
-            ObjectManager.Scenes = 0xA98;
-            ObjectManager.SubObjectGfx = 0xAF0;
-            ObjectManager.RWindowMgr = 0xAF8;
-            ObjectManager.UIManager = 0xB00;
-            ObjectManager.Worlds = 0xB10;
-            ObjectManager.Player = 0xB20;
-            ObjectManager.TexAnim = 0xB68;
-            ObjectManager.TimedEvents = 0xB70;
+			ObjectManager.SizeOf = 0xBC0;
+			ObjectManager.RenderTick = 0x4;
+			ObjectManager.GameGlobals = 0x68;
+			ObjectManager.GameState = 0x84;
+			ObjectManager.Storage = 0x7E8;
+			ObjectManager.Actors = 0xA50;
+			ObjectManager.Scenes = 0xAD0;
+			ObjectManager.SubObjectGfx = 0xB28;
+			ObjectManager.RWindowMgr = 0xB30;
+			ObjectManager.UIManager = 0xB38;
+			ObjectManager.Worlds = 0xB48;
+			ObjectManager.Player = 0xB58;
+			ObjectManager.TexAnim = 0xBA0;
+			ObjectManager.TimedEvents = 0xBA8;
 
-            GameGlobals.SizeOf = 0x3A0;
-            GameGlobals.GameServerAddress = 0x5C;
-            GameGlobals.GameServerAddressLength = 0x80;
+			GameGlobals.SizeOf = 0x3A0;
+			GameGlobals.GameServerAddress = 0x5C;
+			GameGlobals.GameServerAddressLength = 0x80;
 
-            Storage.GameHandicap = 0x4;
-            Storage.GameTick = 0x120;
-            Storage.PlayerDataManager = 0x140;
-            Storage.FastAttrib = 0x180;
-            Storage.ACDManager = 0x198;
-            Storage.QuestManager = 0x1B8;
-            Storage.WaypointManager = 0x210;
+			Storage.GameHandicap = 0x4;
+			Storage.GameTick = 0x120;
+			Storage.PlayerDataManager = 0x140;
+			Storage.FastAttrib = 0x180;
+			Storage.ACDManager = 0x198;
+			Storage.QuestManager = 0x1B8;
+			Storage.WaypointManager = 0x210;
 
-            Actor.SizeOf = 0x4F8;
-            Actor.ID = 0x0;
-            Actor.Name = 0x4;
-            Actor.NameLength = 0x80;
+			Actor.SizeOf = 0x4F8;
+			Actor.ID = 0x0;
+			Actor.Name = 0x4;
+			Actor.NameLength = 0x80;
 
-            ACDManager.SizeOf = 0x150;
-            ACDManager.ActorCommonData = 0x0;
+			ACDManager.SizeOf = 0x150;
+			ACDManager.ActorCommonData = 0x0;
 
-            ACD.SizeOf = 0x3A0;
-            ACD.ID = 0x0;
-            ACD.Name = 0x4;
-            ACD.NameLength = 0x80;
-            ACD.ActorSNO = 0x90;
-            ACD.MonsterQuality = 0xB8;
-            ACD.Position = 0xD8;
-            ACD.Radius = 0xE4;
-            ACD.WorldSNO = 0x118;
-            ACD.FastAttribGroupID = 0x130;
-            ACD.ActorType = 0x1BC;
-            ACD.GizmoType = 0x1B8;
-            ACD.Hitpoints = 0x1C0;
-            ACD.TeamID = 0x1C8;
-            ACD.ObjectFlags = 0x1CC;
-            ACD.CollisionFlags = 0x2D8;
+			ACD.SizeOf = 0x3A0;
+			ACD.ID = 0x0;
+			ACD.Name = 0x4;
+			ACD.NameLength = 0x80;
+			ACD.ActorSNO = 0x90;
+			ACD.MonsterQuality = 0xB8;
+			ACD.Position = 0xD8;
+			ACD.Radius = 0xE4;
+			ACD.WorldSNO = 0x118;
+			ACD.FastAttribGroupID = 0x130;
+			ACD.ActorType = 0x1BC;
+			ACD.GizmoType = 0x1B8;
+			ACD.Hitpoints = 0x1C0;
+			ACD.TeamID = 0x1C8;
+			ACD.ObjectFlags = 0x1CC;
+			ACD.CollisionFlags = 0x2D8;
 
-            LocalData.SizeOf = 0x38;
-            LocalData.IsPlayerValid = 0x0;
-            LocalData.IsStartUpGame = 0x4;
-            LocalData.SceneSNO = 0x8;
-            LocalData.WorldSNO = 0xC;
-            LocalData.ActorSNO = 0x10;
-            LocalData.ActID = 0x14;
-            LocalData.WorldSeed = 0x18;
-            LocalData.QuestSNO = 0x1C;
-            LocalData.QuestStepUID = 0x20;
-            LocalData.WorldPos = 0x24;
-            LocalData.PlayerCount = 0x30;
-            LocalData.LocalPlayerCount = 0x34;
+			LocalData.SizeOf = 0x38;
+			LocalData.IsPlayerValid = 0x0;
+			LocalData.IsStartUpGame = 0x4;
+			LocalData.SceneSNO = 0x8;
+			LocalData.WorldSNO = 0xC;
+			LocalData.ActorSNO = 0x10;
+			LocalData.ActID = 0x14;
+			LocalData.WorldSeed = 0x18;
+			LocalData.QuestSNO = 0x1C;
+			LocalData.QuestStepUID = 0x20;
+			LocalData.WorldPos = 0x24;
+			LocalData.PlayerCount = 0x30;
+			LocalData.LocalPlayerCount = 0x34;
 
-            FastAttrib.SizeOf = 0xA0;
-            FastAttrib.FastAttribGroups = 0x90;
+			FastAttrib.SizeOf = 0xA0;
+			FastAttrib.FastAttribGroups = 0x90;
 
-            FastAttribGroup.SizeOf = 0x12E8;
-            FastAttribGroup.ID = 0x0;
-            FastAttribGroup.Flags = 0x4;
-            FastAttribGroup.PtrMap = 0x10;
-            FastAttribGroup.Map = 0x18;
+			FastAttribGroup.SizeOf = 0x12E8;
+			FastAttribGroup.ID = 0x0;
+			FastAttribGroup.Flags = 0x4;
+			FastAttribGroup.PtrMap = 0x10;
+			FastAttribGroup.Map = 0x18;
 
-            PlayerDataManager.SizeOf = 0x616A0;
-            PlayerDataManager.Items = 0x60;
+			PlayerDataManager.SizeOf = 0x69BA0;
+			PlayerDataManager.Items = 0x60;
 
-            PlayerData.SizeOf = 0xC2C8;
-            PlayerData.Index = 0x0;
-            PlayerData.ACDID = 0x4;
-            PlayerData.ActorID = 0x8;
-            PlayerData.HeroName = 0xA201;
-            PlayerData.ActorSNO = 0xB190;
-            PlayerData.LifePercentage = 0xB194;
-            PlayerData.HeroClass = 0xB1A0;
-            PlayerData.Level = 0xB1A4;
-            PlayerData.AltLevel = 0xB1A8;
+			PlayerData.SizeOf = 0xD368;
+			PlayerData.Index = 0x0;
+			PlayerData.ACDID = 0x4;
+			PlayerData.ActorID = 0x8;
+			PlayerData.HeroName = 0xB209;
+			PlayerData.ActorSNO = 0xC210;
+			PlayerData.LifePercentage = 0xC214;
+			PlayerData.HeroClass = 0xC220;
+			PlayerData.Level = 0xC224;
+			PlayerData.AltLevel = 0xC228;
 
-            Scene.SizeOf = 0x7B8;
+			Scene.SizeOf = 0x7B8;
 
-            World.SizeOf = 0x98;
+			World.SizeOf = 0x98;
 
-            QuestManager.SizeOf = 0x4A0;
-            QuestManager.Quests = 0x30;
+			QuestManager.SizeOf = 0x4A0;
+			QuestManager.Quests = 0x30;
 
-            Quest.SizeOf = 0x178;
+			Quest.SizeOf = 0x178;
 
-            WaypointManager.SizeOf = 0x18;
-            WaypointManager.Array = 0x0;
-            WaypointManager.Count = 0x10;
+			WaypointManager.SizeOf = 0x18;
+			WaypointManager.Array = 0x0;
+			WaypointManager.Count = 0x10;
 
-            Waypoint.SizeOf = 0x2C;
-            Waypoint.ActID = 0x0;
-            Waypoint.LevelAreaSNO = 0xC;
-            Waypoint.X = 0x24;
-            Waypoint.Y = 0x28;
+			Waypoint.SizeOf = 0x2C;
+			Waypoint.ActID = 0x0;
+			Waypoint.LevelAreaSNO = 0xC;
+			Waypoint.X = 0x24;
+			Waypoint.Y = 0x28;
 
-            TrickleManager.SizeOf = 0x10;
-            TrickleManager.Allocator = 0x0;
-            TrickleManager.Items = 0x4;
+			TrickleManager.SizeOf = 0x10;
+			TrickleManager.Allocator = 0x0;
+			TrickleManager.Items = 0x4;
 
-            Trickle.SizeOf = 0x78;
+			Trickle.SizeOf = 0x78;
 
-            UIManager.SizeOf = 0x27B8;
+			UIManager.SizeOf = 0x27B8;
 
-            LevelArea.SizeOf = 0x980;
+			LevelArea.SizeOf = 0x980;
 
-            Player.SizeOf = 0xA3C8;
-            Player.LocalPlayerIndex = 0x0;
-            Player.LatencySamples = 0xA348;
-            Player.FloatingNumbers = 0xA238;
+			Player.SizeOf = 0xA3C8;
+			Player.LocalPlayerIndex = 0x0;
+			Player.LatencySamples = 0xA348;
+			Player.FloatingNumbers = 0xA238;
 
-            AttributeDescriptor.SizeOf = 0x40;
-            AttributeDescriptor.ID = 0x0;
-            AttributeDescriptor.DefaultValue = 0x4;
-            AttributeDescriptor.DataType = 0x10;
-            AttributeDescriptor.Name = 0x28;
-            AttributeDescriptor.NameLength = 0x100;
+			AttributeDescriptor.SizeOf = 0x40;
+			AttributeDescriptor.ID = 0x0;
+			AttributeDescriptor.DefaultValue = 0x4;
+			AttributeDescriptor.DataType = 0x10;
+			AttributeDescriptor.Name = 0x28;
+			AttributeDescriptor.NameLength = 0x100;
 
-            FloatingNumber.SizeOf = 0x64;
-            FloatingNumber.WorldPos = 0x4;
-            FloatingNumber.WorldSNO = 0x10;
-            FloatingNumber.Type = 0x5C;
-            FloatingNumber.Value = 0x60;
+			FloatingNumber.SizeOf = 0x64;
+			FloatingNumber.WorldPos = 0x4;
+			FloatingNumber.WorldSNO = 0x10;
+			FloatingNumber.Type = 0x5C;
+			FloatingNumber.Value = 0x60;
 
-            TimedEvent.SizeOf = 0x58;
+			TimedEvent.SizeOf = 0x58;
 
-            MemoryManager.SizeOf = 0x68;
-            MemoryManager.LocalHeap = 0x58;
+			MemoryManager.SizeOf = 0x68;
+			MemoryManager.LocalHeap = 0x58;
 
-            LocalHeap.FirstNode = 0x8;
-            LocalHeap.TotalSize = 0x10;
-            LocalHeap.NodeCount = 0x20;
-            LocalHeap.LastNode = 0x68;
+			LocalHeap.FirstNode = 0x8;
+			LocalHeap.TotalSize = 0x10;
+			LocalHeap.NodeCount = 0x20;
+			LocalHeap.LastNode = 0x68;
 
-            HeapNode.HeaderSize = 0x20;
-            HeapNode.SizeAndFlag = 0x18;
+			HeapNode.HeaderSize = 0x20;
+			HeapNode.SizeAndFlag = 0x18;
 
-            TexAnim.SizeOf = 0x30;
+			TexAnim.SizeOf = 0x30;
 
-            RWindowMgr.SizeOf = 0x28;
+			RWindowMgr.SizeOf = 0x28;
 
-            SubObjectGfx.SizeOf = 0x128;
-        }
-    }
+			SubObjectGfx.SizeOf = 0x128;
+		}
+	}
 }
