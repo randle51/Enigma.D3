@@ -9,5 +9,6 @@ namespace Enigma.D3.MemoryModel.Preferences
 {
 	public class HotkeyPreferences : MemoryObject
 	{
+        public Hotkey[] Hotkeys => Read<Hotkey>(0x00, 70);
 	}
 }

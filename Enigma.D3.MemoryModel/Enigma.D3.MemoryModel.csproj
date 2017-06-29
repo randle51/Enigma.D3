@@ -79,7 +79,9 @@
     <Compile Include="Platform.cs" />
     <Compile Include="Preferences\ChatPreferences.cs" />
     <Compile Include="Preferences\GameplayPreferences.cs" />
+    <Compile Include="Preferences\Hotkey.cs" />
     <Compile Include="Preferences\HotkeyPreferences.cs" />
+    <Compile Include="Preferences\KeyGesture.cs" />
     <Compile Include="Preferences\SocialPreferences.cs" />
     <Compile Include="Preferences\SoundPreferences.cs" />
     <Compile Include="Preferences\VideoPreferences.cs" />

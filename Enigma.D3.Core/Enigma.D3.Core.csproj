@@ -77,8 +77,11 @@
     <Compile Include="Enums\GemType.cs" />
     <Compile Include="Enums\GizmoType.cs" />
     <Compile Include="Enums\HeroClass.cs" />
+    <Compile Include="Enums\HotkeyIndex.cs" />
     <Compile Include="Enums\ItemLocation.cs" />
     <Compile Include="Enums\ItemQuality.cs" />
+    <Compile Include="Enums\Key.cs" />
+    <Compile Include="Enums\ModifierKeys.cs" />
     <Compile Include="Enums\MonsterQuality.cs" />
     <Compile Include="Enums\MonsterState.cs" />
     <Compile Include="Enums\NpcType.cs" />
