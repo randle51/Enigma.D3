@@ -143,6 +143,6 @@ namespace Enigma.D3
 
 	public partial class CameraManager
 	{
-		public static CameraManager Instance { get { return ObjectManager.Instance?.x9F0_Ptr_5088Bytes_CameraManager.Dereference(); } }
+		public static CameraManager Instance { get { return ObjectManager.Instance?.xA20_Ptr_5088Bytes_CameraManager.Dereference(); } }
 	}
 }

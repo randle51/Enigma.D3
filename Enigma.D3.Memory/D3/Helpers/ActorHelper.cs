@@ -41,7 +41,7 @@ namespace Enigma.D3.Helpers
 
 		private static ExpandableContainer<Actor> GetContainer()
 		{
-			return Engine.TryGet(a => a.ObjectManager.x978_Ptr_RActors.Dereference());
+			return Engine.TryGet(a => a.ObjectManager.x9A8_Ptr_RActors.Dereference());
 		}
 	}
 }

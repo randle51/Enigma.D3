@@ -137,7 +137,7 @@ namespace Enigma.D3
 
 	public partial class Storage
 	{
-		public static Storage Instance { get { return ObjectManager.Instance?.x7B0_Storage; } }
+		public static Storage Instance { get { return ObjectManager.Instance?.x7E0_Storage; } }
 
 		public int GetGameTick()
 		{

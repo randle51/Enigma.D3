@@ -285,7 +285,7 @@ namespace Enigma.D3
 			}
 		}
 
-		public static ExpandableContainer<Actor> Container { get { return ObjectManager.Instance?.x978_Ptr_RActors.Dereference(); } }
+		public static ExpandableContainer<Actor> Container { get { return ObjectManager.Instance?.x9A8_Ptr_RActors.Dereference(); } }
 
 		public static IEnumerable<Actor> Enumerate()
 		{

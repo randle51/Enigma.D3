@@ -11,7 +11,7 @@ namespace Enigma.D3
 {
 	public partial class ObjectManager : MemoryObject
 	{
-		public const int SizeOf = 0xA30;
+		public const int SizeOf = 0xA60;
 
 		public Time x000_Time { get { return Read<Time>(0x000); } }
 		public int _x00C { get { return Read<int>(0x00C); } }
@@ -28,71 +28,72 @@ namespace Enigma.D3
 		// ...
 		// Updated for 2.5.0
 		public GameGlobals x068_GameGlobals { get { return Read<GameGlobals>(0x068); } }
-		public GameGlobals x400_GameGlobals { get { return Read<GameGlobals>(0x400); } }
-		public int _x798 { get { return Read<int>(0x798); } }
-		public int _x79C { get { return Read<int>(0x79C); } }
-		public int _x7A0 { get { return Read<int>(0x7A0); } }
-		public int _x7A4 { get { return Read<int>(0x7A4); } }
-		public Ptr<X790> x7A8_Ptr_292Bytes { get { return ReadPointer<X790>(0x7A8); } }
-		public int _x7AC_int { get { return Read<int>(0x7AC); } }
-		public int _x7B0 { get { return Read<int>(0x7B0); } }
-		public int _x7B4 { get { return Read<int>(0x7B4); } }
-		public Storage x7B0_Storage { get { return Read<Storage>(0x7B0); } }
-		public int _x95C { get { return Read<int>(0x95C); } }
-		public int _x960 { get { return Read<int>(0x960); } }
-		public Ptr<Physics> x964_Ptr_908Bytes_Physics { get { return ReadPointer<Physics>(0x964); } }
-		public int _x968 { get { return Read<int>(0x968); } }
-		public Ptr<ExpandableContainer> x96C_Ptr_Lights { get { return ReadPointer<ExpandableContainer>(0x96C); } }
-		public Ptr<Container> x970_Ptr_Cutscenes { get { return ReadPointer<Container>(0x970); } }
-		public Ptr<LightManager> x974_Ptr_92Bytes_LightManager { get { return ReadPointer<LightManager>(0x974); } }
-		public Ptr<ExpandableContainer<Actor>> x978_Ptr_RActors { get { return ReadPointer<ExpandableContainer<Actor>>(0x978); } }
-		public Ptr<ActorManager> x97C_Ptr_816Bytes_ActorManager { get { return ReadPointer<ActorManager>(0x97C); } }
-		public Ptr<ClothManager> x980_Ptr_24Bytes_ClothManager { get { return ReadPointer<ClothManager>(0x980); } }
-		public Ptr x984_Ptr_41484Bytes_Explosions { get { return Read<Ptr>(0x984); } }
-		public int _x988_int { get { return Read<int>(0x988); } }
-		public Ptr<TrailManager> x98C_Ptr_12Bytes_TrailManager { get { return ReadPointer<TrailManager>(0x98C); } }
-		public Ptr<RopeManager> x990_Ptr_16Bytes_RopeManager { get { return ReadPointer<RopeManager>(0x990); } }
-		public Ptr<Container> x994_Ptr_ParticleSystems { get { return ReadPointer<Container>(0x994); } }
-		public Ptr x998_Ptr_76688Bytes_Particles { get { return Read<Ptr>(0x998); } }
-		public Ptr<Cinematography> x99C_Cinematography { get { return ReadPointer<Cinematography>(0x99C); } }
-		public Ptr<Container> x9A0_Ptr_AmbientSound { get { return ReadPointer<Container>(0x9A0); } }
-		public Ptr<Ptr<Container>> x9A4_PtrPtr_Attachments { get { return ReadPointer<Ptr<Container>>(0x9A4); } }
-		public Ptr<ParentObjects> x9A8_Ptr_ParentObjects { get { return ReadPointer<ParentObjects>(0x9A8); } }
-		public Ptr<Ptr<Container>> x9AC_PtrPtr_DelayedRMessages { get { return ReadPointer<Ptr<Container>>(0x9AC); } }
-		public Ptr x9B0_Ptr_12Bytes_DebugText { get { return ReadPointer(0x9B0); } }
-		public int _x9B4 { get { return Read<int>(0x9B4); } } // 0
-		public Ptr<Container<Scene>> x9B8_Scenes { get { return ReadPointer<Container<Scene>>(0x9B8); } }
-		public Ptr<SceneManager> x9BC_Ptr_1288Bytes_SceneManager { get { return ReadPointer<SceneManager>(0x9BC); } }
-		public Ptr<Ptr<SceneOctree>> x9C0_Ptr_Ptr_SceneOctree { get { return ReadPointer<Ptr<SceneOctree>>(0x9C0); } }
-		public Ptr<X9A4> x9C4_Ptr_16Bytes { get { return ReadPointer<X9A4>(0x9C4); } }
-		public Ptr<Allocator> x9C8_Ptr_416Bytes_Allocator_296x64Bytes_AnimationManager { get { return ReadPointer<Allocator>(0x9C8); } }
-		public Ptr<X9AC> x9CC_Ptr_8Bytes { get { return ReadPointer<X9AC>(0x9CC); } }
-		public int x9D0 { get { return Read<int>(0x9D0); } }
-		public Ptr<int> x9D4_Ptr_4Bytes_Sky { get { return ReadPointer<int>(0x9D4); } }
-		public Ptr<Wind> x9D8_Ptr_64Bytes_Wind { get { return ReadPointer<Wind>(0x9D8); } }
-		public Ptr<AnimationBuffer> x9DC_Ptr_40Bytes_AnimationBuffer { get { return ReadPointer<AnimationBuffer>(0x9DC); } }
-		public Ptr<Sprites> x9E0_Ptr_660Bytes_Sprites { get { return ReadPointer<Sprites>(0x9E0); } }
-		public Ptr<SubObjectGfx> x9E4_Ptr_280Bytes_SubObjectGfx { get { return ReadPointer<SubObjectGfx>(0x9E4); } }
-		public Ptr<RWindowMgr> x9E8_Ptr_20Bytes_RWindowMgr { get { return ReadPointer<RWindowMgr>(0x9E8); } }
-		public Ptr<UIManager> x9EC_Ptr_10000Bytes_UI { get { return ReadPointer<UIManager>(0x9EC); } }
-		public Ptr<CameraManager> x9F0_Ptr_5088Bytes_CameraManager { get { return ReadPointer<CameraManager>(0x9F0); } }
-		public Ptr<Container<World>> x9F4_CWorlds { get { return ReadPointer<Container<World>>(0x9F4); } }
-		public Ptr<WorldManager> x9F8_Ptr_80Bytes_WorldManager { get { return ReadPointer<WorldManager>(0x9F8); } }
-		public Ptr<Player> x9FC_Player { get { return ReadPointer<Player>(0x9FC); } }
-		public Ptr<PlayerInput> xA00_PlayerInput { get { return ReadPointer<PlayerInput>(0xA00); } }
-		public Ptr<PostFX> xA04_Ptr_1064Bytes_PostFX { get { return ReadPointer<PostFX>(0xA04); } }
-		public Ptr<CutsceneManager> xA08_Ptr_CutsceneManager { get { return ReadPointer<CutsceneManager>(0xA08); } }
-		public int _xA0C { get { return Read<int>(0xA0C); } } // 0
-		public int _xA10 { get { return Read<int>(0xA10); } } // 0
-		public Ptr<ShakeManager> xA14_Ptr_ShakeManager { get { return ReadPointer<ShakeManager>(0xA14); } }
-		public Ptr<Ptr<Container>> xA18_Ptr_EffectGroups { get { return ReadPointer<Ptr<Container>>(0xA18); } }
-		public Ptr<Ptr<Container>> xA1C_Ptr_CComplexEffects { get { return ReadPointer<Ptr<Container>>(0xA1C); } }
-		public Ptr<Allocator> xA20_Ptr_Allocator_224x1024Bytes_TexAnim { get { return ReadPointer<Allocator>(0xA20); } }
-		public Ptr<ListPack<TimedEvent>> xA24_Ptr_TimedEvents { get { return ReadPointer<ListPack<TimedEvent>>(0xA24); } }
-		public Ptr<ActTransitions> xA28_Ptr_8Bytes_ActTransitions { get { return ReadPointer<ActTransitions>(0xA28); } }
-		public Ptr<Allocator> xA2C_Ptr_Allocator_656x1024Bytes_ActorMovement { get { return ReadPointer<Allocator>(0xA2C); } }
+		public GameGlobals x418_GameGlobals { get { return Read<GameGlobals>(0x418); } }
+        // 8 bytes gone in 2.6.0, not sure what fields
+		//public int _x7C8 { get { return Read<int>(0x798); } }
+		//public int _x7CC { get { return Read<int>(0x79C); } }
+		//public int _x7D0 { get { return Read<int>(0x7A0); } }
+		//public int _x7D4 { get { return Read<int>(0x7A4); } }
+		//public Ptr<X790> x7D8_Ptr_292Bytes { get { return ReadPointer<X790>(0x7A8); } }
+		//public int _x7DC_int { get { return Read<int>(0x7AC); } }
+		//public int _x7E0 { get { return Read<int>(0x7B0); } }
+		//public int _x7E4 { get { return Read<int>(0x7B4); } }
+		public Storage x7E0_Storage { get { return Read<Storage>(0x7E0); } }
+        public int _x98C { get { return Read<int>(0x98C); } }
+        public int _x990 { get { return Read<int>(0x990); } }
+        public Ptr<Physics> x994_Ptr_908Bytes_Physics { get { return ReadPointer<Physics>(0x994); } }
+        public int _x998 { get { return Read<int>(0x998); } }
+        public Ptr<ExpandableContainer> x99C_Ptr_Lights { get { return ReadPointer<ExpandableContainer>(0x99C); } }
+        public Ptr<Container> x9A0_Ptr_Cutscenes { get { return ReadPointer<Container>(0x9A0); } }
+        public Ptr<LightManager> x9A4_Ptr_92Bytes_LightManager { get { return ReadPointer<LightManager>(0x9A4); } }
+        public Ptr<ExpandableContainer<Actor>> x9A8_Ptr_RActors { get { return ReadPointer<ExpandableContainer<Actor>>(0x9A8); } }
+        public Ptr<ActorManager> x9AC_Ptr_816Bytes_ActorManager { get { return ReadPointer<ActorManager>(0x9AC); } }
+        public Ptr<ClothManager> x9B0_Ptr_24Bytes_ClothManager { get { return ReadPointer<ClothManager>(0x9B0); } }
+        public Ptr x9B4_Ptr_41484Bytes_Explosions { get { return Read<Ptr>(0x9B4); } }
+        public int _x9B8_int { get { return Read<int>(0x9B8); } }
+        public Ptr<TrailManager> x9BC_Ptr_12Bytes_TrailManager { get { return ReadPointer<TrailManager>(0x9BC); } }
+        public Ptr<RopeManager> x9C0_Ptr_16Bytes_RopeManager { get { return ReadPointer<RopeManager>(0x9C0); } }
+        public Ptr<Container> x9C4_Ptr_ParticleSystems { get { return ReadPointer<Container>(0x9C4); } }
+        public Ptr x9C8_Ptr_76688Bytes_Particles { get { return Read<Ptr>(0x9C8); } }
+        public Ptr<Cinematography> x9CC_Cinematography { get { return ReadPointer<Cinematography>(0x9CC); } }
+        public Ptr<Container> x9D0_Ptr_AmbientSound { get { return ReadPointer<Container>(0x9D0); } }
+        public Ptr<Ptr<Container>> x9D4_PtrPtr_Attachments { get { return ReadPointer<Ptr<Container>>(0x9D4); } }
+        public Ptr<ParentObjects> x9D8_Ptr_ParentObjects { get { return ReadPointer<ParentObjects>(0x9D8); } }
+        public Ptr<Ptr<Container>> x9DC_PtrPtr_DelayedRMessages { get { return ReadPointer<Ptr<Container>>(0x9DC); } }
+        public Ptr x9E0_Ptr_12Bytes_DebugText { get { return ReadPointer(0x9E0); } }
+        public int _x9E4 { get { return Read<int>(0x9E4); } } // 0
+        public Ptr<Container<Scene>> x9E8_Scenes { get { return ReadPointer<Container<Scene>>(0x9E8); } }
+        public Ptr<SceneManager> x9EC_Ptr_1288Bytes_SceneManager { get { return ReadPointer<SceneManager>(0x9EC); } }
+        public Ptr<Ptr<SceneOctree>> x9F0_Ptr_Ptr_SceneOctree { get { return ReadPointer<Ptr<SceneOctree>>(0x9F0); } }
+        public Ptr<X9A4> x9F4_Ptr_16Bytes { get { return ReadPointer<X9A4>(0x9F4); } }
+        public Ptr<Allocator> x9F8_Ptr_416Bytes_Allocator_296x64Bytes_AnimationManager { get { return ReadPointer<Allocator>(0x9F8); } }
+        public Ptr<X9AC> x9FC_Ptr_8Bytes { get { return ReadPointer<X9AC>(0x9FC); } }
+        public int xA00 { get { return Read<int>(0xA00); } }
+        public Ptr<int> xA04_Ptr_4Bytes_Sky { get { return ReadPointer<int>(0xA04); } }
+        public Ptr<Wind> xA08_Ptr_64Bytes_Wind { get { return ReadPointer<Wind>(0xA08); } }
+        public Ptr<AnimationBuffer> xA0C_Ptr_40Bytes_AnimationBuffer { get { return ReadPointer<AnimationBuffer>(0xA0C); } }
+        public Ptr<Sprites> xA10_Ptr_660Bytes_Sprites { get { return ReadPointer<Sprites>(0xA10); } }
+        public Ptr<SubObjectGfx> xA14_Ptr_280Bytes_SubObjectGfx { get { return ReadPointer<SubObjectGfx>(0xA14); } }
+        public Ptr<RWindowMgr> xA18_Ptr_20Bytes_RWindowMgr { get { return ReadPointer<RWindowMgr>(0xA18); } }
+        public Ptr<UIManager> xA1C_Ptr_10000Bytes_UI { get { return ReadPointer<UIManager>(0xA1C); } }
+        public Ptr<CameraManager> xA20_Ptr_5088Bytes_CameraManager { get { return ReadPointer<CameraManager>(0xA20); } }
+        public Ptr<Container<World>> xA24_CWorlds { get { return ReadPointer<Container<World>>(0xA24); } }
+        public Ptr<WorldManager> xA28_Ptr_80Bytes_WorldManager { get { return ReadPointer<WorldManager>(0xA28); } }
+        public Ptr<Player> xA2C_Player { get { return ReadPointer<Player>(0xA2C); } }
+        public Ptr<PlayerInput> xA30_PlayerInput { get { return ReadPointer<PlayerInput>(0xA30); } }
+        public Ptr<PostFX> xA34_Ptr_1064Bytes_PostFX { get { return ReadPointer<PostFX>(0xA34); } }
+        public Ptr<CutsceneManager> xA38_Ptr_CutsceneManager { get { return ReadPointer<CutsceneManager>(0xA38); } }
+        public int _xA3C { get { return Read<int>(0xA3C); } } // 0
+        public int _xA40 { get { return Read<int>(0xA40); } } // 0
+        public Ptr<ShakeManager> xA44_Ptr_ShakeManager { get { return ReadPointer<ShakeManager>(0xA44); } }
+        public Ptr<Ptr<Container>> xA48_Ptr_EffectGroups { get { return ReadPointer<Ptr<Container>>(0xA48); } }
+        public Ptr<Ptr<Container>> xA4C_Ptr_CComplexEffects { get { return ReadPointer<Ptr<Container>>(0xA4C); } }
+        public Ptr<Allocator> xA50_Ptr_Allocator_224x1024Bytes_TexAnim { get { return ReadPointer<Allocator>(0xA50); } }
+        public Ptr<ListPack<TimedEvent>> xA54_Ptr_TimedEvents { get { return ReadPointer<ListPack<TimedEvent>>(0xA54); } }
+        public Ptr<ActTransitions> xA58_Ptr_8Bytes_ActTransitions { get { return ReadPointer<ActTransitions>(0xA58); } }
+        public Ptr<Allocator> xA5C_Ptr_Allocator_656x1024Bytes_ActorMovement { get { return ReadPointer<Allocator>(0xA5C); } }
 
-		public class X790 : MemoryObject
+        public class X790 : MemoryObject
 		{
 			public const int SizeOf = 0x124; // 292
 

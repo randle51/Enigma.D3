@@ -10,7 +10,7 @@ namespace Enigma.D3
 	[Obsolete]
 	public partial class GameGlobals : MemoryObject
 	{
-		public const int SizeOf = 0x398; // 920
+		public const int SizeOf = 0x3B0;
 
 		public int x000 { get { return Read<int>(0x000); } }
 		public int x004_Neg1_WorldSnoId { get { return Read<int>(0x004); } }
@@ -185,6 +185,6 @@ namespace Enigma.D3
 	{
 		public static GameGlobals Instance { get { return Engine.TryGet(engine => engine.ObjectManager.x068_GameGlobals); } }
 
-		public static GameGlobals BuilderInstance { get { return Engine.TryGet(engine => engine.ObjectManager.x400_GameGlobals); } }
+		public static GameGlobals BuilderInstance { get { return Engine.TryGet(engine => engine.ObjectManager.x418_GameGlobals); } }
 	}
 }
