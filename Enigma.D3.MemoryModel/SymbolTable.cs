@@ -40,6 +40,8 @@ namespace Enigma.D3.MemoryModel
         public FastAttribGroupSymbols FastAttribGroup;
         public PlayerDataManagerSymbols PlayerDataManager;
         public PlayerDataSymbols PlayerData;
+        public PlayerSavedDataSymbols PlayerSavedData;
+        public ActiveSkillSavedDataSymbols ActiveSkillSavedData;
         public SceneSymbols Scene;
         public WorldSymbols World;
         public QuestManagerSymbols QuestManager;
@@ -204,12 +206,27 @@ namespace Enigma.D3.MemoryModel
         public int Index;
         public int ACDID;
         public int ActorID;
+        public int PlayerSavedData;
         public int HeroName;
         public int ActorSNO;
         public int LifePercentage;
         public int HeroClass;
         public int Level;
         public int AltLevel;
+    }
+
+    public struct PlayerSavedDataSymbols
+    {
+        public int SizeOf;
+        public int ActiveSkillSavedData;
+        public int PassiveSkills;
+    }
+
+    public struct ActiveSkillSavedDataSymbols
+    {
+        public int SizeOf;
+        public int PowerSNO;
+        public int Modifier;
     }
 
     public struct SceneSymbols

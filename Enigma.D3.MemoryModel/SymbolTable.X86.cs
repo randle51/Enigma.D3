@@ -119,14 +119,23 @@ namespace Enigma.D3.MemoryModel
 			PlayerData.Index = 0x0;
 			PlayerData.ACDID = 0x4;
 			PlayerData.ActorID = 0x8;
-			PlayerData.HeroName = 0xB1C0;
+            PlayerData.PlayerSavedData = 0x118;
+            PlayerData.HeroName = 0xB1C0;
 			PlayerData.ActorSNO = 0xC1B8;
 			PlayerData.LifePercentage = 0xC1BC;
 			PlayerData.HeroClass = 0xC1C8;
 			PlayerData.Level = 0xC1CC;
 			PlayerData.AltLevel = 0xC1D0;
 
-			Scene.SizeOf = 0x6C8;
+            PlayerSavedData.SizeOf = 0x12AC;
+            PlayerSavedData.ActiveSkillSavedData = 0x1218;
+            PlayerSavedData.PassiveSkills = 0x1278;
+
+            ActiveSkillSavedData.SizeOf = 0x10;
+            ActiveSkillSavedData.PowerSNO = 0x0;
+            ActiveSkillSavedData.Modifier = 0x4;
+
+            Scene.SizeOf = 0x6C8;
 
 			World.SizeOf = 0x68;
 
