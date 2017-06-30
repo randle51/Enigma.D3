@@ -53,7 +53,8 @@ namespace Enigma.D3
 		public int _x0094 { get { return Read<int>(0x0094); } }
 		public int _x0098 { get { return Read<int>(0x0098); } }
 		public int _x009C { get { return Read<int>(0x009C); } }
-		public ServerData x00A0_ServerData { get { return Read<ServerData>(0x00A0); } }
+        // ...
+		public ServerData x010C_ServerData { get { return Read<ServerData>(0x010C); } }
 		public int _x4858 { get { return Read<int>(0x4858); } }
 		// ...
 		public VendorToken[] x88A4_VendorTokens { get { return Read<VendorToken>(0x88A4, 256); } }
@@ -1779,19 +1780,19 @@ namespace Enigma.D3
 		[Obsolete]
 		public int[] GetActivePowerSnoIds()
 		{
-			return x00A0_ServerData.x000C_PlayerSavedData.x1218_ActiveSkillSavedData.Select(a => a.x00_PowerSnoId).ToArray();
+			return x010C_ServerData.x000C_PlayerSavedData.x1218_ActiveSkillSavedData.Select(a => a.x00_PowerSnoId).ToArray();
 		}
 
 		[Obsolete]
 		public ActiveSkillSavedData[] GetActiveSkills()
 		{
-			return x00A0_ServerData.x000C_PlayerSavedData.x1218_ActiveSkillSavedData;
+			return x010C_ServerData.x000C_PlayerSavedData.x1218_ActiveSkillSavedData;
 		}
 
 		[Obsolete]
 		public int[] GetPassivePowerSnoIds()
 		{
-			return x00A0_ServerData.x000C_PlayerSavedData.x1278_PassivePowerSnoIds;
+			return x010C_ServerData.x000C_PlayerSavedData.x1278_PassivePowerSnoIds;
 		}
 
 		[Obsolete("This is removed from the game, use GetCurrency instead.")]
