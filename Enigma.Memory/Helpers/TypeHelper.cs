@@ -68,6 +68,12 @@ namespace Enigma.Memory
 					t.Equals(typeof(MemoryObject));
 			});
 		}
+
+        public static void InvalidateCache()
+        {
+            _cachedSizeOf.Clear();
+            _cachedIsMemoryObject.Clear();
+        }
 	}
 
 	public static class TypeHelper<T>
