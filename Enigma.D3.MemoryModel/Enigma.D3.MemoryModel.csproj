@@ -50,6 +50,7 @@
     <Compile Include="Collections\Vector.cs" />
     <Compile Include="Core\ACD.cs" />
     <Compile Include="Core\ACDManager.cs" />
+    <Compile Include="Core\ActiveSkillSavedData.cs" />
     <Compile Include="Core\Actor.cs" />
     <Compile Include="Core\FastAttrib.cs" />
     <Compile Include="Core\FastAttribGroup.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Core\Player.cs" />
     <Compile Include="Core\PlayerData.cs" />
     <Compile Include="Core\PlayerDataManager.cs" />
+    <Compile Include="Core\PlayerSavedData.cs" />
     <Compile Include="Core\Quest.cs" />
     <Compile Include="Core\QuestManager.cs" />
     <Compile Include="Core\Scene.cs" />
