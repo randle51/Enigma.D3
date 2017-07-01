@@ -55,19 +55,15 @@ namespace Enigma.D3.Bootloader
         private MemoryContext CreateMemoryContext()
         {
             var ctx = default(MemoryContext);
-            while (ctx == null)
-            {
-                var process = Process.GetProcessesByName("Diablo III").FirstOrDefault()
-                    ?? Process.GetProcessesByName("Diablo III64").FirstOrDefault();
 
-                if (process != null)
-                    ctx = new MemoryContext(new ProcessMemoryReader(process).Memory);
-                else Thread.Sleep(1000);
-            }
-            while (ctx.DataSegment.ApplicationLoopCount == 0)
-            {
+            // Wait for process attachment.
+            while ((ctx = MemoryContext.FromProcess()) == null)
                 Thread.Sleep(1000);
-            }
+
+            // Wait for full initialization.
+            while (ctx.DataSegment.ApplicationLoopCount == 0)
+                Thread.Sleep(1000);
+
             return ctx;
         }
     }
