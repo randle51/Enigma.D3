@@ -32,7 +32,7 @@ namespace Enigma.Memory
 						BindingFlags.Static |
 						BindingFlags.Public);
 					if (field == null)
-						return -1;
+						return 0;
 					var value = field.IsLiteral ? (int)field.GetRawConstantValue() : (int)field.GetValue(null);
 					if (value < 0)
 						throw new ArgumentOutOfRangeException("Negative value for the static 'SizeOf' field is not allowed.");
@@ -42,7 +42,7 @@ namespace Enigma.Memory
 				return Marshal.SizeOf(t.IsEnum ? t.GetEnumUnderlyingType() : t);
 			});
 			
-			if (size == -1) // If no field found, try with a property. Do NOT cache property values.
+			if (size == 0) // If no field found, try with a property. Do NOT cache property values.
 			{
 				var property = type.GetProperty("SizeOf",
 					BindingFlags.FlattenHierarchy |
