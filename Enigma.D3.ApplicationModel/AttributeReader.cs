@@ -36,12 +36,4 @@ namespace Enigma.D3.ApplicationModel
             return unchecked((uint)(key ^ (key >> 12)));
         }
     }
-
-    public static class AttributeExtensions
-    {
-        public static T GetMemoryValue<T>(this Attribute<T> attribute, ACD acd, int modifier = -1) where T : struct
-        {
-            return attribute.GetValue(AttributeReader.Instance, acd.FastAttribGroupID, modifier);
-        }
-    }
 }
