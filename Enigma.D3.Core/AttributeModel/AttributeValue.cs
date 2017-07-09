@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Enigma.D3.ApplicationModel
+namespace Enigma.D3.AttributeModel
 {
     [StructLayout(LayoutKind.Explicit)]
     public struct AttributeValue

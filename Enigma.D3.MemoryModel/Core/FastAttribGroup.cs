@@ -1,4 +1,5 @@
-﻿using Enigma.D3.MemoryModel.Collections;
+﻿using Enigma.D3.AttributeModel;
+using Enigma.D3.MemoryModel.Collections;
 using Enigma.Memory;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,10 @@ namespace Enigma.D3.MemoryModel.Core
         public int Flags
             => Read<int>(SymbolTable.Current.FastAttribGroup.Flags);
 
-        public Ptr<Map<int>> PtrMap
-            => Read<Ptr<Map<int>>>(SymbolTable.Current.FastAttribGroup.PtrMap);
+        public Ptr<Map<AttributeValue>> PtrMap
+            => Read<Ptr<Map<AttributeValue>>>(SymbolTable.Current.FastAttribGroup.PtrMap);
 
-        public Map<int> Map
-            => Read<Map<int>>(SymbolTable.Current.FastAttribGroup.Map);
+        public Map<AttributeValue> Map
+            => Read<Map<AttributeValue>>(SymbolTable.Current.FastAttribGroup.Map);
     }
 }

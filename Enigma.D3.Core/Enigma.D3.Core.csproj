@@ -40,6 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributeModel\Attribute.cs" />
+    <Compile Include="AttributeModel\AttributeKey.cs" />
+    <Compile Include="AttributeModel\Attributes.cs" />
+    <Compile Include="AttributeModel\AttributeValue.cs" />
+    <Compile Include="AttributeModel\ComplexAttribute.cs" />
+    <Compile Include="AttributeModel\IAttributeReader.cs" />
+    <Compile Include="AttributeModel\SimpleAttribute.cs" />
     <Compile Include="DataTypes\AABB.cs" />
     <Compile Include="DataTypes\Acceleration.cs" />
     <Compile Include="DataTypes\Angle.cs" />
