@@ -35,7 +35,7 @@ namespace Enigma.D3.MapHack.Markers
 
 		public override void Update(int worldId, Point3D origo)
 		{
-            if (IsVisible = _isVisible(Acd) && _acd.WorldSNO == worldId)
+            if (IsVisible = _isVisible(Acd) && _acd.SWorldID == worldId)
             {
                 X = _acd.Position.X - origo.X;
                 Y = _acd.Position.Y - origo.Y;

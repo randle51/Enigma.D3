@@ -14,8 +14,8 @@ using System.Windows.Media.Media3D;
 using Enigma.D3.MapHack.Markers;
 using Enigma.D3.MemoryModel;
 using Enigma.D3.MemoryModel.Core;
-using Enigma.D3.ApplicationModel;
 using Enigma.Memory;
+using Enigma.D3.ApplicationModel.Caching;
 
 namespace Enigma.D3.MapHack
 {
@@ -31,7 +31,7 @@ namespace Enigma.D3.MapHack
         private ACD _playerAcd;
         private LocalData _localData;
         private ObjectManager _objectManager;
-        private ContainerObserver<ACD> _acdsObserver;
+        private ContainerCache<ACD> _acdsObserver;
         private bool _isLocalActorReady;
 
         public Minimap(Canvas overlay)
@@ -64,7 +64,7 @@ namespace Enigma.D3.MapHack
         {
             if (ctx == null)
                 throw new ArgumentNullException(nameof(ctx));
-
+            ctx.Memory.Reader.ResetCounters();
             try
             {
                 if (!IsLocalActorValid(ctx))
@@ -76,7 +76,7 @@ namespace Enigma.D3.MapHack
                 var itemsToAdd = new List<IMapMarker>();
                 var itemsToRemove = new List<IMapMarker>();
 
-                _acdsObserver = _acdsObserver ?? new ContainerObserver<ACD>(ctx.DataSegment.ObjectManager.ACDManager.ActorCommonData);
+                _acdsObserver = _acdsObserver ?? new ContainerCache<ACD>(ctx.DataSegment.ObjectManager.ACDManager.ActorCommonData);
                 _acdsObserver.Update();
 
                 // Must have a local ACD to base coords on.
@@ -202,7 +202,7 @@ namespace Enigma.D3.MapHack
             {
                 var origo = new Point3D(_playerAcd.Position.X, _playerAcd.Position.Y, _playerAcd.Position.Z);
                 foreach (var mapItem in _minimapItems.Concat(itemsToAdd))
-                    mapItem.Update(_playerAcd.WorldSNO, origo);
+                    mapItem.Update(_playerAcd.SWorldID, origo);
             }
 
             if (itemsToAdd.Count > 0)
