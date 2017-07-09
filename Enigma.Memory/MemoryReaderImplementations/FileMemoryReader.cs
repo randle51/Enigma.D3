@@ -27,7 +27,7 @@ namespace Enigma.Memory
 
 		public override int PointerSize { get { throw new NotSupportedException(); } }
 
-		public override void UnsafeReadBytes(MemoryAddress address, byte[] buffer, int offset, int count)
+		protected override void UnsafeReadBytesCore(MemoryAddress address, byte[] buffer, int offset, int count)
 		{
 			_fileStream.Position = address;
 			_fileStream.Read(buffer, offset, count);

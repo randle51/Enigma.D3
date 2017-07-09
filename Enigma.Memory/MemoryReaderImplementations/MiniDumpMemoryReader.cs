@@ -91,10 +91,10 @@ namespace Enigma.Memory
 		public string Path { get { return _fileStream.Name; } }
 
 		public MiniDump.Thread[] Threads => _threads;
-
-		public override void UnsafeReadBytes(MemoryAddress address, byte[] buffer, int offset, int count)
-		{
-			var pageFrom = GetPageIndex(address);
+        
+        protected override void UnsafeReadBytesCore(MemoryAddress address, byte[] buffer, int offset, int count)
+        {
+            var pageFrom = GetPageIndex(address);
 			var pageTo = GetPageIndex(address + (ulong)count);
 
 			if (pageFrom == pageTo)
@@ -118,7 +118,7 @@ namespace Enigma.Memory
 				if (remaining != 0)
 					throw new InvalidDataException("Pages did not contain all bytes.");
 			}
-		}
+        }
 
 		public bool TryReadByte(MemoryAddress address, out byte b)
 		{

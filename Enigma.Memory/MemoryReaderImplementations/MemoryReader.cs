@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -206,7 +207,32 @@ namespace Enigma.Memory
 			}
 		}
 
-		public abstract void UnsafeReadBytes(MemoryAddress address, byte[] buffer, int offset, int count);
+        public ulong TotalReadCount { get; private set; }
+
+        public ulong TotalReadSize { get; private set; }
+
+        public TimeSpan TotalReadTime { get; private set; }
+
+        public void ResetCounters()
+        {
+            TotalReadCount = 0;
+            TotalReadSize = 0;
+            TotalReadTime = TimeSpan.Zero;
+        }
+
+        private readonly Stopwatch _sw = new Stopwatch();
+        public void UnsafeReadBytes(MemoryAddress address, byte[] buffer, int offset, int count)
+        {
+            _sw.Restart();
+            UnsafeReadBytesCore(address, buffer, offset, count);
+            _sw.Stop();
+
+            TotalReadCount++;
+            TotalReadSize += (ulong)count;
+            TotalReadTime = TotalReadTime.Add(_sw.Elapsed);
+        }
+
+        protected abstract void UnsafeReadBytesCore(MemoryAddress address, byte[] buffer, int offset, int count);
 
 		public abstract void Dispose();
 	}

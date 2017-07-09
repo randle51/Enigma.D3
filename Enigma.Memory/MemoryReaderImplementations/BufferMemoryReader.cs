@@ -53,7 +53,7 @@ namespace Enigma.Memory
 			}
 		}
 
-		public override void UnsafeReadBytes(MemoryAddress address, byte[] buffer, int offset, int count)
+		protected override void UnsafeReadBytesCore(MemoryAddress address, byte[] buffer, int offset, int count)
 		{
 			Buffer.BlockCopy(Segment.Array, Segment.Offset + address, buffer, offset, count);
 		}
