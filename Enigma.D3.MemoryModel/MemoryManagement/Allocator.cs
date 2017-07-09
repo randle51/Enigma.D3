@@ -8,59 +8,68 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.MemoryManagement
 {
-	// TODO: Other offsets for 32-bit?
-	public class Allocator<T> : MemoryObject
-	{
-		public const int SizeOf = 0x2C;
+    public class Allocator<T> : MemoryObject
+    {
+        private static bool X86 => SymbolTable.Current.Platform == Platform.X86;
 
-		public int x00_ElementSize => Read<int>(0x00);
-		public int x04_Limit => Read<int>(0x04);
-		public SinglyLinkedList x08_Blocks => Read<SinglyLinkedList>(0x08);
-		public int x18_Flags => Read<int>(0x18);
-		public int x1C_Padding => Read<int>(0x1C);
-		public Ptr x20_MemVT => Read<Ptr>(0x20);
-		public int x28_GoodFood => Read<int>(0x28); // 0xFEEDFACE when disposed.
+        public static int SizeOf = X86 ? 0x1C : 0x30; // 4 byte alignment padding
+        
+        public int ElementSize => Read<int>(0x00);
+        public int Limit => Read<int>(0x04);
+        public SinglyLinkedList Blocks => Read<SinglyLinkedList>(0x08);
+        public int Flags => Read<int>(X86 ? 0x10 : 0x18);
+        public Ptr MemVT => Read<Ptr>(X86 ? 0x14 : 0x20);
+        public int GoodFood => Read<int>(X86 ? 0x18 : 0x28); // 0xFEEDFACE when disposed.
 
-		public class SinglyLinkedList : MemoryObject
-		{
-			public const int SizeOf = 0x10;
+        public class SinglyLinkedList : MemoryObject, IEnumerable<Block>
+        {
+            public static int SizeOf => X86 ? 0x08 : 0x10;
 
-			public int x00_Count => Read<int>(0x00);
-			public int x04_Padding => Read<int>(0x04);
-			public Ptr<Node> x08_First => Read<Ptr<Node>>(0x08);
+            public int Count => Read<int>(0x00);
+            public Ptr<Node> First => Read<Ptr<Node>>(X86 ? 0x04 : 0x08);
 
-			public class Node : MemoryObject
-			{
-				public static readonly int SizeOf = GetSizeOf();
-				private static int GetSizeOf()
-				{
-					int sizeOf = 8;
-					sizeOf += TypeHelper<T>.IsMemoryPointerType ? 8 : TypeHelper<T>.SizeOf;
-					return sizeOf;
-				}
+            public IEnumerator<Block> GetEnumerator()
+            {
+                var node = First.Dereference();
+                while (node != null)
+                {
+                    yield return node.Element;
+                    node = node.Next.Dereference();
+                }
+            }
 
-				public Ptr<Node> x00_Next => Read<Ptr<Node>>(0x00);
-				public Block x08_Element => Read<Block>(0x08);
-			}
-		}
+            IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
-		public class Block : MemoryObject
-		{
-			public const int SizeOf = 0x3C;
+            public class Node : MemoryObject
+            {
+                public static readonly int SizeOf = GetSizeOf();
+                private static int GetSizeOf()
+                {
+                    int sizeOf = MemoryContext.Current.Memory.Reader.PointerSize;
+                    if (TypeHelper<T>.IsMemoryPointerType)
+                        sizeOf += sizeOf;
+                    else sizeOf += TypeHelper<T>.SizeOf;
 
-			public Ptr<T> x00_PtrElements => Read<Ptr<T>>(0x00);
-			public Ptr<T> x08_NextFreeElement => Read<Ptr<T>>(0x08);
-			public int x10_Limit => Read<int>(0x10);
-			public int x14_ElementSize => Read<int>(0x14);
-			public int x18_ElementCount => Read<int>(0x18);
-			public int x1C => Read<int>(0x1C);
-			public int x20 => Read<int>(0x20);
-			public int x24_FreeCount => Read<int>(0x24);
-			public int x28 => Read<int>(0x28);
-			public int x2C_Padding => Read<int>(0x2C);
-			public BitArray x30_FreeSpaceBitmap => new BitArray(Read<Ptr<byte>>(0x30).ToArray((x10_Limit + 7) / 8));
-			public int x38 => Read<int>(0x34);
-			public int x3C_GoodFood => Read<int>(0x3C);
-		}
-	}
+                    return sizeOf;
+                }
+
+                public Ptr<Node> Next => Read<Ptr<Node>>(0x00);
+                public Block Element => Read<Block>(X86 ? 0x04 : 0x08);
+            }
+        }
+
+        public class Block : MemoryObject
+        {
+            public static int SizeOf = X86 ? 0x30 : 0x3C;
+
+            public Ptr<T> PtrElements => Read<Ptr<T>>(0x00);
+            public Ptr<T> NextFreeElement => Read<Ptr<T>>(X86 ? 0x04 : 0x08);
+            public int Limit => Read<int>(X86 ? 0x08 : 0x10);
+            public int ElementSize => Read<int>(X86 ? 0x0C : 0x14);
+            public int ElementCount => Read<int>(X86 ? 0x10 : 0x18);
+            public int FreeCount => Read<int>(X86 ? 0x1C : 0x24);
+            public BitArray FreeSpaceBitmap => new BitArray(Read<Ptr<byte>>(X86 ? 0x24 : 0x30).ToArray((Limit + 7) / 8));
+            public int GoodFood => Read<int>(X86 ? 0x2C : 0x3C);
+        }
+    }
 }

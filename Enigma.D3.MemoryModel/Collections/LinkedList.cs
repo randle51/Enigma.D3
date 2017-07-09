@@ -9,65 +9,58 @@ using Enigma.D3.MemoryModel.MemoryManagement;
 
 namespace Enigma.D3.MemoryModel.Collections
 {
-	// TODO: Other offsets for 32-bit?
-	public class LinkedList : MemoryObject
-	{
-		public const int SizeOf = 0x20; // 32
+    public class LinkedList<T> : MemoryObject, IReadOnlyCollection<T>
+    {
+        public static int SizeOf = SymbolTable.Current.Platform == Platform.X86 ? 0x10 : 0x20;
 
-		public Ptr<LinkedListNode> x00_First { get { return Read<Ptr<LinkedListNode>>(0x00); } }
-		public Ptr<LinkedListNode> x08_Last { get { return Read<Ptr<LinkedListNode>>(0x08); } }
-		public int Count { get { return Read<int>(0x10); } }
-		public uint x14_Padding { get { return Read<uint>(0x14); } }
-		public Ptr<Allocator<LinkedListNode>> x18_Allocator { get { return Read<Ptr<Allocator<LinkedListNode>>>(0x18); } }
-	}
+        public Ptr<LinkedListNode<T>> First => Read<Ptr<LinkedListNode<T>>>(0x00);
+        public Ptr<LinkedListNode<T>> Last => this.PlatformRead<Ptr<LinkedListNode<T>>>(0x04, 0x08);
+        public int Count => this.PlatformRead<int>(0x08, 0x10);
+        // 0x14: 64-bit padding
+        public Ptr<Allocator<LinkedListNode<T>>> PtrAllocator => this.PlatformRead<Ptr<Allocator<LinkedListNode<T>>>>(0x0C, 0x18);
 
-	public class LinkedList<T> : LinkedList, IReadOnlyCollection<T>
-	{
-		public new Ptr<LinkedListNode<T>> x00_First { get { return Read<Ptr<LinkedListNode<T>>>(0x00); } }
-		public new Ptr<LinkedListNode<T>> x08_Last { get { return Read<Ptr<LinkedListNode<T>>>(0x08); } }
-		public new Ptr<Allocator<LinkedListNode<T>>> x18_Allocator { get { return Read<Ptr<Allocator<LinkedListNode<T>>>>(0x18); } }
+        public IEnumerator<T> GetEnumerator()
+        {
+            var ptr = First;
+            while (!ptr.IsInvalid)
+            {
+                var node = ptr.Dereference();
+                yield return node.Value;
+                ptr = node.Next;
+            }
+        }
 
-		public IEnumerator<T> GetEnumerator()
-		{
-			var ptr = x00_First;
-			while (!ptr.IsInvalid)
-			{
-				var node = ptr.Dereference();
-				yield return node.Value;
-				ptr = node.Next;
-			}
-		}
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+    }
 
-		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
-	}
+    public class LinkedListB<T> : LinkedList<T>
+    {
+        public new static int SizeOf => SymbolTable.Current.Platform == Platform.X86 ? 0x14 : 0x28;
 
-	public class LinkedListB<T> : LinkedList<T>
-	{
-		public new const int SizeOf = 0x28;
+        public int P86_x10_Boolean { get { return Read<int>(0x10); } }
 
-		public int x20_Boolean => Read<int>(0x20);
-		public int x24_Padding => Read<int>(0x28);
-	}
+        public int P64_x20_Boolean => Read<int>(0x20);
+        public int P64_x24_Padding => Read<int>(0x24);
+    }
 
-	public class LinkedListNode : MemoryObject { }
+    public class LinkedListNode<T> : MemoryObject
+    {
+        private static int _sizeOfValue => AlignedSize(TypeHelper<T>.SizeOf, TypeHelper<Ptr>.SizeOf); // align to 4 or 8 bytes
+        public static int SizeOf => _sizeOfValue + TypeHelper<Ptr>.SizeOf * 2;
 
-	public class LinkedListNode<T> : LinkedListNode
-	{
-		private static int _sizeOfValue = ((TypeHelper<T>.SizeOf + 7) / 8) * 8; // Align to 8 bytes
-		public static int SizeOf = _sizeOfValue + 8;
+        public T Value { get { return Read<T>(0x00); } }
+        public Ptr<LinkedListNode<T>> Previous { get { return Read<Ptr<LinkedListNode<T>>>(_sizeOfValue); } }
+        public Ptr<LinkedListNode<T>> Next { get { return Read<Ptr<LinkedListNode<T>>>(_sizeOfValue + TypeHelper<Ptr>.SizeOf); } }
+    }
 
-		public T Value { get { return Read<T>(0x00); } }
-		public Ptr<LinkedListNode<T>> Previous { get { return Read<Ptr<LinkedListNode<T>>>(_sizeOfValue + 0x00); } }
-		public Ptr<LinkedListNode<T>> Next { get { return Read<Ptr<LinkedListNode<T>>>(_sizeOfValue + 0x08); } }
-	}
+    public class LinkedListWithAllocator<T> : LinkedList<T>
+    {
+        public new static int SizeOf => SymbolTable.Current.Platform == Platform.X86 ? 0x30 : 0x58;
 
-	public class LinkedListWithAllocator<T> : LinkedList<T>
-	{
-		public new const int SizeOf = 0x58; // 88
-
-		public Allocator<LinkedListNode<T>> x20_Allocator { get { return Read<Allocator<LinkedListNode<T>>>(0x20); } }
-		public int x4C_Padding { get { return Read<int>(0x4C); } }
-		public int x50_Boolean { get { return Read<int>(0x50); } }
-		public int x54_Padding { get { return Read<int>(0x54); } }
-	}
+        public Allocator<LinkedListNode<T>> Allocator => this.PlatformRead<Allocator<LinkedListNode<T>>>(0x10, 0x20);
+        public int P86_x2C_Boolean => Read<int>(0x2C);
+        public int P64_x4C_Padding => Read<int>(0x4C);
+        public int P64_x50_Boolean => Read<int>(0x50);
+        public int P64_x54_Padding => Read<int>(0x54);
+    }
 }

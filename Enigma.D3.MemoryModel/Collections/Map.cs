@@ -1,4 +1,5 @@
-﻿using Enigma.Memory;
+﻿using Enigma.D3.MemoryModel.MemoryManagement;
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,17 @@ namespace Enigma.D3.MemoryModel.Collections
 {
     public class Map<TValue> : MemoryObject
     {
+        public const int SizeOf = 0x10 + Vector<Ptr<Entry>>.SizeOf;
+
         public int Mask => Read<int>(0x00);
 
         public int Count => Read<int>(0x04);
 
-        public Vector<Ptr<Entry>> Buckets => Read<Vector<Ptr<Entry>>>(0x10);
+        public Ptr<Allocator<Entry>> BucketAllocator => Read<Ptr<Allocator<Entry>>>(0x08);
 
-        public bool TryGetValue(int key, out TValue value, Func<int,uint> hasher)
+        public Vector<Ptr<Entry>> Buckets => Read<Vector<Ptr<Entry>>>(0x10);
+        
+        public bool TryGetValue(int key, out TValue value, Func<int, uint> hasher)
         {
             if (Count == 0)
             {
@@ -44,9 +49,12 @@ namespace Enigma.D3.MemoryModel.Collections
         public class Entry : MemoryObject
         {
             private static bool X86 => SymbolTable.Current.Platform == Platform.X86;
-            
+
+            public static int SizeOf => X86 ? (0x08 + TypeHelper<TValue>.SizeOf) : ((TypeHelper<TValue>.SizeOf > 4 ? 0x10 : 0x0C) + TypeHelper<TValue>.SizeOf);
+
+            public Ptr<Entry> Next => Read<Ptr<Entry>>(0x00);
             public int Key => Read<int>(X86 ? 0x04 : 0x08);
-            public TValue Value => Read<TValue>(X86 ? 0x08 : 0x0C);
+            public TValue Value => Read<TValue>(X86 ? 0x08 : TypeHelper<TValue>.SizeOf > 4 ? 0x10 : 0x0C);
 
             public Entry GetNext() => ReadPointer<Entry>(0x00).Dereference();
         }

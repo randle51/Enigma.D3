@@ -10,6 +10,8 @@ namespace Enigma.D3.MemoryModel.Collections
 {
     public class Vector<T> : MemoryObject, IEnumerable<T>
     {
+        public const int SizeOf = 0x10;
+
         public T this[int index]
         {
             get
