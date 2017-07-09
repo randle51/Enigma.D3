@@ -9,6 +9,8 @@ namespace Enigma.D3.MemoryModel.Core
 {
 	public class Player : MemoryObject
 	{
+        public static int SizeOf => SymbolTable.Current.Player.SizeOf;
+
 		public int LocalPlayerIndex
 			=> Read<int>(SymbolTable.Current.Player.LocalPlayerIndex);
 

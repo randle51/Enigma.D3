@@ -1,4 +1,5 @@
-﻿using Enigma.D3.MemoryModel.Collections;
+﻿using Enigma.D3.Enums;
+using Enigma.D3.MemoryModel.Collections;
 using Enigma.Memory;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace Enigma.D3.MemoryModel.Core
 {
 	public class ObjectManager : MemoryObject
 	{
+        public static int SizeOf => SymbolTable.Current.ObjectManager.SizeOf;
+
 		public int RenderTick
 			=> Read<int>(SymbolTable.Current.ObjectManager.RenderTick);
 
@@ -19,8 +22,8 @@ namespace Enigma.D3.MemoryModel.Core
 		public string GameServerAddress
 			=> ReadString(SymbolTable.Current.ObjectManager.GameGlobals + SymbolTable.Current.GameGlobals.GameServerAddress, SymbolTable.Current.GameGlobals.GameServerAddressLength);
 
-		public int GameHandicap
-			=> Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameHandicap);
+		public GameDifficulty GameDifficulty
+			=> Read<GameDifficulty>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameDifficulty);
         
 		public int GameTick
 			=> Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameTick);
