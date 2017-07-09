@@ -40,6 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\SNODefinition.cs" />
+    <Compile Include="Assets\SNODiskEntry.cs" />
+    <Compile Include="Assets\SNOFiles.cs" />
+    <Compile Include="Assets\SNOGroupStorage.cs" />
     <Compile Include="BattleNet\Hero.cs" />
     <Compile Include="BattleNet\Map.cs" />
     <Compile Include="Collections\CircularBuffer.cs" />

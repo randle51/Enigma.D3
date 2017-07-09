@@ -8,6 +8,7 @@ using Enigma.D3.MemoryModel.Core;
 using Enigma.D3.MemoryModel.Preferences;
 using Enigma.D3.MemoryModel.TypeSystem;
 using Enigma.D3.MemoryModel.MemoryManagement;
+using Enigma.D3.MemoryModel.Assets;
 
 namespace Enigma.D3.MemoryModel.Segments
 {
@@ -63,5 +64,13 @@ namespace Enigma.D3.MemoryModel.Segments
 
 		public MemoryManager MemoryManager
 			=> Memory.Reader.Read<Ptr<MemoryManager>>(SymbolTable.Current.DataSegment.MemoryManager).Dereference();
-	}
+
+        // TODO: SymbolTable offset
+        public SNOFiles SNOFiles
+            => Memory.Reader.Read<Ptr<SNOFiles>>(0x02141B64).Dereference();
+
+        // TODO: SymbolTable offset
+        public Ptr[] SNOGroupStorage
+            => Memory.Reader.Read<Ptr>(0x02144838, 70);
+    }
 }
