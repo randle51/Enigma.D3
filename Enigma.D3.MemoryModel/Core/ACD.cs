@@ -18,10 +18,14 @@ namespace Enigma.D3.MemoryModel.Core
 
 		public string Name
 			=> ReadString(SymbolTable.Current.ACD.Name, SymbolTable.Current.ACD.NameLength);
+        
+        // TODO: SymbolTable offset
+        public int ActorID
+            => Read<int>(0x8C);
 
         public SNO ActorSNO
             => Read<SNO>(SymbolTable.Current.ACD.ActorSNO);
-
+        
         public MonsterQuality MonsterQuality
             => Read<MonsterQuality>(SymbolTable.Current.ACD.MonsterQuality);
 
@@ -31,11 +35,23 @@ namespace Enigma.D3.MemoryModel.Core
         public float Radius
             => Read<float>(SymbolTable.Current.ACD.Radius);
         
-        public SNO WorldSNO
-			=> Read<SNO>(SymbolTable.Current.ACD.WorldSNO);
+        public int SWorldID
+			=> Read<int>(SymbolTable.Current.ACD.SWorldID);
+
+        public int SSceneID
+            => Read<int>(SymbolTable.Current.ACD.SSceneID);
 
         public int FastAttribGroupID
             => Read<int>(SymbolTable.Current.ACD.FastAttribGroupID);
+        
+        public ItemLocation ItemLocation
+            => Read<ItemLocation>(0x114); // TODO: SymbolTable
+
+        public int ItemSlotX
+            => Read<int>(0x118); // TODO: SymbolTable
+
+        public int ItemSlotY
+            => Read<int>(0x11C); // TODO: SymbolTable
 
         public ActorType ActorType
             => Read<ActorType>(SymbolTable.Current.ACD.ActorType);
@@ -54,5 +70,7 @@ namespace Enigma.D3.MemoryModel.Core
 
         public int CollisionFlags
             => Read<int>(SymbolTable.Current.ACD.CollisionFlags);
+
+        public override string ToString() => Name;
     }
 }

@@ -56,7 +56,7 @@ namespace Enigma.D3.MemoryModel
 			GameGlobals.GameServerAddress = 0x5C;
 			GameGlobals.GameServerAddressLength = 0x80;
 
-			Storage.GameHandicap = 0x4;
+			Storage.GameDifficulty = 0x4;
 			Storage.GameTick = 0x120;
 			Storage.PlayerDataManager = 0x134;
 			Storage.FastAttrib = 0x154;
@@ -80,7 +80,8 @@ namespace Enigma.D3.MemoryModel
 			ACD.MonsterQuality = 0xB8;
 			ACD.Position = 0xD0;
 			ACD.Radius = 0xDC;
-			ACD.WorldSNO = 0x108;
+			ACD.SWorldID = 0x108;
+            ACD.SSceneID = 0x10C;
 			ACD.FastAttribGroupID = 0x120;
 			ACD.ActorType = 0x17C;
 			ACD.GizmoType = 0x178;

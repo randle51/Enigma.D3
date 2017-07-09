@@ -119,7 +119,7 @@ namespace Enigma.D3.MemoryModel
 
     public struct StorageSymbols
     {
-        public int GameHandicap;
+        public int GameDifficulty;
         public int GameTick;
         public int PlayerDataManager;
         public int FastAttrib;
@@ -152,7 +152,8 @@ namespace Enigma.D3.MemoryModel
         public int MonsterQuality;
         public int Position;
         public int Radius;
-        public int WorldSNO;
+        public int SWorldID;
+        public int SSceneID;
         public int FastAttribGroupID;
         public int ActorType;
         public int GizmoType;
