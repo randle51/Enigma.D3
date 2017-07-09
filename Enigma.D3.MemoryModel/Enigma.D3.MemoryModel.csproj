@@ -78,6 +78,7 @@
     <Compile Include="MemoryManagement\HeapNode.cs" />
     <Compile Include="MemoryManagement\LocalHeap.cs" />
     <Compile Include="MemoryManagement\MemoryManager.cs" />
+    <Compile Include="MemorySegment.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Preferences\ChatPreferences.cs" />
     <Compile Include="Preferences\GameplayPreferences.cs" />
