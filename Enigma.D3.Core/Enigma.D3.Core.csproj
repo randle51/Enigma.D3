@@ -80,6 +80,7 @@
     <Compile Include="Enums\ActorType.cs" />
     <Compile Include="Enums\DamageType.cs" />
     <Compile Include="Enums\FollowerType.cs" />
+    <Compile Include="Enums\GameDifficulty.cs" />
     <Compile Include="Enums\GBType.cs" />
     <Compile Include="Enums\GemType.cs" />
     <Compile Include="Enums\GizmoType.cs" />
