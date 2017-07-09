@@ -45,7 +45,7 @@ namespace Enigma.D3
 			public const int UIReferences = 0x01BBB8F8; // Not updated. 0x01C70368 or 0x01CEF2A8
 			public const int SnoIdToEntityId = 0x00000000; // Not updated.
 			public const int TrickleManager = 0x01D8BF88; // Not updated.
-			public const int PtrSnoFiles = 0x01DD1610; // Not updated.
+			public const int PtrSnoFiles = 0x02141B64; // Not updated.
 		}
 
 		[Obsolete("Values should come from the generated Globals class instead.")]

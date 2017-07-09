@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Enigma.D3.Collections;
 using Enigma.Memory;
+using Enigma.D3.DataTypes;
+using Enigma.D3.Enums;
 
 namespace Enigma.D3.Assets
 {
@@ -69,11 +71,12 @@ namespace Enigma.D3.Assets
 
 		public class Item : MemoryObject
 		{
-			public const int SizeOf = 20;
+			public const int SizeOf = 12;
 
-			public RefString x00_Slug { get { return Read<RefString>(0x00); } }
-			public int _x0C { get { return Read<int>(0x0C); } }
-			public int _x10 { get { return Read<int>(0x10); } }
+            public SNOType SNOType => (SNOType)Read<byte>(0x00);
+            public SNO SNO => Read<uint>(0x00) >> 8;
+            public string Slug => ReadStringPointer(0x04, 256).Dereference();
+            public int x08 => Read<int>(0x08);
 		}
 
 		public class Item2 : MemoryObject

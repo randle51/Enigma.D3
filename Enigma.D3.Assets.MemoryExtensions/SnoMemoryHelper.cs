@@ -46,7 +46,7 @@ namespace Enigma.D3.Assets
 		public static string GetSlug(SnoGroupId groupId, int snoId)
 		{
 			var map = SnoFiles.Instance.x09F8_SnoFileMaps[(int)groupId];
-			return map.GetValue(snoId, HashUtils.Fnv32).Dereference().x00_Slug.ToString();
+			return map.GetValue(snoId, HashUtils.Fnv32).Dereference().Slug.ToString();
 		}
 	}
 }
