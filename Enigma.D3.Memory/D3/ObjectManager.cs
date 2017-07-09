@@ -34,7 +34,7 @@ namespace Enigma.D3
 		//public int _x7CC { get { return Read<int>(0x79C); } }
 		//public int _x7D0 { get { return Read<int>(0x7A0); } }
 		//public int _x7D4 { get { return Read<int>(0x7A4); } }
-		//public Ptr<X790> x7D8_Ptr_292Bytes { get { return ReadPointer<X790>(0x7A8); } }
+		public Ptr<X790> x7D8_Ptr_292Bytes { get { return ReadPointer<X790>(0x7D8); } }
 		//public int _x7DC_int { get { return Read<int>(0x7AC); } }
 		//public int _x7E0 { get { return Read<int>(0x7B0); } }
 		//public int _x7E4 { get { return Read<int>(0x7B4); } }
@@ -97,10 +97,10 @@ namespace Enigma.D3
 		{
 			public const int SizeOf = 0x124; // 292
 
-			// 0x1000: Rendering?
-			// 0x0200: Paused?
-			// 0x0010: InGame?
-			public int x000_Flags { get { return Read<int>(0x000); } }
+            // 0x1000: Rendering?
+            // 0x0200: Paused?
+            // 0x0010: InGame?
+            public int x000_Flags { get { return Read<int>(0x000); } }
 			public int _x004 { get { return Read<int>(0x004); } }
 			public int _x008 { get { return Read<int>(0x008); } }
 			public int _x00C { get { return Read<int>(0x00C); } }

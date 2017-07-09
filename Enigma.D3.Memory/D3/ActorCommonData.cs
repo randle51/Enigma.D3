@@ -49,7 +49,7 @@ namespace Enigma.D3
 		public float x0FC_Height { get { return Read<float>(0x0FC); } }
 		public float x100 { get { return Read<float>(0x100); } }
 		public int _x104 { get { return Read<int>(0x104); } }
-		public int x108_WorldId { get { return Read<int>(0x108); } }
+		public int x108_SWorldID { get { return Read<int>(0x108); } }
 		public int x10C_SceneId { get { return Read<int>(0x10C); } }
 		public int x110_ItemSocketHostAcdId_StructStart_Min16Bytes { get { return Read<int>(0x110); } }
 		public ItemLocation x114_ItemLocation { get { return (ItemLocation)Read<int>(0x114); } }

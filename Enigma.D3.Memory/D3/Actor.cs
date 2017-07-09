@@ -38,7 +38,7 @@ namespace Enigma.D3
 		public float x0D4_BottomRadius { get { return Read<float>(0x0D4); } }
 		public int _x0D8 { get { return Read<int>(0x0D8); } }
 		public int _x0DC { get { return Read<int>(0x0DC); } }
-		public int x0E0_WorldId { get { return Read<int>(0x0E0); } }
+		public int x0E0_SWorldId { get { return Read<int>(0x0E0); } }
 		public int x0E4_SceneNavMeshId { get { return Read<int>(0x0E4); } }
 		public int _x0E8 { get { return Read<int>(0x0E8); } }
 		public int _x0EC { get { return Read<int>(0x0EC); } }
@@ -85,9 +85,9 @@ namespace Enigma.D3
 		public int _x190 { get { return Read<int>(0x190); } }
 		public int _x194 { get { return Read<int>(0x194); } }
 		public int _x198 { get { return Read<int>(0x198); } }
-		public int _x19C { get { return Read<int>(0x19C); } }
-		public int _x1A0 { get { return Read<int>(0x1A0); } }
-		public int _x1A4 { get { return Read<int>(0x1A4); } }
+		public float x19C_WorldPosX { get { return Read<float>(0x19C); } }
+		public float x1A0_WorldPosY { get { return Read<float>(0x1A0); } }
+		public float x1A4_WorldPosZ { get { return Read<float>(0x1A4); } }
 		public int _x1A8 { get { return Read<int>(0x1A8); } }
 		public ActorMovement x1AC_ActorMovement { get { return ReadPointer<ActorMovement>(0x1AC).Dereference(); } }
 		public int _x1B0 { get { return Read<int>(0x1B0); } }
