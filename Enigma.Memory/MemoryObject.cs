@@ -8,6 +8,11 @@ namespace Enigma.Memory
 {
 	public class MemoryObject
 	{
+        protected static int AlignedSize(int size, int alignment)
+        {
+            return ((size + (alignment - 1)) / alignment) * alignment;
+        }
+
 		public IMemory Memory { get; private set; }
 
 		public MemoryAddress Address { get; private set; }
@@ -38,13 +43,13 @@ namespace Enigma.Memory
 						TypeHelper<T>.SizeOf);
 					return value;
 				}
-				else if (TypeHelper<T>.IsMemoryPointerType)
-				{
-					// It is important that a pointer doesn't get a snapshot as context!
-					return (T)MemoryPointerFactory.Create<T>(Memory,
-						ReadMemoryAddress(offset));
-				}
-				return snapshot.Read<T>(offset);
+                else if (TypeHelper<T>.IsMemoryPointerType)
+                {
+                    // It is important that a pointer doesn't get a snapshot as context!
+                    return (T)MemoryPointerFactory.Create<T>(Memory,
+                        ReadMemoryAddress(offset));
+                }
+                return snapshot.Read<T>(offset);
 			}
 			return Memory.Reader.Read<T>(GetAbsoluteAddress(offset));
 		}
