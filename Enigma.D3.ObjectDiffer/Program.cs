@@ -9,90 +9,105 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.ObjectDiffer
 {
-	internal class Program
-	{
-		internal static void Main(string[] args)
-		{
-			Console.WindowWidth = 120;
-			Console.BufferWidth = 120;
+    internal class Program
+    {
+        internal static readonly HashSet<int> _ignoredOffsets = new HashSet<int>();
 
-			Console.WriteLine("Creating engine.");
-			while (Engine.Create() == null)
-				Thread.Sleep(1000);
-			Console.WriteLine("Engine created.");
+        internal static void Main(string[] args)
+        {
+            Console.WindowWidth = 120;
+            Console.BufferWidth = 120;
 
-			Track(() => PlayerData.Local);
-		}
+            Console.WriteLine("Creating engine.");
+            while (Engine.Create() == null)
+                Thread.Sleep(1000);
+            Console.WriteLine("Engine created.");
 
-		private static void Track<T>(Func<T> getter, int align = 4) where T : MemoryObject
-		{
-			var size = TypeHelper<T>.SizeOf;
-			var digits = size.ToString("X").Length;
-			var format = "X" + digits;
+            _ignoredOffsets.Add(0x00);
+            _ignoredOffsets.Add(0x04);
+            _ignoredOffsets.Add(0x08);
+            _ignoredOffsets.Add(0x0C);
+            _ignoredOffsets.Add(0x10);
+            _ignoredOffsets.Add(0x14);
+            _ignoredOffsets.Add(0x20);
+            _ignoredOffsets.Add(0x24);
+            _ignoredOffsets.Add(0x28);
+            _ignoredOffsets.Add(0xE0);
+            Track(() => ObjectManager.Instance.x7D8_Ptr_292Bytes.Dereference());
+        }
 
-			byte[] previous = null;
-			while (true)
-			{
-				var obj = getter.Invoke();
-				if (obj != null)
-				{
-					byte[] snapshot = obj.Read<byte>(0, size);
-					if (previous != null)
-					{
-						var timestamp = DateTime.Now.ToString("HH:mm:ss.fffffff");
-						for (int i = 0; i < snapshot.Length; i += align)
-						{
-							for (int b = 0; b < align; b++)
-							{
-								if (snapshot[i + b] != previous[i + b])
-								{
-									byte[] value = new byte[4];
-									Buffer.BlockCopy(snapshot, i + b, value, 0, value.Length);
-									Write(timestamp, ConsoleColor.DarkGray);
-									Write(" 0x" + i.ToString(format));
-									Write(" " + BitConverter.ToString(value), ConsoleColor.DarkGray);
-									WriteValue(BitConverter.ToInt32(value, 0));
-									WriteValue(BitConverter.ToSingle(value, 0));
-									WriteLine();
-									break;
-								}
-							}
-						}
-					}
-					previous = snapshot;
-				}
-				Thread.Sleep(1);
-			}
-		}
+        private static void Track<T>(Func<T> getter, int align = 4) where T : MemoryObject
+        {
+            var size = TypeHelper<T>.SizeOf;
+            var digits = size.ToString("X").Length;
+            var format = "X" + digits;
 
-		private static void WriteValue(int value)
-		{
-			string output = value.ToString();
-			if (Math.Abs(value) > 100000)
-				output = "0x" + value.ToString("X");
-			Write(" " + output.PadRight(10));
-		}
+            byte[] previous = null;
+            while (true)
+            {
+                var obj = getter.Invoke();
+                if (obj != null)
+                {
+                    byte[] snapshot = obj.Read<byte>(0, size);
+                    if (previous != null)
+                    {
+                        var timestamp = DateTime.Now.ToString("HH:mm:ss.fffffff");
+                        for (int i = 0; i < snapshot.Length; i += align)
+                        {
+                            if (_ignoredOffsets.Contains(i))
+                                continue;
 
-		private static void WriteValue(float value)
-		{
-			var color = ConsoleColor.Gray;
-			if (Math.Abs(value) > 100000 || Math.Abs(value) < 0.001)
-				color = ConsoleColor.DarkGray;
-			Write(" " + value, color);
-		}
+                            for (int b = 0; b < align; b++)
+                            {
+                                if (snapshot[i + b] != previous[i + b])
+                                {
+                                    byte[] value = new byte[4];
+                                    Buffer.BlockCopy(snapshot, i + b, value, 0, value.Length);
+                                    Write(timestamp, ConsoleColor.DarkGray);
+                                    Write(" 0x" + i.ToString(format));
+                                    Write(" " + BitConverter.ToString(value), ConsoleColor.DarkGray);
+                                    WriteValue(BitConverter.ToInt32(value, 0));
+                                    WriteValue(BitConverter.ToSingle(value, 0));
+                                    WriteLine();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    previous = snapshot;
+                }
+                Thread.Sleep(1);
+            }
+        }
 
-		private static void Write(string text, ConsoleColor color = ConsoleColor.Gray)
-		{
-			Console.ForegroundColor = color;
-			Console.Write(text);
-			Console.ResetColor();
-		}
+        private static void WriteValue(int value)
+        {
+            string output = value.ToString();
+            if ((uint)value == 0x80000000 || Math.Abs(value) > 100000)
+                output = "0x" + value.ToString("X");
+            Write(" " + output.PadRight(10));
+        }
 
-		private static void WriteLine(string text = null, ConsoleColor color = ConsoleColor.Gray)
-		{
-			Console.ForegroundColor = color;
-			Console.WriteLine(text);
-			Console.ResetColor();
-		}
-	}
+        private static void WriteValue(float value)
+        {
+            var color = ConsoleColor.Gray;
+            if (Math.Abs(value) > 100000 || Math.Abs(value) < 0.001)
+                color = ConsoleColor.DarkGray;
+            Write(" " + value, color);
+        }
+
+        private static void Write(string text, ConsoleColor color = ConsoleColor.Gray)
+        {
+            Console.ForegroundColor = color;
+            Console.Write(text);
+            Console.ResetColor();
+        }
+
+        private static void WriteLine(string text = null, ConsoleColor color = ConsoleColor.Gray)
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
+    }
 }
