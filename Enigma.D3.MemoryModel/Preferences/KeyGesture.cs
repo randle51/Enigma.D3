@@ -9,6 +9,8 @@ namespace Enigma.D3.MemoryModel.Preferences
 {
     public struct KeyGesture
     {
+        public static readonly KeyGesture None = new KeyGesture { Key = Key.Undefined, Modifiers = ModifierKeys.None };
+
         public Key Key;
         public ModifierKeys Modifiers;
 
