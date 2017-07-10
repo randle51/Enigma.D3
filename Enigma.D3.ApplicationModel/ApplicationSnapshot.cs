@@ -79,6 +79,7 @@ namespace Enigma.D3.ApplicationModel
             Game.Tick = _objMgrCache.GameTick;
             Game.Difficulty = _objMgrCache.GameDifficulty;
             Game.Player = Game.Player ?? new LocalPlayer();
+            Game.Player.Game = Game;
 
             // TODO: Reduce number of actual memory reads, but do not snapshot entire PlayerData struct.
             var playerData = _objMgrCache.PlayerDataManager[_playerCache.LocalPlayerIndex];

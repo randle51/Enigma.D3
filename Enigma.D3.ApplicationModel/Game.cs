@@ -26,12 +26,6 @@ namespace Enigma.D3.ApplicationModel
 
         public IEnumerable<Item> Items => ItemProxies.Values;
 
-        public IEnumerable<Item> Equipment => Items.Where(x => x.IsEquipped);
-
-        public IEnumerable<Item> Backpack => Items.Where(x => x.IsInInventory);
-
-        public IEnumerable<Item> StashedItems => Items.Where(x => x.IsStashed);
-
         public IEnumerable<Item> Loot => Items.Where(x => (int)x.ItemLocation == -1);
 
         public IEnumerable<World> Worlds => WorldProxies.Values;
