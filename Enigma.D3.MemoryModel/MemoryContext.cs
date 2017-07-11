@@ -96,6 +96,7 @@ namespace Enigma.D3.MemoryModel
         {
             Memory = memory ?? throw new ArgumentNullException(nameof(memory));
 
+            TypeHelper.PointerSize = Memory.Reader.PointerSize;
             SymbolTable.Current = new SymbolTable(this);
             DataSegment = Memory.Reader.Read<DataSegment>(SymbolTable.Current.DataSegment.Address);
             TypeHelper.InvalidateCache(); // Required in case we make a switch between 32-bit and 64-bit context.
