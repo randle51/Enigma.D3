@@ -32,12 +32,13 @@ namespace Enigma.D3.MemoryModel
 			DataSegment.AttributeDescriptors = 0x219EDE8;
 			DataSegment.AttributeDescriptorsCount = 0x5B9;
 			DataSegment.MemoryManager = 0x1E9B870;
-			DataSegment.SNOGroups = 0x2144834;
+            DataSegment.SNOFiles = 0x2141B64;
+            DataSegment.SNOGroups = 0x2144834;
 			DataSegment.SNOGroupsByCode = 0x2144838;
 			DataSegment.ContainerManager = 0x2211824;
 			DataSegment.MessageDescriptor = 0x2211830;
-
-			ObjectManager.SizeOf = 0xA60;
+            
+            ObjectManager.SizeOf = 0xA60;
 			ObjectManager.RenderTick = 0x4;
 			ObjectManager.GameGlobals = 0x68;
 			ObjectManager.GameState = 0x84;
@@ -68,21 +69,26 @@ namespace Enigma.D3.MemoryModel
 			Actor.ID = 0x0;
 			Actor.Name = 0x4;
 			Actor.NameLength = 0x80;
+            Actor.SSceneID = 0xE4;
 
-			ACDManager.SizeOf = 0x88F0;
+            ACDManager.SizeOf = 0xE8;
 			ACDManager.ActorCommonData = 0x0;
 
 			ACD.SizeOf = 0x2F0;
 			ACD.ID = 0x0;
 			ACD.Name = 0x4;
 			ACD.NameLength = 0x80;
+            ACD.ActorID = 0x8C;
 			ACD.ActorSNO = 0x90;
 			ACD.MonsterQuality = 0xB8;
 			ACD.Position = 0xD0;
 			ACD.Radius = 0xDC;
 			ACD.SWorldID = 0x108;
             ACD.SSceneID = 0x10C;
-			ACD.FastAttribGroupID = 0x120;
+            ACD.ItemLocation = 0x114;
+            ACD.ItemSlotX = 0x118;
+            ACD.ItemSlotY = 0x11C;
+            ACD.FastAttribGroupID = 0x120;
 			ACD.ActorType = 0x17C;
 			ACD.GizmoType = 0x178;
 			ACD.Hitpoints = 0x180;
@@ -90,7 +96,7 @@ namespace Enigma.D3.MemoryModel
 			ACD.ObjectFlags = 0x190;
 			ACD.CollisionFlags = 0x240;
 
-			LocalData.SizeOf = 0x38;
+            LocalData.SizeOf = 0x38;
 			LocalData.IsPlayerValid = 0x0;
 			LocalData.IsStartUpGame = 0x4;
 			LocalData.SceneSNO = 0x8;
@@ -201,6 +207,14 @@ namespace Enigma.D3.MemoryModel
 			RWindowMgr.SizeOf = 0x14;
 
 			SubObjectGfx.SizeOf = 0x118;
-		}
+
+            SNOFiles.SizeOf = 0x4A88;
+            SNOFiles.SNODiskEntries = 0x118;
+
+            SNOGroupStorage.SizeOf = 0x7C;
+            SNOGroupStorage.Container = 0x10;
+            SNOGroupStorage.Name = 0x1C;
+            SNOGroupStorage.NameLength = 0x20;
+        }
 	}
 }

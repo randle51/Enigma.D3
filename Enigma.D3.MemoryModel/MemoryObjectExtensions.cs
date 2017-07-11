@@ -14,5 +14,11 @@ namespace Enigma.D3.MemoryModel
             var offset = SymbolTable.Current.Platform == Platform.X86 ? x86 : x64;
             return memoryObject.Read<T>(offset);
         }
+
+        public static StringPointer PlatformReadStringPointer(this MemoryObject memoryObject, int x86, int x64, int maxLength)
+        {
+            var offset = SymbolTable.Current.Platform == Platform.X86 ? x86 : x64;
+            return memoryObject.ReadStringPointer(offset, maxLength);
+        }
     }
 }

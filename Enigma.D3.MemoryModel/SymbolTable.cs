@@ -62,6 +62,8 @@ namespace Enigma.D3.MemoryModel
         public TexAnimSymbols TexAnim;
         public RWindowMgrSymbols RWindowMgr;
         public SubObjectGfxSymbols SubObjectGfx;
+        public SNOFilesSymbols SNOFiles;
+        public SNOGroupStorage SNOGroupStorage;
     }
 
     public struct DataSegmentSymbols
@@ -85,7 +87,7 @@ namespace Enigma.D3.MemoryModel
         public ulong AttributeDescriptors;
         public int AttributeDescriptorsCount;
         public ulong MemoryManager;
-
+        public ulong SNOFiles;
         public ulong SNOGroups;
         public ulong SNOGroupsByCode;
         public ulong ContainerManager;
@@ -134,6 +136,7 @@ namespace Enigma.D3.MemoryModel
         public int ID;
         public int Name;
         public int NameLength;
+        public int SSceneID;
     }
 
     public struct ACDManagerSymbols
@@ -148,12 +151,16 @@ namespace Enigma.D3.MemoryModel
         public int ID;
         public int Name;
         public int NameLength;
+        public int ActorID;
         public int ActorSNO;
         public int MonsterQuality;
         public int Position;
         public int Radius;
         public int SWorldID;
         public int SSceneID;
+        public int ItemLocation;
+        public int ItemSlotX;
+        public int ItemSlotY;
         public int FastAttribGroupID;
         public int ActorType;
         public int GizmoType;
@@ -354,5 +361,19 @@ namespace Enigma.D3.MemoryModel
     public struct SubObjectGfxSymbols
     {
         public int SizeOf;
+    }
+
+    public struct SNOFilesSymbols
+    {
+        public int SizeOf;
+        public int SNODiskEntries;
+    }
+
+    public struct SNOGroupStorage
+    {
+        public int SizeOf;
+        public int Container;
+        public int Name;
+        public int NameLength;
     }
 }

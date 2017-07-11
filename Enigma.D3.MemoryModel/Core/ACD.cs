@@ -19,9 +19,8 @@ namespace Enigma.D3.MemoryModel.Core
 		public string Name
 			=> ReadString(SymbolTable.Current.ACD.Name, SymbolTable.Current.ACD.NameLength);
         
-        // TODO: SymbolTable offset
         public int ActorID
-            => Read<int>(0x8C);
+            => Read<int>(SymbolTable.Current.ACD.ActorID);
 
         public SNO ActorSNO
             => Read<SNO>(SymbolTable.Current.ACD.ActorSNO);
@@ -45,13 +44,13 @@ namespace Enigma.D3.MemoryModel.Core
             => Read<int>(SymbolTable.Current.ACD.FastAttribGroupID);
         
         public ItemLocation ItemLocation
-            => Read<ItemLocation>(0x114); // TODO: SymbolTable
+            => Read<ItemLocation>(SymbolTable.Current.ACD.ItemLocation);
 
         public int ItemSlotX
-            => Read<int>(0x118); // TODO: SymbolTable
+            => Read<int>(SymbolTable.Current.ACD.ItemSlotX);
 
         public int ItemSlotY
-            => Read<int>(0x11C); // TODO: SymbolTable
+            => Read<int>(SymbolTable.Current.ACD.ItemSlotY);
 
         public ActorType ActorType
             => Read<ActorType>(SymbolTable.Current.ACD.ActorType);

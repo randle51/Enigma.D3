@@ -64,13 +64,11 @@ namespace Enigma.D3.MemoryModel.Segments
 
 		public MemoryManager MemoryManager
 			=> Memory.Reader.Read<Ptr<MemoryManager>>(SymbolTable.Current.DataSegment.MemoryManager).Dereference();
-
-        // TODO: SymbolTable offset
+        
         public SNOFiles SNOFiles
-            => Memory.Reader.Read<Ptr<SNOFiles>>(0x02141B64).Dereference();
-
-        // TODO: SymbolTable offset
+            => Memory.Reader.Read<Ptr<SNOFiles>>(SymbolTable.Current.DataSegment.SNOFiles).Dereference();
+        
         public Ptr[] SNOGroupStorage
-            => Memory.Reader.Read<Ptr>(0x02144838, 70);
+            => Memory.Reader.Read<Ptr>(SymbolTable.Current.DataSegment.SNOGroupsByCode, 70);
     }
 }

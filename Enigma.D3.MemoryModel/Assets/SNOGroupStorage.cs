@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Assets
 {
-    // TODO: 64-bit offset/size validation
     public class SNOGroupStorage<T> : MemoryObject
     {
-        // 2.4.3.42655
-        public const int SizeOf = 0x7C; // TODO: Update size, 64-bit compatible
+        public static int SizeOf => SymbolTable.Current.SNOGroupStorage.SizeOf;
 
-        public Container<SNODefinition<T>> Container { get { return ReadPointer<Container<SNODefinition<T>>>(0x10).Dereference(); } }
+        public Container<SNODefinition<T>> Container
+            => ReadPointer<Container<SNODefinition<T>>>(SymbolTable.Current.SNOGroupStorage.Container).Dereference();
+
+        public string Name
+            => ReadString(SymbolTable.Current.SNOGroupStorage.Name, SymbolTable.Current.SNOGroupStorage.NameLength);
     }
 }

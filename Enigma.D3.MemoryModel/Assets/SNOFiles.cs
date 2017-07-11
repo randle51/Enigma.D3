@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Assets
 {
-    // TODO: 64-bit offset/size validation
     public class SNOFiles : MemoryObject
     {
-        public const int SizeOf = 0x4A88; // 32-bit 2.6.0
+        public static int SizeOf => SymbolTable.Current.SNOFiles.SizeOf;
 
         public LinkedListWithAllocator<SNODiskEntry> SNODiskEntries
-            => Read<Ptr<LinkedListWithAllocator<SNODiskEntry>>>(0x118).Dereference();
+            => Read<Ptr<LinkedListWithAllocator<SNODiskEntry>>>(SymbolTable.Current.SNOFiles.SNODiskEntries).Dereference();
     }
 }

@@ -15,12 +15,12 @@ namespace Enigma.D3.MemoryModel.Core
 
         public int ID => Read<int>(0x00);
 
-        public int SSceneID => Read<int>(0x04);
+        public int SSceneID => this.PlatformRead<int>(0x04, 0x08); // 64-bit: struct alignment
 
-        public int SWorldID => Read<int>(0x08);
+        public int SWorldID => this.PlatformRead<int>(0x08, 0x0C);
 
-        public SNO LevelAreaSNO => Read<SNO>(0x18);
+        public SNO LevelAreaSNO => this.PlatformRead<SNO>(0x18, 0x1C);
 
-        public SNO SceneSNO => Read<SNO>(0xE8);
+        public SNO SceneSNO => this.PlatformRead<SNO>(0xE8, 0xEC);
 	}
 }

@@ -10,8 +10,7 @@ namespace Enigma.D3.MemoryModel.Core
 {
 	public class ACDManager : MemoryObject
 	{
-		// TODO:
-		//public static int SizeOf => SymbolTable.Current.ACDManager.SizeOf;
+		public static int SizeOf => SymbolTable.Current.ACDManager.SizeOf;
 
 		public Container<ACD> ActorCommonData
 			=> Read<Ptr<ExpandableContainer<ACD>>>(SymbolTable.Current.ACDManager.ActorCommonData).Dereference();

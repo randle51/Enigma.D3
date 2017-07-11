@@ -16,9 +16,8 @@ namespace Enigma.D3.MemoryModel.Core
 
 		public string Name
 			=> ReadString(SymbolTable.Current.Actor.Name, SymbolTable.Current.Actor.NameLength);
-
-        // TODO: SymbolTable offset
+        
         public int SSceneID
-            => Read<int>(0xE4);
+            => Read<int>(SymbolTable.Current.Actor.SSceneID);
 	}
 }
