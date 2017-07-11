@@ -97,7 +97,9 @@
     <Compile Include="Enums\SnoGroupId.cs" />
     <Compile Include="Enums\SNOType.cs" />
     <Compile Include="Enums\WorldType.cs" />
+    <Compile Include="HashUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UIKey.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="..\Enigma.D3.Core.Generated\Enigma.D3.Core.Generated.projitems" Label="Shared" />

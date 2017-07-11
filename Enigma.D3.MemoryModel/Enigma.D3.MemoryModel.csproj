@@ -52,6 +52,7 @@
     <Compile Include="Collections\LinkedList.cs" />
     <Compile Include="Collections\Map.cs" />
     <Compile Include="Collections\Vector.cs" />
+    <Compile Include="Controls\Control.cs" />
     <Compile Include="Core\ACD.cs" />
     <Compile Include="Core\ACDManager.cs" />
     <Compile Include="Core\ActiveSkillSavedData.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Core\TimedEvent.cs" />
     <Compile Include="Core\Trickle.cs" />
     <Compile Include="Core\TrickleManager.cs" />
+    <Compile Include="Core\UIID.cs" />
     <Compile Include="Core\UIManager.cs" />
     <Compile Include="Core\Waypoint.cs" />
     <Compile Include="Core\WaypointManager.cs" />

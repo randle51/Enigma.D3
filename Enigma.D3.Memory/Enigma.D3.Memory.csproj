@@ -181,7 +181,6 @@
     <Compile Include="D3\Graphics\DisplayModeFlags.cs" />
     <Compile Include="D3\Engine.cs" />
     <Compile Include="D3\Helpers\CodeGeneratorHelper.cs" />
-    <Compile Include="D3\Helpers\HashUtils.cs" />
     <Compile Include="D3\Memory\Allocator.cs" />
     <Compile Include="D3\Memory\AllocatorBlock.cs" />
     <Compile Include="D3\Memory\BasicAllocator.cs" />
