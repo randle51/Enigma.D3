@@ -89,6 +89,7 @@ namespace Enigma.Memory
 		public static readonly bool IsStringPointerType;
 		public static readonly bool IsGenericType;
 		public static readonly bool IsArrayType;
+        public static readonly bool IsPointerSized;
 
 		static TypeHelper()
 		{
@@ -105,6 +106,8 @@ namespace Enigma.Memory
 			var structLayoutAttribute = typeof(T).GetCustomAttribute<StructLayoutAttribute>();
 			var hasExplicitStructLayout = structLayoutAttribute != null && structLayoutAttribute.Value != LayoutKind.Auto;
 			HasKnownStructLayout = IsMemoryAddressType == false && IsValueType | hasExplicitStructLayout;
+
+            IsPointerSized = IsMemoryPointerType || IsMemoryAddressType;
 
 			IsTypeSupportedByMemoryReader = HasKnownStructLayout | IsMemoryObjectType | IsMemoryPointerType | IsMemoryAddressType;
 		}
