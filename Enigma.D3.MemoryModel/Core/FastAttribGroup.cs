@@ -19,10 +19,10 @@ namespace Enigma.D3.MemoryModel.Core
         public int Flags
             => Read<int>(SymbolTable.Current.FastAttribGroup.Flags);
 
-        public Ptr<Map<AttributeValue>> PtrMap
-            => Read<Ptr<Map<AttributeValue>>>(SymbolTable.Current.FastAttribGroup.PtrMap);
+        public Ptr<Map<AttributeKey, AttributeValue>> PtrMap
+            => Read<Ptr<Map<AttributeKey, AttributeValue>>>(SymbolTable.Current.FastAttribGroup.PtrMap);
 
-        public Map<AttributeValue> Map
-            => Read<Map<AttributeValue>>(SymbolTable.Current.FastAttribGroup.Map);
+        public Map<AttributeKey, AttributeValue> Map
+            => Read<Map<AttributeKey, AttributeValue>>(SymbolTable.Current.FastAttribGroup.Map);
     }
 }

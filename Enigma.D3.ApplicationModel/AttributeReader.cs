@@ -21,19 +21,14 @@ namespace Enigma.D3.ApplicationModel
             if (group != null)
             {
                 value = default(AttributeValue);
-                if (((group.Flags & 4) != 0 && group.PtrMap.Dereference()?.TryGetValue(key, out value, GetHashOfKey) == true) ||
-                    group.Map != null && group.Map.TryGetValue(key, out value, GetHashOfKey))
+                if (((group.Flags & 4) != 0 && group.PtrMap.Dereference()?.TryGetValue(key, out value) == true) ||
+                    group.Map != null && group.Map.TryGetValue(key, out value))
                 {
                     return true;
                 }
             }
             value = default(AttributeValue);
             return false;
-        }
-
-        private static uint GetHashOfKey(int key)
-        {
-            return unchecked((uint)(key ^ (key >> 12)));
         }
     }
 }

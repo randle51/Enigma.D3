@@ -19,14 +19,14 @@ namespace Enigma.D3.ApplicationModel.Caching
 
         private readonly MemoryContext _ctx;
         private readonly FastAttrib _attrib;
-        private readonly AllocationCache<Map<AttributeValue>.Entry> _allocationCache;
+        private readonly AllocationCache<Map<AttributeKey, AttributeValue>.Entry> _allocationCache;
         private readonly ContainerCache<FastAttribGroup> _groupCache;
 
         public AttributeCache(MemoryContext ctx, FastAttrib attrib)
         {
             _ctx = ctx ?? throw new ArgumentNullException(nameof(ctx));
             _attrib = attrib ?? throw new ArgumentNullException(nameof(attrib));
-            _allocationCache = new AllocationCache<Map<AttributeValue>.Entry>(ctx, attrib.BucketAllocator);
+            _allocationCache = new AllocationCache<Map<AttributeKey, AttributeValue>.Entry>(ctx, attrib.BucketAllocator);
             _groupCache = new ContainerCache<FastAttribGroup>(attrib.FastAttribGroups);
         }
 
@@ -35,17 +35,12 @@ namespace Enigma.D3.ApplicationModel.Caching
             _allocationCache.Update();
             _groupCache.Update();
         }
-
-        private static uint GetHashOfKey(int key)
-        {
-            return unchecked((uint)(key ^ (key >> 12)));
-        }
-
+        
         public bool TryGetAttributeValue(int groupId, AttributeId attribId, int modifier, out AttributeValue value)
         {
             var group = _groupCache.Items[(short)groupId];
 
-            var key = (modifier << 12) + ((int)attribId & 0xFFF);
+            var key = (AttributeKey)((modifier << 12) + ((int)attribId & 0xFFF));
             var map = (group.Flags & 4) != 0 ? group.PtrMap.Dereference() : null;
             if (map == null)
                 map = group.Map;
@@ -57,8 +52,8 @@ namespace Enigma.D3.ApplicationModel.Caching
                 return false;
             }
 
-            var hash = GetHashOfKey(key);
-            var index = (int)(map.Mask & hash);
+            var hash = key.GetHashCode();
+            var index = map.Mask & hash;
             var address = map.Buckets[index].ValueAddress;
             if (address == 0)
             {
@@ -84,15 +79,15 @@ namespace Enigma.D3.ApplicationModel.Caching
             }
         }
 
-        public Dictionary<int, AttributeValue> GetValues(FastAttribGroup group)
+        public Dictionary<AttributeKey, AttributeValue> GetValues(FastAttribGroup group)
         {
-            var values = new Dictionary<int, AttributeValue>();
+            var values = new Dictionary<AttributeKey, AttributeValue>();
 
-            foreach (var map in new[] { new Ptr<Map<int>>(_ctx.Memory, group.PtrMap.ValueAddress).Dereference() })
+            foreach (var map in new[] { new Ptr<Map<int, AttributeValue>>(_ctx.Memory, group.PtrMap.ValueAddress).Dereference() })
             {
                 if (map != null)
                 {
-                    var buckets = _ctx.Memory.Reader.Read<Map<int>>(map.Address).Buckets.ToArray();
+                    var buckets = _ctx.Memory.Reader.Read<Map<int, AttributeValue>>(map.Address).Buckets.ToArray();
                     foreach (var bucket in buckets)
                     {
                         var address = bucket.ValueAddress;

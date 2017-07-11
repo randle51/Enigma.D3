@@ -10,13 +10,13 @@ namespace Enigma.D3.MemoryModel.Collections
 {
     public class Vector<T> : MemoryObject, IEnumerable<T>
     {
-        public const int SizeOf = 0x10;
+        public const int SizeOf = 0x10; // TODO: Not accurate
 
         public T this[int index]
         {
             get
             {
-                if (index < 0 || index >= Size)
+                if (index < 0 || index >= Count)
                     throw new ArgumentOutOfRangeException();
 
                 return Items[index];
@@ -24,14 +24,12 @@ namespace Enigma.D3.MemoryModel.Collections
         }
 
         public Ptr<T> Items => Read<Ptr<T>>(0x00);
-
-        public int Size => Read<int>(0x08);
-
-        public int Capacity => Read<int>(0x0C);
+        
+        public int Count => Read<int>(0x08);
 
         public IEnumerator<T> GetEnumerator()
         {
-            return Items.ToArray(Size).AsEnumerable().GetEnumerator();
+            return Items.ToArray(Count).AsEnumerable().GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
