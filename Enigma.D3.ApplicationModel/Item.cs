@@ -15,7 +15,7 @@ namespace Enigma.D3.ApplicationModel
 
         public string ItemName => AssetCache.GetItemName(ItemSlug);
 
-        public ItemQuality Quality => (ItemQuality)Read(Attributes.ItemQualityLevel);
+        public ItemQuality Quality => (ItemQuality)GetAttributeValue(Attributes.ItemQualityLevel);
 
         public ItemLocation ItemLocation => ACD.ItemLocation;
 

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Enigma.D3.Enums;
+using Enigma.D3.MemoryModel.TypeSystem;
 
 namespace Enigma.D3.ApplicationModel.Caching
 {
@@ -21,6 +22,7 @@ namespace Enigma.D3.ApplicationModel.Caching
         private readonly FastAttrib _attrib;
         private readonly AllocationCache<Map<AttributeKey, AttributeValue>.Entry> _allocationCache;
         private readonly ContainerCache<FastAttribGroup> _groupCache;
+        private AttributeDescriptor[] _descriptors;
 
         public AttributeCache(MemoryContext ctx, FastAttrib attrib)
         {
@@ -32,6 +34,12 @@ namespace Enigma.D3.ApplicationModel.Caching
 
         public void Update()
         {
+            if (_descriptors == null)
+            {
+                _descriptors = _ctx.DataSegment.AttributeDescriptors.ToArray();
+                foreach (var item in _descriptors)
+                    item.TakeSnapshot();
+            }
             _allocationCache.Update();
             _groupCache.Update();
         }
@@ -79,8 +87,10 @@ namespace Enigma.D3.ApplicationModel.Caching
             }
         }
 
-        public Dictionary<AttributeKey, AttributeValue> GetValues(FastAttribGroup group)
+        public Dictionary<AttributeKey, AttributeValue> GetValues(int groupId)
         {
+            var group = _groupCache.Items[(short)groupId];
+
             var values = new Dictionary<AttributeKey, AttributeValue>();
 
             foreach (var map in new[] { new Ptr<Map<int, AttributeValue>>(_ctx.Memory, group.PtrMap.ValueAddress).Dereference() })
@@ -102,6 +112,11 @@ namespace Enigma.D3.ApplicationModel.Caching
             }
 
             return values;
+        }
+
+        public AttributeDescriptor GetDescriptor(AttributeId id)
+        {
+            return _descriptors[(int)id];
         }
     }
 }
