@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Enigma.D3.ApplicationModel
+namespace Enigma.D3.MemoryModel.Core
 {
     public class AttributeReader : IAttributeReader
     {

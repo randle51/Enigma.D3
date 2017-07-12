@@ -47,7 +47,6 @@
     <Compile Include="AssetCache.cs" />
     <Compile Include="AttributeExtensions.cs" />
     <Compile Include="Caching\AllocationCache.cs" />
-    <Compile Include="AttributeReader.cs" />
     <Compile Include="Caching\AttributeCache.cs" />
     <Compile Include="Caching\ContainerCache.cs" />
     <Compile Include="DictionaryExtensions.cs" />
