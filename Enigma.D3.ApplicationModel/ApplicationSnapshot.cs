@@ -83,6 +83,7 @@ namespace Enigma.D3.ApplicationModel
 
             // TODO: Reduce number of actual memory reads, but do not snapshot entire PlayerData struct.
             var playerData = _objMgrCache.PlayerDataManager[_playerCache.LocalPlayerIndex];
+            Game.Player.HeroProfile.ID = playerData.HeroID;
             Game.Player.HeroProfile.Name = playerData.HeroName;
             Game.Player.HeroProfile.Class = playerData.HeroClass;
             Game.Player.HeroProfile.Level = playerData.Level;

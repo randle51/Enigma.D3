@@ -9,6 +9,8 @@ namespace Enigma.D3.ApplicationModel
 {
     public class HeroProfile
     {
+        public ulong ID { get; internal set; }
+
         public string Name { get; internal set; }
 
         public HeroClass Class { get; internal set; }

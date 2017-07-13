@@ -215,6 +215,7 @@ namespace Enigma.D3.MemoryModel
         public int ACDID;
         public int ActorID;
         public int PlayerSavedData;
+        public int HeroID;
         public int HeroName;
         public int ActorSNO;
         public int LifePercentage;

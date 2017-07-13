@@ -127,6 +127,7 @@ namespace Enigma.D3.MemoryModel
 			PlayerData.ACDID = 0x4;
 			PlayerData.ActorID = 0x8;
             PlayerData.PlayerSavedData = 0x118;
+            PlayerData.HeroID = 0xB1B8;
             PlayerData.HeroName = 0xB1C0;
 			PlayerData.ActorSNO = 0xC1B8;
 			PlayerData.LifePercentage = 0xC1BC;

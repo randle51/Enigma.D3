@@ -17,6 +17,7 @@ namespace Enigma.D3.MemoryModel.Core
         public int ACDID => Read<int>(SymbolTable.Current.PlayerData.ACDID);
         public int ActorID => Read<int>(SymbolTable.Current.PlayerData.ActorID);
         public PlayerSavedData PlayerSavedData => Read<PlayerSavedData>(SymbolTable.Current.PlayerData.PlayerSavedData);
+        public ulong HeroID => Read<ulong>(SymbolTable.Current.PlayerData.HeroID);
         public string HeroName => ReadString(SymbolTable.Current.PlayerData.HeroName, 49);
         public SNO ActorSNO => Read<SNO>(SymbolTable.Current.PlayerData.ActorSNO);
         public float LifePercentage => Read<float>(SymbolTable.Current.PlayerData.LifePercentage);
