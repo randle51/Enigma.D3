@@ -9,56 +9,56 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Core
 {
-	public class ObjectManager : MemoryObject
-	{
+    public class ObjectManager : MemoryObject
+    {
         public static int SizeOf => SymbolTable.Current.ObjectManager.SizeOf;
 
-		public int RenderTick
-			=> Read<int>(SymbolTable.Current.ObjectManager.RenderTick);
+        public int RenderTick
+            => Read<int>(SymbolTable.Current.ObjectManager.RenderTick);
 
-		public int GameState
-			=> Read<int>(SymbolTable.Current.ObjectManager.GameState);
+        public int GameState
+            => Read<int>(SymbolTable.Current.ObjectManager.GameState);
 
-		public string GameServerAddress
-			=> ReadString(SymbolTable.Current.ObjectManager.GameGlobals + SymbolTable.Current.GameGlobals.GameServerAddress, SymbolTable.Current.GameGlobals.GameServerAddressLength);
+        public string GameServerAddress
+            => ReadString(SymbolTable.Current.ObjectManager.GameGlobals + SymbolTable.Current.GameGlobals.GameServerAddress, SymbolTable.Current.GameGlobals.GameServerAddressLength);
 
-		public GameDifficulty GameDifficulty
-			=> Read<GameDifficulty>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameDifficulty);
-        
-		public int GameTick
-			=> Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameTick);
+        public GameDifficulty GameDifficulty
+            => Read<GameDifficulty>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameDifficulty);
 
-		public PlayerDataManager PlayerDataManager
-			=> Read<Ptr<PlayerDataManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.PlayerDataManager).Dereference();
+        public int GameTick
+            => Read<int>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.GameTick);
 
-		public FastAttrib FastAttrib
-			=> Read<Ptr<FastAttrib>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.FastAttrib).Dereference();
+        public PlayerDataManager PlayerDataManager
+            => Read<Ptr<PlayerDataManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.PlayerDataManager).Dereference();
 
-		public ACDManager ACDManager
-			=> Read<Ptr<ACDManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.ACDManager).Dereference();
+        public FastAttrib FastAttrib
+            => Read<Ptr<FastAttrib>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.FastAttrib).Dereference();
 
-		public QuestManager QuestManager
-			=> Read<Ptr<QuestManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.QuestManager).Dereference();
+        public ACDManager ACDManager
+            => Read<Ptr<ACDManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.ACDManager).Dereference();
 
-		public WaypointManager WaypointManager
-			=> Read<Ptr<WaypointManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.WaypointManager).Dereference();
+        public QuestManager QuestManager
+            => Read<Ptr<QuestManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.QuestManager).Dereference();
 
-		public ExpandableContainer<Actor> Actors
-			=> Read<Ptr<ExpandableContainer<Actor>>>(SymbolTable.Current.ObjectManager.Actors).Dereference();
+        public WaypointManager WaypointManager
+            => Read<Ptr<WaypointManager>>(SymbolTable.Current.ObjectManager.Storage + SymbolTable.Current.Storage.WaypointManager).Dereference();
 
-		public Container<Scene> Scenes
-			=> Read<Ptr<Container<Scene>>>(SymbolTable.Current.ObjectManager.Scenes).Dereference();
+        public ExpandableContainer<Actor> Actors
+            => Read<Ptr<ExpandableContainer<Actor>>>(SymbolTable.Current.ObjectManager.Actors).Dereference();
 
-		public UIManager UIManager
-			=> Read<Ptr<UIManager>>(SymbolTable.Current.ObjectManager.UIManager).Dereference();
+        public Container<Scene> Scenes
+            => Read<Ptr<Container<Scene>>>(SymbolTable.Current.ObjectManager.Scenes).Dereference();
 
-		public Container<World> Worlds
-			=> Read<Ptr<Container<World>>>(SymbolTable.Current.ObjectManager.Worlds).Dereference();
+        public UIManager UIManager
+            => Read<Ptr<UIManager>>(SymbolTable.Current.ObjectManager.UIManager).Dereference();
 
-		public Player Player
-			=> Read<Ptr<Player>>(SymbolTable.Current.ObjectManager.Player).Dereference();
+        public Container<World> Worlds
+            => Read<Ptr<Container<World>>>(SymbolTable.Current.ObjectManager.Worlds).Dereference();
 
-		public IReadOnlyCollection<TimedEvent> TimedEvents
-			=> Read<Ptr<LinkedListWithAllocator<TimedEvent>>>(SymbolTable.Current.ObjectManager.TimedEvents).Dereference();
-	}
+        public Player Player
+            => Read<Ptr<Player>>(SymbolTable.Current.ObjectManager.Player).Dereference();
+
+        public IReadOnlyCollection<TimedEvent> TimedEvents
+            => Read<Ptr<LinkedListWithAllocator<TimedEvent>>>(SymbolTable.Current.ObjectManager.TimedEvents).Dereference();
+    }
 }

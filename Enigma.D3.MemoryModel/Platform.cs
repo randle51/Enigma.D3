@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel
 {
-	public enum Platform
-	{
-		X86,
-		X64
-	}
+    public enum Platform
+    {
+        X86,
+        X64
+    }
 }

@@ -80,12 +80,12 @@ namespace Enigma.D3.MemoryModel.Collections
             public static int SizeOf => X86 ?
                 AlignedSize(0x04, Alignment) + AlignedSize(TypeHelper<TKey>.SizeOf, Alignment) + AlignedSize(TypeHelper<TValue>.SizeOf, Alignment) :
                 0x08 + AlignedSize(TypeHelper<TKey>.SizeOf, Alignment) + AlignedSize(TypeHelper<TValue>.SizeOf, Alignment);
-            
+
             // If either TKey or TValue is larger than 4 bytes, alignment 8 is used.
             private static int Alignment => TypeHelper<TKey>.SizeOf > 4 || TypeHelper<TValue>.SizeOf > 4 ? 8 : 4;
 
             public Ptr<Entry> Next => Read<Ptr<Entry>>(0x00);
-            
+
             public TKey Key => this.PlatformRead<TKey>(
                 AlignedSize(0x04, Alignment),
                 0x08);

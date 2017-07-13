@@ -9,40 +9,40 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Core
 {
-	public class ACD : MemoryObject
-	{
+    public class ACD : MemoryObject
+    {
         public static int SizeOf => SymbolTable.Current.ACD.SizeOf;
 
-		public int ID
-			=> Read<int>(SymbolTable.Current.ACD.ID);
+        public int ID
+            => Read<int>(SymbolTable.Current.ACD.ID);
 
-		public string Name
-			=> ReadString(SymbolTable.Current.ACD.Name, SymbolTable.Current.ACD.NameLength);
-        
+        public string Name
+            => ReadString(SymbolTable.Current.ACD.Name, SymbolTable.Current.ACD.NameLength);
+
         public int ActorID
             => Read<int>(SymbolTable.Current.ACD.ActorID);
 
         public SNO ActorSNO
             => Read<SNO>(SymbolTable.Current.ACD.ActorSNO);
-        
+
         public MonsterQuality MonsterQuality
             => Read<MonsterQuality>(SymbolTable.Current.ACD.MonsterQuality);
 
-		public Vector3 Position
-			=> Read<Vector3>(SymbolTable.Current.ACD.Position);
+        public Vector3 Position
+            => Read<Vector3>(SymbolTable.Current.ACD.Position);
 
         public float Radius
             => Read<float>(SymbolTable.Current.ACD.Radius);
-        
+
         public int SWorldID
-			=> Read<int>(SymbolTable.Current.ACD.SWorldID);
+            => Read<int>(SymbolTable.Current.ACD.SWorldID);
 
         public int SSceneID
             => Read<int>(SymbolTable.Current.ACD.SSceneID);
 
         public int FastAttribGroupID
             => Read<int>(SymbolTable.Current.ACD.FastAttribGroupID);
-        
+
         public ItemLocation ItemLocation
             => Read<ItemLocation>(SymbolTable.Current.ACD.ItemLocation);
 

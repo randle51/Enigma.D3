@@ -11,7 +11,7 @@ namespace Enigma.D3.MemoryModel.Core
     public class PlayerSavedData : MemoryObject
     {
         public static int SizeOf => SymbolTable.Current.PlayerSavedData.SizeOf;
-        
+
         public HotbarButtonData[] x0000_HotbarButtonData { get { return Read<HotbarButtonData>(0x0000, 6); } }
         public HotbarButtonData x0060_HotbarButtonData { get { return Read<HotbarButtonData>(0x0060); } }
 

@@ -24,7 +24,7 @@ namespace Enigma.D3.MemoryModel
                 InitX64();
             else throw new NotImplementedException();
         }
-        
+
         public Version Version;
         public Platform Platform;
 

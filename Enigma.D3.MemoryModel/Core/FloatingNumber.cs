@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Core
 {
-	public class FloatingNumber : MemoryObject
-	{
-		public static int SizeOf = SymbolTable.Current.FloatingNumber.SizeOf;
+    public class FloatingNumber : MemoryObject
+    {
+        public static int SizeOf = SymbolTable.Current.FloatingNumber.SizeOf;
 
-		public Vector3 WorldPos
-			=> Read<Vector3>(SymbolTable.Current.FloatingNumber.WorldPos);
+        public Vector3 WorldPos
+            => Read<Vector3>(SymbolTable.Current.FloatingNumber.WorldPos);
 
-		public SNO WorldSNO
-			=> Read<SNO>(SymbolTable.Current.FloatingNumber.WorldSNO);
+        public SNO WorldSNO
+            => Read<SNO>(SymbolTable.Current.FloatingNumber.WorldSNO);
 
-		// TODO: 0x18 RefString (64-bit)
+        // TODO: 0x18 RefString (64-bit)
 
-		public int Type
-			=> Read<int>(SymbolTable.Current.FloatingNumber.Type);
+        public int Type
+            => Read<int>(SymbolTable.Current.FloatingNumber.Type);
 
-		public float Value
-			=> Read<float>(SymbolTable.Current.FloatingNumber.Value);
-	}
+        public float Value
+            => Read<float>(SymbolTable.Current.FloatingNumber.Value);
+    }
 }

@@ -13,7 +13,7 @@ namespace Enigma.D3.MemoryModel.MemoryManagement
         private static bool X86 => SymbolTable.Current.Platform == Platform.X86;
 
         public static int SizeOf = X86 ? 0x1C : 0x30; // 4 byte alignment padding
-        
+
         public int ElementSize => Read<int>(0x00);
         public int Limit => Read<int>(0x04);
         public SinglyLinkedList Blocks => Read<SinglyLinkedList>(0x08);

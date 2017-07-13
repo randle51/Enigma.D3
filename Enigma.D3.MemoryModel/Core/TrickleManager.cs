@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Core
 {
-	public class TrickleManager : MemoryObject
-	{
-		public static int SizeOf => SymbolTable.Current.TrickleManager.SizeOf;
+    public class TrickleManager : MemoryObject
+    {
+        public static int SizeOf => SymbolTable.Current.TrickleManager.SizeOf;
 
-		public IReadOnlyCollection<Trickle> Items
-			=> Read<Ptr<Collections.LinkedListB<Trickle>>>(SymbolTable.Current.TrickleManager.Items).Dereference();
-	}
+        public IReadOnlyCollection<Trickle> Items
+            => Read<Ptr<Collections.LinkedListB<Trickle>>>(SymbolTable.Current.TrickleManager.Items).Dereference();
+    }
 }

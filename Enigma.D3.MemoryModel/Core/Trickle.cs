@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Core
 {
-	public class Trickle : MemoryObject
-	{
-		public static int SizeOf => SymbolTable.Current.Trickle.SizeOf;
-	}
+    public class Trickle : MemoryObject
+    {
+        public static int SizeOf => SymbolTable.Current.Trickle.SizeOf;
+    }
 }

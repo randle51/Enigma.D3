@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Core
 {
-	public class QuestManager : MemoryObject
-	{
-		public IReadOnlyCollection<Quest> Quests
-			=> Read<Collections.LinkedList<Quest>>(SymbolTable.Current.QuestManager.Quests);
-	}
+    public class QuestManager : MemoryObject
+    {
+        public IReadOnlyCollection<Quest> Quests
+            => Read<Collections.LinkedList<Quest>>(SymbolTable.Current.QuestManager.Quests);
+    }
 }

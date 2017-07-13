@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Core
 {
-	public class TimedEvent : MemoryObject
-	{
-		public static int SizeOf => SymbolTable.Current.TimedEvent.SizeOf;
-	}
+    public class TimedEvent : MemoryObject
+    {
+        public static int SizeOf => SymbolTable.Current.TimedEvent.SizeOf;
+    }
 }

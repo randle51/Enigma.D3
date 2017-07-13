@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Core
 {
-	public class LevelArea : MemoryObject
-	{
-		public static int SizeOf => SymbolTable.Current.LevelArea.SizeOf;
-	}
+    public class LevelArea : MemoryObject
+    {
+        public static int SizeOf => SymbolTable.Current.LevelArea.SizeOf;
+    }
 }

@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.MemoryManagement
 {
-	public class MemoryManager : MemoryObject
-	{
-		public static int SizeOf => SymbolTable.Current.MemoryManager.SizeOf;
+    public class MemoryManager : MemoryObject
+    {
+        public static int SizeOf => SymbolTable.Current.MemoryManager.SizeOf;
 
-		public LocalHeap LocalHeap
-			=> Read<Ptr<LocalHeap>>(SymbolTable.Current.MemoryManager.LocalHeap).Dereference();
-	}
+        public LocalHeap LocalHeap
+            => Read<Ptr<LocalHeap>>(SymbolTable.Current.MemoryManager.LocalHeap).Dereference();
+    }
 }

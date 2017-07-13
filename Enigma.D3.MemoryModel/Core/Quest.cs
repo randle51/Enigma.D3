@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Core
 {
-	public class Quest : MemoryObject
-	{
-		public static int SizeOf => SymbolTable.Current.Quest.SizeOf;
-	}
+    public class Quest : MemoryObject
+    {
+        public static int SizeOf => SymbolTable.Current.Quest.SizeOf;
+    }
 }

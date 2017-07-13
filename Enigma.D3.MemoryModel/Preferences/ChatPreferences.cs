@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Preferences
 {
-	public class ChatPreferences : MemoryObject
-	{
-	}
+    public class ChatPreferences : MemoryObject
+    {
+    }
 }

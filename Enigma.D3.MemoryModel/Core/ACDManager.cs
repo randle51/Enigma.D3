@@ -8,11 +8,11 @@ using Enigma.D3.MemoryModel.Collections;
 
 namespace Enigma.D3.MemoryModel.Core
 {
-	public class ACDManager : MemoryObject
-	{
-		public static int SizeOf => SymbolTable.Current.ACDManager.SizeOf;
+    public class ACDManager : MemoryObject
+    {
+        public static int SizeOf => SymbolTable.Current.ACDManager.SizeOf;
 
-		public Container<ACD> ActorCommonData
-			=> Read<Ptr<ExpandableContainer<ACD>>>(SymbolTable.Current.ACDManager.ActorCommonData).Dereference();
-	}
+        public Container<ACD> ActorCommonData
+            => Read<Ptr<ExpandableContainer<ACD>>>(SymbolTable.Current.ACDManager.ActorCommonData).Dereference();
+    }
 }

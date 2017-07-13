@@ -60,7 +60,7 @@ namespace Enigma.D3.MemoryModel
 
             return new MemoryContext(new ProcessMemoryReader(process));
         }
-        
+
         /// <summary>
         /// Attempts to create a memory context by looking for default process names (64-bit prioritized).
         /// This method will block until a matching process is found. To cancel the operation, raise 

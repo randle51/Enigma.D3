@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel
 {
-	public interface ISegment
-	{
-		MemoryAddress Start { get; }
-		MemoryAddress End { get; }
-	}
+    public interface ISegment
+    {
+        MemoryAddress Start { get; }
+        MemoryAddress End { get; }
+    }
 }

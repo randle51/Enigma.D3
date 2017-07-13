@@ -24,7 +24,7 @@ namespace Enigma.D3.MemoryModel.Collections
         }
 
         public Ptr<T> Items => Read<Ptr<T>>(0x00);
-        
+
         public int Count => Read<int>(0x08);
 
         public IEnumerator<T> GetEnumerator()
