@@ -185,11 +185,11 @@ namespace Enigma.D3.MemoryModel
             AttributeDescriptor.Name = 0x28;
             AttributeDescriptor.NameLength = 0x100;
 
-            FloatingNumber.SizeOf = 0x64;
-            FloatingNumber.WorldPos = 0x4;
-            FloatingNumber.WorldSNO = 0x10;
-            FloatingNumber.Type = 0x5C;
-            FloatingNumber.Value = 0x60;
+            FloatingNumber.SizeOf = 0x60;
+            FloatingNumber.Type = 0x0;
+            FloatingNumber.WorldPos = 0x8;
+            FloatingNumber.SWorldID = 0x14;
+            FloatingNumber.Value = 0x5C;
 
             TimedEvent.SizeOf = 0x58;
 

@@ -15,8 +15,8 @@ namespace Enigma.D3.MemoryModel.Core
         public Vector3 WorldPos
             => Read<Vector3>(SymbolTable.Current.FloatingNumber.WorldPos);
 
-        public SNO WorldSNO
-            => Read<SNO>(SymbolTable.Current.FloatingNumber.WorldSNO);
+        public int SWorldID
+            => Read<SNO>(SymbolTable.Current.FloatingNumber.SWorldID);
 
         // TODO: 0x18 RefString (64-bit)
 

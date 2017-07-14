@@ -186,9 +186,9 @@ namespace Enigma.D3.MemoryModel
             AttributeDescriptor.NameLength = 0x80;
 
             FloatingNumber.SizeOf = 0x50;
-            FloatingNumber.WorldPos = 0x4;
-            FloatingNumber.WorldSNO = 0x10;
-            FloatingNumber.Type = 0x48;
+            FloatingNumber.Type = 0x0;
+            FloatingNumber.WorldPos = 0x8;
+            FloatingNumber.SWorldID = 0x14;
             FloatingNumber.Value = 0x4C;
 
             TimedEvent.SizeOf = 0x30;

@@ -319,9 +319,9 @@ namespace Enigma.D3.MemoryModel
     public struct FloatingNumberSymbols
     {
         public int SizeOf;
-        public int WorldPos;
-        public int WorldSNO;
         public int Type;
+        public int WorldPos;
+        public int SWorldID;
         public int Value;
     }
 
