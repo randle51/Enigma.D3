@@ -67,6 +67,9 @@ namespace Enigma.D3.MemoryModel.Core
         public int ObjectFlags
             => Read<int>(SymbolTable.Current.ACD.ObjectFlags);
 
+        public Ptr<Animation> Animation
+            => Read<Ptr<Animation>>(SymbolTable.Current.ACD.Animation);
+
         public int CollisionFlags
             => Read<int>(SymbolTable.Current.ACD.CollisionFlags);
 

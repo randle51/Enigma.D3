@@ -167,6 +167,7 @@ namespace Enigma.D3.MemoryModel
         public int Hitpoints;
         public int TeamID;
         public int ObjectFlags;
+        public int Animation;
         public int CollisionFlags;
     }
 

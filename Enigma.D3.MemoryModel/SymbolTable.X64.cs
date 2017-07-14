@@ -94,6 +94,7 @@ namespace Enigma.D3.MemoryModel
             ACD.Hitpoints = 0x1C0;
             ACD.TeamID = 0x1C8;
             ACD.ObjectFlags = 0x1CC;
+            ACD.Animation = 0x290;
             ACD.CollisionFlags = 0x2D8;
 
             LocalData.SizeOf = 0x38;
