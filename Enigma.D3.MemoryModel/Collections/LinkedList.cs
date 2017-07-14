@@ -55,11 +55,16 @@ namespace Enigma.D3.MemoryModel.Collections
 
     public class LinkedListWithAllocator<T> : LinkedList<T>
     {
-        public new static int SizeOf => SymbolTable.Current.Platform == Platform.X86 ? 0x30 : 0x58;
+        public new static int SizeOf => SymbolTable.Current.Platform == Platform.X86 ? 0x2C : 0x50;
 
         public Allocator<LinkedListNode<T>> Allocator => this.PlatformRead<Allocator<LinkedListNode<T>>>(0x10, 0x20);
+    }
+
+    public class LinkedListWithAllocatorB<T> : LinkedListWithAllocator<T>
+    {
+        public new static int SizeOf => SymbolTable.Current.Platform == Platform.X86 ? 0x30 : 0x58;
+        
         public int P86_x2C_Boolean => Read<int>(0x2C);
-        public int P64_x4C_Padding => Read<int>(0x4C);
         public int P64_x50_Boolean => Read<int>(0x50);
         public int P64_x54_Padding => Read<int>(0x54);
     }

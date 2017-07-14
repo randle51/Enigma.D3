@@ -175,8 +175,8 @@ namespace Enigma.D3.MemoryModel
 
             Player.SizeOf = 0xA128;
             Player.LocalPlayerIndex = 0x0;
-            Player.LatencySamples = 0xA0CC;
             Player.FloatingNumbers = 0xA018;
+            Player.LatencySamples = 0xA0CC;
 
             AttributeDescriptor.SizeOf = 0x28;
             AttributeDescriptor.ID = 0x0;

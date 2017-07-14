@@ -302,8 +302,8 @@ namespace Enigma.D3.MemoryModel
     {
         public int SizeOf;
         public int LocalPlayerIndex;
-        public int LatencySamples;
         public int FloatingNumbers;
+        public int LatencySamples;
     }
 
     public struct AttributeDescriptorSymbols

@@ -59,6 +59,6 @@ namespace Enigma.D3.MemoryModel.Core
             => Read<Ptr<Player>>(SymbolTable.Current.ObjectManager.Player).Dereference();
 
         public IReadOnlyCollection<TimedEvent> TimedEvents
-            => Read<Ptr<LinkedListWithAllocator<TimedEvent>>>(SymbolTable.Current.ObjectManager.TimedEvents).Dereference();
+            => Read<Ptr<LinkedListWithAllocatorB<TimedEvent>>>(SymbolTable.Current.ObjectManager.TimedEvents).Dereference();
     }
 }
