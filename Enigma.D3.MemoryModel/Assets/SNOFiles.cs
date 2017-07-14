@@ -12,7 +12,7 @@ namespace Enigma.D3.MemoryModel.Assets
     {
         public static int SizeOf => SymbolTable.Current.SNOFiles.SizeOf;
 
-        public LinkedListWithAllocator<SNODiskEntry> SNODiskEntries
-            => Read<Ptr<LinkedListWithAllocator<SNODiskEntry>>>(SymbolTable.Current.SNOFiles.SNODiskEntries).Dereference();
+        public LinkedListWithAllocatorB<SNODiskEntry> SNODiskEntries
+            => Read<Ptr<LinkedListWithAllocatorB<SNODiskEntry>>>(SymbolTable.Current.SNOFiles.SNODiskEntries).Dereference();
     }
 }
