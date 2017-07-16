@@ -62,7 +62,7 @@ namespace Enigma.Memory
             var snapshot = Snapshot;
             if (snapshot != null)
             {
-                return snapshot.ReadString(offset, maxLength, encoding);
+                return snapshot.ReadString(GetAbsoluteAddress(offset), maxLength, encoding);
             }
             return Memory.Reader.ReadString(GetAbsoluteAddress(offset), maxLength, encoding);
         }
