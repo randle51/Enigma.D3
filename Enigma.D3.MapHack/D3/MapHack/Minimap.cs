@@ -41,7 +41,7 @@ namespace Enigma.D3.MapHack
 
             _minimapItems = new ObservableCollection<IMapMarker>();
 
-            _root = new Canvas() { Height = 1200.5d };
+            _root = new Canvas() { Height = (int)(PresentationSource.FromVisual(overlay).CompositionTarget.TransformToDevice.M22 * 1200 + 0.5) };
             _window = overlay;
             _window.Children.Add(_root);
             _window.SizeChanged += (s, e) => UpdateSizeAndPosition();
