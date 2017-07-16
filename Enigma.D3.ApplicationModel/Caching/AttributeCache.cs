@@ -93,6 +93,7 @@ namespace Enigma.D3.ApplicationModel.Caching
 
             var values = new Dictionary<AttributeKey, AttributeValue>();
 
+            // TODO: Add 2nd map
             foreach (var map in new[] { new Ptr<Map<int, AttributeValue>>(_ctx.Memory, group.PtrMap.ValueAddress).Dereference() })
             {
                 if (map != null)

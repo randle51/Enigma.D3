@@ -41,6 +41,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Enigma.D3.Assets.Generated\StringList.cs">
+      <Link>Enigma.D3.Assets\StringList.cs</Link>
+    </Compile>
+    <Compile Include="..\Enigma.D3.Assets\SerializeData.cs">
+      <Link>Enigma.D3.Assets\SerializeData.cs</Link>
+    </Compile>
+    <Compile Include="..\Enigma.D3.Assets\SerializeMemoryObject.cs">
+      <Link>Enigma.D3.Assets\SerializeMemoryObject.cs</Link>
+    </Compile>
+    <Compile Include="..\Enigma.D3.Assets\SnoHeader.cs">
+      <Link>Enigma.D3.Assets\SnoHeader.cs</Link>
+    </Compile>
     <Compile Include="ActionBar.cs" />
     <Compile Include="ActiveSkill.cs" />
     <Compile Include="Actor.cs" />
@@ -66,10 +78,6 @@
     <Compile Include="WorldLocation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Enigma.D3.Assets\Enigma.D3.Assets.csproj">
-      <Project>{4B2BF057-3425-4520-8535-3372D330C653}</Project>
-      <Name>Enigma.D3.Assets</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Enigma.D3.Core\Enigma.D3.Core.csproj">
       <Project>{e01f9c34-f404-48dc-92e2-991da7adf9eb}</Project>
       <Name>Enigma.D3.Core</Name>

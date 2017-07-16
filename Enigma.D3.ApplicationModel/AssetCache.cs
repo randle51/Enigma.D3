@@ -53,20 +53,13 @@ namespace Enigma.D3.ApplicationModel
             _monstersStringLookup = GetLookup(stringListGroupStorage, "Monsters");
             _itemsStringLookup = GetLookup(stringListGroupStorage, "Items");
             _levelAreaNamesLookup = GetLookup(stringListGroupStorage, "LevelAreaNames");
-
-            var stringLookupMaps = new Dictionary<string, Dictionary<string, string>>();
-            foreach (var item in stringListGroupStorage.Container.Where(x => x.ID != -1 && x.SNOType == SNOType.StringList).Select(x => x.PtrValue.Dereference()))
-            {
-                var name = _snoSlugs[SNOType.StringList][item.x00_Header.x00_SnoId];
-                var map = new Dictionary<string, string>();
-                foreach (var kvp in item.x10_StringTableEntries)
-                    map[kvp.x00_Text.ToLowerInvariant()] = kvp.x10_Text;
-                stringLookupMaps[name] = map;
-            }
-
-            var matcs = stringLookupMaps.Where(x => x.Value.Any(b => b.Key.IndexOf("X1_Tristram_Adventure_Mode_Hub", StringComparison.OrdinalIgnoreCase) != -1)).ToArray();
-
+            
             IsInitialized = true;
+        }
+
+        public static SNOType GetSNOType(SNO sno)
+        {
+            return _snoSlugs.FirstOrDefault(x => x.Value.ContainsKey(sno)).Key;
         }
 
         private static Dictionary<string, string> GetLookup(SNOGroupStorage<StringList> storage, string name)
