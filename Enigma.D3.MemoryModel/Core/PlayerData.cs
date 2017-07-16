@@ -24,5 +24,8 @@ namespace Enigma.D3.MemoryModel.Core
         public HeroClass HeroClass => Read<HeroClass>(SymbolTable.Current.PlayerData.HeroClass);
         public int Level => Read<int>(SymbolTable.Current.PlayerData.Level);
         public int AltLevel => Read<int>(SymbolTable.Current.PlayerData.AltLevel);
+
+        public SNO PowerUse => this.PlatformRead<SNO>(0xCE28, 0xD000);
+        public SNO PowerCast => this.PlatformRead<SNO>(0xCE3C, 0xD014);
     }
 }
