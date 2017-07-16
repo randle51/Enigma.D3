@@ -52,6 +52,25 @@ namespace Enigma.Memory
 			return new byte[minSize];
 		}
 
+        public T Read<T>(MemoryAddress[] path)
+        {
+            if (path == null)
+                throw new ArgumentNullException(nameof(path));
+            if (path.Length == 0)
+                throw new ArgumentException();
+
+            var address = path[0];
+            for (int i = 1; i < path.Length; i++)
+            {
+                if (address == 0)
+                    return default(T);
+
+                address = Read<MemoryAddress>(address);
+                address += path[i];
+            }
+            return Read<T>(address);
+        }
+
 		public T Read<T>(MemoryAddress address)
 		{
 			if (!IsValidAddress(address))
