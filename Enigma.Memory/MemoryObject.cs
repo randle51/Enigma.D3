@@ -8,7 +8,7 @@ namespace Enigma.Memory
 {
     public class MemoryObject
     {
-        protected static int AlignedSize(int size, int alignment)
+        public static int AlignedSize(int size, int alignment)
         {
             return ((size + (alignment - 1)) / alignment) * alignment;
         }
