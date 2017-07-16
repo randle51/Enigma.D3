@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Enigma.Memory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,14 @@ namespace Enigma.D3.MemoryModel
     public partial class SymbolTable
     {
         public static SymbolTable Current;
+
+        public static int PlatformSize(int x86, int x64, bool align = false)
+        {
+            var size = Current.Platform == Platform.X86 ? x86 : x64;
+            if (align)
+                size = MemoryObject.AlignedSize(size, Current.Platform == Platform.X86 ? 4 : 8);
+            return size;
+        }
 
         public SymbolTable() { }
 
@@ -24,7 +33,7 @@ namespace Enigma.D3.MemoryModel
                 InitX64();
             else throw new NotImplementedException();
         }
-
+        
         public Version Version;
         public Platform Platform;
 
