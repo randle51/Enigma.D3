@@ -59,7 +59,7 @@ namespace Enigma.D3.MapHack
             _root.Width = _window.ActualWidth / uiScale;
             _root.RenderTransform = new ScaleTransform(uiScale, uiScale, 0, 0);
         }
-
+        
         public void Update(MemoryContext ctx)
         {
             if (ctx == null)
@@ -78,18 +78,16 @@ namespace Enigma.D3.MapHack
 
                 _acdsObserver = _acdsObserver ?? new ContainerCache<ACD>(ctx.DataSegment.ObjectManager.ACDManager.ActorCommonData);
                 _acdsObserver.Update();
-
+                
                 // Must have a local ACD to base coords on.
                 if (_playerAcd == null)
                 {
                     var playerAcdId = ctx.DataSegment.ObjectManager.PlayerDataManager[
                         ctx.DataSegment.ObjectManager.Player.LocalPlayerIndex].ACDID;
 
-                    var index = Array.IndexOf(_acdsObserver.CurrentMapping, playerAcdId);
-                    if (index != -1)
-                        _playerAcd = MemoryObjectFactory.UnsafeCreate<ACD>(new BufferMemoryReader(_acdsObserver.CurrentData), index * _acdsObserver.Container.ItemSize);
+                    _playerAcd = _acdsObserver.Items[(short)playerAcdId];
                 }
-
+                
                 foreach (var acd in _acdsObserver.OldItems)
                 {
                     var marker = default(IMapMarker);
@@ -97,7 +95,6 @@ namespace Enigma.D3.MapHack
                     {
                         Trace.WriteLine("Removing " + acd.Name);
                         itemsToRemove.Add(marker);
-                        _minimapItemsDic.Remove(acd.Address);
                     }
                 }
 
@@ -197,7 +194,7 @@ namespace Enigma.D3.MapHack
                 Execute.OnUIThread(() => itemsToRemove.ForEach(x => _minimapItems.Remove(x)));
                 itemsToRemove.ForEach(a => _minimapItemsDic.Remove(a.Id));
             }
-
+            
             if (_playerAcd != null)
             {
                 var origo = new Point3D(_playerAcd.Position.X, _playerAcd.Position.Y, _playerAcd.Position.Z);
