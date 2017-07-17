@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Enigma.D3.MemoryModel;
 
-namespace Enigma.D3.ApplicationModel.Caching
+namespace Enigma.D3.MemoryModel.Caching
 {
     public class ContainerCache<T> where T : MemoryObject
     {
@@ -40,7 +39,7 @@ namespace Enigma.D3.ApplicationModel.Caching
             if (PreviousData.Length != CurrentData.Length)
                 Array.Resize(ref PreviousData, CurrentData.Length);
             Buffer.BlockCopy(CurrentData, 0, PreviousData, 0, CurrentData.Length);
-            
+
             CurrentSegments = Container.GetAllocatedBytes(ref CurrentData);
             if (CurrentData.Length != PreviousData.Length) // buffer was resized (and replaced), update underlying buffer for all items
             {
@@ -94,7 +93,7 @@ namespace Enigma.D3.ApplicationModel.Caching
                         var address = TranslateToMemoryAddress(CurrentSegments, i * Container.ItemSize);
                         var item = Container.Memory.Reader.Read<T>(address);
                         item.SetSnapshot(CurrentData, i * Container.ItemSize, Container.ItemSize);
-                        
+
                         //var item = MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(CurrentData, 0, CurrentData.Length, Container.Memory.Reader.PointerSize), i * Container.ItemSize);
 
                         OnItemAdded(i, item);

@@ -14,8 +14,7 @@ using System.Windows.Media.Media3D;
 using Enigma.D3.MapHack.Markers;
 using Enigma.D3.MemoryModel;
 using Enigma.D3.MemoryModel.Core;
-using Enigma.Memory;
-using Enigma.D3.ApplicationModel.Caching;
+using Enigma.D3.MemoryModel.Caching;
 
 namespace Enigma.D3.MapHack
 {

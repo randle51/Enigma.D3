@@ -1,5 +1,4 @@
 ﻿using Enigma.D3.AttributeModel;
-using Enigma.D3.MemoryModel;
 using Enigma.D3.MemoryModel.Collections;
 using Enigma.D3.MemoryModel.Core;
 using Enigma.Memory;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 using Enigma.D3.Enums;
 using Enigma.D3.MemoryModel.TypeSystem;
 
-namespace Enigma.D3.ApplicationModel.Caching
+namespace Enigma.D3.MemoryModel.Caching
 {
     public class AttributeCache : IAttributeReader
     {
@@ -43,7 +42,7 @@ namespace Enigma.D3.ApplicationModel.Caching
             _allocationCache.Update();
             _groupCache.Update();
         }
-        
+
         public bool TryGetAttributeValue(int groupId, AttributeId attribId, int modifier, out AttributeValue value)
         {
             var group = _groupCache.Items[(short)groupId];

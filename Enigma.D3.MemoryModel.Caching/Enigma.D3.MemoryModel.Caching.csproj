@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{176AE261-7D74-4959-966E-D1963CFEFD66}</ProjectGuid>
+    <ProjectGuid>{DD846721-049F-4155-86DB-07EEE2D9E562}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Enigma.D3.ApplicationModel</RootNamespace>
-    <AssemblyName>Enigma.D3.ApplicationModel</AssemblyName>
+    <RootNamespace>Enigma.D3.MemoryModel.Caching</RootNamespace>
+    <AssemblyName>Enigma.D3.MemoryModel.Caching</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -38,56 +38,24 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Enigma.D3.Assets.Generated\StringList.cs">
-      <Link>Enigma.D3.Assets\StringList.cs</Link>
-    </Compile>
-    <Compile Include="..\Enigma.D3.Assets\SerializeData.cs">
-      <Link>Enigma.D3.Assets\SerializeData.cs</Link>
-    </Compile>
-    <Compile Include="..\Enigma.D3.Assets\SerializeMemoryObject.cs">
-      <Link>Enigma.D3.Assets\SerializeMemoryObject.cs</Link>
-    </Compile>
-    <Compile Include="..\Enigma.D3.Assets\SnoHeader.cs">
-      <Link>Enigma.D3.Assets\SnoHeader.cs</Link>
-    </Compile>
-    <Compile Include="ActionBar.cs" />
-    <Compile Include="ActiveSkill.cs" />
-    <Compile Include="Actor.cs" />
-    <Compile Include="AssetCache.cs" />
-    <Compile Include="DictionaryExtensions.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="HeroProfile.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="LocalPlayer.cs" />
-    <Compile Include="Monster.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="AllocationCache.cs" />
+    <Compile Include="AttributeCache.cs" />
+    <Compile Include="ContainerCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ApplicationSnapshot.cs" />
-    <Compile Include="Rune.cs" />
-    <Compile Include="Scene.cs" />
-    <Compile Include="Skill.cs" />
-    <Compile Include="Window.cs" />
-    <Compile Include="World.cs" />
-    <Compile Include="WorldLocation.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Enigma.D3.Core\Enigma.D3.Core.csproj">
       <Project>{e01f9c34-f404-48dc-92e2-991da7adf9eb}</Project>
       <Name>Enigma.D3.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Enigma.D3.MemoryModel.Caching\Enigma.D3.MemoryModel.Caching.csproj">
-      <Project>{dd846721-049f-4155-86db-07eee2d9e562}</Project>
-      <Name>Enigma.D3.MemoryModel.Caching</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Enigma.D3.MemoryModel\Enigma.D3.MemoryModel.csproj">
-      <Project>{92E7130D-9363-458C-ABE5-A71F240A9B78}</Project>
+      <Project>{92e7130d-9363-458c-abe5-a71f240a9b78}</Project>
       <Name>Enigma.D3.MemoryModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enigma.Memory\Enigma.Memory.csproj">
-      <Project>{3A385F29-42E2-4CAF-B1F2-2A1A7B90A971}</Project>
+      <Project>{3a385f29-42e2-4caf-b1f2-2a1a7b90a971}</Project>
       <Name>Enigma.Memory</Name>
     </ProjectReference>
   </ItemGroup>

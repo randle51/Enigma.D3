@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.MemoryExplorer", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.ApplicationModel", "Enigma.D3.ApplicationModel\Enigma.D3.ApplicationModel.csproj", "{176AE261-7D74-4959-966E-D1963CFEFD66}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.MemoryModel.Caching", "Enigma.D3.MemoryModel.Caching\Enigma.D3.MemoryModel.Caching.csproj", "{DD846721-049F-4155-86DB-07EEE2D9E562}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Enigma.D3.Memory.Generated\Enigma.D3.Memory.Generated.projitems*{23848103-7dc0-4ab0-958f-b8793ffd1f2d}*SharedItemsImports = 4
@@ -142,11 +144,13 @@ Global
 		{FDAB0808-F6E9-44D7-A411-121CCEC2E61E}.Release|x86.ActiveCfg = Release|Any CPU
 		{FDAB0808-F6E9-44D7-A411-121CCEC2E61E}.Release|x86.Build.0 = Release|Any CPU
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Debug|x64.ActiveCfg = Debug|x86
+		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Debug|x64.ActiveCfg = Debug|x64
+		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Debug|x64.Build.0 = Debug|x64
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Debug|x86.ActiveCfg = Debug|x86
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Debug|x86.Build.0 = Debug|x86
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|Any CPU.ActiveCfg = Release|x86
-		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x64.ActiveCfg = Release|x86
+		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x64.ActiveCfg = Release|x64
+		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x64.Build.0 = Release|x64
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x86.ActiveCfg = Release|x86
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x86.Build.0 = Release|x86
 		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|Any CPU.ActiveCfg = Debug|x86
@@ -201,6 +205,18 @@ Global
 		{176AE261-7D74-4959-966E-D1963CFEFD66}.Release|x64.Build.0 = Release|Any CPU
 		{176AE261-7D74-4959-966E-D1963CFEFD66}.Release|x86.ActiveCfg = Release|Any CPU
 		{176AE261-7D74-4959-966E-D1963CFEFD66}.Release|x86.Build.0 = Release|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Debug|x64.Build.0 = Debug|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Debug|x86.Build.0 = Debug|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Release|x64.ActiveCfg = Release|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Release|x64.Build.0 = Release|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Release|x86.ActiveCfg = Release|Any CPU
+		{DD846721-049F-4155-86DB-07EEE2D9E562}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

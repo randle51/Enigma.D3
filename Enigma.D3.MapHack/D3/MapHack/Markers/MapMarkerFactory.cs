@@ -6,7 +6,6 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using Enigma.D3.Enums;
 using Enigma.D3.MemoryModel.Core;
-using Enigma.D3.ApplicationModel;
 using Enigma.D3.AttributeModel;
 
 namespace Enigma.D3.MapHack.Markers
@@ -106,12 +105,12 @@ namespace Enigma.D3.MapHack.Markers
         private static bool IsValidGizmoChest(ACD acd)
         {
             return (acd.CollisionFlags & 0x400) == 0 &&
-                Attributes.ChestOpen.GetMemoryValue(acd) != 1;
+                Attributes.ChestOpen.GetValue(AttributeReader.Instance, acd.FastAttribGroupID) != 1;
         }
 
         private static bool IsValidGizmoLoreChest(ACD acd)
         {
-            return Attributes.ChestOpen.GetMemoryValue(acd, 0xA0000) != 1;
+            return Attributes.ChestOpen.GetValue(AttributeReader.Instance, acd.FastAttribGroupID, 0xA0000) != 1;
         }
 
         private static bool IsValidGizmoWreckableObject(ACD acd)

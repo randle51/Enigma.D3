@@ -1,5 +1,4 @@
-﻿using Enigma.D3.ApplicationModel.Caching;
-using Enigma.D3.Enums;
+﻿using Enigma.D3.Enums;
 using Enigma.D3.MemoryModel;
 using Enigma.D3.MemoryModel.Preferences;
 using System;
@@ -8,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Enigma.D3.MemoryModel.Core;
+using Enigma.D3.MemoryModel.Caching;
 
 namespace Enigma.D3.ApplicationModel
 {

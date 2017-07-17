@@ -1,5 +1,4 @@
-﻿using Enigma.D3.MemoryModel;
-using Enigma.D3.MemoryModel.MemoryManagement;
+﻿using Enigma.D3.MemoryModel.MemoryManagement;
 using Enigma.Memory;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Enigma.D3.ApplicationModel.Caching
+namespace Enigma.D3.MemoryModel.Caching
 {
     public class AllocationCache<T> where T : MemoryObject
     {

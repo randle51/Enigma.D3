@@ -1,7 +1,7 @@
-﻿using Enigma.D3.ApplicationModel.Caching;
-using Enigma.D3.AttributeModel;
+﻿using Enigma.D3.AttributeModel;
 using Enigma.D3.DataTypes;
 using Enigma.D3.Enums;
+using Enigma.D3.MemoryModel.Caching;
 using Enigma.D3.MemoryModel.Core;
 using System;
 using System.Collections.Generic;
