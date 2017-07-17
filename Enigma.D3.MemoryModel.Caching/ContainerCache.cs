@@ -10,17 +10,13 @@ namespace Enigma.D3.MemoryModel.Caching
 {
     public class ContainerCache<T> where T : MemoryObject
     {
-        public int State = 0;
-        public Container<T> Container;
-        public byte[] CurrentData = new byte[0];
-        public int[] CurrentMapping = new int[0];
-        public MemorySegment[] CurrentSegments;
-        public byte[] PreviousData = new byte[0];
-        public int[] PreviousMapping = new int[0];
-        public MemorySegment[] PreviousSegments;
-        public readonly List<T> NewItems = new List<T>();
-        public readonly List<T> OldItems = new List<T>();
-        public T[] Items = new T[0];
+        private byte[] _previousData = new byte[0];
+        private byte[] _currentData = new byte[0];
+        private MemorySegment[] _currentSegments;
+        private MemorySegment[] _previousSegments;
+        private int[] _previousMapping = new int[0];
+        private int[] _currentMapping = new int[0];
+        private T[] _items = new T[0];
 
         public ContainerCache(Container<T> container)
         {
@@ -28,71 +24,80 @@ namespace Enigma.D3.MemoryModel.Caching
         }
 
         public event Action<int, T> ItemRemoved;
+
         public event Action<int, T> ItemAdded;
+
+        public Container<T> Container { get; }
+
+        public List<T> NewItems { get; } = new List<T>();
+
+        public List<T> OldItems { get; } = new List<T>();
+
+        public T[] Items => _items;
 
         public void Update()
         {
             Container.TakeSnapshot();
 
-            PreviousSegments = CurrentSegments;
+            _previousSegments = _currentSegments;
 
-            if (PreviousData.Length != CurrentData.Length)
-                Array.Resize(ref PreviousData, CurrentData.Length);
-            Buffer.BlockCopy(CurrentData, 0, PreviousData, 0, CurrentData.Length);
+            if (_previousData.Length != _currentData.Length)
+                Array.Resize(ref _previousData, _currentData.Length);
+            Buffer.BlockCopy(_currentData, 0, _previousData, 0, _currentData.Length);
 
-            CurrentSegments = Container.GetAllocatedBytes(ref CurrentData);
-            if (CurrentData.Length != PreviousData.Length) // buffer was resized (and replaced), update underlying buffer for all items
+            _currentSegments = Container.GetAllocatedBytes(ref _currentData);
+            if (_currentData.Length != _previousData.Length) // buffer was resized (and replaced), update underlying buffer for all items
             {
-                for (int i = 0; i < Items.Length; i++)
+                for (int i = 0; i < _items.Length; i++)
                 {
-                    if (Items[i] == null)
+                    if (_items[i] == null)
                         continue;
 
-                    Items[i].SetSnapshot(CurrentData, i * Container.ItemSize, Container.ItemSize);
+                    _items[i].SetSnapshot(_currentData, i * Container.ItemSize, Container.ItemSize);
                 }
             }
 
-            if (PreviousMapping.Length != CurrentMapping.Length)
-                Array.Resize(ref PreviousMapping, CurrentMapping.Length);
-            Buffer.BlockCopy(CurrentMapping, 0, PreviousMapping, 0, CurrentMapping.Length * sizeof(int));
+            if (_previousMapping.Length != _currentMapping.Length)
+                Array.Resize(ref _previousMapping, _currentMapping.Length);
+            Buffer.BlockCopy(_currentMapping, 0, _previousMapping, 0, _currentMapping.Length * sizeof(int));
 
 
-            var count = CurrentData.Length / Container.ItemSize;
-            var mr = new BufferMemoryReader(CurrentData);
-            if (CurrentMapping.Length != count)
-                Array.Resize(ref CurrentMapping, count);
+            var count = _currentData.Length / Container.ItemSize;
+            var mr = new BufferMemoryReader(_currentData);
+            if (_currentMapping.Length != count)
+                Array.Resize(ref _currentMapping, count);
             for (int i = 0; i <= Container.MaxIndex; i++)
-                CurrentMapping[i] = mr.Read<int>(i * Container.ItemSize);
+                _currentMapping[i] = mr.Read<int>(i * Container.ItemSize);
             for (int i = Container.MaxIndex + 1; i < count; i++)
-                CurrentMapping[i] = -1;
+                _currentMapping[i] = -1;
 
             NewItems.Clear();
             OldItems.Clear();
 
-            if (Items.Length != Container.Capacity)
-                Array.Resize(ref Items, Container.Capacity);
+            if (_items.Length != Container.Capacity)
+                Array.Resize(ref _items, Container.Capacity);
 
             // Compare against previous where there is a value.
-            for (int i = 0; i < Math.Min(PreviousMapping.Length, CurrentMapping.Length); i++)
+            for (int i = 0; i < Math.Min(_previousMapping.Length, _currentMapping.Length); i++)
             {
-                if (CurrentMapping[i] != PreviousMapping[i])
+                if (_currentMapping[i] != _previousMapping[i])
                 {
-                    if (PreviousMapping[i] != -1)
+                    if (_previousMapping[i] != -1)
                     {
-                        var address = TranslateToMemoryAddress(PreviousSegments, i * Container.ItemSize);
+                        var address = TranslateToMemoryAddress(_previousSegments, i * Container.ItemSize);
                         var item = Container.Memory.Reader.Read<T>(address);
-                        item.SetSnapshot(PreviousData, i * Container.ItemSize, Container.ItemSize);
+                        item.SetSnapshot(_previousData, i * Container.ItemSize, Container.ItemSize);
 
                         //var item = MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(PreviousData, 0, PreviousData.Length, Container.Memory.Reader.PointerSize), i * Container.ItemSize);
 
                         OnItemRemoved(i, item);
                         OldItems.Add(item);
                     }
-                    if (CurrentMapping[i] != -1 && CurrentMapping[i] != 0) // NB: New item starts with ID 0
+                    if (_currentMapping[i] != -1 && _currentMapping[i] != 0) // NB: New item starts with ID 0
                     {
-                        var address = TranslateToMemoryAddress(CurrentSegments, i * Container.ItemSize);
+                        var address = TranslateToMemoryAddress(_currentSegments, i * Container.ItemSize);
                         var item = Container.Memory.Reader.Read<T>(address);
-                        item.SetSnapshot(CurrentData, i * Container.ItemSize, Container.ItemSize);
+                        item.SetSnapshot(_currentData, i * Container.ItemSize, Container.ItemSize);
 
                         //var item = MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(CurrentData, 0, CurrentData.Length, Container.Memory.Reader.PointerSize), i * Container.ItemSize);
 
@@ -103,13 +108,13 @@ namespace Enigma.D3.MemoryModel.Caching
             }
 
             // Check expanded area.
-            for (int i = PreviousMapping.Length; i < CurrentMapping.Length; i++)
+            for (int i = _previousMapping.Length; i < _currentMapping.Length; i++)
             {
-                if (CurrentMapping[i] != -1)
+                if (_currentMapping[i] != -1)
                 {
-                    var address = TranslateToMemoryAddress(CurrentSegments, i * Container.ItemSize);
+                    var address = TranslateToMemoryAddress(_currentSegments, i * Container.ItemSize);
                     var item = Container.Memory.Reader.Read<T>(address);
-                    item.SetSnapshot(CurrentData, i * Container.ItemSize, Container.ItemSize);
+                    item.SetSnapshot(_currentData, i * Container.ItemSize, Container.ItemSize);
 
                     //var item = MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(CurrentData, 0, CurrentData.Length, Container.Memory.Reader.PointerSize), i * Container.ItemSize);
 
@@ -119,13 +124,13 @@ namespace Enigma.D3.MemoryModel.Caching
             }
 
             // Check reduced area.
-            for (int i = CurrentMapping.Length; i < PreviousMapping.Length; i++)
+            for (int i = _currentMapping.Length; i < _previousMapping.Length; i++)
             {
-                if (PreviousMapping[i] != -1)
+                if (_previousMapping[i] != -1)
                 {
-                    var address = TranslateToMemoryAddress(PreviousSegments, i * Container.ItemSize);
+                    var address = TranslateToMemoryAddress(_previousSegments, i * Container.ItemSize);
                     var item = Container.Memory.Reader.Read<T>(address);
-                    item.SetSnapshot(PreviousData, i * Container.ItemSize, Container.ItemSize);
+                    item.SetSnapshot(_previousData, i * Container.ItemSize, Container.ItemSize);
 
                     //var item = MemoryObjectFactory.UnsafeCreate<T>(new BufferMemoryReader(PreviousData, 0, PreviousData.Length, Container.Memory.Reader.PointerSize), i * Container.ItemSize);
 
@@ -135,7 +140,7 @@ namespace Enigma.D3.MemoryModel.Caching
             }
         }
 
-        private MemoryAddress TranslateToMemoryAddress(MemorySegment[] segments, int offset)
+        private static MemoryAddress TranslateToMemoryAddress(MemorySegment[] segments, int offset)
         {
             var i = 0;
             var segment = segments[i];
@@ -151,14 +156,14 @@ namespace Enigma.D3.MemoryModel.Caching
 
         private void OnItemRemoved(int index, T item)
         {
-            if (index < Items.Length) // Could be part of the shrink area.
-                Items[index] = default(T);
+            if (index < _items.Length) // Could be part of the shrink area.
+                _items[index] = default(T);
             ItemRemoved?.Invoke(index, item);
         }
 
         private void OnItemAdded(int index, T item)
         {
-            Items[index] = item;
+            _items[index] = item;
             ItemAdded?.Invoke(index, item);
         }
     }
