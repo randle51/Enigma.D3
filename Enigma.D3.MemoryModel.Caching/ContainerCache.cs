@@ -8,6 +8,11 @@ using System.Threading.Tasks;
 
 namespace Enigma.D3.MemoryModel.Caching
 {
+    /// <summary>
+    /// Represents a snapshot of a container instance and tracks what items are added and removed
+    /// between updates.
+    /// </summary>
+    /// <typeparam name="T">The type of elements in the container.</typeparam>
     public class ContainerCache<T> where T : MemoryObject
     {
         private readonly Container<T> _container;
@@ -19,21 +24,42 @@ namespace Enigma.D3.MemoryModel.Caching
         private int[] _currentMapping = new int[0];
         private T[] _items = new T[0];
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContainerCache{T}"/> class that provides
+        /// cache and snapshot behaviour around a container instance.
+        /// </summary>
+        /// <param name="container">The container to provide cache and snapshot behaviour for.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="container"/> parameter cannot be null.</exception>
         public ContainerCache(Container<T> container)
         {
             _container = container ?? throw new ArgumentNullException(nameof(container));
         }
 
-        public event Action<int, T> ItemRemoved;
-
-        public event Action<int, T> ItemAdded;
-
+        /// <summary>
+        /// Gets the list of new items seen during last update. All items have snapshots taken
+        /// using data captured during last update. This list is cleared at the start of each
+        /// <see cref="Update"/> operation.
+        /// </summary>
         public List<T> NewItems { get; } = new List<T>();
 
+        /// <summary>
+        /// Gets the list of items removed during last update. All items have snapshots taken
+        /// using data capture during the update before last one. This list is cleared at the start
+        /// of each <see cref="Update"/> operation.
+        /// </summary>
         public List<T> OldItems { get; } = new List<T>();
 
+        /// <summary>
+        /// Gets the list of container items during last update. Length matches the capacity of the
+        /// container. All items have snapshots taken using data captured during this update. Free
+        /// slots contains the value NULL.
+        /// </summary>
         public T[] Items => _items;
 
+        /// <summary>
+        /// Update the container buffer and item snapshots. Old (removed) items will be added to
+        /// <see cref="OldItems"/> and new items to <see cref="NewItems"/>.
+        /// </summary>
         public void Update()
         {
             _container.TakeSnapshot();
@@ -153,13 +179,11 @@ namespace Enigma.D3.MemoryModel.Caching
         {
             if (index < _items.Length) // Could be part of the shrink area.
                 _items[index] = default(T);
-            ItemRemoved?.Invoke(index, item);
         }
 
         private void OnItemAdded(int index, T item)
         {
             _items[index] = item;
-            ItemAdded?.Invoke(index, item);
         }
     }
 }
