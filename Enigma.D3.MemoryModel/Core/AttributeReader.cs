@@ -43,8 +43,8 @@ namespace Enigma.D3.MemoryModel.Core
         public Dictionary<AttributeKey, double> GetAttributes(int groupId)
         {
             var group = MemoryContext.Current.DataSegment.ObjectManager.FastAttrib.FastAttribGroups[groupId];
-
             var values = new Dictionary<AttributeKey, double>();
+            var descriptors = MemoryContext.Current.DataSegment.AttributeDescriptors;
 
             foreach (var map in new[] { group.PtrMap.Dereference(), group.Map })
             {
@@ -53,7 +53,7 @@ namespace Enigma.D3.MemoryModel.Core
 
                 foreach (var kvp in map)
                 {
-                    var descriptor = MemoryContext.Current.DataSegment.AttributeDescriptors[(int)kvp.Key.Id];
+                    var descriptor = descriptors[(int)kvp.Key.Id];
                     values[kvp.Key] = descriptor.DataType == typeof(int) ? kvp.Value.Int32 : kvp.Value.Single;
                 }
             }
