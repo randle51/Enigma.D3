@@ -27,7 +27,7 @@ namespace Enigma.D3.MemoryModel.Caching
         {
             _ctx = ctx ?? throw new ArgumentNullException(nameof(ctx));
             _attrib = attrib ?? throw new ArgumentNullException(nameof(attrib));
-            _allocationCache = new AllocationCache<Map<AttributeKey, AttributeValue>.Entry>(ctx, attrib.BucketAllocator);
+            _allocationCache = new AllocationCache<Map<AttributeKey, AttributeValue>.Entry>(attrib.BucketAllocator);
             _groupCache = new ContainerCache<FastAttribGroup>(attrib.FastAttribGroups);
         }
 

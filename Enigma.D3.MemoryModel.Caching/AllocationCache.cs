@@ -12,11 +12,9 @@ namespace Enigma.D3.MemoryModel.Caching
     {
         private readonly Allocator<T> _allocator;
         private MemoryBlock[] _blocks;
-        private readonly MemoryContext _ctx;
 
-        public AllocationCache(MemoryContext ctx, Allocator<T> allocator)
+        public AllocationCache(Allocator<T> allocator)
         {
-            _ctx = ctx ?? throw new ArgumentNullException(nameof(ctx));
             _allocator = allocator ?? throw new ArgumentNullException(nameof(allocator));
         }
 
@@ -36,7 +34,7 @@ namespace Enigma.D3.MemoryModel.Caching
             if (block == null)
                 throw new ArgumentException("Address not contained in the cache.", nameof(address));
 
-            var reader = new BufferMemoryReader(block.Data, 0, block.Data.Length, _ctx.Memory.Reader.PointerSize);
+            var reader = new BufferMemoryReader(block.Data, 0, block.Data.Length, _allocator.Memory.Reader.PointerSize);
             var offset = address - block.Address;
             var value = reader.Read<T>(offset);
             return value;
