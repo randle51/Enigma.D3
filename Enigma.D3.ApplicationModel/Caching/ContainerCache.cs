@@ -40,8 +40,18 @@ namespace Enigma.D3.ApplicationModel.Caching
             if (PreviousData.Length != CurrentData.Length)
                 Array.Resize(ref PreviousData, CurrentData.Length);
             Buffer.BlockCopy(CurrentData, 0, PreviousData, 0, CurrentData.Length);
+            
             CurrentSegments = Container.GetAllocatedBytes(ref CurrentData);
+            if (CurrentData.Length != PreviousData.Length) // buffer was resized (and replaced), update underlying buffer for all items
+            {
+                for (int i = 0; i < Items.Length; i++)
+                {
+                    if (Items[i] == null)
+                        continue;
 
+                    Items[i].SetSnapshot(CurrentData, i * Container.ItemSize, Container.ItemSize);
+                }
+            }
 
             if (PreviousMapping.Length != CurrentMapping.Length)
                 Array.Resize(ref PreviousMapping, CurrentMapping.Length);
@@ -79,7 +89,7 @@ namespace Enigma.D3.ApplicationModel.Caching
                         OnItemRemoved(i, item);
                         OldItems.Add(item);
                     }
-                    if (CurrentMapping[i] != -1)
+                    if (CurrentMapping[i] != -1 && CurrentMapping[i] != 0) // NB: New item starts with ID 0
                     {
                         var address = TranslateToMemoryAddress(CurrentSegments, i * Container.ItemSize);
                         var item = Container.Memory.Reader.Read<T>(address);
