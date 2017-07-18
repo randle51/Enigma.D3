@@ -1,7 +1,10 @@
 ﻿using Enigma.D3.CodeGen.Assets.TypeSystem;
 using Enigma.D3.DataTypes;
 using Enigma.D3.Enums;
-using Enigma.D3.Memory.TypeSystem;
+using Enigma.D3.MemoryModel;
+using Enigma.D3.MemoryModel.Assets;
+using Enigma.D3.MemoryModel.TypeSystem;
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -57,17 +60,19 @@ namespace Enigma.D3.CodeGen.Assets
             NativeTypes.Register<Matrix4x4>("Matrix4x4");
             NativeTypes.Register<SNOName>("SNOName");
 
-            var groups = Engine.Current.SNOGroups.Where(a => a != null).ToList();
+            var groups = MemoryContext.Current.DataSegment.SNOGroupStorage
+                .Select(p => p.Cast<SNOGroupStorage<MemoryObject>>().Dereference()).Where(a => a != null).ToList();
+
             var project = new SharedProject("966c65df-1054-4d67-91ee-31c155f0c8f8", "Enigma.D3.Assets");
-            var outDir = Directory.CreateDirectory("enigma-d3-assets-" + Engine.Current.ProcessVersion);
-            foreach (var group in groups.OrderBy(a => a.x1C_Name))
+            var outDir = Directory.CreateDirectory("enigma-d3-assets-" + MemoryContext.Current.MainModuleVersion);
+            foreach (var group in groups.OrderBy(a => a.Name))
             {
-                Console.WriteLine(ConsoleTitleBase + " - " + group.x1C_Name);
+                Console.WriteLine(ConsoleTitleBase + " - " + group.Name);
 
                 var knownTypes = new List<KnownType>();
                 knownTypes.AddRange(PrimitiveType.GetRawNames().Select(a => (KnownType)a));
                 knownTypes.AddRange(NativeTypes.GetRawNames().Select(a => (KnownType)a));
-                knownTypes.Add(group.x6C_Ptr_DataType);
+                knownTypes.Add(group.PtrDataType.Dereference());
                 knownTypes.Add("DT_VARIABLEARRAY");
                 knownTypes.Add("DT_CHARARRAY");
                 knownTypes.Add("DT_TAGMAP");
@@ -75,10 +80,10 @@ namespace Enigma.D3.CodeGen.Assets
                 knownTypes.Add("DT_FORMULA");
                 knownTypes.Add("SerializeData");
 
-                string filePath = Path.Combine(outDir.FullName, group.x6C_Ptr_DataType.GetName() + ".cs");
+                string filePath = Path.Combine(outDir.FullName, group.PtrDataType.Dereference().GetName() + ".cs");
                 using (var output = File.CreateText(filePath))
                 {
-                    var baseType = group.x6C_Ptr_DataType.ContainsSerializedData() ? "SerializeMemoryObject" : "MemoryObject";
+                    var baseType = group.PtrDataType.Dereference().ContainsSerializedData() ? "SerializeMemoryObject" : "MemoryObject";
                     AttachPrinterStream(output);
                     PrintLine("using System.Runtime.CompilerServices;");
                     PrintLine("using Enigma.D3.DataTypes;");
@@ -88,14 +93,14 @@ namespace Enigma.D3.CodeGen.Assets
                     PrintLine("{");
                     IndentLevel++;
                     PrintLine("[CompilerGenerated]");
-                    PrintLine("public {2}class {0} : {1}", group.x1C_Name, baseType,
+                    PrintLine("public {2}class {0} : {1}", group.Name, baseType,
                         DeclarePartial ? "partial " : "");
                     PrintLine("{");
                     IndentLevel++;
-                    PrintLine("public const int SizeOf = 0x{0:X}; // {0}", group.x6C_Ptr_DataType.GetSizeOf());
+                    PrintLine("public const int SizeOf = 0x{0:X}; // {0}", group.PtrDataType.Dereference().GetSizeOf());
                     PrintLine();
-                    PrintLine("public SNOHeader x{0}_Header {{ get {{ return Read<SNOHeader>(0x{0}); }} }}", 0.ToString("X" + Math.Max(2, group.x6C_Ptr_DataType.GetSizeOf().ToString("X").Length)));
-                    Examine(knownTypes.Select(a => (KnownType)a).ToList(), group.x6C_Ptr_DataType);
+                    PrintLine("public SNOHeader x{0}_Header {{ get {{ return Read<SNOHeader>(0x{0}); }} }}", 0.ToString("X" + Math.Max(2, group.PtrDataType.Dereference().GetSizeOf().ToString("X").Length)));
+                    Examine(knownTypes.Select(a => (KnownType)a).ToList(), group.PtrDataType.Dereference());
                     IndentLevel--;
                     PrintLine("}");
                     IndentLevel--;
@@ -120,7 +125,7 @@ namespace Enigma.D3.CodeGen.Assets
 
         private static void PrintBaseTypes()
         {
-            string filePath = "output-autogen-d3-" + Engine.Current.ProcessVersion + "\\_BaseTypes.cs";
+            string filePath = "output-autogen-d3-" + MemoryContext.Current.MainModuleVersion + "\\_BaseTypes.cs";
             Directory.CreateDirectory(Path.GetDirectoryName(filePath));
             using (var output = File.CreateText(filePath))
             {

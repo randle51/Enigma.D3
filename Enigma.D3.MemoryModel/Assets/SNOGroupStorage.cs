@@ -1,4 +1,5 @@
 ﻿using Enigma.D3.MemoryModel.Collections;
+using Enigma.D3.MemoryModel.TypeSystem;
 using Enigma.Memory;
 using System;
 using System.Collections.Generic;
@@ -17,5 +18,8 @@ namespace Enigma.D3.MemoryModel.Assets
 
         public string Name
             => ReadString(SymbolTable.Current.SNOGroupStorage.Name, SymbolTable.Current.SNOGroupStorage.NameLength);
+
+        public Ptr<ValueTypeDescriptor> PtrDataType
+            => this.PlatformRead<Ptr<ValueTypeDescriptor>>(0x6C, 0); // TODO: 64-bit
     }
 }

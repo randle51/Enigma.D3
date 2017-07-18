@@ -89,12 +89,15 @@ namespace Enigma.D3.MemoryModel
 
         public DataSegment DataSegment { get; }
 
+        public Version MainModuleVersion { get; }
+
         public MemoryContext(MemoryReader reader)
             : this((reader ?? throw new ArgumentNullException(nameof(reader))).Memory) { }
 
         public MemoryContext(IMemory memory)
         {
             Memory = memory ?? throw new ArgumentNullException(nameof(memory));
+            MainModuleVersion = (Memory.Reader as IHasMainModuleVersion)?.MainModuleVersion;
 
             TypeHelper.PointerSize = Memory.Reader.PointerSize;
             SymbolTable.Current = new SymbolTable(this);

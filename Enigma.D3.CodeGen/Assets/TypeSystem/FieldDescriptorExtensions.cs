@@ -1,4 +1,4 @@
-﻿using Enigma.D3.Memory.TypeSystem;
+﻿using Enigma.D3.MemoryModel.TypeSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;

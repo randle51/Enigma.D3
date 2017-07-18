@@ -103,6 +103,9 @@
     <Compile Include="SymbolTable.X64.cs" />
     <Compile Include="SymbolTable.X86.cs" />
     <Compile Include="TypeSystem\AttributeDescriptor.cs" />
+    <Compile Include="TypeSystem\FieldDescriptor.cs" />
+    <Compile Include="TypeSystem\SymbolDescriptor.cs" />
+    <Compile Include="TypeSystem\ValueTypeDescriptor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Enigma.D3.Assets\Enigma.D3.Assets.csproj">

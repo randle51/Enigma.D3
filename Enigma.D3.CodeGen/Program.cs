@@ -1,4 +1,5 @@
-﻿using Enigma.Memory;
+﻿using Enigma.D3.MemoryModel;
+using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,19 +15,14 @@ namespace Enigma.D3.CodeGen
         {
             if (args.Contains("-core"))
             {
-                Engine.Create(new MiniDumpMemoryReader(GetMiniDumpFile().FullName));
+                MemoryContext.Current = MemoryContext.FromMiniDump();
                 Core.Generator.Run();
             }
             if (args.Contains("-sno") || args.Contains("-assets"))
             {
-                Engine.Create(new MiniDumpMemoryReader(GetMiniDumpFile().FullName));
+                MemoryContext.Current = MemoryContext.FromMiniDump();
                 Assets.Generator.Run();
             }
-        }
-
-        public static FileInfo GetMiniDumpFile()
-        {
-            return new FileInfo(Path.Combine(Path.GetTempPath(), "Diablo III.dmp"));
         }
 
         public static DirectoryInfo SolutionDirectory

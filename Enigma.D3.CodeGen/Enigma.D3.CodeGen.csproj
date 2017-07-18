@@ -34,6 +34,26 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -68,10 +88,6 @@
     <ProjectReference Include="..\Enigma.D3.MemoryModel\Enigma.D3.MemoryModel.csproj">
       <Project>{92E7130D-9363-458C-ABE5-A71F240A9B78}</Project>
       <Name>Enigma.D3.MemoryModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Enigma.D3.Memory\Enigma.D3.Memory.csproj">
-      <Project>{23848103-7DC0-4AB0-958F-B8793FFD1F2D}</Project>
-      <Name>Enigma.D3.Memory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enigma.Memory.Analytics\Enigma.Memory.Analytics.csproj">
       <Project>{EBC695E2-E661-4BA8-B6EB-9D148C44DCF5}</Project>
