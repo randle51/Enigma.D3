@@ -1,6 +1,4 @@
-﻿using Enigma.D3;
-using Enigma.D3.Memory;
-using Enigma.Memory;
+﻿using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,12 +12,6 @@ namespace Enigma.D3.CodeGen
     {
         internal static void Main(string[] args)
         {
-            if (args.Contains("-memory"))
-            {
-                if (GetMiniDumpFile().Exists)
-                    Engine.Create(new MiniDumpMemoryReader(GetMiniDumpFile().FullName), new EngineOptions { VersionMatching = VersionMatching.Disabled });
-                Memory.Generator.Run();
-            }
             if (args.Contains("-core"))
             {
                 Engine.Create(new MiniDumpMemoryReader(GetMiniDumpFile().FullName));
@@ -30,16 +22,6 @@ namespace Enigma.D3.CodeGen
                 Engine.Create(new MiniDumpMemoryReader(GetMiniDumpFile().FullName));
                 Assets.Generator.Run();
             }
-        }
-
-        public static FileInfo GetExeFile()
-        {
-            var installLocation = (string)Microsoft.Win32.Registry.GetValue(
-                @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Diablo III",
-                "InstallLocation",
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Diablo III"));
-            var exePath = Path.Combine(installLocation, "Diablo III.exe");
-            return new FileInfo(exePath);
         }
 
         public static FileInfo GetMiniDumpFile()

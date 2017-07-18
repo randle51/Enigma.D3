@@ -52,7 +52,6 @@
     <Compile Include="Assets\TypeSystem\PrimitiveType.cs" />
     <Compile Include="Assets\TypeSystem\ValueTypeDescriptorExtensions.cs" />
     <Compile Include="Core\Generator.cs" />
-    <Compile Include="Memory\Generator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharedProject.cs" />
