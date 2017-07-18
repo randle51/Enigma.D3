@@ -578,8 +578,8 @@ namespace Enigma.D3.AttributeModel
         public static Attribute<int> DamageTypeOverride = new SimpleAttribute<int>(AttributeId.DamageTypeOverride, -1);
         public static Attribute<float> MinionCountBonusPercent = new SimpleAttribute<float>(AttributeId.MinionCountBonusPercent, 0);
         public static Attribute<int> ExpensiveProcCount = new SimpleAttribute<int>(AttributeId.ExpensiveProcCount, 0);
-        public static Attribute<float> ChampionTeleportTimeMinInSeconds = new SimpleAttribute<float>(AttributeId.ChampionTeleportTimeMinInSeconds, 0);
-        public static Attribute<float> ChampionTeleportTimeDeltaInSeconds = new SimpleAttribute<float>(AttributeId.ChampionTeleportTimeDeltaInSeconds, 0);
+        public static Attribute<int> Post260ALegendaryGemCap = new SimpleAttribute<int>(AttributeId.Post260ALegendaryGemCap, 0);
+        public static Attribute<int> PetDontKillWhenEnteringRifts = new SimpleAttribute<int>(AttributeId.PetDontKillWhenEnteringRifts, 0);
         public static Attribute<int> ChampionCloneNextTick = new SimpleAttribute<int>(AttributeId.ChampionCloneNextTick, 0);
         public static Attribute<float> ChampionCloneTimeMinInSeconds = new SimpleAttribute<float>(AttributeId.ChampionCloneTimeMinInSeconds, 0);
         public static Attribute<float> ChampionCloneTimeDeltaInSeconds = new SimpleAttribute<float>(AttributeId.ChampionCloneTimeDeltaInSeconds, 0);

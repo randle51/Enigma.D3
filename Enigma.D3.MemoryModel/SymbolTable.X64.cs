@@ -10,7 +10,7 @@ namespace Enigma.D3.MemoryModel
     {
         private void InitX64()
         {
-            Version = new Version(2, 6, 0, 46006);
+            Version = new Version(2, 6, 0, 46494);
             Platform = Platform.X64;
 
             DataSegment.Address = 0x141B57000;
@@ -36,7 +36,7 @@ namespace Enigma.D3.MemoryModel
             DataSegment.SNOGroups = 0x141E5FAE0;
             DataSegment.SNOGroupsByCode = 0x141E5F8B0;
             DataSegment.ContainerManager = 0x141F71D80;
-            DataSegment.MessageDescriptor = 0x1413B1C08;
+            DataSegment.MessageDescriptor = 0x1413B1C18;
 
             ObjectManager.SizeOf = 0xBC0;
             ObjectManager.RenderTick = 0x4;
