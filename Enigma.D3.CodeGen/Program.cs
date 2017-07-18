@@ -1,5 +1,4 @@
 ﻿using Enigma.D3.MemoryModel;
-using Enigma.Memory;
 using System;
 using System.Collections.Generic;
 using System.IO;

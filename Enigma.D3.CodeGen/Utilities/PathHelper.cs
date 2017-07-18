@@ -9,11 +9,6 @@ namespace Enigma.D3.CodeGen.Utilities
 {
     internal static class PathHelper
     {
-        public static string GetRelativePathFrom(this FileSystemInfo to, FileSystemInfo from)
-        {
-            return from.GetRelativePathTo(to);
-        }
-
         public static string GetRelativePathTo(this FileSystemInfo from, FileSystemInfo to)
         {
             Func<FileSystemInfo, string> getPath = fsi =>
