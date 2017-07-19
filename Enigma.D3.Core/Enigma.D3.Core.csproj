@@ -78,6 +78,7 @@
     <Compile Include="DataTypes\Vector3.cs" />
     <Compile Include="DataTypes\Velocity.cs" />
     <Compile Include="Enums\ActorType.cs" />
+    <Compile Include="Enums\ControlType.cs" />
     <Compile Include="Enums\DamageType.cs" />
     <Compile Include="Enums\FollowerType.cs" />
     <Compile Include="Enums\GameDifficulty.cs" />
