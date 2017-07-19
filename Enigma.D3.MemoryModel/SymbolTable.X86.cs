@@ -10,33 +10,33 @@ namespace Enigma.D3.MemoryModel
     {
         private void InitX86()
         {
-            Version = new Version(2, 6, 0, 46494);
+            Version = new Version(2, 6, 0, 46568);
             Platform = Platform.X86;
 
             DataSegment.Address = 0x1E7E000;
-            DataSegment.VideoPreferences = 0x1EECE60;
-            DataSegment.SoundPreferences = 0x1EECF00;
-            DataSegment.HotkeyPreferences = 0x1EECF50;
-            DataSegment.GameplayPreferences = 0x1EED3D0;
-            DataSegment.SocialPreferences = 0x1EED438;
-            DataSegment.ChatPreferences = 0x1EED468;
-            DataSegment.LevelArea = 0x20D5140;
-            DataSegment.LevelAreaName = 0x20D5148;
+            DataSegment.VideoPreferences = 0x1EECE70;
+            DataSegment.SoundPreferences = 0x1EECF10;
+            DataSegment.HotkeyPreferences = 0x1EECF60;
+            DataSegment.GameplayPreferences = 0x1EED3E0;
+            DataSegment.SocialPreferences = 0x1EED448;
+            DataSegment.ChatPreferences = 0x1EED478;
+            DataSegment.LevelArea = 0x20D5150;
+            DataSegment.LevelAreaName = 0x20D5158;
             DataSegment.LevelAreaNameLength = 0x80;
-            DataSegment.MapActID = 0x20D5430;
-            DataSegment.ScreenManagerRoot = 0x20D5658;
-            DataSegment.TrickleManager = 0x2123954;
-            DataSegment.LocalData = 0x2147D20;
-            DataSegment.ObjectManager = 0x2146A70;
-            DataSegment.ApplicationLoopCount = 0x2146AEC;
-            DataSegment.AttributeDescriptors = 0x219EDD0;
+            DataSegment.MapActID = 0x20D5440;
+            DataSegment.ScreenManagerRoot = 0x20D5668;
+            DataSegment.TrickleManager = 0x2123964;
+            DataSegment.LocalData = 0x2147D30;
+            DataSegment.ObjectManager = 0x2146A80;
+            DataSegment.ApplicationLoopCount = 0x2146AFC;
+            DataSegment.AttributeDescriptors = 0x219EDE0;
             DataSegment.AttributeDescriptorsCount = 0x5B9;
             DataSegment.MemoryManager = 0x1E9B870;
-            DataSegment.SNOFiles = 0x2141B54;
-            DataSegment.SNOGroups = 0x2146824;
-            DataSegment.SNOGroupsByCode = 0x2146828;
-            DataSegment.ContainerManager = 0x221180C;
-            DataSegment.MessageDescriptor = 0x2211818;
+            DataSegment.SNOFiles = 0x2141B64;
+            DataSegment.SNOGroups = 0x2146834;
+            DataSegment.SNOGroupsByCode = 0x2146838;
+            DataSegment.ContainerManager = 0x221181C;
+            DataSegment.MessageDescriptor = 0x2211828;
 
             ObjectManager.SizeOf = 0xA60;
             ObjectManager.RenderTick = 0x4;
