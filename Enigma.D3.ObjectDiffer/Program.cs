@@ -1,4 +1,4 @@
-﻿using Enigma.D3;
+﻿using Enigma.D3.MemoryModel;
 using Enigma.Memory;
 using System;
 using System.Collections.Generic;
@@ -18,22 +18,11 @@ namespace Enigma.D3.ObjectDiffer
             Console.WindowWidth = 120;
             Console.BufferWidth = 120;
 
-            Console.WriteLine("Creating engine.");
-            while (Engine.Create() == null)
-                Thread.Sleep(1000);
-            Console.WriteLine("Engine created.");
+            Console.WriteLine("Creating context.");
+            var ctx = MemoryContext.FromProcess(new ManualResetEvent(false));
+            Console.WriteLine("Context created.");
 
-            _ignoredOffsets.Add(0x00);
-            _ignoredOffsets.Add(0x04);
-            _ignoredOffsets.Add(0x08);
-            _ignoredOffsets.Add(0x0C);
-            _ignoredOffsets.Add(0x10);
-            _ignoredOffsets.Add(0x14);
-            _ignoredOffsets.Add(0x20);
-            _ignoredOffsets.Add(0x24);
-            _ignoredOffsets.Add(0x28);
-            _ignoredOffsets.Add(0xE0);
-            Track(() => ObjectManager.Instance.x7D8_Ptr_292Bytes.Dereference());
+            Track(() => ctx.DataSegment.ObjectManager.PlayerDataManager[0]);
         }
 
         private static void Track<T>(Func<T> getter, int align = 4) where T : MemoryObject
@@ -62,7 +51,7 @@ namespace Enigma.D3.ObjectDiffer
                                 if (snapshot[i + b] != previous[i + b])
                                 {
                                     byte[] value = new byte[4];
-                                    Buffer.BlockCopy(snapshot, i + b, value, 0, value.Length);
+                                    Buffer.BlockCopy(snapshot, i, value, 0, value.Length);
                                     Write(timestamp, ConsoleColor.DarkGray);
                                     Write(" 0x" + i.ToString(format));
                                     Write(" " + BitConverter.ToString(value), ConsoleColor.DarkGray);
