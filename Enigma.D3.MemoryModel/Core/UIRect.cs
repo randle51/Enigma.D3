@@ -8,6 +8,8 @@ namespace Enigma.D3.MemoryModel.Core
 {
     public struct UIRect
     {
+        public static UIRect Empty = new UIRect();
+
         public float Left;
         public float Top;
         public float Right;
