@@ -33,5 +33,17 @@ namespace Enigma.D3.MemoryModel.Controls
         private Ptr _p5 => this.PlatformRead<Ptr>(0x44C, 0x468);
 
         public bool IsVisible => (Flags & 0x04) != 0;
+
+        /// <summary>
+        /// Most control types inherit from <see cref="ControlType.ControlGroup"/> and this is where
+        /// <see cref="UIRect"/> comes from. Types without this are <see cref="ControlType.Hotkey"/>,
+        /// <see cref="ControlType.DrawHook"/>, <see cref="ControlType.Storyboard"/> and the root type
+        /// <see cref="ControlType.Control"/>.
+        /// </summary>
+        public bool HasUIRect => !_noSizeControls.Contains(Type);
+
+        public UIRect UIRect => HasUIRect ? this.PlatformRead<UIRect>(0x468, 0x498) : new UIRect();
+
+        private static ControlType[] _noSizeControls = new[] { ControlType.Control, ControlType.Hotkey, ControlType.DrawHook, ControlType.Storyboard };
     }
 }

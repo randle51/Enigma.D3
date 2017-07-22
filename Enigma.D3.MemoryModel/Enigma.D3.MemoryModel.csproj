@@ -77,6 +77,7 @@
     <Compile Include="Core\TrickleManager.cs" />
     <Compile Include="Core\UIID.cs" />
     <Compile Include="Core\UIManager.cs" />
+    <Compile Include="Core\UIRect.cs" />
     <Compile Include="Core\Waypoint.cs" />
     <Compile Include="Core\WaypointManager.cs" />
     <Compile Include="Core\World.cs" />
