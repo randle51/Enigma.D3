@@ -89,10 +89,6 @@
       <Project>{92E7130D-9363-458C-ABE5-A71F240A9B78}</Project>
       <Name>Enigma.D3.MemoryModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Enigma.Memory.Analytics\Enigma.Memory.Analytics.csproj">
-      <Project>{EBC695E2-E661-4BA8-B6EB-9D148C44DCF5}</Project>
-      <Name>Enigma.Memory.Analytics</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Enigma.Memory\Enigma.Memory.csproj">
       <Project>{3a385f29-42e2-4caf-b1f2-2a1a7b90a971}</Project>
       <Name>Enigma.Memory</Name>
