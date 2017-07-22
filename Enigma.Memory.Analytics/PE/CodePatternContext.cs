@@ -80,6 +80,40 @@ namespace Enigma.Memory.Analytics.PE
                     }
                 }
             }
+            if (_pe.OptionalHeader64.ImportTable.Size > 0)
+            {
+                var va = _pe.OptionalHeader64.ImageBase + _pe.OptionalHeader64.ImportTable.VirtualAddress;
+                var import_descriptors = Dump.Read<IMAGE_IMPORT_DESCRIPTOR>(
+                    va, (int)_pe.OptionalHeader64.ImportTable.Size / StructHelper<IMAGE_IMPORT_DESCRIPTOR>.SizeOf - 1);
+                foreach (var import_descriptor in import_descriptors)
+                {
+                    var lib_name = Dump.ReadString(_pe.OptionalHeader64.ImageBase + (ulong)import_descriptor.Name, 256);
+                    var import_name = _pe.OptionalHeader64.ImageBase + (ulong)import_descriptor.OriginalFirstThunk;
+                    var itd = default(uint);
+                    var address = _pe.OptionalHeader64.ImageBase + (ulong)import_descriptor.FirstThunk;
+                    while ((itd = Dump.Read<uint>(import_name)) != 0)
+                    {
+                        var loc = _pe.OptionalHeader64.ImageBase + itd;
+
+                        int ordinal;
+                        string name;
+
+                        if ((itd & 0x80000000) == 0)
+                        {
+                            ordinal = Dump.Read<ushort>(loc);
+                            name = Dump.ReadString(loc + 2, 256);
+                        }
+                        else
+                        {
+                            ordinal = (int)(itd & 0x7FFFFFFF);
+                            name = "";
+                        }
+                        imports.Add(new Import { Library = lib_name, Name = name, Ordinal = ordinal, Address = address });
+                        import_name += 8;
+                        address += 8;
+                    }
+                }
+            }
             return imports;
         }
 
