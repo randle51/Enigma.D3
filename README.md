@@ -7,8 +7,8 @@ Enigma.D3 is a set of libraries and tools for generating and reading data struct
 
 ## Projects using Enigma.D3
 ### Open Source
-[D3Helper](https://github.com/d2k2-git/D3Helper.Public)  
 [Nav.D3](https://sourceforge.net/projects/nav/)
 
 ### Closed Source
-[FindersKeepers](http://www.finderskeepersd3.com/)
+[FindersKeepers](http://www.finderskeepersd3.com/)   
+[D3Helper](http://d3helper.freeforums.net/) *(no public maintainer)*
