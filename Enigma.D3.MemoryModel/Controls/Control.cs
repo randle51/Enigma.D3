@@ -45,5 +45,7 @@ namespace Enigma.D3.MemoryModel.Controls
         public UIRect UIRect => HasUIRect ? this.PlatformRead<UIRect>(0x468, 0x498) : new UIRect();
 
         private static ControlType[] _noSizeControls = new[] { ControlType.Control, ControlType.Hotkey, ControlType.DrawHook, ControlType.Storyboard };
+
+        public override string ToString() => UIID.Name;
     }
 }
