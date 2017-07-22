@@ -1,25 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.CodeGen", "Enigma.D3.CodeGen\Enigma.D3.CodeGen.csproj", "{964EF49B-060C-4006-AF29-C2B94D71D892}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.Assets", "Enigma.D3.Assets\Enigma.D3.Assets.csproj", "{4B2BF057-3425-4520-8535-3372D330C653}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.Assets.MemoryExtensions", "Enigma.D3.Assets.MemoryExtensions\Enigma.D3.Assets.MemoryExtensions.csproj", "{D8B60512-F922-42C1-BEC2-6FAC42CE6315}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.Core", "Enigma.D3.Core\Enigma.D3.Core.csproj", "{E01F9C34-F404-48DC-92E2-991DA7ADF9EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.MapHack", "Enigma.D3.MapHack\Enigma.D3.MapHack.csproj", "{75F91ECC-DF5A-4650-878E-4411BCC97D94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.Memory", "Enigma.D3.Memory\Enigma.D3.Memory.csproj", "{23848103-7DC0-4AB0-958F-B8793FFD1F2D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.Memory", "Enigma.Memory\Enigma.Memory.csproj", "{3A385F29-42E2-4CAF-B1F2-2A1A7B90A971}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.Wpf", "Enigma.Wpf\Enigma.Wpf.csproj", "{FDAB0808-F6E9-44D7-A411-121CCEC2E61E}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Enigma.D3.Memory.Generated", "Enigma.D3.Memory.Generated\Enigma.D3.Memory.Generated.shproj", "{862A67EE-9CEB-42FE-9406-D7FEAFC55B00}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Enigma.D3.Core.Generated", "Enigma.D3.Core.Generated\Enigma.D3.Core.Generated.shproj", "{DA9978D2-8F71-4399-8A57-A789F082E501}"
 EndProject
@@ -28,8 +22,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Applications", "Applications", "{476EFEB8-6EAE-40C7-9BD5-F10CB82B9B0B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.ObjectDiffer", "Enigma.D3.ObjectDiffer\Enigma.D3.ObjectDiffer.csproj", "{D8E88297-9683-4201-A0E4-21E8A7CF26B0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.Explorer", "Enigma.D3.Explorer\Enigma.D3.Explorer.csproj", "{47A32F20-6F01-454C-A301-B8403F8D6575}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.Memory.Analytics", "Enigma.Memory.Analytics\Enigma.Memory.Analytics.csproj", "{EBC695E2-E661-4BA8-B6EB-9D148C44DCF5}"
 EndProject
@@ -45,9 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enigma.D3.MemoryModel.Cachi
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Enigma.D3.Memory.Generated\Enigma.D3.Memory.Generated.projitems*{23848103-7dc0-4ab0-958f-b8793ffd1f2d}*SharedItemsImports = 4
 		Enigma.D3.Assets.Generated\Enigma.D3.Assets.Generated.projitems*{4b2bf057-3425-4520-8535-3372d330c653}*SharedItemsImports = 4
-		Enigma.D3.Memory.Generated\Enigma.D3.Memory.Generated.projitems*{862a67ee-9ceb-42fe-9406-d7feafc55b00}*SharedItemsImports = 13
 		Enigma.D3.Assets.Generated\Enigma.D3.Assets.Generated.projitems*{966c65df-1054-4d67-91ee-31c155f0c8f8}*SharedItemsImports = 13
 		Enigma.D3.Core.Generated\Enigma.D3.Core.Generated.projitems*{da9978d2-8f71-4399-8a57-a789f082e501}*SharedItemsImports = 13
 		Enigma.D3.Core.Generated\Enigma.D3.Core.Generated.projitems*{e01f9c34-f404-48dc-92e2-991da7adf9eb}*SharedItemsImports = 4
@@ -81,14 +71,6 @@ Global
 		{4B2BF057-3425-4520-8535-3372D330C653}.Release|x64.Build.0 = Release|Any CPU
 		{4B2BF057-3425-4520-8535-3372D330C653}.Release|x86.ActiveCfg = Release|Any CPU
 		{4B2BF057-3425-4520-8535-3372D330C653}.Release|x86.Build.0 = Release|Any CPU
-		{D8B60512-F922-42C1-BEC2-6FAC42CE6315}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{D8B60512-F922-42C1-BEC2-6FAC42CE6315}.Debug|x64.ActiveCfg = Debug|x86
-		{D8B60512-F922-42C1-BEC2-6FAC42CE6315}.Debug|x86.ActiveCfg = Debug|x86
-		{D8B60512-F922-42C1-BEC2-6FAC42CE6315}.Debug|x86.Build.0 = Debug|x86
-		{D8B60512-F922-42C1-BEC2-6FAC42CE6315}.Release|Any CPU.ActiveCfg = Release|x86
-		{D8B60512-F922-42C1-BEC2-6FAC42CE6315}.Release|x64.ActiveCfg = Release|x86
-		{D8B60512-F922-42C1-BEC2-6FAC42CE6315}.Release|x86.ActiveCfg = Release|x86
-		{D8B60512-F922-42C1-BEC2-6FAC42CE6315}.Release|x86.Build.0 = Release|x86
 		{E01F9C34-F404-48DC-92E2-991DA7ADF9EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E01F9C34-F404-48DC-92E2-991DA7ADF9EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E01F9C34-F404-48DC-92E2-991DA7ADF9EB}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -111,14 +93,6 @@ Global
 		{75F91ECC-DF5A-4650-878E-4411BCC97D94}.Release|x64.Build.0 = Release|x64
 		{75F91ECC-DF5A-4650-878E-4411BCC97D94}.Release|x86.ActiveCfg = Release|x86
 		{75F91ECC-DF5A-4650-878E-4411BCC97D94}.Release|x86.Build.0 = Release|x86
-		{23848103-7DC0-4AB0-958F-B8793FFD1F2D}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{23848103-7DC0-4AB0-958F-B8793FFD1F2D}.Debug|x64.ActiveCfg = Debug|x86
-		{23848103-7DC0-4AB0-958F-B8793FFD1F2D}.Debug|x86.ActiveCfg = Debug|x86
-		{23848103-7DC0-4AB0-958F-B8793FFD1F2D}.Debug|x86.Build.0 = Debug|x86
-		{23848103-7DC0-4AB0-958F-B8793FFD1F2D}.Release|Any CPU.ActiveCfg = Release|x86
-		{23848103-7DC0-4AB0-958F-B8793FFD1F2D}.Release|x64.ActiveCfg = Release|x86
-		{23848103-7DC0-4AB0-958F-B8793FFD1F2D}.Release|x86.ActiveCfg = Release|x86
-		{23848103-7DC0-4AB0-958F-B8793FFD1F2D}.Release|x86.Build.0 = Release|x86
 		{3A385F29-42E2-4CAF-B1F2-2A1A7B90A971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3A385F29-42E2-4CAF-B1F2-2A1A7B90A971}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A385F29-42E2-4CAF-B1F2-2A1A7B90A971}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -153,14 +127,6 @@ Global
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x64.Build.0 = Release|x64
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x86.ActiveCfg = Release|x86
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0}.Release|x86.Build.0 = Release|x86
-		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x64.ActiveCfg = Debug|x86
-		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x86.ActiveCfg = Debug|x86
-		{47A32F20-6F01-454C-A301-B8403F8D6575}.Debug|x86.Build.0 = Debug|x86
-		{47A32F20-6F01-454C-A301-B8403F8D6575}.Release|Any CPU.ActiveCfg = Release|x86
-		{47A32F20-6F01-454C-A301-B8403F8D6575}.Release|x64.ActiveCfg = Release|x86
-		{47A32F20-6F01-454C-A301-B8403F8D6575}.Release|x86.ActiveCfg = Release|x86
-		{47A32F20-6F01-454C-A301-B8403F8D6575}.Release|x86.Build.0 = Release|x86
 		{EBC695E2-E661-4BA8-B6EB-9D148C44DCF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EBC695E2-E661-4BA8-B6EB-9D148C44DCF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBC695E2-E661-4BA8-B6EB-9D148C44DCF5}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -226,7 +192,6 @@ Global
 		{3A385F29-42E2-4CAF-B1F2-2A1A7B90A971} = {A3E2BA70-51BA-480B-984D-23FC65BC690D}
 		{FDAB0808-F6E9-44D7-A411-121CCEC2E61E} = {A3E2BA70-51BA-480B-984D-23FC65BC690D}
 		{D8E88297-9683-4201-A0E4-21E8A7CF26B0} = {476EFEB8-6EAE-40C7-9BD5-F10CB82B9B0B}
-		{47A32F20-6F01-454C-A301-B8403F8D6575} = {476EFEB8-6EAE-40C7-9BD5-F10CB82B9B0B}
 		{EBC695E2-E661-4BA8-B6EB-9D148C44DCF5} = {A3E2BA70-51BA-480B-984D-23FC65BC690D}
 		{304C4A00-D989-47D8-B4DA-B155D869FC5E} = {476EFEB8-6EAE-40C7-9BD5-F10CB82B9B0B}
 	EndGlobalSection
