@@ -92,12 +92,14 @@ namespace Enigma.D3.MemoryModel.Caching
 
             var values = new Dictionary<AttributeKey, AttributeValue>();
 
-            // TODO: Add 2nd map
-            foreach (var map in new[] { group.PtrMap.Dereference() })
+            foreach (var map in new[] { group.PtrMap.Dereference(), group.Map })
             {
                 if (map != null)
                 {
-                    map.TakeSnapshot();
+                    map.TakeSnapshot(SnapshotBehavior.PreserveExistingSnapshot);
+                    if (map.Count == 0)
+                        continue;
+
                     var buckets = map.Buckets.ToArray();
                     foreach (var bucket in buckets)
                     {
