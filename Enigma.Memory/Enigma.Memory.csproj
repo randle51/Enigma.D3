@@ -68,6 +68,7 @@
     <Compile Include="ReadOnlyMemory.cs" />
     <Compile Include="Helpers\StructHelper.cs" />
     <Compile Include="Helpers\StructHelper.il" />
+    <Compile Include="SnapshotBehavior.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- IL Begin -->

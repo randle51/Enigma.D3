@@ -109,8 +109,13 @@ namespace Enigma.Memory
             Snapshot = new MemorySnapshot(Memory, Address - offset, buffer, offset, count);
         }
 
-        public void TakeSnapshot()
+        public void TakeSnapshot() => TakeSnapshot(SnapshotBehavior.ReplaceExistingSnapshot);
+
+        public void TakeSnapshot(SnapshotBehavior behavior)
         {
+            if (behavior == SnapshotBehavior.PreserveExistingSnapshot && Snapshot != null)
+                return;
+
             // Refresh snapshot only if we're in its root object (the object that created the snapshot).
             // A substruct is not allowed to update its parent snapshot and must instead create a new one.
             if (Snapshot?.IsRoot(this) == true)
