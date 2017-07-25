@@ -93,11 +93,12 @@ namespace Enigma.D3.MemoryModel.Caching
             var values = new Dictionary<AttributeKey, AttributeValue>();
 
             // TODO: Add 2nd map
-            foreach (var map in new[] { new Ptr<Map<int, AttributeValue>>(_ctx.Memory, group.PtrMap.ValueAddress).Dereference() })
+            foreach (var map in new[] { group.PtrMap.Dereference() })
             {
                 if (map != null)
                 {
-                    var buckets = _ctx.Memory.Reader.Read<Map<int, AttributeValue>>(map.Address).Buckets.ToArray();
+                    map.TakeSnapshot();
+                    var buckets = map.Buckets.ToArray();
                     foreach (var bucket in buckets)
                     {
                         var address = bucket.ValueAddress;
