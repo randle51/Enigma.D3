@@ -126,9 +126,13 @@ namespace Enigma.Memory
 			}
 			else if (TypeHelper<T>.IsMemoryPointerType)
 			{
+                var buffer = new byte[count * PointerSize];
+                UnsafeReadBytes(address, buffer, 0, buffer.Length);
+                var bufferReader = new BufferMemoryReader(buffer, 0, buffer.Length, PointerSize);
+
 				for (int i = 0; i < count; i++)
 				{
-					array[i] = (T)(object)MemoryPointerFactory.UnsafeCreate<T>(Memory, ReadMemoryAddress(address + i * PointerSize));
+					array[i] = (T)(object)MemoryPointerFactory.UnsafeCreate<T>(Memory, bufferReader.ReadMemoryAddress(i * PointerSize));
 				}
 			}
 			else if (TypeHelper<T>.IsMemoryAddressType)
