@@ -48,7 +48,7 @@ namespace Enigma.D3.ApplicationModel
             if (!AssetCache.IsInitialized)
                 AssetCache.Initialize(MemoryContext);
 
-            if (_localDataCache.IsStartUpGame)
+            if (_objMgrCache == null)
             {
                 Game = null;
                 return;
@@ -153,7 +153,20 @@ namespace Enigma.D3.ApplicationModel
             _localDataCache = _localDataCache ?? MemoryContext.DataSegment.LocalData;
             _localDataCache.TakeSnapshot();
 
-            _objMgrCache = _objMgrCache ?? MemoryContext.DataSegment.ObjectManager;
+            var objMgr = MemoryContext.DataSegment.ObjectManager;
+            _objMgrCache = _objMgrCache ?? objMgr;
+
+            if ((objMgr == null && _objMgrCache != null) ||
+                (objMgr.Address != _objMgrCache.Address))
+            {
+                _playerCache = null;
+                _acdCache = null;
+                _attributeCache = null;
+                _worldCache = null;
+                _sceneCache = null;
+                return;
+            }
+
             _objMgrCache.TakeSnapshot();
 
             _playerCache = _playerCache ?? _objMgrCache.Player;
