@@ -39,7 +39,14 @@ namespace Enigma.Memory
 					return value;
 				}
 
-				return Marshal.SizeOf(t.IsEnum ? t.GetEnumUnderlyingType() : t);
+                try
+                {
+                    return Marshal.SizeOf(t.IsEnum ? t.GetEnumUnderlyingType() : t);
+                }
+                catch (ArgumentException)
+                {
+                    return 0;
+                }
 			});
 			
 			if (size == 0) // If no field found, try with a property. Do NOT cache property values.
