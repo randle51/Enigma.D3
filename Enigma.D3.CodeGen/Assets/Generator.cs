@@ -349,9 +349,8 @@ namespace Enigma.D3.CodeGen.Assets
             }
             else if (field.IsTagMap())
             {
-                // TODO: Figure out what his really is... guessing it's array of ints
-                getter = string.Format(" {{ get {{ return Deserialize<{0}>(x{1}_SerializeData); }} }}",
-                    "int", field.GetVariableArraySerializeOffset().ToString(hexFormat));
+                getter = string.Format(" {{ get {{ return new TagMap(Deserialize<byte>(x{0}_SerializeData)); }} }}",
+                    field.GetVariableArraySerializeOffset().ToString(hexFormat));
             }
             else if (field.IsFlag())
             {

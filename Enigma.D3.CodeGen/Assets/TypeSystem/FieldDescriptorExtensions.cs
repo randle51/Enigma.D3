@@ -18,12 +18,13 @@ namespace Enigma.D3.CodeGen.Assets.TypeSystem
         {
             if (field.IsArray())
             {
-                if (field.IsTagMap())
-                    return "int";
                 return TranslateName(field.x1C_PtrBaseType.Dereference().GetName());
             }
             else
             {
+                if (field.IsTagMap())
+                    return "TagMap";
+
                 string name = TranslateName(field.x04_PtrType.Dereference().GetName());
                 if (!field.x1C_PtrBaseType.Dereference().IsNull() && !field.IsStringArray())
                 {
@@ -47,9 +48,7 @@ namespace Enigma.D3.CodeGen.Assets.TypeSystem
 
         public static bool IsArray(this FieldDescriptor field)
         {
-            return field.IsVariableArray() ||
-                field.IsFixedArray() ||
-                field.IsTagMap();
+            return field.IsVariableArray() || field.IsFixedArray();
         }
 
         public static bool IsStringArray(this FieldDescriptor field)
