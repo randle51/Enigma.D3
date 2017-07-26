@@ -62,7 +62,7 @@ namespace Enigma.D3.Assets
 		public int x460 { get { return Read<int>(0x460); } }
 		public int x464_Enum { get { return Read<int>(0x464); } } // Mana = 0, Arcanum = 1, Fury = 2, Spirit = 3, Power = 4, Hatred = 5, Discipline = 6, Faith = 7, Essence = 8
 		public SerializeData x480_SerializeData { get { return Read<SerializeData>(0x480); } }
-		public int[] x488_TagMap { get { return Deserialize<int>(x480_SerializeData); } } // type: 0x00120000
+		public TagMap x488_TagMap { get { return new TagMap(Deserialize<byte>(x480_SerializeData)); } } // type: 0x00120000
 		public int x490 { get { return Read<int>(0x490); } }
 		public MonsterMinionSpawnGroup[] x498_MonsterMinionSpawnGroups { get { return Deserialize<MonsterMinionSpawnGroup>(x4A0_SerializeData); } }
 		public SerializeData x4A0_SerializeData { get { return Read<SerializeData>(0x4A0); } }

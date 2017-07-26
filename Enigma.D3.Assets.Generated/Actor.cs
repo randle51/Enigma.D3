@@ -18,7 +18,7 @@ namespace Enigma.D3.Assets
 		public Sphere x030 { get { return Read<Sphere>(0x030); } }
 		public AABB x040 { get { return Read<AABB>(0x040); } }
 		public SerializeData x058_SerializeData { get { return Read<SerializeData>(0x058); } }
-		public int[] x060_TagMap { get { return Deserialize<int>(x058_SerializeData); } } // type: 0x00010000
+		public TagMap x060_TagMap { get { return new TagMap(Deserialize<byte>(x058_SerializeData)); } } // type: 0x00010000
 		public SNO x068_AnimSetSNO { get { return Read<SNO>(0x068); } }
 		public SNO x06C_MonsterSNO { get { return Read<SNO>(0x06C); } }
 		public SerializeData x070_SerializeData { get { return Read<SerializeData>(0x070); } }

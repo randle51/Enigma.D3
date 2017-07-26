@@ -34,7 +34,7 @@ namespace Enigma.D3.Assets
 			public string x184_Text { get { return ReadString(0x184, 64); } }
 			public string x1C4_Text { get { return ReadString(0x1C4, 64); } }
 			public SerializeData x204_SerializeData { get { return Read<SerializeData>(0x204); } }
-			public int[] x210_TagMap { get { return Deserialize<int>(x204_SerializeData); } } // type: 0x00100000
+			public TagMap x210_TagMap { get { return new TagMap(Deserialize<byte>(x204_SerializeData)); } } // type: 0x00100000
 			public int x230 { get { return Read<int>(0x230); } }
 			public int x234 { get { return Read<int>(0x234); } }
 		}

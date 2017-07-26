@@ -72,7 +72,7 @@ namespace Enigma.D3.Assets
 			public SerializeData x58_SerializeData { get { return Read<SerializeData>(0x58); } }
 			public int[] x60_int { get { return Deserialize<int>(x58_SerializeData); } }
 			public SerializeData x68_SerializeData { get { return Read<SerializeData>(0x68); } }
-			public int[] x70_TagMap { get { return Deserialize<int>(x68_SerializeData); } } // type: 0x000D0000
+			public TagMap x70_TagMap { get { return new TagMap(Deserialize<byte>(x68_SerializeData)); } } // type: 0x000D0000
 		}
 		
 		[CompilerGenerated]
@@ -135,7 +135,7 @@ namespace Enigma.D3.Assets
 			public SNO x08_SceneSNO { get { return Read<SNO>(0x08); } }
 			public int x0C { get { return Read<int>(0x0C); } }
 			public SerializeData x10_SerializeData { get { return Read<SerializeData>(0x10); } }
-			public int[] x18_TagMap { get { return Deserialize<int>(x10_SerializeData); } } // type: 0x000F0000
+			public TagMap x18_TagMap { get { return new TagMap(Deserialize<byte>(x10_SerializeData)); } } // type: 0x000F0000
 			public CustomTileInfo x20_CustomTileInfo { get { return Read<CustomTileInfo>(0x20); } }
 			public int x48 { get { return Read<int>(0x48); } }
 		}
@@ -148,7 +148,7 @@ namespace Enigma.D3.Assets
 			public string x00_Text { get { return ReadString(0x00, 128); } }
 			public int x80 { get { return Read<int>(0x80); } }
 			public SerializeData x84_SerializeData { get { return Read<SerializeData>(0x84); } }
-			public int[] x90_TagMap { get { return Deserialize<int>(x84_SerializeData); } } // type: 0x00110000
+			public TagMap x90_TagMap { get { return new TagMap(Deserialize<byte>(x84_SerializeData)); } } // type: 0x00110000
 		}
 		
 		[CompilerGenerated]

@@ -12,6 +12,6 @@ namespace Enigma.D3.Assets
 		public SNOHeader x00_Header { get { return Read<SNOHeader>(0x00); } }
 		public int x0C { get { return Read<int>(0x0C); } }
 		public SerializeData x10_SerializeData { get { return Read<SerializeData>(0x10); } }
-		public int[] x18_TagMap { get { return Deserialize<int>(x10_SerializeData); } } // type: 0x00030000
+		public TagMap x18_TagMap { get { return new TagMap(Deserialize<byte>(x10_SerializeData)); } } // type: 0x00030000
 	}
 }

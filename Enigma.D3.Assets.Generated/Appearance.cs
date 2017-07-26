@@ -238,7 +238,7 @@ namespace Enigma.D3.Assets
 			public int x00 { get { return Read<int>(0x00); } }
 			public SNO x04_ClothSNO { get { return Read<SNO>(0x04); } }
 			public SerializeData x08_SerializeData { get { return Read<SerializeData>(0x08); } }
-			public int[] x10_TagMap { get { return Deserialize<int>(x08_SerializeData); } } // type: 0x000A0000
+			public TagMap x10_TagMap { get { return new TagMap(Deserialize<byte>(x08_SerializeData)); } } // type: 0x000A0000
 			public UberMaterial x18_UberMaterial { get { return Read<UberMaterial>(0x18); } }
 			public SNO x80_MaterialSNO { get { return Read<SNO>(0x80); } }
 			public UberMaterial x88_UberMaterial { get { return Read<UberMaterial>(0x88); } }

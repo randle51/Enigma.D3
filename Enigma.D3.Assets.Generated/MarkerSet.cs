@@ -31,7 +31,7 @@ namespace Enigma.D3.Assets
 			public PRTransform x84_PRTransform { get { return Read<PRTransform>(0x84); } }
 			public SNOName xA0 { get { return Read<SNOName>(0xA0); } }
 			public SerializeData xA8_SerializeData { get { return Read<SerializeData>(0xA8); } }
-			public int[] xB0_TagMap { get { return Deserialize<int>(xA8_SerializeData); } } // type: 0x00080000
+			public TagMap xB0_TagMap { get { return new TagMap(Deserialize<byte>(xA8_SerializeData)); } } // type: 0x00080000
 			public int xB8 { get { return Read<int>(0xB8); } }
 			public SerializeData xBC_SerializeData { get { return Read<SerializeData>(0xBC); } }
 			public MarkerLink[] xC8_MarkerLinks { get { return Deserialize<MarkerLink>(xBC_SerializeData); } }
