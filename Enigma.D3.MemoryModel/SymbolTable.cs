@@ -33,7 +33,7 @@ namespace Enigma.D3.MemoryModel
                 InitX64();
             else throw new NotImplementedException();
         }
-        
+
         public Version Version;
         public Platform Platform;
 
@@ -162,6 +162,8 @@ namespace Enigma.D3.MemoryModel
         public int NameLength;
         public int ActorID;
         public int ActorSNO;
+        public int GBType;
+        public int GBID;
         public int MonsterQuality;
         public int Position;
         public int Radius;

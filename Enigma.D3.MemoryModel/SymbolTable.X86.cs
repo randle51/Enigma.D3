@@ -80,6 +80,8 @@ namespace Enigma.D3.MemoryModel
             ACD.NameLength = 0x80;
             ACD.ActorID = 0x8C;
             ACD.ActorSNO = 0x90;
+            ACD.GBType = 0xB0;
+            ACD.GBID = 0xB4;
             ACD.MonsterQuality = 0xB8;
             ACD.Position = 0xD0;
             ACD.Radius = 0xDC;

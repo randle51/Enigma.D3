@@ -25,6 +25,12 @@ namespace Enigma.D3.MemoryModel.Core
         public SNO ActorSNO
             => Read<SNO>(SymbolTable.Current.ACD.ActorSNO);
 
+        public GBType GBType
+            => Read<GBType>(SymbolTable.Current.ACD.GBType);
+
+        public GBID GBID
+            => Read<GBID>(SymbolTable.Current.ACD.GBID);
+
         public MonsterQuality MonsterQuality
             => Read<MonsterQuality>(SymbolTable.Current.ACD.MonsterQuality);
 
