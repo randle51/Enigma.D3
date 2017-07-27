@@ -98,10 +98,10 @@ namespace Enigma.Wpf
                     // There is a chance that _process is disposed but timer triggers late.
                 }
             }
-            
+
             var fromDeviceX = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice.M11;
             var fromDeviceY = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice.M22;
-            
+
             _root.Width = fromDeviceX * clientRect.Width;
             _root.Height = fromDeviceY * clientRect.Height;
             Left = fromDeviceX * clientRect.X;
