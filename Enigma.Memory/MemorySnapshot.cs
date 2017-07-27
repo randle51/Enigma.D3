@@ -18,7 +18,7 @@ namespace Enigma.Memory
         public IMemory BaseMemory { get; private set; }
 
         public MemoryAddress BaseAddress { get; private set; }
-        
+
         public BufferMemoryReader SnapshotReader { get; private set; }
 
         public bool IsRoot(MemoryObject memoryObject)
@@ -35,7 +35,7 @@ namespace Enigma.Memory
                 SnapshotReader.Segment.Offset,
                 SnapshotReader.Segment.Count);
         }
-        
+
         public T Read<T>(MemoryAddress address)
         {
             var snapshotAddress = ToSnapshotAddress(address);

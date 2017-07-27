@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace Enigma.Memory
 {
-	public class ReadOnlyMemory : IMemory
-	{
-		public ReadOnlyMemory(MemoryReader reader)
-		{
-			if (reader == null)
-				throw new ArgumentNullException("reader");
+    public class ReadOnlyMemory : IMemory
+    {
+        public ReadOnlyMemory(MemoryReader reader)
+        {
+            if (reader == null)
+                throw new ArgumentNullException("reader");
 
-			Reader = reader;
-		}
+            Reader = reader;
+        }
 
-		public MemoryReader Reader { get; private set; }
+        public MemoryReader Reader { get; private set; }
 
-		public void Dispose()
-		{
-			Reader.Dispose();
-		}
-	}
+        public void Dispose()
+        {
+            Reader.Dispose();
+        }
+    }
 }

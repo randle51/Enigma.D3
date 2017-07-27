@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Enigma.Memory
 {
-	public interface IMemory : IDisposable
-	{
-		MemoryReader
-			Reader { get; }
-	}
+    public interface IMemory : IDisposable
+    {
+        MemoryReader Reader { get; }
+    }
 }

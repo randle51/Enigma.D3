@@ -7,35 +7,35 @@ using System.Threading.Tasks;
 
 namespace Enigma.Memory
 {
-	public class FileMemoryReader : MemoryReader
-	{
-		private readonly FileStream _fileStream;
-		
-		public FileMemoryReader(string path)
-		{
-			if (string.IsNullOrWhiteSpace(path))
-				throw new ArgumentNullException("path");
+    public class FileMemoryReader : MemoryReader
+    {
+        private readonly FileStream _fileStream;
 
-			_fileStream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-		}
+        public FileMemoryReader(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+                throw new ArgumentNullException("path");
 
-		public override MemoryAddress MinValidAddress { get { return 0; } }
+            _fileStream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        }
 
-		public override MemoryAddress MaxValidAddress { get { return _fileStream.Length; } }
+        public override MemoryAddress MinValidAddress { get { return 0; } }
 
-		public override bool IsValid { get { return !_fileStream.SafeFileHandle.IsInvalid; } }
+        public override MemoryAddress MaxValidAddress { get { return _fileStream.Length; } }
 
-		public override int PointerSize { get { throw new NotSupportedException(); } }
+        public override bool IsValid { get { return !_fileStream.SafeFileHandle.IsInvalid; } }
 
-		protected override void UnsafeReadBytesCore(MemoryAddress address, byte[] buffer, int offset, int count)
-		{
-			_fileStream.Position = address;
-			_fileStream.Read(buffer, offset, count);
-		}
+        public override int PointerSize { get { throw new NotSupportedException(); } }
 
-		public override void Dispose()
-		{
-			_fileStream.Dispose();
-		}
-	}
+        protected override void UnsafeReadBytesCore(MemoryAddress address, byte[] buffer, int offset, int count)
+        {
+            _fileStream.Position = address;
+            _fileStream.Read(buffer, offset, count);
+        }
+
+        public override void Dispose()
+        {
+            _fileStream.Dispose();
+        }
+    }
 }

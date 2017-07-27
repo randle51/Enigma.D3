@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Enigma.Memory
 {
-	public interface IHasMainModuleVersion
-	{
-		Version MainModuleVersion { get; }
-	}
+    public interface IHasMainModuleVersion
+    {
+        Version MainModuleVersion { get; }
+    }
 }
