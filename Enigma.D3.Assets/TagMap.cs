@@ -51,8 +51,16 @@ namespace Enigma.D3.Assets
                             Entries[i].Value = new ScriptFormula(Reader, ref offset);
                             break;
 
+                        case 5: // TODO: Better type
+                            Entries[i].Value = Reader.Read<int>(offset); offset += 4;
+                            break;
+
                         case 6:
                             Entries[i].Value = Reader.Read<AttributeId>(offset); offset += 4;
+                            break;
+
+                        case 7: // TODO: Better type
+                            Entries[i].Value = Reader.Read<int>(offset); offset += 4;
                             break;
 
                         default:
