@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AllocationCache.cs" />
     <Compile Include="AttributeCache.cs" />
+    <Compile Include="ContainerExtensions.cs" />
     <Compile Include="ContainerCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
