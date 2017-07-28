@@ -45,7 +45,7 @@ namespace Enigma.Memory
                 (value as MemoryObject).SetSnapshot(
                     SnapshotReader.Segment.Array,
                     SnapshotReader.Segment.Offset + snapshotAddress,
-                    TypeHelper<T>.SizeOf);
+                    SnapshotReader.Segment.Array.Length - (SnapshotReader.Segment.Offset + snapshotAddress));
                 return value;
             }
             else if (TypeHelper<T>.IsMemoryPointerType)
@@ -70,7 +70,7 @@ namespace Enigma.Memory
                     (array[i] as MemoryObject).SetSnapshot(
                         SnapshotReader.Segment.Array,
                         SnapshotReader.Segment.Offset + itemOffset,
-                        TypeHelper<T>.SizeOf);
+                        SnapshotReader.Segment.Array.Length - (SnapshotReader.Segment.Offset + itemOffset));
                     itemOffset += TypeHelper<T>.SizeOf;
                 }
                 return array;
