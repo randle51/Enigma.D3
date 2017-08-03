@@ -11,7 +11,7 @@ namespace Enigma.D3.MemoryModel.Collections
 {
     public class Map<TKey, TValue> : MemoryObject, IEnumerable<KeyValuePair<TKey, TValue>>
     {
-        public static int SizeOf => 0x10 + Vector<Ptr<Entry>>.SizeOf;
+        public static int SizeOf => SymbolTable.PlatformSize(0x70, 0x80);
 
         public int Mask => Read<int>(0x00);
 
