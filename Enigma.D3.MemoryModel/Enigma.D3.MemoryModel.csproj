@@ -106,6 +106,7 @@
     <Compile Include="TypeSystem\AttributeDescriptor.cs" />
     <Compile Include="TypeSystem\FieldDescriptor.cs" />
     <Compile Include="TypeSystem\SymbolDescriptor.cs" />
+    <Compile Include="TypeSystem\TagDescriptor.cs" />
     <Compile Include="TypeSystem\ValueTypeDescriptor.cs" />
   </ItemGroup>
   <ItemGroup>
