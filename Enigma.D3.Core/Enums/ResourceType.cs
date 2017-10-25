@@ -14,6 +14,7 @@ namespace Enigma.D3.Enums
 		Power = 4,
 		Hatred = 5,
 		Discipline = 6,
-		Faith = 7
+		Faith = 7,
+        Essence = 8
 	}
 }
