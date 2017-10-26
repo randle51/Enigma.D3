@@ -10,33 +10,33 @@ namespace Enigma.D3.MemoryModel
     {
         private void InitX64()
         {
-            Version = new Version(2, 6, 0, 46568);
+            Version = new Version(2, 6, 1, 47710);
             Platform = Platform.X64;
 
-            DataSegment.Address = 0x141B57000;
-            DataSegment.VideoPreferences = 0x141BE5C00;
-            DataSegment.SoundPreferences = 0x141BE5CA0;
-            DataSegment.HotkeyPreferences = 0x141BE5CF0;
-            DataSegment.GameplayPreferences = 0x141BE6170;
-            DataSegment.SocialPreferences = 0x141BE61D8;
-            DataSegment.ChatPreferences = 0x141BE6208;
-            DataSegment.LevelArea = 0x141DDF788;
-            DataSegment.LevelAreaName = 0x141DDF790;
+            DataSegment.Address = 0x141AF1000;
+            DataSegment.VideoPreferences = 0x141B7E150;
+            DataSegment.SoundPreferences = 0x141B7E1F0;
+            DataSegment.HotkeyPreferences = 0x141B7E240;
+            DataSegment.GameplayPreferences = 0x141B7E6C0;
+            DataSegment.SocialPreferences = 0x141B7E728;
+            DataSegment.ChatPreferences = 0x141B7E758;
+            DataSegment.LevelArea = 0x141D738B8;
+            DataSegment.LevelAreaName = 0x141D738C0;
             DataSegment.LevelAreaNameLength = 0x80;
-            DataSegment.MapActID = 0x141DDFA98;
-            DataSegment.ScreenManagerRoot = 0x141DDFCC0;
-            DataSegment.TrickleManager = 0x141E32B90;
-            DataSegment.LocalData = 0x141E5FBD8;
-            DataSegment.ObjectManager = 0x141E5FCE0;
-            DataSegment.ApplicationLoopCount = 0x141E5FD64;
-            DataSegment.AttributeDescriptors = 0x141ED3820;
-            DataSegment.AttributeDescriptorsCount = 0x5B9;
-            DataSegment.MemoryManager = 0x141F6E460;
-            DataSegment.SNOFiles = 0x141E5A020;
-            DataSegment.SNOGroups = 0x141E5FAE0;
-            DataSegment.SNOGroupsByCode = 0x141E5F8B0;
-            DataSegment.ContainerManager = 0x141F71D80;
-            DataSegment.MessageDescriptor = 0x1413B1C18;
+            DataSegment.MapActID = 0x141D73BC8;
+            DataSegment.ScreenManagerRoot = 0x141D73DF0;
+            DataSegment.TrickleManager = 0x141DC6CC0;
+            DataSegment.LocalData = 0x141DF3C28;
+            DataSegment.ObjectManager = 0x141DF3D30;
+            DataSegment.ApplicationLoopCount = 0x141DF3DB4;
+            DataSegment.AttributeDescriptors = 0x141E67870;
+            DataSegment.AttributeDescriptorsCount = 0x5BB;
+            DataSegment.MemoryManager = 0x141F02540;
+            DataSegment.SNOFiles = 0x141DEE150;
+            DataSegment.SNOGroups = 0x141DF1B20;
+            DataSegment.SNOGroupsByCode = 0x141DF18F0;
+            DataSegment.ContainerManager = 0x141F05E60;
+            DataSegment.MessageDescriptor = 0x141369B58;
 
             ObjectManager.SizeOf = 0xBC0;
             ObjectManager.RenderTick = 0x4;
@@ -177,7 +177,7 @@ namespace Enigma.D3.MemoryModel
 
             Player.SizeOf = 0xA3C8;
             Player.LocalPlayerIndex = 0x0;
-            Player.FloatingNumbers = 0xA218;
+            Player.FloatingNumbers = 0xA238;
             Player.LatencySamples = 0xA348;
 
             AttributeDescriptor.SizeOf = 0x40;
@@ -187,11 +187,11 @@ namespace Enigma.D3.MemoryModel
             AttributeDescriptor.Name = 0x28;
             AttributeDescriptor.NameLength = 0x100;
 
-            FloatingNumber.SizeOf = 0x60;
-            FloatingNumber.Type = 0x0;
-            FloatingNumber.WorldPos = 0x8;
-            FloatingNumber.SWorldID = 0x14;
-            FloatingNumber.Value = 0x5C;
+            FloatingNumber.SizeOf = 0x64;
+            FloatingNumber.Type = 0x5C;
+            FloatingNumber.WorldPos = 0x4;
+            FloatingNumber.SWorldID = 0x10;
+            FloatingNumber.Value = 0x60;
 
             TimedEvent.SizeOf = 0x58;
 
