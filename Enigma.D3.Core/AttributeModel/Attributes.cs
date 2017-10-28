@@ -1484,5 +1484,7 @@ namespace Enigma.D3.AttributeModel
         public static Attribute<int> EligibleForWeeklyChallengeReward = new SimpleAttribute<int>(AttributeId.EligibleForWeeklyChallengeReward, 0);
         public static Attribute<int> ForceRemoteFX = new SimpleAttribute<int>(AttributeId.ForceRemoteFX, 0);
         public static Attribute<int> WeeklyChallengeRewardIcon = new SimpleAttribute<int>(AttributeId.WeeklyChallengeRewardIcon, 0);
+        public static Attribute<int> ItemWasTouchedByArmory = new SimpleAttribute<int>(AttributeId.ItemWasTouchedByArmory, 0);
+        public static Attribute<int> ItemWasTouchedByArmoryLastGame = new SimpleAttribute<int>(AttributeId.ItemWasTouchedByArmoryLastGame, 0);
     }
 }

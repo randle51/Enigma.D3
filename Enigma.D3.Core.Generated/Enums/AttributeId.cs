@@ -1466,6 +1466,8 @@ namespace Enigma.D3.Enums
         NecromancerUniqueCurseCount = 1461,
         EligibleForWeeklyChallengeReward = 1462,
         ForceRemoteFX = 1463,
-        WeeklyChallengeRewardIcon = 1464
+        WeeklyChallengeRewardIcon = 1464,
+        ItemWasTouchedByArmory = 1465,
+        ItemWasTouchedByArmoryLastGame = 1466
     }
 }
